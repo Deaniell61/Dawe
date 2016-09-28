@@ -99,6 +99,70 @@ function inicioVenta($idProv)
     return printf($form);
   
 }
+function quitaInventario($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+	session_start();
+	$mysql->query("BEGIN");
+	
+	$cont=$mysql->query("select cantidad from inventario where idproducto='".$datos[0]."'");
+			 
+				 $fila = $cont->fetch_row();
+				 
+				 if($fila[0]<$datos[1])
+				 {
+					 $datos[1]=$fila[0];
+				 }
+	if($datos[1]>0)
+	{			 
+		$total=$datos[3]*$datos[1];
+			 
+    $sql = "update inventario set cantidad=cantidad-".$datos[1]." where idproducto='".$datos[0]."'";
+ 	
+    if($mysql->query($sql))
+    {
+			 
+				 	
+			//		 echo "<script>window.location.href = 'Ventas.php';/script>";
+					echo '2';
+			if(!$mysql->query("update ventas set estado=1 where idventas='".$_SESSION['idVenta']."'"))
+					 {
+						
+						 $mysql->query("ROLLBACK");
+					 }
+					 else
+					 if(!$mysql->query("update cuentasCobrar set estado=1 where idVentas='".$_SESSION['idVenta']."'"))
+			 		{
+				
+				 		$mysql->query("ROLLBACK");
+			 		}
+					else
+					 {	     
+			 
+			 
+		
+    					$mysql->query("COMMIT");
+					}
+		
+			
+    }
+    else
+    {   
+    		$mysql->query("ROLLBACK");
+    	$form = '1';
+    
+    }
+	}
+    else
+	{
+		echo "<script>window.location.reload();</script>";
+	}
+    
+    $mysql->close();
+    
+    return printf($form);
+}
 function ingresoVenta($datos)
 {
 	$mysql = conexionMysql();
@@ -115,23 +179,21 @@ function ingresoVenta($datos)
 					 $datos[1]=$fila[0];
 				 }
 	$total=$datos[3]*$datos[1];
-				 
+	if($datos[1]>0)
+	{				 
     $sql = "INSERT INTO ventasDetalle(cantidad,precio,estado,idventa,idproductos,subtotal) values('".$datos[1]."','".$datos[2]."',1,'".$_SESSION['idVenta']."',".$datos[0].",".$total.")";
  
     if($mysql->query($sql))
     {
 			 
-				 	  if(!$mysql->query("update ventas set total=total+".$total.",estado=1 where idventas='".$_SESSION['idVenta']."'"))
+				 	  if(!$mysql->query("update ventas set total=total+".$total." where idventas='".$_SESSION['idVenta']."'"))
 					 {
 						
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update inventario set cantidad=cantidad-".$datos[1]." where idproducto='".$datos[0]."'"))
-					 {
-						 $mysql->query("ROLLBACK");
-					 }
-					 if(!$mysql->query("update cuentasCobrar set total=total+".$total.",CreditoDado=CreditoDado+".$total.",estado=1 where idVentas='".$_SESSION['idVenta']."'"))
+					 
+					 if(!$mysql->query("update cuentasCobrar set total=total+".$total.",CreditoDado=CreditoDado+".$total." where idVentas='".$_SESSION['idVenta']."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");
@@ -154,7 +216,11 @@ function ingresoVenta($datos)
     	$form = $sql;
     
     }
-    
+    }
+    else
+	{
+		echo "<script>alert('Ya no hay en existencia del producto seleccionado');limpiarProducto();</script>";
+	}
     
     $mysql->close();
     
@@ -399,6 +465,34 @@ function anularVenta($datos)
     {   
     	$mysql->query("ROLLBACK");
     $form = "<div><script>location.reload();console.log('".$datos[0]."');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return printf($form);
+}
+function anularDetalleVenta($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+	session_start();
+		$mysql->query("BEGIN");
+    $sql = "delete from ventasdetalle where idventadetalle='".$datos[0]."'";
+//echo $sql;
+    if($mysql->query($sql))
+    {
+		
+		$mysql->query("COMMIT");
+			    
+		$form = "<script>cargarDetalleVentas('".$_SESSION['idVenta']."');</script>";
+    
+    }
+    else
+    {   
+    	$mysql->query("ROLLBACK");
+    	$form = "<div><script>cargarDetalleVentas('".$_SESSION['idVenta']."');</script></div>";
     
     }
     

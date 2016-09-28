@@ -142,6 +142,26 @@ if($_POST)
         agregarFacturaVenta($datos);
 
     }
+	else if($transaccion == 13)
+    {
+
+        $datos[0]=$nombre = $_POST['codigo'];
+		$datos[1]=$puesto = $_POST['cantidad'];
+		
+		        
+        quitaInventario($datos);
+
+    }
+	else if($transaccion == 14)
+    {
+
+        $datos[0] = $_POST['id'];
+		
+		
+		        
+        anularDetalleVenta($datos);
+
+    }
 	else if($transaccion == 66)
     {
         

@@ -129,7 +129,90 @@ function buscarCliente(buscar,evt)
 	
 	
 }
+function anularDetalleVenta1(id)
+{
+	var  trasDato;
+	trasDato = 14;
 
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/ventasControlador.php",
+            data:' id=' +  id + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');         
+                    //$('#precargar').hide();    
+                }
+                else
+                {
+					
+                    
+					
+					 $('#mensajeVV').html(resp); 
+
+                }
+
+
+            }     
+        });
+}
+function quitaInvetario()
+{
+	cont=0;
+	var real=1;
+	while(document.getElementById('Cantidad'+cont))
+	{
+		cantidad=(document.getElementById('Cantidad'+cont).innerHTML);
+		codigo=(document.getElementById('Codigo'+cont).innerHTML);
+		var  cantidad,trasDato;
+		trasDato = 13;
+		
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/ventasControlador.php",
+            data:' codigo=' +  codigo + '&cantidad=' + cantidad + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+					real=0;
+                    alert('Algo salio mal');
+					
+                }
+                else
+                {
+				
+                    real=1;
+					
+					 $('#mensaje').html(resp);
+					  
+
+                }
+
+
+            } 
+        });
+		
+		
+		cont++;
+	}
+
+	if(real==1)
+	{
+		
+		window.location.href="Ventas.php";
+	}
+	
+}
 function seleccionaMarca(mc)
 {
 	document.getElementById('marca').value=mc;

@@ -159,7 +159,8 @@ function abonarCuentaC($datos)
 					 $datos[1]=$fila[0];
 				 }
 	$saldo=$datos[3]-$datos[1];
-				 
+	if($datos[1]>0)
+	{		 
     $sql = "INSERT INTO movimientosC(credito,abono,saldo,fecha,descripcion,idcuentasC) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].")";
  
     if($mysql->query($sql))
@@ -196,6 +197,11 @@ function abonarCuentaC($datos)
 				
 		 $mysql->query("ROLLBACK");
 	 }
+	}
+	else
+	{
+		echo "<script>window.location.reload();</script>";
+	}
     $mysql->close();
     
     return printf($form);
