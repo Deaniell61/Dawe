@@ -1,0 +1,565 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 30-08-2016 a las 07:45:26
+-- Versión del servidor: 5.6.17
+-- Versión de PHP: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: `softronic`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `accesos`
+--
+
+CREATE TABLE IF NOT EXISTS `accesos` (
+  `idAccesos` int(11) NOT NULL AUTO_INCREMENT,
+  `Agrega` int(11) DEFAULT NULL,
+  `Modifica` int(11) DEFAULT NULL,
+  `Mostrar` int(11) DEFAULT NULL,
+  `Elimina` int(11) DEFAULT NULL,
+  `idUsuarios` int(11) DEFAULT NULL,
+  `idModulo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idAccesos`),
+  KEY `AccesoModulo_idx` (`idModulo`),
+  KEY `AccesoUsuarios_idx` (`idUsuarios`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+
+--
+-- Volcado de datos para la tabla `accesos`
+--
+
+INSERT INTO `accesos` (`idAccesos`, `Agrega`, `Modifica`, `Mostrar`, `Elimina`, `idUsuarios`, `idModulo`) VALUES
+(15, 1, 1, 1, NULL, 33, 3),
+(16, 1, 1, 1, NULL, 33, 2),
+(17, 1, 1, 1, NULL, 33, 1),
+(18, 1, 1, 1, NULL, 33, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente`
+--
+
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) DEFAULT NULL,
+  `Apellido` varchar(50) DEFAULT NULL,
+  `Nit` varchar(20) DEFAULT NULL,
+  `Departamento` int(11) DEFAULT NULL,
+  `Municipio` int(11) DEFAULT NULL,
+  `Pais` int(11) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idCliente`),
+  KEY `ClientePais_idx` (`Pais`),
+  KEY `ClineteDepartamento_idx` (`Departamento`),
+  KEY `ClienteMunicipio_idx` (`Municipio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compradetalle`
+--
+
+CREATE TABLE IF NOT EXISTS `compradetalle` (
+  `idCompraDetalle` int(11) NOT NULL AUTO_INCREMENT,
+  `subtotal` double DEFAULT NULL,
+  `vencimiento` date DEFAULT NULL,
+  `cantidad` double DEFAULT NULL,
+  `precio` double DEFAULT NULL,
+  `descuentos` double DEFAULT NULL,
+  `garantia` text,
+  `estado` int(11) DEFAULT NULL,
+  `idCompras` int(11) DEFAULT NULL,
+  `idProductos` int(11) DEFAULT NULL,
+  `idTipo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idCompraDetalle`),
+  KEY `DetalleCompra_idx` (`idCompras`),
+  KEY `DetalleTipo_idx` (`idTipo`),
+  KEY `DetalleProducto_idx` (`idProductos`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compras`
+--
+
+CREATE TABLE IF NOT EXISTS `compras` (
+  `idCompras` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `total` double DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `tipoCompra` int(11) DEFAULT NULL,
+  `NoComprobante` varchar(45) DEFAULT NULL,
+  `idDistribuidor` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idCompras`),
+  KEY `CompraDistribuidor_idx` (`idDistribuidor`),
+  KEY `CompraTipo_idx` (`tipoCompra`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `departamentos`
+--
+
+CREATE TABLE IF NOT EXISTS `departamentos` (
+  `idDepartamentos` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) DEFAULT NULL,
+  `codigoPostal` varchar(45) DEFAULT NULL,
+  `LADA` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idDepartamentos`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `distribuidores`
+--
+
+CREATE TABLE IF NOT EXISTS `distribuidores` (
+  `idDistribuidores` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) DEFAULT NULL,
+  `Apellido` varchar(50) DEFAULT NULL,
+  `Telefono` varchar(20) DEFAULT NULL,
+  `Telefono2` varchar(20) DEFAULT NULL,
+  `NoVendedor` varchar(30) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `IdProveedor` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idDistribuidores`),
+  KEY `DistribuidorProveedor_idx` (`IdProveedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empleados`
+--
+
+CREATE TABLE IF NOT EXISTS `empleados` (
+  `idEmpleados` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) DEFAULT NULL,
+  `Apellido` varchar(75) DEFAULT NULL,
+  `Telefono` varchar(20) DEFAULT NULL,
+  `Direccion` varchar(50) DEFAULT NULL,
+  `Puesto` int(11) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idEmpleados`),
+  KEY `EmpleadoPuesto_idx` (`Puesto`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `empleados`
+--
+
+INSERT INTO `empleados` (`idEmpleados`, `Nombre`, `Apellido`, `Telefono`, `Direccion`, `Puesto`, `estado`) VALUES
+(7, 'JosÃ© Daniel', 'Rodriguez Rodriguez', '54646431', 'Mazatenango', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historialinventario`
+--
+
+CREATE TABLE IF NOT EXISTS `historialinventario` (
+  `idInventario` int(11) NOT NULL AUTO_INCREMENT,
+  `Entrada` double DEFAULT NULL,
+  `Salida` double DEFAULT NULL,
+  `Fecha` date DEFAULT NULL,
+  `existencia` double DEFAULT NULL,
+  `Ubicacion` text,
+  `UPC` varchar(50) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `idCompraDetalle` int(11) DEFAULT NULL,
+  `idVentaDetalle` int(11) DEFAULT NULL,
+  `idProducto` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idInventario`),
+  KEY `InventarioDetalle_idx` (`idCompraDetalle`),
+  KEY `InventarioDetalleVenta_idx` (`idVentaDetalle`),
+  KEY `InventarioProducto_idx` (`idProducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inventario`
+--
+
+CREATE TABLE IF NOT EXISTS `inventario` (
+  `idInventario` int(11) NOT NULL AUTO_INCREMENT,
+  `idProducto` int(11) DEFAULT NULL,
+  `Existencia` double DEFAULT NULL,
+  `PrecioVenta` double DEFAULT NULL,
+  `PrecioCompra` double DEFAULT NULL,
+  PRIMARY KEY (`idInventario`),
+  KEY `InventarioProducto_idx` (`idProducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `modulos`
+--
+
+CREATE TABLE IF NOT EXISTS `modulos` (
+  `idModulos` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) DEFAULT NULL,
+  `Dir` varchar(50) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `RefId` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idModulos`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `modulos`
+--
+
+INSERT INTO `modulos` (`idModulos`, `Nombre`, `Dir`, `estado`, `RefId`) VALUES
+(1, 'Inicio', '../app/img/inicio.png', 1, 'inicio'),
+(2, 'Usuarios', '../app/img/usuariotab.png', 1, 'usuario'),
+(3, 'Compras', '../app/img/carro-de-la-compra.png', 1, 'compras'),
+(4, 'Cuentas', '../app/img/etiqueta-del-precio.png', 1, 'ventas'),
+(5, 'Estadistica', '../app/img/reparacion-mecanismo.png', 1, 'inventario'),
+(6, 'Inventario', '../app/img/notas.png', 1, 'cuentas'),
+(7, 'Ventas', '../app/img/diagrama.png', 1, 'estadistica');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `municipio`
+--
+
+CREATE TABLE IF NOT EXISTS `municipio` (
+  `idMunicipio` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) DEFAULT NULL,
+  `LADA` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idMunicipio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pais`
+--
+
+CREATE TABLE IF NOT EXISTS `pais` (
+  `idPais` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(70) DEFAULT NULL,
+  `Codigo` varchar(50) DEFAULT NULL,
+  `LADA` varchar(45) DEFAULT NULL,
+  `Cod` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`idPais`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE IF NOT EXISTS `productos` (
+  `idProductos` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` text,
+  `Nombre` varchar(100) DEFAULT NULL,
+  `CodigoProducto` varchar(50) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idProductos`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proveedor`
+--
+
+CREATE TABLE IF NOT EXISTS `proveedor` (
+  `idproveedor` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreEmpresa` varchar(50) DEFAULT NULL,
+  `Direccion` varchar(50) DEFAULT NULL,
+  `Telefono` varchar(20) DEFAULT NULL,
+  `Nit` varchar(10) DEFAULT NULL,
+  `CuentaDepoito` varchar(30) DEFAULT NULL,
+  `IdDepartamento` int(11) DEFAULT NULL,
+  `IdMuniciopio` int(11) DEFAULT NULL,
+  `IdPais` int(11) DEFAULT NULL,
+  `Estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idproveedor`),
+  KEY `ProveedorPais_idx` (`IdPais`),
+  KEY `ProveedorDepartamento_idx` (`IdDepartamento`),
+  KEY `ProveedorMunicipio_idx` (`IdMuniciopio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `puestos`
+--
+
+CREATE TABLE IF NOT EXISTS `puestos` (
+  `idPuestos` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idPuestos`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `puestos`
+--
+
+INSERT INTO `puestos` (`idPuestos`, `Descripcion`) VALUES
+(1, 'Jefe'),
+(2, 'Vendedor');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE IF NOT EXISTS `roles` (
+  `idRol` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(45) DEFAULT NULL,
+  `ModulosDefecto` varchar(100) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idRol`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`idRol`, `Descripcion`, `ModulosDefecto`, `estado`) VALUES
+(1, 'Administrador', NULL, NULL),
+(2, 'Vendedor', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipocompra`
+--
+
+CREATE TABLE IF NOT EXISTS `tipocompra` (
+  `idTipo` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(70) DEFAULT NULL,
+  `Observacion` text,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idTipo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipodetallecompra`
+--
+
+CREATE TABLE IF NOT EXISTS `tipodetallecompra` (
+  `idTipo` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(70) DEFAULT NULL,
+  `Observacion` text,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idTipo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipodetalleventa`
+--
+
+CREATE TABLE IF NOT EXISTS `tipodetalleventa` (
+  `idTipo` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(70) DEFAULT NULL,
+  `Observacion` text,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idTipo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipoventa`
+--
+
+CREATE TABLE IF NOT EXISTS `tipoventa` (
+  `idTipo` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(70) DEFAULT NULL,
+  `Observacion` text,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idTipo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `idUsuarios` int(11) NOT NULL AUTO_INCREMENT,
+  `Email` varchar(55) DEFAULT NULL,
+  `user` varchar(10) DEFAULT NULL,
+  `Contra` varchar(20) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `idRol` int(11) DEFAULT NULL,
+  `idEmpleados` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idUsuarios`),
+  KEY `UsuarioEmpleado_idx` (`idEmpleados`),
+  KEY `UsuarioRol_idx` (`idRol`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idUsuarios`, `Email`, `user`, `Contra`, `estado`, `idRol`, `idEmpleados`) VALUES
+(33, NULL, 'Admin', '123412341234', 1, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ventas`
+--
+
+CREATE TABLE IF NOT EXISTS `ventas` (
+  `idVentas` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `total` double DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `tipoVenta` int(11) DEFAULT NULL,
+  `NoComprobante` varchar(45) DEFAULT NULL,
+  `idCliente` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idVentas`),
+  KEY `ClienteVenta_idx` (`idCliente`),
+  KEY `VentaTipo_idx` (`tipoVenta`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ventasdetalle`
+--
+
+CREATE TABLE IF NOT EXISTS `ventasdetalle` (
+  `idVentaDetalle` int(11) NOT NULL AUTO_INCREMENT,
+  `Subtotal` double DEFAULT NULL,
+  `Vencimiento` date DEFAULT NULL,
+  `Cantidad` double DEFAULT NULL,
+  `precio` double DEFAULT NULL,
+  `garantia` text,
+  `idVenta` int(11) DEFAULT NULL,
+  `idProductos` int(11) DEFAULT NULL,
+  `idTipo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idVentaDetalle`),
+  KEY `VentaDetalleTipo_idx` (`idTipo`),
+  KEY `VentaDetalle_idx` (`idVenta`),
+  KEY `VentaDetalleProducto_idx` (`idProductos`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `accesos`
+--
+ALTER TABLE `accesos`
+  ADD CONSTRAINT `AccesoModulo` FOREIGN KEY (`idModulo`) REFERENCES `modulos` (`idModulos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `AccesoUsuarios` FOREIGN KEY (`idUsuarios`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD CONSTRAINT `ClienteDepartamento` FOREIGN KEY (`Departamento`) REFERENCES `departamentos` (`idDepartamentos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ClienteMunicipio` FOREIGN KEY (`Municipio`) REFERENCES `municipio` (`idMunicipio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ClientePais` FOREIGN KEY (`Pais`) REFERENCES `pais` (`idPais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `compradetalle`
+--
+ALTER TABLE `compradetalle`
+  ADD CONSTRAINT `DetalleCompra` FOREIGN KEY (`idCompras`) REFERENCES `compras` (`idCompras`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `DetalleProducto` FOREIGN KEY (`idProductos`) REFERENCES `productos` (`idProductos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `DetalleTipo` FOREIGN KEY (`idTipo`) REFERENCES `tipodetallecompra` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `CompraDistribuidor` FOREIGN KEY (`idDistribuidor`) REFERENCES `distribuidores` (`idDistribuidores`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `CompraTipo` FOREIGN KEY (`tipoCompra`) REFERENCES `tipocompra` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `distribuidores`
+--
+ALTER TABLE `distribuidores`
+  ADD CONSTRAINT `DistribuidorProveedor` FOREIGN KEY (`IdProveedor`) REFERENCES `proveedor` (`idproveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `empleados`
+--
+ALTER TABLE `empleados`
+  ADD CONSTRAINT `EmpleadoPuesto` FOREIGN KEY (`Puesto`) REFERENCES `puestos` (`idPuestos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `historialinventario`
+--
+ALTER TABLE `historialinventario`
+  ADD CONSTRAINT `HistorialInventarioDetalleCompra` FOREIGN KEY (`idCompraDetalle`) REFERENCES `compradetalle` (`idCompraDetalle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `HistorialInventarioDetalleVenta` FOREIGN KEY (`idVentaDetalle`) REFERENCES `ventasdetalle` (`idVentaDetalle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `HistorialInventarioProducto` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProductos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  ADD CONSTRAINT `InventarioProducto` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProductos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  ADD CONSTRAINT `ProveedorDepartamento` FOREIGN KEY (`IdDepartamento`) REFERENCES `departamentos` (`idDepartamentos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ProveedorMunicipio` FOREIGN KEY (`IdMuniciopio`) REFERENCES `municipio` (`idMunicipio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ProveedorPais` FOREIGN KEY (`IdPais`) REFERENCES `pais` (`idPais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `UsuarioEmpleado` FOREIGN KEY (`idEmpleados`) REFERENCES `empleados` (`idEmpleados`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `UsuarioRol` FOREIGN KEY (`idRol`) REFERENCES `roles` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `VentaCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `VentaTipo` FOREIGN KEY (`tipoVenta`) REFERENCES `tipoventa` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `ventasdetalle`
+--
+ALTER TABLE `ventasdetalle`
+  ADD CONSTRAINT `VentaDetalle` FOREIGN KEY (`idVenta`) REFERENCES `ventas` (`idVentas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `VentaDetalleProducto` FOREIGN KEY (`idProductos`) REFERENCES `productos` (`idProductos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `VentaDetalleTipo` FOREIGN KEY (`idTipo`) REFERENCES `tipodetalleventa` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

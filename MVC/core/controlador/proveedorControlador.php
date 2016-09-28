@@ -1,0 +1,150 @@
+<?php
+
+
+if($_POST)
+{
+    require('../configCore.php');
+    
+    $transaccion = $_POST['trasDato'];
+    
+    
+//-------------- acceso -----------/    
+    if($transaccion == 1)
+    {
+        $datos[0]=$nombre=$_POST['nombre'];
+		$datos[1]=$direccion=$_POST['direccion'];
+		$datos[2]=$nit=$_POST['nit'];
+		$datos[3]=$telefono=$_POST['telefono'];
+		$datos[4]=$cuenta=$_POST['cuenta'];
+        
+        insertarProveedor($datos);
+        
+        
+    
+    }
+//---------- fin acceso -----------/   
+  
+//------------ gestion --------------/    
+
+    // insertar
+    else if($transaccion == 2)
+    {
+        
+          
+
+        
+        $user = $_POST['user'];
+        $pass = $_POST['pass'];
+        $rol = $_POST['rol'];
+
+        
+        insertarUsuario($user, $pass,$rol);
+        
+    
+    }
+    // eliminar
+    else if($transaccion == 3)
+    {
+        
+        $idelim = $_POST['idelim'];
+		$pass = $_POST['pass'];
+        
+        eliminarUsuario($idelim,$pass);
+        
+        
+    }
+    
+    //editar
+    else if($transaccion == 4)
+    {
+        
+        $idedit = $_POST['idedit'];
+        
+        editarUsuario($idedit);
+        
+    }
+    
+    else if($transaccion == 5)
+    {
+
+         $user = $_POST['user'];
+        $pass = $_POST['pass'];
+        $rol = $_POST['rol'];
+		 $id = $_POST['id'];
+
+        
+        actualizarUsuario($user, $pass,$rol,$id);
+
+    }
+	else if($transaccion == 6)
+    {
+        
+          
+
+        
+        $datos[0]=$nombre = $_POST['nombre'];
+		$datos[1]=$apellido = $_POST['apellido'];
+		$datos[2]=$telefono = $_POST['telefono'];
+		$datos[3]=$direccion = $_POST['direccion'];
+		$datos[4]=$puesto = $_POST['puesto'];
+		
+		        
+        insertarEmpleado($datos);
+        
+    
+    }
+    // eliminar
+    else if($transaccion == 7)
+    {
+        
+        $idelim = $_POST['idelim'];
+        
+        eliminarEmpleado($idelim);
+        
+        
+    }
+    
+    //editar
+    else if($transaccion == 8)
+    {
+        
+        $idedit = $_POST['idedit'];
+        
+        editarEmpleado($idedit);
+        
+    }
+    
+    else if($transaccion == 9)
+    {
+
+        $datos[0]=$nombre = $_POST['nombre'];
+		$datos[1]=$apellido = $_POST['apellido'];
+		$datos[2]=$telefono = $_POST['telefono'];
+		$datos[3]=$direccion = $_POST['direccion'];
+		$datos[4]=$puesto = $_POST['puesto'];
+		$datos[5]=$puesto = $_POST['id'];
+		
+		        
+        actualizarEmpleado($datos);
+
+    }
+	else if($transaccion == 66)
+    {
+        
+        CerrarSesion();
+
+    }
+    
+//----------- fin gestion ----------/    
+    
+}
+
+else
+{
+    
+    //regrsar a index
+    echo'regresar al index';
+}
+
+
+?>

@@ -1,0 +1,163 @@
+<?php
+
+
+if($_POST)
+{
+    require('../configCore.php');
+    
+    $transaccion = $_POST['trasDato'];
+    
+  
+    if($transaccion == 1)
+    {
+        $datos['0']  = $_POST['id'];
+		$datos['1']  = $_POST['plazo'];
+		$datos['2']  = $_POST['tipo'];
+        
+        ingresoCuentaPagar($datos);
+        
+        
+    
+    }
+//------------ gestion --------------/    
+
+    // insertar
+    else if($transaccion == 2)
+    {
+        
+          
+
+        
+        $datos[0] = $_POST['id'];
+       
+
+        
+        editarCuentasP($datos);
+        
+    
+    }
+    // eliminar
+    else if($transaccion == 3)
+    {
+        
+        $datos[0] = $_POST['id'];
+       
+
+        
+        verCuentaP($datos);
+        
+        
+    }
+    
+    //editar
+    else if($transaccion == 4)
+    {
+        
+        
+         $id = $_POST['id'];
+
+        
+        mostrarMovimientosCuentasP($id);
+    }
+    
+    else if($transaccion == 5)
+    {
+
+		 $id = $_POST['id'];
+
+        
+        mostrarDetallesCompras($id);
+
+    }
+	else if($transaccion == 6)
+    {
+        
+          
+
+        
+        $datos[0]=$prod = $_POST['prod'];
+		buscarProducto($datos);
+		
+		        
+        
+        
+    
+    }
+    // eliminar
+    else if($transaccion == 7)
+    {
+        
+        $datos[0]=$prod = $_POST['prod'];
+		buscarPrecioProducto($datos);
+        
+        
+    }
+    
+    //editar
+    else if($transaccion == 8)
+    {
+        
+        $dato[0] = $_POST['id'];
+        
+        buscarCompra($dato);
+        
+    }
+    
+    else if($transaccion == 9)
+    {
+
+        $datos[0]=$nombre = $_POST['tipo'];
+		$datos[1]=$puesto = $_POST['id'];
+		
+		        
+        cambiarTipoCompra($datos);
+
+    }
+	else if($transaccion == 10)
+    {
+
+		$datos[0]=$puesto = $_POST['id'];
+		
+		        
+        anularCompra($datos);
+
+    }
+	else if($transaccion == 11)
+    {
+
+		$datos[0]=$puesto = $_POST['id'];
+		
+		        
+        buscarMarca($datos);
+
+    }
+	else if($transaccion == 12)
+    {
+
+        $datos[0]=$nombre = $_POST['tipo'];
+		$datos[1]=$puesto = $_POST['id'];
+		
+		        
+        agregarFactura($datos);
+
+    }
+	else if($transaccion == 66)
+    {
+        
+        CerrarSesion();
+
+    }
+    
+//----------- fin gestion ----------/    
+    
+}
+
+else
+{
+    
+    //regrsar a index
+    echo'regresar al index';
+}
+
+
+?>
