@@ -44,7 +44,7 @@ function mostrarVentas()
             {
 
                 $tabla .= "<tr>";
-				$tabla .="<td hidden id=\"Codigo$contaId\">"     .$fila["6"].    "</td>";
+				
                 $tabla .="<td>"     .$fila["0"].    "</td>";
                 $tabla .="<td>" .$fila["1"].      "</td>";
                 $tabla .="<td>" .$fila["2"].      "</td>";

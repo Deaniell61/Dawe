@@ -167,39 +167,6 @@ function buscarCompra(id)
             }     
         });
 }
-function iniciarCompra(id)
-{
-	 var  trasDato;
-	trasDato = 2;
-
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/comprasControlador.php",
-            data:' prov=' +  id + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
-
-               if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
-                }
-                else
-                {
-					
-                    
-					
-					 $('#mensaje').html(resp); 
-
-                }
-
-
-            }     
-        });
-}
 function anularCompra(id)
 {
 	var  trasDato;

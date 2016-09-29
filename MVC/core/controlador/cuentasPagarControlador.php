@@ -63,10 +63,15 @@ if($_POST)
     else if($transaccion == 5)
     {
 
-		 $id = $_POST['id'];
-
-        
-        mostrarDetallesCompras($id);
+		$datos[0] = $_POST['id'];
+		$datos[1] = $_POST['abono'];
+		$datos[2] = $_POST['fecha'];
+		$datos[3] = $_POST['saldo'];
+		$datos[4] = $_POST['descripcion'];
+		$datos[5] = $_POST['credito'];
+		
+		        
+        abonarCuentaP($datos);
 
     }
 	else if($transaccion == 6)

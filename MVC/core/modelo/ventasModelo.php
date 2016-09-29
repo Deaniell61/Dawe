@@ -455,8 +455,23 @@ function anularVenta($datos)
 //echo $sql;
     if($mysql->query($sql))
     {
+		if($con=$mysql->query("select cantidad,idproductos from ventasdetalle where idventa='".$datos[0]."'"))
+    	{
+			while($fila = $con->fetch_row())
+			{
+				if(!$mysql->query("update inventario set cantidad=cantidad+".$fila[0]." where idproducto='".$fila[1]."'"))
+				{
+					$mysql->query("ROLLBACK");
+				}
+			}
+			
+			$mysql->query("COMMIT");
+		}
+		else
+		{
+			$mysql->query("ROLLBACK");
+		}
 		
-		$mysql->query("COMMIT");
 			    
 		$form = "<script>alert('La Venta fue anulada');setTimeout(window.location.reload(), 3000);</script>";
     

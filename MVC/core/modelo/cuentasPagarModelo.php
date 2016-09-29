@@ -56,15 +56,15 @@ function editarCuentasP($dato)
 		  if($fila = $resultado->fetch_row())
 		  {
 		  	$form .="<script>";
-			$form .="document.getElementById('proveedor').disabled=false;document.getElementById('proveedor').value='".$fila[6]."';document.getElementById('proveedor').focus();document.getElementById('proveedor').disabled=true;";
-			$form .="document.getElementById('fechaInicial').disabled=false;document.getElementById('fechaInicial').value='".substr($fila[0],0,10)."';document.getElementById('fechaInicial').focus();document.getElementById('fechaInicial').disabled=true;";
-			$form .="document.getElementById('totalCredito').disabled=false;document.getElementById('totalCredito').value='".$fila[3]."';document.getElementById('totalCredito').focus();document.getElementById('totalCredito').disabled=true;";
-			
-			$form .="document.getElementById('saldo').disabled=false;document.getElementById('saldo').value='".$fila[4]."';document.getElementById('saldo').focus();document.getElementById('saldo').disabled=true;";
-			$form .="document.getElementById('plazo').disabled=false;document.getElementById('plazo').value='".$fila[1]."';document.getElementById('plazo').focus();document.getElementById('plazo').disabled=true;";
+			$form .="document.getElementById('proveedorED').disabled=false;document.getElementById('proveedorED').value='".$fila[6]."';document.getElementById('proveedorED').focus();document.getElementById('proveedorED').disabled=true;";
+			$form .="document.getElementById('fechaInicialED').disabled=false;document.getElementById('fechaInicialED').value='".substr($fila[0],0,10)."';document.getElementById('fechaInicialED').focus();document.getElementById('fechaInicialED').disabled=true;";
+			$form .="document.getElementById('totalCreditoED').disabled=false;document.getElementById('totalCreditoED').value='".$fila[3]."';document.getElementById('totalCreditoED').focus();document.getElementById('totalCreditoED').disabled=true;";
+			$form .="document.getElementById('saldoE').innerHTML='Saldo: ".toMoney($fila[4])."';";
+			$form .="document.getElementById('saldoED').disabled=false;document.getElementById('saldoED').value='".$fila[4]."';document.getElementById('saldoED').focus();document.getElementById('saldoED').disabled=true;";
+			$form .="document.getElementById('plazoED').disabled=false;document.getElementById('plazoED').value='".$fila[1]."';document.getElementById('plazoED').focus();document.getElementById('plazoED').disabled=true;";
 			$form .="document.getElementById('codigo').disabled=false;document.getElementById('codigo').value='".$dato[0]."';document.getElementById('codigo').focus();document.getElementById('codigo').disabled=true;";
 			//$form .="document.getElementById('tipoCompra').disabled=false;document.getElementById('tipoCompra').value='".$fila[5]."'.selected;document.getElementById('tipoCompra').focus();document.getElementById('tipoCompra').disabled=true;";
-			$form .="\$('#tipoPlazo').val(\"".$fila[2]."\");$('select').material_select(); ";
+			$form .="\$('#tipoPlazoED').val(\"".$fila[2]."\");$('select').material_select(); ";
 			$form .="cargarDetalleCuentasP('".$dato[0]."');";
 			$form .="</script>";
 			
@@ -141,5 +141,71 @@ function verCuentaP($dato)
     
     return printf($form);
     
+}
+
+function abonarCuentaP($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+	session_start();
+	$mysql->query("BEGIN");
+	
+	if($cont=$mysql->query("select total from cuentaspagar where idcuentasp='".$datos[0]."'"))
+	{
+			 
+				 $fila = $cont->fetch_row();
+				 
+				 if($fila[0]<$datos[1])
+				 {
+					 $datos[1]=$fila[0];
+				 }
+	$saldo=$datos[3]-$datos[1];
+	if($datos[1]>0)
+	{		 
+    $sql = "INSERT INTO movimientosP(credito,abono,saldo,fecha,descripcion,idcuentasP) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].")";
+ 
+    if($mysql->query($sql))
+    {
+			 
+				 	  if(!$mysql->query("update cuentaspagar set total=total-".$datos[1]." where idcuentasP='".$datos[0]."'"))
+					 {
+						
+						 $mysql->query("ROLLBACK");
+					 }
+					 else
+					 {
+						 echo "<script>window.location.reload();cargarDetalleCuentasP('".$datos[0]."');limpiarAbono();document.getElementById('saldoE').innerHTML='Saldo: ".toMoney($saldo)."';</script>";
+						 
+					 }
+				     
+			 
+			 
+		
+    		$mysql->query("COMMIT");
+		
+	
+    }
+    else
+    {   
+    
+    	$form = $sql;
+    
+    }
+    
+    }
+	else
+	{
+				
+		 $mysql->query("ROLLBACK");
+	 }
+	}
+	else
+	{
+		echo "<script>window.location.reload();</script>";
+	}
+    $mysql->close();
+    
+    return printf($form);
+  
 }
 ?>

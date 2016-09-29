@@ -107,31 +107,31 @@
                     <div class="input-field col s5">
 
 										 <i class="material-icons prefix"><img class="iconologin" src="../app/img/usuario.png" /> </i>
-										<input id="proveedor" disabled type="text" onKeyUp="buscarCliente(this,event)" class="validate">
+										<input id="proveedorED" disabled type="text" onKeyUp="buscarCliente(this,event)" class="validate">
 										 <label for="icon_prefix" ><span class="etiquelogin">Proveedor </span></label>        
 							  </div>
                              <div class="input-field col s5">
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/monto.png"/></i>
-								  <input  id="totalCredito" disabled type="number" class="validate">
+								  <input  id="totalCreditoED" disabled type="number" class="validate">
 								  <label class="active" for="fecha" >Total Credito</label>
 								</div>
                               <div class="input-field col s5">
 
            <i class="material-icons prefix"><img class="iconologin" src="../app/img/plazo.png" /> </i>
-          <input id="fechaInicial" disabled type="date" class="validate">
+          <input id="fechaInicialED" disabled type="date" class="validate">
            <label class="active" for="fecha" >Fecha Inicio</label>
                  
          </div>
                               
                                <div class="input-field col s5">
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/monto.png"/></i>
-								  <input  id="saldo" disabled type="number" class="validate">
+								  <input  id="saldoED" disabled type="number" class="validate">
 								  <label class="active" for="fecha" >Saldo</label>
 								</div>
                                
                                 <div class="input-field col s5">
                                <i  class="material-icons prefix"><img class="iconologin" src="../app/img/TipoC.png"/></i>
-								<select disabled id="tipoPlazo">
+								<select disabled id="tipoPlazoED">
 								  <option value="" disabled selected>Dia/Mes/Año</option>
 								  <option value="1">Dia</option>
 								  <option value="2">Mes</option>
@@ -143,7 +143,7 @@
                                
                                 <div class="input-field col s5">
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="plazo" disabled type="number" class="validate" > 
+								  <input  id="plazoED" disabled type="number" class="validate" > 
 								  <label class="active" for="fecha" >Plazo</label>
 								</div>
                              
@@ -152,13 +152,13 @@
                                   <div class="input-field col s5">
 
 										 <i class="material-icons prefix"><img class="iconologin" src="../app/img/plazo.png" /> </i>
-										<input id="fechaPago" type="date" class="validate" value="<?php echo date('Y-m-d')?>">
+										<input id="fechaPagoED" type="date" class="validate" value="<?php echo date('Y-m-d')?>">
 										 <label class="active" for="fecha" >Fecha de Pago</label>       
 							  </div>
                               
                                <div class="input-field col s5">
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/monto.png"/></i>
-								  <input  id="Monto" type="number" class="validate">
+								  <input  id="MontoED" type="number" class="validate">
 								  <label class="active" for="fecha" >Monto</label>
 								</div>
                               
@@ -166,7 +166,7 @@
                              
                                 <div class="input-field col s10">   
 								  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/descripcion.png"/></i>
-								  <input id="descripcion" type="text" class="validate">
+								  <input id="descripcionED" type="text" class="validate">
 								  <label for="icon_telephone" ><span class="etiquelogin">Descripcion</span></label>
 							  </div>
                                
@@ -177,7 +177,7 @@
           
 				<!-- reumen --> 
 		          
-				 <p id="saldo" class=" col s3 right">Saldo</p>
+				 <p id="saldoE" class=" col s3 right">Saldo</p>
 				 <div id="resumenPEdit" class="col s10"   >
                
 				    Tabla(fecha de pago, Descripcion, Abono, Credito)

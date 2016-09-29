@@ -204,30 +204,36 @@ function cargarDetalleCuentasP(id)
 }
 function abonarCuenta()
 {
-	var idedit, trasDato; 
-
+	 
+    var idedit, trasDato; 
+		
     trasDato = 5;
-
-
+	var abono=document.getElementById('MontoED').value;
+	var fecha=document.getElementById('fechaPagoED').value;
+	var descripcion=document.getElementById('descripcionED').value;
+	var saldo=document.getElementById('saldoED').value;
+	var credito=document.getElementById('totalCreditoED').value;
+	var id=document.getElementById('codigo').value;
+			
     $.ajax
     ({
         type:"POST",
         url:"../core/controlador/cuentasPagarControlador.php",
-        data:'id=' + id  + '&trasDato=' + trasDato,
+        data:'id=' + id  + '&abono=' + abono  + '&fecha=' + fecha  + '&saldo=' + saldo  + '&descripcion=' + descripcion  + '&credito=' + credito  + '&trasDato=' + trasDato,
         success: function(resp)
         {
 
 
-
+			
             $('#mensajecv').html(resp); 
             // $('#precargar').css('display','none');  
-
+				alert(3);
 
 
 
         }     
-    }); 
-	
+    });            
+
 }
 function editar(id)
 {
