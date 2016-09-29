@@ -1,6 +1,7 @@
 //************************** globales *********************
 var gobIDElim,gobIDEdit;
 var passHabilita=0;
+var seleccionPrecio='PG';
 //**************************************************
 //*************************Iniciales
 /*$('#contenidoCrud').mouseenter(function(){
@@ -72,6 +73,7 @@ $('#modalnuevo').click(function(){
     $('#btnActualizar').hide();
     $('#btnInsertar').show();
     $('#modal1').openModal();
+	document.getElementById('nombreC').focus();
 });
 
 
@@ -161,6 +163,15 @@ function anularDetalleVenta1(id)
 
             }     
         });
+}
+function seleccionaPrecio(id)
+{
+	document.getElementsByName('PG')[0].checked=false;
+	document.getElementsByName('PE')[0].checked=false;
+	document.getElementsByName('PM')[0].checked=false;
+
+	seleccionPrecio=id;
+	document.getElementsByName(id)[0].checked=true;
 }
 function quitaInvetario()
 {
@@ -353,12 +364,31 @@ function ingresoVenta(prod)
 		precioG=$('#precioG').val();
 		precioE=$('#precioE').val();
 		precioM=$('#precioM').val();
+		var precioGuardar=precioG;
+		switch(seleccionPrecio)
+		{
+			case 'PG':
+			{
+				precioGuardar=precioG;
+				break;
+			}
+			case 'PE':
+			{
+				precioGuardar=precioE;
+				break;
+			}
+			case 'PM':
+			{
+				precioGuardar=precioM;
+				break;
+			}
+		}
 		
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/ventasControlador.php",
-            data:' prod=' +  prod + '&cantidad=' + cantidad + '&precioG=' + precioG + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
+            data:' prod=' +  prod + '&cantidad=' + cantidad + '&precioG=' + precioG + '&precioGuardar=' + precioGuardar + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -739,220 +769,3 @@ function ingresoCuentaCobrar()
 
 
 
-$('#btnInsertar').click(function(){
-
-    // alert('hola');  
-
-    $('#precargar').show();
-
-    var  user, pass, email, trasDato;
-    if(passHabilita==1)
-    {
-        user = $('#user').val();
-
-        pass = $('#password').val();
-
-        rol = $('#rol').val();
-
-        trasDato = 2;
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/usuarioControlador.php",
-            data:' user=' +  user + '&pass=' + pass + '&rol=' + rol + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
-
-                //console.log(trasDato);
-
-
-                //$('#mensaje').html(resp); 
-                // $('#precargar').css('display','none');  
-                $("#user").val("");
-                $("#password").val("");
-
-                if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
-                }
-                else
-                {
-                    passHabilita=0;
-
-                    setTimeout(window.location.reload(), 3000);
-
-
-                }
-
-
-            }     
-        });
-    }
-    else
-    {
-        alert('password erroneo');
-    }
-
-
-});
-
-
-
-
-$('.eliminar').click(function(event)
-                     {
-
-    var idelim, trasDato; 
-
-    idelim=gobIDElim;
-
-    trasDato = 3;
-
-
-    $.ajax
-    ({
-        type:"POST",
-        url:"../core/controlador/usuarioControlador.php",
-        data:'idelim=' + idelim  + '&trasDato=' + trasDato,
-        success: function(resp)
-        {
-
-            console.log(idelim);
-
-            //$('#mensaje').html(resp); 
-            //$('#precargar').css('display','none');  
-            $("#user").val("");
-            $("#password").val("");
-
-            if(resp == '1')
-            {
-
-                //$('#mensaje').html('Datos Incorrectos.');         
-                //$('#precargar').hide();    
-            }
-            else
-            {
-
-                setTimeout(window.location.reload(), 3000);
-
-
-            }
-
-
-        }     
-    });            
-
-});
-
-
-
-
-
-
-$('.editar').click(function(event)
-                   {
-
-    event.preventDefault();
-
-    var idedit, trasDato; 
-
-    gobIDEdit = event.target.dataset.edit;
-
-    idedit = gobIDEdit;
-
-    $('#modal1').openModal();
-
-    trasDato = 4;
-
-
-    $.ajax
-    ({
-        type:"POST",
-        url:"../core/controlador/usuarioControlador.php",
-        data:'idedit=' + idedit  + '&trasDato=' + trasDato,
-        success: function(resp)
-        {
-
-
-
-            $('#mensaje').html(resp); 
-            // $('#precargar').css('display','none');  
-
-
-
-
-        }     
-    });            
-
-});
-
-$('#btnActualizar').click(function()
-                          {
-
-    var idedit, trasDato, user, pass, rol; 
-
-    idedit = gobIDEdit;
-
-    trasDato = 5;
-    //$('#precargar').show();
-
-
-    if($('#password').val()=="")
-    {
-        passHabilita=1;
-    }
-
-    if(passHabilita==1)
-    {
-        user = $('#user').val();
-
-        pass = $('#password').val();
-
-        rol = $('#rol').val();
-
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/usuarioControlador.php",
-            data:' user=' +  user + '&pass=' + pass + '&rol=' + rol+ '&id=' + idedit + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
-
-                //console.log(trasDato);
-
-
-                //$('#mensaje').html(resp); 
-                // $('#precargar').css('display','none');  
-                $("#user").val("");
-                $("#password").val("");
-
-                if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
-                }
-                else
-                {
-
-
-                    setTimeout(window.location.reload(), 3000);
-
-
-                }
-
-
-            }     
-        });
-    }
-    else
-    {
-        alert('password erroneo');
-    }
-
-
-});

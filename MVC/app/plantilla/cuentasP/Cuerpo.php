@@ -158,7 +158,7 @@
                               
                                <div class="input-field col s5">
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/monto.png"/></i>
-								  <input  id="MontoED" type="number" class="validate">
+								  <input  id="MontoED" type="number" class="validate" autofocus>
 								  <label class="active" for="fecha" >Monto</label>
 								</div>
                               

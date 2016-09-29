@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-09-2016 a las 06:40:07
+-- Tiempo de generación: 29-09-2016 a las 02:52:06
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -37,20 +37,7 @@ CREATE TABLE IF NOT EXISTS `accesos` (
   PRIMARY KEY (`idAccesos`),
   KEY `AccesoModulo_idx` (`idModulo`),
   KEY `AccesoUsuarios_idx` (`idUsuarios`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
-
---
--- Volcado de datos para la tabla `accesos`
---
-
-INSERT INTO `accesos` (`idAccesos`, `Agrega`, `Modifica`, `Mostrar`, `Elimina`, `idUsuarios`, `idModulo`) VALUES
-(15, 1, 1, 1, 1, 1, 3),
-(16, 1, 1, 1, 1, 1, 2),
-(18, 1, 1, 1, 1, 1, 4),
-(19, 1, 1, 1, 1, 1, 5),
-(20, 1, 1, 1, 1, 1, 6),
-(21, 1, 1, 1, 1, 1, 7),
-(22, 1, 1, 1, 1, 1, 8);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 -- --------------------------------------------------------
 
@@ -253,20 +240,6 @@ CREATE TABLE IF NOT EXISTS `modulos` (
   PRIMARY KEY (`idModulos`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
---
--- Volcado de datos para la tabla `modulos`
---
-
-INSERT INTO `modulos` (`idModulos`, `Nombre`, `Dir`, `estado`, `RefId`) VALUES
-(1, 'Inicio', '../app/img/inicio.png', 1, 'inicio'),
-(2, 'Usuarios', '../app/img/usuariotab.png', 1, 'usuario'),
-(3, 'Compras', '../app/img/carro-de-la-compra.png', 1, 'compras'),
-(4, 'Cuentas', '../app/img/etiqueta-del-precio.png', 1, 'cuentas'),
-(5, 'Estadistica', '../app/img/reparacion-mecanismo.png', 1, 'estadistica'),
-(6, 'Inventario', '../app/img/notas.png', 1, 'inventario'),
-(7, 'Ventas', '../app/img/diagrama.png', 1, 'ventas'),
-(8, 'Pagos', '../app/img/pagos.png', 1, 'pagos');
-
 -- --------------------------------------------------------
 
 --
@@ -385,14 +358,6 @@ CREATE TABLE IF NOT EXISTS `puestos` (
   PRIMARY KEY (`idPuestos`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Volcado de datos para la tabla `puestos`
---
-
-INSERT INTO `puestos` (`idPuestos`, `Descripcion`) VALUES
-(1, 'Jefe'),
-(2, 'Vendedor');
-
 -- --------------------------------------------------------
 
 --
@@ -407,14 +372,6 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`idRol`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Volcado de datos para la tabla `roles`
---
-
-INSERT INTO `roles` (`idRol`, `Descripcion`, `ModulosDefecto`, `estado`) VALUES
-(1, 'Administrador', '12345678', 1),
-(2, 'Usuario', '1456', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -428,15 +385,6 @@ CREATE TABLE IF NOT EXISTS `tipocompra` (
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idTipo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Volcado de datos para la tabla `tipocompra`
---
-
-INSERT INTO `tipocompra` (`idTipo`, `Descripcion`, `Observacion`, `estado`) VALUES
-(1, 'Contado', NULL, 1),
-(2, 'Credito', NULL, 1),
-(3, 'Donacion', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -480,15 +428,6 @@ CREATE TABLE IF NOT EXISTS `tipoventa` (
   PRIMARY KEY (`idTipo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Volcado de datos para la tabla `tipoventa`
---
-
-INSERT INTO `tipoventa` (`idTipo`, `Descripcion`, `Observacion`, `estado`) VALUES
-(1, 'Contado', NULL, 1),
-(2, 'Credito', NULL, 1),
-(3, 'Donacion', NULL, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -507,13 +446,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   KEY `UsuarioEmpleado_idx` (`idEmpleados`),
   KEY `UsuarioRol_idx` (`idRol`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`idUsuarios`, `Email`, `user`, `Contra`, `estado`, `idRol`, `idEmpleados`) VALUES
-(1, 'admin@hectorrepuestos.com', 'admin', '123412341234', 1, 1, NULL);
 
 -- --------------------------------------------------------
 

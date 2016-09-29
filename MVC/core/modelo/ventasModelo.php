@@ -178,10 +178,10 @@ function ingresoVenta($datos)
 				 {
 					 $datos[1]=$fila[0];
 				 }
-	$total=$datos[3]*$datos[1];
+	$total=$datos[6]*$datos[1];
 	if($datos[1]>0)
 	{				 
-    $sql = "INSERT INTO ventasDetalle(cantidad,precio,estado,idventa,idproductos,subtotal) values('".$datos[1]."','".$datos[2]."',1,'".$_SESSION['idVenta']."',".$datos[0].",".$total.")";
+    $sql = "INSERT INTO ventasDetalle(cantidad,precio,estado,idventa,idproductos,subtotal) values('".$datos[1]."','".$datos[6]."',1,'".$_SESSION['idVenta']."',".$datos[0].",".$total.")";
  
     if($mysql->query($sql))
     {

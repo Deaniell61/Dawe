@@ -33,7 +33,7 @@
 
 
 							<i class="material-icons prefix"><img class="iconologin" src="../app/img/carnet.png" /> </i>
-										<input id="NIT" type="text" onKeyUp="buscarCliente(this,event);siguiente(event,'Cliente');" class="validate">
+										<input id="NIT" type="text" onKeyUp="buscarCliente(this,event);siguiente(event,'Cliente');" class="validate" autofocus>
 										 <label for="icon_prefix" ><span class="etiquelogin">NIT </span></label>        
 							  </div>
                               <div class="input-field col s5">
@@ -198,7 +198,7 @@
 												 </div>
 												 <div class="input-field col s8">
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/codigo.png"/></i>
-													  <input id="nombreC" onKeyUp="buscaProductoVenta(this)" type="text" class="validate">
+													  <input id="nombreC" onKeyUp="buscaProductoVenta(this)" type="text" class="validate" autofocus>
 													  <label for="icon_telephone" ><span class="etiquelogin">Codigo</span></label>
 												 </div>
 												 
@@ -265,18 +265,18 @@
 												  
 												   <div class="input-field col s8 ">   
 																<p>
-																	<input type="checkbox" id="test1" checked="checked" />
+																	<input type="checkbox" id="test1" name="PG" checked="checked" onClick="seleccionaPrecio('PG');" />
 																  <label for="test1">Precio General</label>
 																</p>
 																  
 																  <p>
 																  	
-																  	 <input type="checkbox" id="test2"  />
+																  	 <input type="checkbox" id="test2" name="PE" onClick="seleccionaPrecio('PE');"  />
 																  <label for="test2">Precio Especial</label>
 																  </p>
 																 
 																  <p>
-																  	<input type="checkbox" id="test3"  />
+																  	<input type="checkbox" id="test3" name="PM" onClick="seleccionaPrecio('PM');"/>
 																  <label for="test3">Precio Mayoreo</label>
 																  </p>
 																  

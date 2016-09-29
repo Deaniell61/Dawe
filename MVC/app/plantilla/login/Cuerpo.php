@@ -11,7 +11,7 @@
                 </div>
                 <div class="input-field col s10">
                     <i class="material-icons prefix"><img class="iconologin" src="app/img/usuario.png" /></i>
-                    <input id="user" type="text" class="validate">
+                    <input id="user" type="text" class="validate" autofocus>
                     <label for="icon_prefix" ><span class="etiquelogin">Usuario</span></label>
                 </div>
                 <div class="input-field col s10">

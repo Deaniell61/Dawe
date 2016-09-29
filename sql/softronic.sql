@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-09-2016 a las 06:41:21
+-- Tiempo de generación: 29-09-2016 a las 02:42:46
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `compradetalle` (
   KEY `DetalleCompra_idx` (`idCompras`),
   KEY `DetalleTipo_idx` (`idTipo`),
   KEY `DetalleProducto_idx` (`idProductos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
 
 --
 -- Volcado de datos para la tabla `compradetalle`
@@ -184,7 +184,9 @@ INSERT INTO `compradetalle` (`idCompraDetalle`, `subtotal`, `vencimiento`, `cant
 (92, 150, NULL, 10, 15, NULL, NULL, 1, 101, 1, NULL),
 (94, 150, NULL, 10, 15, NULL, NULL, 1, 102, 1, NULL),
 (95, 150, NULL, 10, 15, NULL, NULL, 1, 104, 1, NULL),
-(96, 45, NULL, 3, 15, NULL, NULL, 1, 105, 4, NULL);
+(96, 45, NULL, 3, 15, NULL, NULL, 1, 105, 4, NULL),
+(97, 300, NULL, 20, 15, NULL, NULL, 1, 106, 4, NULL),
+(98, 0, NULL, 0, 10, NULL, NULL, 1, 107, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -203,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `compras` (
   PRIMARY KEY (`idCompras`),
   KEY `CompraDistribuidor_idx` (`idDistribuidor`),
   KEY `CompraTipo_idx` (`tipoCompra`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=106 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
 
 --
 -- Volcado de datos para la tabla `compras`
@@ -254,9 +256,10 @@ INSERT INTO `compras` (`idCompras`, `fecha`, `total`, `estado`, `tipoCompra`, `N
 (100, '2016-09-27 19:54:00', 60, 1, 1, NULL, 1),
 (101, '2016-09-27 23:55:45', 150, 1, 1, NULL, 1),
 (102, '2016-09-27 23:58:08', 150, 1, 1, NULL, 1),
-(103, '2016-09-28 00:01:46', 0, 2, 1, NULL, 1),
 (104, '2016-09-28 00:02:31', 150, 1, 1, NULL, 2),
-(105, '2016-09-28 04:23:06', 45, 1, 1, NULL, 3);
+(105, '2016-09-28 04:23:06', 45, 1, 1, NULL, 3),
+(106, '2016-09-28 06:27:14', 300, 1, 1, NULL, 1),
+(107, '2016-09-28 06:48:50', 0, 1, 1, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -275,18 +278,19 @@ CREATE TABLE IF NOT EXISTS `cuentascobrar` (
   `CreditoDado` double DEFAULT NULL,
   PRIMARY KEY (`idCuentasC`),
   UNIQUE KEY `idCompras` (`idVentas`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Volcado de datos para la tabla `cuentascobrar`
 --
 
 INSERT INTO `cuentascobrar` (`idCuentasC`, `fecha`, `plazo`, `tipoPlazo`, `total`, `idVentas`, `estado`, `CreditoDado`) VALUES
-(1, '2016-09-26 18:58:14', 5, '1', 105, 65, 1, 105),
-(7, '2016-09-26 19:38:44', 3, '1', 15, 66, 1, 15),
+(1, '2016-09-26 18:58:14', 5, '1', 100, 65, 1, 105),
+(7, '2016-09-26 19:38:44', 3, '1', 10, 66, 1, 15),
 (11, '2016-09-26 19:43:04', 2, '2', 100, 67, 1, 105),
 (14, '2016-09-27 07:59:40', 2, '2', 7, 68, 1, 7),
-(17, '2016-09-27 08:00:57', 30, '1', 10, 69, 1, 150);
+(17, '2016-09-27 08:00:57', 30, '1', 10, 69, 1, 150),
+(22, '2016-09-28 20:34:58', 2, '2', 0, 91, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -312,8 +316,8 @@ CREATE TABLE IF NOT EXISTS `cuentaspagar` (
 --
 
 INSERT INTO `cuentaspagar` (`idCuentasP`, `fecha`, `plazo`, `tipoPlazo`, `total`, `idCompras`, `estado`, `CreditoDado`) VALUES
-(19, '2016-09-27 07:50:24', 6, '2', 83.75, 98, 1, 167.5),
-(26, '2016-09-27 07:57:54', 2, '2', 5.0042724609375, 99, 1, 5.0042724609375);
+(19, '2016-09-27 07:50:24', 6, '2', 80, 98, 1, 167.5),
+(26, '2016-09-27 07:57:54', 2, '2', 2.0042724609375, 99, 1, 5.0042724609375);
 
 -- --------------------------------------------------------
 
@@ -396,10 +400,10 @@ CREATE TABLE IF NOT EXISTS `inventario` (
 --
 
 INSERT INTO `inventario` (`idInventario`, `idProducto`, `precioCosto`, `precioVenta`, `precioClienteEs`, `precioDistribuidor`, `cantidad`) VALUES
-(1, 1, 15, 20, 18, 17, 102),
-(2, 2, 1.0008544921875, 1, 1, 1, 84),
+(1, 1, 15, 20, 18, 17, 30),
+(2, 2, 1.0008544921875, 1, 1, 1, 70),
 (4, 3, 34.343751999999995, 1, 1, 1, 4430),
-(5, 4, 15, 21, 18.9, 17.85, 280),
+(5, 4, 10, 30, 27, 25.5, 202),
 (6, 5, 4.125, 1, 1, 1, 11),
 (7, 6, 23.5625, 48, 24, 21, 95),
 (9, 8, 17, 3, 43, 34, 0),
@@ -408,10 +412,10 @@ INSERT INTO `inventario` (`idInventario`, `idProducto`, `precioCosto`, `precioVe
 (12, 11, 0.5, 1, 1, 1, 1),
 (13, 12, 0, 0, 0, 0, 0),
 (14, 13, 2, 5, 6, 6, -3),
-(15, 14, 1, 2, 2, 2, 7),
+(15, 14, 1, 2, 2, 2, 12),
 (16, 15, 12, 24, 24, 24, 0),
 (18, 17, 0, 0, 0, 0, 0),
-(19, 18, 0, 0, 0, 0, 32),
+(19, 18, 0, 0, 0, 0, 30),
 (20, 19, 0, 0, 0, 0, 52),
 (21, 20, 0, 0, 0, 0, 0),
 (22, 21, 0, 0, 0, 0, 5),
@@ -490,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `movimientosc` (
   `idCuentasC` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMovimientoC`),
   KEY `MovimientoCCuentasC` (`idCuentasC`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `movimientosc`
@@ -499,7 +503,10 @@ CREATE TABLE IF NOT EXISTS `movimientosc` (
 INSERT INTO `movimientosc` (`idMovimientoC`, `credito`, `abono`, `saldo`, `fecha`, `descripcion`, `idCuentasC`) VALUES
 (7, 150, 50, 50, '2016-09-28 06:00:00', 'abono2', 17),
 (8, 150, 40, 10, '2016-09-28 06:00:00', 'abono3', 17),
-(9, 105, 5, 100, '2016-09-28 06:00:00', 'abono1', 11);
+(9, 105, 5, 100, '2016-09-28 06:00:00', 'abono1', 11),
+(10, 15, 5, 10, '2016-09-28 06:00:00', 'Abono', 7),
+(11, 105, 5, 100, '2016-09-28 06:00:00', 'fd', 1),
+(12, 0, 0, 0, '2016-09-28 06:00:00', 'ds', 22);
 
 -- --------------------------------------------------------
 
@@ -517,7 +524,15 @@ CREATE TABLE IF NOT EXISTS `movimientosp` (
   `idCuentasP` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMovimientoP`),
   KEY `MovimientoPCuentasP` (`idCuentasP`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `movimientosp`
+--
+
+INSERT INTO `movimientosp` (`idMovimientoP`, `credito`, `abono`, `saldo`, `fecha`, `descripcion`, `idCuentasP`) VALUES
+(1, 5.0042724609375, 3, 2.0042724609375, '2016-09-29 06:00:00', 'abono', 26),
+(2, 167.5, 3.75, 80, '2016-09-29 06:00:00', 'abono', 19);
 
 -- --------------------------------------------------------
 
@@ -804,7 +819,7 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   PRIMARY KEY (`idVentas`),
   KEY `ClienteVenta_idx` (`idCliente`),
   KEY `VentaTipo_idx` (`tipoVenta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92 ;
 
 --
 -- Volcado de datos para la tabla `ventas`
@@ -822,7 +837,7 @@ INSERT INTO `ventas` (`idVentas`, `fecha`, `total`, `estado`, `tipoVenta`, `noco
 (50, '2016-09-26 04:46:40', 3120, 1, 1, 4, 2),
 (54, '2016-09-26 04:53:23', 245, 1, 1, 5, 2),
 (56, '2016-09-26 05:14:32', 1320, 1, 1, 6, 2),
-(57, '2016-09-26 05:22:23', 0, 1, 1, 7, 1),
+(57, '2016-09-26 05:22:23', 0, 0, 1, 7, 1),
 (59, '2016-09-26 05:27:27', 0, 1, 1, 8, 2),
 (60, '2016-09-26 05:28:05', 1176, 1, 1, 9, 1),
 (63, '2016-09-26 08:17:21', 15, 1, 1, 10, 1),
@@ -831,7 +846,23 @@ INSERT INTO `ventas` (`idVentas`, `fecha`, `total`, `estado`, `tipoVenta`, `noco
 (67, '2016-09-26 19:43:01', 105, 1, 2, 13, 2),
 (68, '2016-09-27 07:59:35', 7, 1, 2, 14, 2),
 (69, '2016-09-27 08:00:54', 105, 1, 2, 15, 2),
-(70, '2016-09-28 04:23:44', 63, 1, 1, 16, 2);
+(70, '2016-09-28 04:23:44', 63, 1, 1, 16, 2),
+(73, '2016-09-28 06:38:16', 100, 1, 1, 17, 2),
+(74, '2016-09-28 06:52:02', 120, 1, 1, 18, 2),
+(75, '2016-09-28 19:45:08', 1480, 1, 1, 19, 2),
+(76, '2016-09-28 20:01:13', 385, 1, 1, 20, 2),
+(77, '2016-09-28 20:02:41', 750, 1, 1, 21, 2),
+(78, '2016-09-28 20:07:57', 80, 1, 1, 22, 2),
+(79, '2016-09-28 20:09:33', 200, 1, 1, 23, 2),
+(80, '2016-09-28 20:12:23', 200, 1, 1, 24, 2),
+(81, '2016-09-28 20:14:46', 200, 1, 1, 25, 1),
+(82, '2016-09-28 20:15:38', 100, 1, 1, 26, 2),
+(83, '2016-09-28 20:16:30', 100, 1, 1, 27, 2),
+(84, '2016-09-28 20:22:07', 1800, 1, 1, 28, 1),
+(85, '2016-09-28 20:24:56', 1800, 1, 1, 29, 2),
+(87, '2016-09-28 20:28:24', 8, 1, 1, 30, 1),
+(88, '2016-09-28 20:30:28', 106, 1, 1, 31, 2),
+(91, '2016-09-28 20:34:54', 0, 1, 2, 32, 2);
 
 -- --------------------------------------------------------
 
@@ -854,7 +885,7 @@ CREATE TABLE IF NOT EXISTS `ventasdetalle` (
   KEY `VentaDetalleTipo_idx` (`idTipo`),
   KEY `VentaDetalle_idx` (`idVenta`),
   KEY `VentaDetalleProducto_idx` (`idProductos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
 
 --
 -- Volcado de datos para la tabla `ventasdetalle`
@@ -891,7 +922,29 @@ INSERT INTO `ventasdetalle` (`idVentaDetalle`, `Subtotal`, `Vencimiento`, `Canti
 (36, 105, NULL, 5, 21, NULL, 67, 1, NULL, 1),
 (37, 7, NULL, 7, 1, NULL, 68, 5, NULL, 1),
 (38, 105, NULL, 5, 21, NULL, 69, 1, NULL, 1),
-(39, 63, NULL, 3, 21, NULL, 70, 4, NULL, 1);
+(39, 63, NULL, 3, 21, NULL, 70, 4, NULL, 1),
+(40, 100, NULL, 5, 20, NULL, 73, 1, NULL, 1),
+(41, 120, NULL, 4, 30, NULL, 74, 4, NULL, 1),
+(42, 400, NULL, 20, 20, NULL, 75, 1, NULL, 1),
+(43, 60, NULL, 3, 20, NULL, 75, 1, NULL, 1),
+(44, 1020, NULL, 34, 30, NULL, 75, 4, NULL, 1),
+(45, 360, NULL, 12, 30, NULL, 76, 4, NULL, 1),
+(46, 25, NULL, 25, 1, NULL, 76, 2, NULL, 1),
+(47, 0, NULL, 2, 0, NULL, 76, 26, NULL, 1),
+(48, 690, NULL, 23, 30, NULL, 77, 4, NULL, 1),
+(49, 60, NULL, 3, 20, NULL, 77, 1, NULL, 1),
+(50, 80, NULL, 4, 20, NULL, 78, 1, NULL, 1),
+(51, 200, NULL, 10, 20, NULL, 79, 1, NULL, 1),
+(52, 200, NULL, 10, 20, NULL, 80, 1, NULL, 1),
+(53, 200, NULL, 10, 20, NULL, 81, 1, NULL, 1),
+(54, 100, NULL, 5, 20, NULL, 82, 1, NULL, 1),
+(55, 100, NULL, 5, 20, NULL, 83, 1, NULL, 1),
+(56, 1800, NULL, 60, 30, NULL, 84, 4, NULL, 1),
+(57, 1800, NULL, 60, 30, NULL, 85, 4, NULL, 1),
+(60, 4, NULL, 4, 1, NULL, 87, 2, NULL, 1),
+(61, 4, NULL, 4, 1, NULL, 87, 2, NULL, 1),
+(63, 6, NULL, 6, 1, NULL, 88, 2, NULL, 1),
+(66, 0, NULL, 2, 0, NULL, 91, 18, NULL, 1);
 
 --
 -- Restricciones para tablas volcadas

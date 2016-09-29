@@ -39,12 +39,13 @@ if($_POST)
     else if($transaccion == 3)
     {
         
-        $datos['0'] = $prod = $_POST['prod'];
-		$datos['1'] = $cantidad = $_POST['cantidad'];
-		$datos['3'] = $cantidad = $_POST['precioG'];
-		$datos['2'] = $cantidad = $_POST['precioG'];
-		$datos['4'] = $cantidad = $_POST['precioE'];
-		$datos['5'] = $cantidad = $_POST['precioM'];
+        $datos['0'] = $_POST['prod'];
+		$datos['1'] = $_POST['cantidad'];
+		$datos['3'] = $_POST['precioG'];
+		$datos['2'] = $_POST['precioG'];
+		$datos['4'] = $_POST['precioE'];
+		$datos['5'] = $_POST['precioM'];
+		$datos['6'] = $_POST['precioGuardar'];
         
         ingresoVenta($datos);
         
