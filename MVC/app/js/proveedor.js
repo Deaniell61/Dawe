@@ -38,7 +38,7 @@ $('#tablaPro').DataTable( {
 } );
 
 
-//$('select').material_select(); 
+//$('select').material_select();
 
 //*********************************************************
 
@@ -58,8 +58,8 @@ function abrirProvNuevo(){
 
 function seleccionar(id)
 {
-	
-	
+
+
 	buscarNIT(id);
 	 cierre();
 	$('#modal4').closeModal();
@@ -79,6 +79,7 @@ $('.modaleliminarP').click(function(){
 
 
 
+
 $(".dropdown-button").dropdown();
 
 //*********************************************************
@@ -89,16 +90,16 @@ $(".dropdown-button").dropdown();
 //comprobaciones
 function distribuidores(prov)
 {
-	
-		
+
+
 		$('#modal4P').openModal();
 		llamarDistribuidor();
-	
-	
+
+
 }
 function llamarDistribuidor()
 {
-	
+
 	$.ajax
         ({
             type:"POST",
@@ -106,7 +107,7 @@ function llamarDistribuidor()
             success: function(resp)
             {
 				$('#distribuidorContenedor').html(resp);
-            }    
+            }
         });
 }
 
@@ -117,20 +118,20 @@ function llamarDistribuidor()
 
 function ingresarProveedorP(){
 
-    // alert('hola');  
+    // alert('hola');
 
     $('#precargar').show();
 
     var  nombre, direccion, telefono, nit, cuenta,  trasDato;
-	
+
         nombre = $('#nombreP').val();
 		direccion = $('#direccionP').val();
 		telefono = $('#telefonoP').val();
 		nit = $('#nitP').val();
 		cuenta = $('#cuentaDepP').val();
-		
 
-        
+
+
 
         trasDato = 1;
         $.ajax
@@ -144,8 +145,8 @@ function ingresarProveedorP(){
                 //console.log(trasDato);
 
 
-                //$('#mensaje').html(resp); 
-                // $('#precargar').css('display','none');  
+                //$('#mensaje').html(resp);
+                // $('#precargar').css('display','none');
                 $("#user").val("");
                 $("#password").val("");
 
@@ -153,22 +154,22 @@ function ingresarProveedorP(){
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-                    
-						
+
+
                     setTimeout(function(){$("#modal1P").closeModal()}, 500);
 
 					llamarProveedor();
                 }
 
 
-            }     
+            }
         });
-    
+
 
 
 }
@@ -179,7 +180,7 @@ function ingresarProveedorP(){
 $('.eliminar').click(function(event)
                      {
 
-    var idelim, trasDato; 
+    var idelim, trasDato;
 
     idelim=gobIDElim;
 
@@ -196,16 +197,16 @@ $('.eliminar').click(function(event)
 
             console.log(idelim);
 
-            //$('#mensaje').html(resp); 
-            //$('#precargar').css('display','none');  
+            //$('#mensaje').html(resp);
+            //$('#precargar').css('display','none');
             $("#user").val("");
             $("#password").val("");
 
             if(resp == '1')
             {
 
-                //$('#mensaje').html('Datos Incorrectos.');         
-                //$('#precargar').hide();    
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
             }
             else
             {
@@ -216,8 +217,8 @@ $('.eliminar').click(function(event)
             }
 
 
-        }     
-    });            
+        }
+    });
 
 });
 
@@ -231,13 +232,13 @@ $('.editar').click(function(event)
 
     event.preventDefault();
 
-    var idedit, trasDato; 
+    var idedit, trasDato;
 
     gobIDEdit = event.target.dataset.edit;
 
     idedit = gobIDEdit;
 
-  
+
 
     trasDato = 4;
 
@@ -252,21 +253,21 @@ $('.editar').click(function(event)
 
 
 
-            $('#mensaje').html(resp); 
-            // $('#precargar').css('display','none');  
+            $('#mensaje').html(resp);
+            // $('#precargar').css('display','none');
 
 
 
 
-        }     
-    });            
+        }
+    });
 
 });
 
 $('#btnActualizar').click(function()
                           {
 
-    var idedit, trasDato, user, pass, rol; 
+    var idedit, trasDato, user, pass, rol;
 
     idedit = gobIDEdit;
 
@@ -298,8 +299,8 @@ $('#btnActualizar').click(function()
                 //console.log(trasDato);
 
 
-                //$('#mensaje').html(resp); 
-                // $('#precargar').css('display','none');  
+                //$('#mensaje').html(resp);
+                // $('#precargar').css('display','none');
                 $("#user").val("");
                 $("#password").val("");
 
@@ -307,8 +308,8 @@ $('#btnActualizar').click(function()
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
@@ -320,7 +321,7 @@ $('#btnActualizar').click(function()
                 }
 
 
-            }     
+            }
         });
     }
     else
@@ -343,5 +344,5 @@ $('#btnInsertarP').click(function(){
 	cierre();
 	$('#modalP').closeModal();
 
-	
+
 });

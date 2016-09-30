@@ -1,5 +1,5 @@
 <div id="contenidoCrud">
-    
+
    <ul class="collapsible popout" data-collapsible="accordion">
     <li>
         <div class="collapsible-header"><i class="material-icons"><img class="imgSub" src="../app/img/flecha-hacia-abajo-signo-para-navegar.png" /></i>Empleados</div>
@@ -9,9 +9,9 @@
                <div class="lipUsuario">
                  <li class="centrarli"><a id="empleado" href="#" class="yellow darken-4 btn white-text tamatabsa "><i class="material-icons left"><img class="iconotab" src="../app/img/empleado.png" /></i>Empleados</a></li>
                  <li class="centrarli"><a id="usuarioUsu" href="#" class="amber accent-3  btn white-text tamatabsa "><i class="material-icons left"><img class="iconotab" src="../app/img/avatar.png" /></i>Usuarios</a></li>
-                 
-                  
-                
+
+
+
 
                 <!-- <div class="indicator blue" style="z-index:1"></div>  -->
                </div>
@@ -20,7 +20,7 @@
             </div>
            </li>
          </div>
-        </ul>    
+        </ul>
 
     <!-- ********************************** tabla inicio ********************************** -->
 
@@ -32,7 +32,7 @@
                 <td class="">
                     <div class="input-field ">
                         <a id="modalnuevo" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonesr " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/anadir.png" /></i>Nuevo</a>
-                    </div>	
+                    </div>
                 </td>
                 <td class="">
 
@@ -47,7 +47,7 @@
 
 
 
-        <?php 
+        <?php
         include('../vista/empleadoVista.php');
         mostrarEmpeados();
 
@@ -55,9 +55,9 @@
         ?>
 
 
-        <!-- ********************************** modal ********************************** --> 
+        <!-- ********************************** modal ********************************** -->
 
-        <!-- nuevo ---> 
+        <!-- nuevo --->
 
         <div id="modal1" class="modal">
             <div class="modal-content">
@@ -68,8 +68,8 @@
                             <div>
                                 <p class="encabezadotextomodal"> Empleado </p>
 
-                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
-                            </div>	
+                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
+                            </div>
 
                         </div>
                     </div>
@@ -102,6 +102,12 @@
                     </div>
 
                     <div class="input-field col s10">
+                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/sueldo.png"/></i>
+                        <input id="sueldos" type="number" class="validate">
+                        <label for="icon_telephone" ><span class="etiquelogin">Sueldo</span></label>
+                    </div>
+
+                    <div class="input-field col s10">
                         <i  class="material-icons prefix"><img class="iconologin" src="../app/img/rolActivo.png"/></i>
                         <select class="selectrol" id="pue">
                             <option value="" disabled selected>Puesto</option>
@@ -111,8 +117,8 @@
 
                     </div>
 
-                    <!--aqui esta el select del puesto 
-                    
+                    <!--aqui esta el select del puesto
+
 <div class="input-field col s10">
                         <i  class="material-icons prefix"><img class="iconologin" src="../app/img/rolActivo.png"/></i>
                         <input id="pue" type="text" class="validate">
@@ -133,7 +139,7 @@
 <!-- nuevo fin --->
 
 
-<!-- Eliminar ---> 
+<!-- Eliminar --->
 <div id="modal3" class="modal">
     <div class="modal-content">
     <div id="mensajeE"></div>
@@ -145,8 +151,8 @@
                             <div>
                                 <p class="encabezadotextomodal"> Eliminar </p>
 
-                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
-                            </div>	
+                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
+                            </div>
 
                         </div>
 
@@ -173,8 +179,6 @@
     </div>
 </div>
 
-<!-- Eliminar fin --->   
+<!-- Eliminar fin --->
 
-<!-- ********************************** modal fin ********************************** -->  
-
-
+<!-- ********************************** modal fin ********************************** -->

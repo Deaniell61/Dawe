@@ -63,7 +63,7 @@ $('#tabla2').DataTable( {
 } );
 
 
-	$('#tipoPlazo').material_select(); 
+	$('#tipoPlazo').material_select();
 
 //*********************************************************
 
@@ -95,9 +95,9 @@ $(".dropdown-button").dropdown();
 
 
 $('#modalcerrar1').click(function(){
-	
 
-	
+
+
 });
 
 
@@ -113,22 +113,22 @@ function buscarProveedor(buscar,evt)
 {
 	if(evt.keyCode=='13' && buscar.value=="")
 	{
-		
+
 		$('#modal4').openModal();
 		llamarProveedor();
 	}
 	else
 	if(buscar.value=="")
 	{
-		
+
 	}
 	else
 	if(evt.keyCode=='13')
 	{
 		buscarNIT(buscar.value)
 	}
-	
-	
+
+
 }
 function ingresoProducto(id,compra)
 {
@@ -153,19 +153,19 @@ function ingresoProducto(id,compra)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-                    
-					
-					 $('#mensaje').html(resp); 
+
+
+					 $('#mensaje').html(resp);
 
                 }
 
 
-            }     
+            }
         });
 	}
 }
@@ -173,11 +173,11 @@ function seleccionaMarca(mc)
 {
 	document.getElementById('marca').value=mc;
 	document.getElementById('listaMarca').hidden=false;
-	
+
 }
 function comprobarCredito(obj)
 {
-	
+
 	if(obj.value=='2')
 	{
 		$('#cuentasContenedor').show();
@@ -198,12 +198,12 @@ function limpiarProducto()
 	$('#Cantidad').val('');
 	$('#precioC').val('');
 	$('#precioG').val('');
-	$('#precioE').val(''); 
+	$('#precioE').val('');
 	$('#agregarProd').show();
 	$('#nombreC').focus();
-	$('#precioM').val(''); 
+	$('#precioM').val('');
 	document.getElementById('retoCompra').hidden=true;
-	
+
 }
 function calcularPrecios(id1,id2,tot)
 {
@@ -223,8 +223,8 @@ function buscarProveedor2(buscar)
 	{
 		buscarNIT(buscar.value)
 	}
-	
-	
+
+
 }
 
 function buscarNIT(nit)
@@ -243,19 +243,19 @@ function buscarNIT(nit)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-                    
-					
-					 $('#mensaje').html(resp); 
+
+
+					 $('#mensaje').html(resp);
 
                 }
 
 
-            }     
+            }
         });
 }
 function iniciarCompra(id)
@@ -275,25 +275,25 @@ function iniciarCompra(id)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                    
-					
-					 $('#mensaje').html(resp); 
+
+
+
+					 $('#mensaje').html(resp);
 
                 }
 
 
-            }     
+            }
         });
 }
 function verificaProductoCompra()
 {
-	
+
 	if(document.getElementById('codigoProd').value!="")
 	{
 		ingresoCompra(document.getElementById('codigoProd').value);
@@ -302,7 +302,7 @@ function verificaProductoCompra()
 	{
 
 		$('#productoNom').focus();
-		
+
 	}
 }
 function ingresoCompra(prod)
@@ -315,8 +315,8 @@ function ingresoCompra(prod)
 		precioG=$('#precioG').val();
 		precioE=$('#precioE').val();
 		precioM=$('#precioM').val();
-		
-		
+
+
         $.ajax
         ({
             type:"POST",
@@ -329,28 +329,28 @@ function ingresoCompra(prod)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                    
-					
+
+
+
 					 $('#mensaje').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
 }
 function guardarCompra()
 {
 	var  trasDato;
 	trasDato = 4;
-		
+
        $.ajax ({
             type:"POST",
             url:"../core/controlador/comprasControlador.php",
@@ -362,27 +362,27 @@ function guardarCompra()
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                    
-					
-					 $('#mensaje').html(resp); 
+
+
+
+					 $('#mensaje').html(resp);
 
                 }
 
 
-            }     
+            }
         });
 }
 function cargarDetalleCompras(id)
 {
 	var  trasDato;
 	trasDato = 5;
-		
+
         $.ajax
         ({
             type:"POST",
@@ -395,26 +395,26 @@ function cargarDetalleCompras(id)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                    
-					
+
+
+
 					 $('#resumenC').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
 }
 function llamarProveedor()
 {
-	
+
 	$.ajax
         ({
             type:"POST",
@@ -422,14 +422,14 @@ function llamarProveedor()
             success: function(resp)
             {
 				$('#proveedorContenedor').html(resp);
-            }    
+            }
         });
 }
 
 function llamarProducto()
 {
-	
-		
+
+
 		$('#modal5').openModal();
 		$.ajax
         ({
@@ -439,17 +439,17 @@ function llamarProducto()
             success: function(resp)
             {
 				$('#productoContenedor').html(resp);
-            }    
+            }
         });
-	
-	
+
+
 }
 function buscaProducto(obj)
 {
 	var prod=obj.value;
 	var  trasDato;
 	trasDato = 6;
-		
+
         $.ajax
         ({
             type:"POST",
@@ -462,31 +462,31 @@ function buscaProducto(obj)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                    
-					
+
+
+
 					 $('#productosCompra').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
-	
-	
+
+
 }
 function buscaMarca(obj)
 {
 	var prod=obj.value;
 	var  trasDato;
 	trasDato = 11;
-		
+
         $.ajax
         ({
             type:"POST",
@@ -499,31 +499,31 @@ function buscaMarca(obj)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                    
-					
+
+
+
 					 $('#listaMarca').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
-	
-	
+
+
 }
 function seleccionaProducto(codprod)
 {
 	var prod=codprod;
 	var  trasDato;
 	trasDato = 7;
-		
+
         $.ajax
         ({
             type:"POST",
@@ -536,27 +536,27 @@ function seleccionaProducto(codprod)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                    
-					
+
+
+
 					 $('#mensaje').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
 }
 
 function cambiarTipo(tipo,id)
 {
-	
+
 	var  trasDato;
 	trasDato = 9;
 		//alert(2);
@@ -572,26 +572,26 @@ function cambiarTipo(tipo,id)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                   
-					
+
+
+
 					 $('#mensajeC').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
 }
 function agregarFactura(tipo,id)
 {
-	
+
 	var  trasDato;
 	trasDato = 12;
 		//alert(2);
@@ -607,27 +607,27 @@ function agregarFactura(tipo,id)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                   
-					
+
+
+
 					 $('#mensajeC').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
 }
 
 function cambiarTipoProd(tipo,id)
 {
-	
+
 	var  trasDato;
 	trasDato = 2;
 		//alert(2);
@@ -643,27 +643,27 @@ function cambiarTipoProd(tipo,id)
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                   
-					
+
+
+
 					 $('#mensajeC').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
 }
 
 function ingresoCuentaPagar()
 {
-	
+
 	var  trasDato;
 	trasDato = 1;
 		//alert(2);
@@ -682,23 +682,22 @@ function ingresoCuentaPagar()
                 {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
                 }
                 else
                 {
-					
-                   
-					
+
+
+
 					 $('#mensajeC').html(resp);
-					  
+
 
                 }
 
 
-            }     
+            }
         });
 }
 
 //**********************
-

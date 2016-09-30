@@ -1,5 +1,5 @@
 <div id="contenidoCrud">
-    
+
 
     <ul class="collapsible popout" data-collapsible="accordion">
         <li>
@@ -20,8 +20,8 @@
                 </div>
             </div>
         </li>
-       
-    </ul>    
+
+    </ul>
 
 
 
@@ -35,7 +35,7 @@
                 <td class="">
                     <div class="input-field ">
                         <a id="modalnuevo" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonesr " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/anadir.png" /></i>Nuevo</a>
-                    </div>	
+                    </div>
                 </td>
                 <td class="">
 
@@ -50,7 +50,7 @@
 
 
 
-        <?php 
+        <?php
         include('../vista/usuarioVista.php');
         mostrarUsuarios();
 
@@ -58,9 +58,9 @@
         ?>
 
 
-        <!-- ********************************** modal ********************************** --> 
+        <!-- ********************************** modal ********************************** -->
 
-        <!-- nuevo ---> 
+        <!-- nuevo --->
 
         <div id="modal1" class="modal">
             <div class="modal-content">
@@ -71,15 +71,15 @@
                             <div>
                                 <p class="encabezadotextomodal">Usuario</p>
 
-                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix" onClick="cerrarEsto();"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
-                            </div>	
+                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix" onClick="cerrarEsto();"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
+                            </div>
 
                         </div>
                     </div>
                     <div class="input-field col s10" hidden>
                         <i class="material-icons prefix"><img class="iconologin" src="../app/img/usuario.png" /></i>
                         <input id="codigo" type="text" class="validate">
-                        
+
                     </div>
                     <div class="input-field col s10">
                         <i class="material-icons prefix"><img class="iconologin" src="../app/img/usuario.png" /></i>
@@ -96,6 +96,8 @@
                         <input id="password2" type="password" class="validate">
                         <label for="icon_telephone" ><span class="etiquelogin">Repetir Contraseña</span></label>
                     </div>
+
+                  
                     <!--
 <div class="input-field col s10">
 <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
@@ -120,23 +122,23 @@
                      <br>
                      <br>
                       </div>
-                      
-                      
-                      <div class="row" id="Modulos" hidden>
-                      	
-                      	      
-                       
-                           
-                       
-                      	
-                      	
-                      </div>
-                      
-                  
-        
 
-      
-					
+
+                      <div class="row" id="Modulos" hidden>
+
+
+
+
+
+
+
+                      </div>
+
+
+
+
+
+
 
 </form>
 </div>
@@ -151,7 +153,7 @@
 <!-- nuevo fin --->
 
 
-<!-- Eliminar ---> 
+<!-- Eliminar --->
 <div id="modal3" class="modal">
     <div class="modal-content">
         <form class="col s8">
@@ -162,8 +164,8 @@
                             <div>
                                 <p class="encabezadotextomodal"> Eliminar </p>
 
-                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
-                            </div>	
+                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
+                            </div>
 
                         </div>
 
@@ -190,8 +192,6 @@
     </div>
 </div>
 
-<!-- Eliminar fin --->   
+<!-- Eliminar fin --->
 
-<!-- ********************************** modal fin ********************************** -->  
-
-
+<!-- ********************************** modal fin ********************************** -->
