@@ -73,6 +73,7 @@ $('#modalnuevo').click(function(){
     $('#btnInsertar').show();
     $('#modal1').openModal();
 	document.getElementById('nombreC').focus();
+	$('#tipoRepuesto').material_select();
 });
 
 

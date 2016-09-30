@@ -4,7 +4,7 @@
 function mostrarProveedor()
 {
 
-
+echo "<script>$('#tipoCompra').material_select('destroy');</script>";
 
     //creacion de la tabla
 ?>

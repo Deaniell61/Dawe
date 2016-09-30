@@ -130,6 +130,25 @@ function buscarCliente(buscar,evt)
 	}
 	
 	
+	
+}
+function deshabilita(id)
+{
+	if(document.getElementById(id).disabled)
+	{
+		if(prompt("Ingrese Contraseña")=="1234")
+		{
+			document.getElementById(id).disabled=false;
+		}
+		else
+		{
+			alert('Contraseña Erronea');
+		}
+	}
+	else
+	{
+		document.getElementById(id).disabled=true;
+	}
 }
 function anularDetalleVenta1(id)
 {

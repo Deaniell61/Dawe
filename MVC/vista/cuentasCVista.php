@@ -43,9 +43,15 @@ function mostrarCuentasC()
                 $tabla .="<td>"     .$fila["0"].    "</td>";
                 $tabla .="<td>" .$fila["2"].      " " .$fila["3"].      "</td>";
                 $tabla .="<td>" .toMoney($fila["1"]).      "</td>";
+				if($_SESSION['SOFT_ACCESOModifica'.'cuentas']=='1')
+				{
                 $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["4"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
 
-               
+				}
+				else
+				{
+					$tabla .="<td class='anchoC'>";
+				}
 
                 $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm ver' onClick=\"ver('".$fila["4"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
                 $tabla .= "</tr>";

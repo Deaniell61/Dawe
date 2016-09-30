@@ -43,6 +43,8 @@ $('select').material_select();
 //*************** modal ***********************************
 $('#modalnuevo').click(function(){
 	document.getElementById('formUser').reset();
+	$('#password2Row').show();
+	$('#passwordRow').show();
 	formularioDis(false);
 	 $('#btnActualizar').hide();
 	 $('#btnInsertar').show();
@@ -351,6 +353,8 @@ formularioDis(false);
 	
 	 $('#modal1').openModal();
 document.getElementById('Modulos').hidden=false;
+	$('#password2Row').show();
+	$('#passwordRow').show();
     trasDato = 4;
 
 
@@ -517,7 +521,9 @@ function ver(id)
     idver = id;
 
 	 $('#modal1').openModal();
-	
+	$('#Modulos').show();
+	$('#password2Row').hide();
+	$('#passwordRow').hide();
     trasDato =4;
 
 

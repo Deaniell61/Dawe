@@ -51,8 +51,14 @@ function mostrarCompras()
 				$tabla .="<td>" .toMoney($fila["4"]).      "</td>";
 				
 				$tabla .="<td>" .$fila["5"].      "</td>";
+				if($_SESSION['SOFT_ACCESOElimina'.'compras']=='1')
+				{
                 $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm ' onClick=\"anularCompra('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
-
+				}
+				else
+				{
+					$tabla .="<td class='anchoC'>";
+				}
            
 
                 $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm modalver'  onClick=\"buscarCompra('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";

@@ -26,7 +26,10 @@
 
     <div class="centrartabla">
 
-
+<?php
+	if($_SESSION['SOFT_ACCESOAgrega'.'usuario']=='1')
+				{
+?>
         <table>
             <tr>
                 <td class="">
@@ -45,7 +48,8 @@
 
 
 
-
+<?php
+}?>
 
         <?php
         include('../vista/empleadoVista.php');

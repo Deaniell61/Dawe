@@ -185,11 +185,15 @@
 					 </div>   
           
                           
-                         
+                          <?php
+	  if($_SESSION['SOFT_ACCESOAgrega'.'cuentas']=='1')
+				{
+	  ?>
                       
                         <a id="guardar" class="waves-effect waves-light btn blue lighten-1 modal-trigger" onClick="abonarCuenta();" ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/guardar.png" /></i>Guardar</a>
                     
-                    
+                    <?php
+				}?>
                    
            </div>	   
               

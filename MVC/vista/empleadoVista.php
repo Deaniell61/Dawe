@@ -50,10 +50,14 @@ function mostrarEmpeados()
 				$tabla .="<td>" .$fila["3"].      "</td>";
 				$tabla .="<td>" .$fila["5"].      "</td>";
 				$tabla .="<td>" .$fila["6"].      "</td>";
+				if($_SESSION['SOFT_ACCESOModifica'.'usuario']=='1')
+				{
                 $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
-
+				}
+				if($_SESSION['SOFT_ACCESOElimina'.'usuario']=='1')
+				{
                 $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' data-elim='".$fila["0"]."'><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
-                 
+				}
                 $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm ver' data-ver='".$fila["0"]."'><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
                 $tabla .= "</tr>";
 

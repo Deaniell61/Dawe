@@ -28,7 +28,10 @@
     <!-- ********************************** tabla inicio ********************************** -->
 
     <div class="centrartabla">
-
+	
+    <?php
+	if($_SESSION['SOFT_ACCESOAgrega'.'usuario']=='1')
+				{		?>
 
         <table>
             <tr>
@@ -47,8 +50,8 @@
         </table>
 
 
-
-
+<?php 		}	
+?>
 
         <?php
         include('../vista/usuarioVista.php');
@@ -86,12 +89,12 @@
                         <input id="user" type="text" class="validate">
                         <label for="icon_prefix" ><span class="etiquelogin">Nombre de Usuario</span></label>
                     </div>
-                    <div class="input-field col s10">
+                    <div class="input-field col s10" id="passwordRow">
                         <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
                         <input id="password" type="password" class="validate">
                         <label for="icon_telephone" ><span class="etiquelogin">Contraseña</span></label>
                     </div>
-                    <div class="input-field col s10">
+                    <div class="input-field col s10" id="password2Row">
                         <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
                         <input id="password2" type="password" class="validate">
                         <label for="icon_telephone" ><span class="etiquelogin">Repetir Contraseña</span></label>

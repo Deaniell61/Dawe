@@ -55,10 +55,15 @@ function mostrarInventario()
 				  $tabla .="<td>" .toMoney($fila["6"]).      "</td>";
 				  $tabla .="<td>" .toMoney($fila["7"]).      "</td>";
 				  $tabla .="<td>" .toMoney($fila["8"]).      "</td>";
-                $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
-
+			$tabla .="<td class='anchoC'>";
+	  if($_SESSION['SOFT_ACCESOModifica'.'inventario']=='1')
+				{	
+                $tabla .="<a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
+				}
+				 if($_SESSION['SOFT_ACCESOElimina'.'inventario']=='1')
+				{
                 $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' data-elim='".$fila["0"]."'><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a></td>";
-
+				}
                
                 $tabla .= "</tr>";
             }

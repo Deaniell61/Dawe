@@ -6,6 +6,10 @@
 
      
       <div class="row">
+      <?php
+	  if($_SESSION['SOFT_ACCESOAgrega'.'ventas']=='1')
+				{
+	  ?>
            <div>
          	<ul>
          	    
@@ -14,7 +18,8 @@
          	</ul>
           </div>	
          
-     
+     <?php
+				}?>
       
          <center>
          

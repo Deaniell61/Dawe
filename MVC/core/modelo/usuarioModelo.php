@@ -52,7 +52,7 @@ function login($user, $pass)
 
 function cargarModulos($idUser)
 {
-	$sql = "SELECT m.Nombre,m.Dir,m.RefId FROM accesos a inner join modulos m on m.idModulos=a.idModulo where a.idUsuarios=$idUser order by m.idModulos";
+	$sql = "SELECT m.Nombre,m.Dir,m.RefId,a.agrega,a.elimina,a.modifica FROM accesos a inner join modulos m on m.idModulos=a.idModulo where a.idUsuarios=$idUser order by m.idModulos";
     
     $mysql = conexionMysql(); 
     
@@ -67,6 +67,9 @@ function cargarModulos($idUser)
 				$_SESSION['SOFT_MODULO'][$i]=$fila['0'];
 				$_SESSION['SOFT_MODULO_DIR'][$i]=$fila['1'];
 				$_SESSION['SOFT_MODULO_REF'][$i]=$fila['2'];
+				$_SESSION['SOFT_ACCESOModifica'.$fila['2']]=$fila['5'];
+				$_SESSION['SOFT_ACCESOElimina'.$fila['2']]=$fila['4'];
+				$_SESSION['SOFT_ACCESOAgrega'.$fila['2']]=$fila['3'];
 				$_SESSION['SOFT_MODULO_NUM']=$i;
 				$i++;
 			}

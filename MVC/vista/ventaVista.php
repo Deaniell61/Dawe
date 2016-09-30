@@ -52,8 +52,14 @@ function mostrarVentas()
 				$tabla .="<td>" .toMoney($fila["4"]).      "</td>";
 				
 				$tabla .="<td>" .$fila["5"].      "</td>";
+				if($_SESSION['SOFT_ACCESOElimina'.'ventas']=='1')
+				{
                 $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm ' onClick=\"anularVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
-
+				}
+				else
+				{
+					$tabla .="<td class='anchoC'>";
+				}
            
 
                 $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm modalver'  onClick=\"buscarVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";

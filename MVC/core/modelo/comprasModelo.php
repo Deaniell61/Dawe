@@ -58,6 +58,7 @@ function inicioCompra($idProv)
 	$mysql = conexionMysql();
     $form="";
 		$mysql->query("BEGIN");
+		$mysql->query("delete from compras where estado=2;");
     $sql = "INSERT INTO compras(total,estado,tipoCompra,iddistribuidor) values(0,2,'".$idProv[1]."','".$idProv[0]."')";
  
     if($mysql->query($sql))
@@ -72,7 +73,7 @@ function inicioCompra($idProv)
 					$_SESSION['idCompra']=$fila[0];
 			
 			 	$form .="<script>";
-					$form .="document.getElementById('codigoCompra').value='".$_SESSION['idCompra']."';$('#tipoCompra').material_select();";
+					$form .="document.getElementById('codigoCompra').value='".$_SESSION['idCompra']."'; setTimeout(function(){\$('#tipoCompra').material_select();},0);document.getElementById('factura').value='".$fila[1]."';document.getElementById('factura').focus();";
 				
 				
 				$form .="</script>";
@@ -222,7 +223,7 @@ function  buscarPrecioProducto($dato)
 			$form .="document.getElementById('nombreC').value='".$fila[3]."';document.getElementById('nombreC').focus();";
 			$form .="document.getElementById('descripcion').value='".$fila[4]."';document.getElementById('descripcion').focus();";
 			$form .="document.getElementById('marca').value='".$fila[9]."';document.getElementById('marca').focus();";
-			$form .="$('#tipoRepuesto').val(\"".$fila[10]."\");
+			$form .="$('#tipoRepuesto').val(\"".$fila[10]."\");$('#tipoRepuesto').material_select('destroy');
         $('#tipoRepuesto').material_select();";
 			$form .="document.getElementById('precioC').value='".($fila[5])."';document.getElementById('precioC').focus();";
 			$form .="document.getElementById('precioG').value='".($fila[6])."';document.getElementById('precioG').focus();";
@@ -279,7 +280,7 @@ function buscarCompra($dato)
 			$form .="document.getElementById('direccionC').disabled=false;document.getElementById('direccionC').value='".$fila[7]."';document.getElementById('direccionC').focus();document.getElementById('direccionC').disabled=true;";
 			$form .="document.getElementById('factura').disabled=false;document.getElementById('factura').value='".$fila[1]."';document.getElementById('factura').focus();document.getElementById('factura').disabled=true;";
 			//$form .="document.getElementById('tipoCompra').disabled=false;document.getElementById('tipoCompra').value='".$fila[5]."'.selected;document.getElementById('tipoCompra').focus();document.getElementById('tipoCompra').disabled=true;";
-			$form .="\$('#tipoCompra').val(\"".$fila[5]."\");$('select').material_select(); ";
+			$form .="\$('#tipoCompra').val(\"".$fila[5]."\");$('#tipoCompra').material_select('destroy'); $('#tipoCompra').material_select(); ";
 			$form .="cargarDetalleCompras('".$dato[0]."');";
 			$form .="</script>";
 			

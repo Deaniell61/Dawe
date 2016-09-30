@@ -6,7 +6,7 @@ $('#inicio').click(function(){
 
 $('#usuario').click(function(){
 
-    window.location.href="Empleado.php";
+    window.location.href="Usuarios.php";
 });
 
 $('#compras').click(function(){

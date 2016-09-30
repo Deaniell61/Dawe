@@ -263,7 +263,7 @@
 													  <label for="icon_telephone" ><span class="etiquelogin">Precio Venta general</span></label>
 												  </div>
 												  
-												   <div class="input-field col s7 ">   
+												   <div class="input-field col s8 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/precioEspecial.png"/></i>
 													  <input id="precioE" type="text" class="validate" onKeyUp="siguiente(event,'precioM');">
 													  <label for="icon_telephone" ><span class="etiquelogin">Precio Venta Especial</span></label>
@@ -285,9 +285,10 @@
  
               </div>
                    </div>   
+                   
               <div class="modal-footer">
                   <a id="modalnuevo" onClick="ingresoCompra(document.getElementById('codigo').value);" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a></div>
- <script>inicio();//setTimeout(function(){buscaProducto(document.getElementById('nombreC'));},500);</script>
+ <script>inicio();</script>
 
               </div>
           </div>

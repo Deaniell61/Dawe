@@ -46,7 +46,10 @@
    
     <div class="centrartabla">
 
-
+<?php
+	  if($_SESSION['SOFT_ACCESOAgrega'.'inventario']=='1')
+				{
+	  ?>
         <table>
             <tr>
                 <td class="">
@@ -61,7 +64,7 @@
 
                 </td>
             </tr>
-        </table>
+        </table><?php } ?>
 
 
 

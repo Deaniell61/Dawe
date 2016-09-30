@@ -250,19 +250,29 @@
 													  <input id="precioG" disabled type="text" class="validate" onKeyUp="siguiente(event,'precioE');">
 													  <label for="icon_telephone" ><span class="etiquelogin">Precio Venta general</span></label>
 												  </div>
-												  
+												  <div class="input-field col s4 ">   
+													  
+													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm'><i class='material-icons left' onClick="deshabilita('precioG');"><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
+												  </div>
+                                                  
 												   <div class="input-field col s8 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/precioEspecial.png"/></i>
 													  <input id="precioE" disabled type="text" class="validate" onKeyUp="siguiente(event,'precioM');">
 													  <label for="icon_telephone" ><span class="etiquelogin">Precio Venta Especial</span></label>
 												  </div>
-												  
+												   <div class="input-field col s4 ">   
+													  
+													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm'><i class='material-icons left' onClick="deshabilita('precioE');"><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
+												  </div>
 												  <div class="input-field col s8 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/precioMayoreo.png"/></i>
 													  <input id="precioM" disabled type="text" class="validate" onKeyUp="siguiente(event,'compra1');">
 													  <label for="icon_telephone" ><span class="etiquelogin">Precio Mayoreo</span></label>
 												  </div>
-												  
+												   <div class="input-field col s4 ">   
+													  
+													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm'><i class='material-icons left' onClick="deshabilita('precioM');"><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
+												  </div>
 												   <div class="input-field col s8 ">   
 																<p>
 																	<input type="checkbox" id="test1" name="PG" checked="checked" onClick="seleccionaPrecio('PG');" />
