@@ -57,9 +57,10 @@ function inicioVenta($idProv)
 {
 	$mysql = conexionMysql();
     $form="";
+	session_start();
 		$mysql->query("BEGIN");
 		$mysql->query("delete from ventas where estado=2;");
-   $sql = "INSERT INTO ventas(total,estado,tipoVenta,idCliente,nocomprobante) values(0,2,'".$idProv[1]."','".$idProv[0]."',(select v.nocomprobante+1 from ventas v where v.estado=1 order by v.nocomprobante desc limit 1))";
+   $sql = "INSERT INTO ventas(total,estado,tipoVenta,idCliente,nocomprobante,idusuario) values(0,2,'".$idProv[1]."','".$idProv[0]."',(select v.nocomprobante+1 from ventas v where v.estado=1 order by v.nocomprobante desc limit 1),'".$_SESSION['SOFT_USER_ID']."')";
  
     if($mysql->query($sql))
     {
@@ -70,7 +71,7 @@ function inicioVenta($idProv)
       
 			$fila = $resultado->fetch_row();    
 				
-				session_start();
+				
 					$_SESSION['idVenta']=$fila[0];
 			
 			 	$form .="<script>";

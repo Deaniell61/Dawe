@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2016 a las 02:52:06
+-- Tiempo de generación: 30-09-2016 a las 09:53:11
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `accesos` (
   PRIMARY KEY (`idAccesos`),
   KEY `AccesoModulo_idx` (`idModulo`),
   KEY `AccesoUsuarios_idx` (`idUsuarios`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -100,9 +100,11 @@ CREATE TABLE IF NOT EXISTS `compras` (
   `tipoCompra` int(11) DEFAULT NULL,
   `NoComprobante` varchar(45) DEFAULT NULL,
   `idDistribuidor` int(11) DEFAULT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`idCompras`),
   KEY `CompraDistribuidor_idx` (`idDistribuidor`),
-  KEY `CompraTipo_idx` (`tipoCompra`)
+  KEY `CompraTipo_idx` (`tipoCompra`),
+  KEY `ComprasUsuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -238,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `modulos` (
   `estado` int(11) DEFAULT NULL,
   `RefId` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idModulos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -254,8 +256,10 @@ CREATE TABLE IF NOT EXISTS `movimientosc` (
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `descripcion` varchar(50) DEFAULT NULL,
   `idCuentasC` int(11) DEFAULT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMovimientoC`),
-  KEY `MovimientoCCuentasC` (`idCuentasC`)
+  KEY `MovimientoCCuentasC` (`idCuentasC`),
+  KEY `MovimientosCUsuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -272,8 +276,10 @@ CREATE TABLE IF NOT EXISTS `movimientosp` (
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `descripcion` varchar(50) DEFAULT NULL,
   `idCuentasP` int(11) DEFAULT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMovimientoP`),
-  KEY `MovimientoPCuentasP` (`idCuentasP`)
+  KEY `MovimientoPCuentasP` (`idCuentasP`),
+  KEY `MovimientosPUsuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -356,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `puestos` (
   `idPuestos` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idPuestos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -370,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `ModulosDefecto` varchar(100) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idRol`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -384,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `tipocompra` (
   `Observacion` text,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idTipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -426,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `tipoventa` (
   `Observacion` text,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idTipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -445,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`idUsuarios`),
   KEY `UsuarioEmpleado_idx` (`idEmpleados`),
   KEY `UsuarioRol_idx` (`idRol`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -461,9 +467,11 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   `tipoVenta` int(11) DEFAULT NULL,
   `nocomprobante` int(11) DEFAULT NULL,
   `idCliente` int(11) DEFAULT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`idVentas`),
   KEY `ClienteVenta_idx` (`idCliente`),
-  KEY `VentaTipo_idx` (`tipoVenta`)
+  KEY `VentaTipo_idx` (`tipoVenta`),
+  KEY `VentasUsuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -520,6 +528,7 @@ ALTER TABLE `compradetalle`
 -- Filtros para la tabla `compras`
 --
 ALTER TABLE `compras`
+  ADD CONSTRAINT `ComprasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
   ADD CONSTRAINT `CompraProveedor2` FOREIGN KEY (`idDistribuidor`) REFERENCES `proveedor` (`idproveedor`),
   ADD CONSTRAINT `CompraTipo` FOREIGN KEY (`tipoCompra`) REFERENCES `tipocompra` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -557,12 +566,14 @@ ALTER TABLE `inventario`
 -- Filtros para la tabla `movimientosc`
 --
 ALTER TABLE `movimientosc`
+  ADD CONSTRAINT `MovimientosCUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
   ADD CONSTRAINT `MovimientoCCuentasC` FOREIGN KEY (`idCuentasC`) REFERENCES `cuentascobrar` (`idCuentasC`);
 
 --
 -- Filtros para la tabla `movimientosp`
 --
 ALTER TABLE `movimientosp`
+  ADD CONSTRAINT `MovimientosPUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
   ADD CONSTRAINT `MovimientoPCuentasP` FOREIGN KEY (`idCuentasP`) REFERENCES `cuentaspagar` (`idCuentasP`);
 
 --
@@ -590,6 +601,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
+  ADD CONSTRAINT `VentasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
   ADD CONSTRAINT `VentaCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `VentaTipo` FOREIGN KEY (`tipoVenta`) REFERENCES `tipoventa` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

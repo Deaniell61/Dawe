@@ -57,23 +57,24 @@ function inicioCompra($idProv)
 {
 	$mysql = conexionMysql();
     $form="";
+	session_start();
 		$mysql->query("BEGIN");
 		$mysql->query("delete from compras where estado=2;");
-    $sql = "INSERT INTO compras(total,estado,tipoCompra,iddistribuidor) values(0,2,'".$idProv[1]."','".$idProv[0]."')";
+    $sql = "INSERT INTO compras(total,estado,tipoCompra,iddistribuidor,idusuario) values(0,2,'".$idProv[1]."','".$idProv[0]."','".$_SESSION['SOFT_USER_ID']."')";
  
     if($mysql->query($sql))
     {
-		$sql = "SELECT idCompras from compras order by idcompras desc limit 1";
+		$sql = "SELECT idCompras,nocomprobante from compras order by idcompras desc limit 1";
 		if($resultado = $mysql->query($sql))
     	{
       
 			$fila = $resultado->fetch_row();    
 				
-				session_start();
+				
 					$_SESSION['idCompra']=$fila[0];
 			
 			 	$form .="<script>";
-					$form .="document.getElementById('codigoCompra').value='".$_SESSION['idCompra']."'; setTimeout(function(){\$('#tipoCompra').material_select();},0);document.getElementById('factura').value='".$fila[1]."';document.getElementById('factura').focus();";
+					$form .="document.getElementById('codigoCompra').value='".$_SESSION['idCompra']."'; setTimeout(function(){\$('#tipoCompra').material_select();},0);";
 				
 				
 				$form .="</script>";
