@@ -123,7 +123,7 @@
             
              <div class="input-field " id="botonGuardar" hidden>
                        <center>
-                        <a id="guardar" href="Compras.php" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/guardar.png" /></i>Guardar</a>
+                        <a onClick="agregaInvetario();" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/guardar.png" /></i>Guardar</a>
                       </center>
                     </div>	 
            </div>	   

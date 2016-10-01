@@ -140,6 +140,12 @@ function quitaInventario($datos)
 				 		$mysql->query("ROLLBACK");
 			 		}
 					else
+					if(!$mysql->query("update ventasdetalle set estado=1 where idventas='".$_SESSION['idVenta']."'"))
+					 {
+						
+						 $mysql->query("ROLLBACK");
+					 }
+					 else
 					 {	     
 			 
 			 
@@ -183,7 +189,7 @@ function ingresoVenta($datos)
 	$total=$datos[6]*$datos[1];
 	if($datos[1]>0)
 	{				 
-    $sql = "INSERT INTO ventasDetalle(cantidad,precio,estado,idventa,idproductos,subtotal) values('".$datos[1]."','".$datos[6]."',1,'".$_SESSION['idVenta']."',".$datos[0].",".$total.")";
+    $sql = "INSERT INTO ventasDetalle(cantidad,precio,estado,idventa,idproductos,subtotal) values('".$datos[1]."','".$datos[6]."',2,'".$_SESSION['idVenta']."',".$datos[0].",".$total.")";
  
     if($mysql->query($sql))
     {
@@ -202,7 +208,7 @@ function ingresoVenta($datos)
 			 		}
 					 else
 					 {
-						 echo "<script>cargarDetalleVentas('".$_SESSION['idVenta']."');limpiarProducto();</script>";
+						 echo "<script>cargarDetalleVentas('".$_SESSION['idVenta']."');document.getElementById('productosVenta').innerHTML='';document.getElementById('tipoVenta').disabled=true;$('#tipoVenta').material_select();limpiarProducto();</script>";
 					 }
 				     
 			 

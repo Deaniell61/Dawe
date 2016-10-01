@@ -142,6 +142,31 @@ if($_POST)
         agregarFactura($datos);
 
     }
+	else if($transaccion == 13)
+    {
+
+        $datos[0]=$nombre = $_POST['codigo'];
+		$datos[1]=$puesto = $_POST['cantidad'];
+		
+		$datos[2]=$puesto = $_POST['costo'];
+		$datos[3]=$puesto = $_POST['precioG'];
+		$datos[4]=$puesto = $_POST['precioE'];
+		$datos[5]=$puesto = $_POST['precioM'];
+		
+		        
+        agregaInventario($datos);
+
+    }
+	else if($transaccion == 14)
+    {
+
+        $datos[0] = $_POST['id'];
+		
+		
+		        
+        anularDetalleCompra($datos);
+
+    }
 	else if($transaccion == 66)
     {
         

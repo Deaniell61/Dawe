@@ -170,6 +170,95 @@ function ingresoProducto(id,compra)
         });
 	}
 }
+function agregaInvetario()
+{
+	cont=0;
+	var real=1;
+	while(document.getElementById('Cantidad'+cont))
+	{
+		cantidad=(document.getElementById('Cantidad'+cont).innerHTML);
+		codigo=(document.getElementById('Codigo'+cont).innerHTML);
+		costo=(document.getElementById('Costo'+cont).innerHTML);
+		precioG=(document.getElementById('PrecioG'+cont).innerHTML);
+		precioE=(document.getElementById('PrecioE'+cont).innerHTML);
+		precioM=(document.getElementById('PrecioM'+cont).innerHTML);
+		var  cantidad,trasDato;
+		trasDato = 13;
+		
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/comprasControlador.php",
+            data:' codigo=' +  codigo + '&cantidad=' + cantidad + '&costo=' + costo + '&precioG=' + precioG + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+					real=0;
+                    alert('Algo salio mal');
+					
+                }
+                else
+                {
+				
+                    real=1;
+					
+					 $('#mensaje').html(resp);
+					  
+
+                }
+
+
+            } 
+        });
+		
+		
+		cont++;
+	}
+
+	if(real==1)
+	{
+		
+		window.location.href="Compras.php";
+	}
+	
+}
+function anularDetalleCompra(id)
+{
+	
+	var  trasDato;
+	trasDato = 14;
+
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/comprasControlador.php",
+            data:' id=' +  id + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');         
+                    //$('#precargar').hide();    
+                }
+                else
+                {
+					
+                  
+					
+					 $('#mensajeC').html(resp); 
+
+                }
+
+
+            }     
+        });
+}
 function seleccionaMarca(mc)
 {
 	document.getElementById('marca').value=mc;

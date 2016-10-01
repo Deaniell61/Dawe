@@ -96,6 +96,73 @@ function inicioCompra($idProv)
     return printf($form);
   
 }
+function agregaInventario($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+	session_start();
+	$mysql->query("BEGIN");
+	
+	$cont=$mysql->query("select cantidad from inventario where idproducto='".$datos[0]."'");
+			 
+				 $fila = $cont->fetch_row();
+				 
+				 
+	if($datos[1]>0)
+	{			 
+		$total=$datos[3]*$datos[1];
+			 
+    $sql = "update inventario set cantidad=cantidad+".$datos[1].",preciocosto='".$datos[2]."',precioventa='".$datos[3]."',precioClientees='".$datos[4]."',precioDistribuidor='".$datos[5]."' where idproducto='".$datos[0]."'";
+ 	
+    if($mysql->query($sql))
+    {
+			 
+				 	
+			//		 echo "<script>window.location.href = 'Ventas.php';/script>";
+					echo '2';
+			if(!$mysql->query("update compras set estado=1 where idcompras='".$_SESSION['idCompra']."'"))
+					 {
+						
+						 $mysql->query("ROLLBACK");
+					 }
+					 else
+					 if(!$mysql->query("update cuentasPagar set estado=1 where idCompras='".$_SESSION['idCompra']."'"))
+			 		{
+				
+				 		$mysql->query("ROLLBACK");
+			 		}
+					else
+					if(!$mysql->query("update compradetalle set estado=1 where idcompras='".$_SESSION['idCompra']."'"))
+					 {
+						
+						 $mysql->query("ROLLBACK");
+					 }
+					 else
+					 {	     
+			 
+			 
+		
+    					$mysql->query("COMMIT");
+					}
+		
+			
+    }
+    else
+    {   
+    		$mysql->query("ROLLBACK");
+    	$form = '1';
+    
+    }
+	}
+    else
+	{
+		echo "<script>alert('si');</script>";
+	}
+    
+    $mysql->close();
+    
+    return printf($form);
+}
 function ingresoCompra($datos)
 {
 	$mysql = conexionMysql();
@@ -103,23 +170,18 @@ function ingresoCompra($datos)
 	session_start();
 	$mysql->query("BEGIN");
 	$total=$datos[2]*$datos[1];
-    $sql = "INSERT INTO compraDetalle(cantidad,precio,estado,idcompras,idproductos,subtotal) values('".$datos[1]."','".$datos[2]."',1,'".$_SESSION['idCompra']."',".$datos[0].",".$total.")";
+    $sql = "INSERT INTO compraDetalle(cantidad,precio,estado,idcompras,idproductos,subtotal,costo,precioE,precioM) values('".$datos[1]."','".$datos[3]."',2,'".$_SESSION['idCompra']."',".$datos[0].",".$total.",".$datos[2].",".$datos[4].",".$datos[5].")";
  
     if($mysql->query($sql))
     {
 		
       
-			 if(!$mysql->query("update compras set total=total+".$total.",estado=1 where idcompras='".$_SESSION['idCompra']."'"))
+			 if(!$mysql->query("update compras set total=total+".$total." where idcompras='".$_SESSION['idCompra']."'"))
 			 {
 				 $mysql->query("ROLLBACK");
 			 }
 			 else
-			 if(!$mysql->query("update inventario set cantidad=cantidad+".$datos[1].",precioCosto=(".$datos[2]."),precioVenta=(".($datos[3])."),precioClienteEs=(".($datos[4])."),precioDistribuidor=(".($datos[5]).") where idproducto='".$datos[0]."'"))
-			 {
-				
-				 $mysql->query("ROLLBACK");
-			 }
-			 if(!$mysql->query("update cuentasPagar set total=total+".$total.",CreditoDado=CreditoDado+".$total.",estado=1 where idCompras='".$_SESSION['idCompra']."'"))
+			 if(!$mysql->query("update cuentasPagar set total=total+".$total.",CreditoDado=CreditoDado+".$total.",estado=2 where idCompras='".$_SESSION['idCompra']."'"))
 			 {
 				
 				 $mysql->query("ROLLBACK");
@@ -457,6 +519,35 @@ function  buscarMarca($dato)
     
     printf($form);
     
+}
+
+function anularDetalleCompra($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+	session_start();
+		$mysql->query("BEGIN");
+    $sql = "delete from compradetalle where idcompradetalle='".$datos[0]."'";
+//echo $sql;
+    if($mysql->query($sql))
+    {
+		
+		$mysql->query("COMMIT");
+			    
+		$form = "<script>cargarDetalleCompras('".$_SESSION['idCompra']."');</script>";
+    
+    }
+    else
+    {   
+    	$mysql->query("ROLLBACK");
+    	$form = "<div><script>cargarDetalleCompras('".$_SESSION['idCompra']."');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return printf($form);
 }
 
 

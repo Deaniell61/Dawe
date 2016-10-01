@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2016 a las 09:51:27
+-- Tiempo de generación: 01-10-2016 a las 09:32:44
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `accesos` (
   PRIMARY KEY (`idAccesos`),
   KEY `AccesoModulo_idx` (`idModulo`),
   KEY `AccesoUsuarios_idx` (`idUsuarios`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
 -- Volcado de datos para la tabla `accesos`
@@ -52,11 +52,14 @@ INSERT INTO `accesos` (`idAccesos`, `Agrega`, `Modifica`, `Mostrar`, `Elimina`, 
 (21, 1, 1, 1, 1, 33, 7),
 (22, 1, 1, 1, 1, 33, 8),
 (46, 1, 1, NULL, 1, 33, 1),
-(47, 1, 1, NULL, 1, 35, 3),
+(47, 0, 0, NULL, 0, 35, 3),
 (48, 0, 0, NULL, 0, 35, 4),
-(49, 1, 1, NULL, 1, 35, 7),
-(53, 1, 1, NULL, 1, 35, 6),
-(54, 0, 1, NULL, 0, 35, 2);
+(49, 0, 0, NULL, 0, 35, 7),
+(53, 0, 0, NULL, 0, 35, 6),
+(54, 0, 0, NULL, 0, 35, 2),
+(55, 0, 0, NULL, 0, 35, 1),
+(56, 0, 0, NULL, 0, 35, 5),
+(57, 0, 0, NULL, 0, 35, 8);
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,10 @@ CREATE TABLE IF NOT EXISTS `compradetalle` (
   `subtotal` double DEFAULT NULL,
   `vencimiento` date DEFAULT NULL,
   `cantidad` double DEFAULT NULL,
+  `costo` double DEFAULT NULL,
   `precio` double DEFAULT NULL,
+  `precioE` double DEFAULT NULL,
+  `precioM` double DEFAULT NULL,
   `descuentos` double DEFAULT NULL,
   `garantia` text,
   `estado` int(11) DEFAULT NULL,
@@ -111,86 +117,85 @@ CREATE TABLE IF NOT EXISTS `compradetalle` (
   KEY `DetalleCompra_idx` (`idCompras`),
   KEY `DetalleTipo_idx` (`idTipo`),
   KEY `DetalleProducto_idx` (`idProductos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=115 ;
 
 --
 -- Volcado de datos para la tabla `compradetalle`
 --
 
-INSERT INTO `compradetalle` (`idCompraDetalle`, `subtotal`, `vencimiento`, `cantidad`, `precio`, `descuentos`, `garantia`, `estado`, `idCompras`, `idProductos`, `idTipo`) VALUES
-(3, 200, NULL, 10, 20, NULL, NULL, 1, 3, 4, NULL),
-(4, 1, NULL, 1, 1, NULL, NULL, 1, 7, 6, NULL),
-(5, 2, NULL, 1, 2, NULL, NULL, 1, 8, 6, NULL),
-(8, 1, NULL, 1, 1, NULL, NULL, 1, 9, 11, NULL),
-(9, 12, NULL, 3, 4, NULL, NULL, 1, 9, 13, NULL),
-(10, 384, NULL, 12, 32, NULL, NULL, 1, 14, 4, NULL),
-(11, 12, NULL, 12, 1, NULL, NULL, 1, 15, 6, NULL),
-(12, 21, NULL, 1, 21, NULL, NULL, 1, 16, 1, NULL),
-(13, 1, NULL, 1, 1, NULL, NULL, 1, 16, 5, NULL),
-(14, 1, NULL, 1, 1, NULL, NULL, 1, 17, 5, NULL),
-(15, 1, NULL, 1, 1, NULL, NULL, 1, 19, 2, NULL),
-(16, 4, NULL, 2, 2, NULL, NULL, 1, 19, 14, NULL),
-(17, 2, NULL, 1, 2, NULL, NULL, 1, 21, 4, NULL),
-(18, 230, NULL, 5, 46, NULL, NULL, 1, 23, 6, NULL),
-(19, 270, NULL, 54, 5, NULL, NULL, 1, 23, 10, NULL),
-(20, 120, NULL, 5, 24, NULL, NULL, 1, 23, 15, NULL),
-(21, 5, NULL, 5, 1, NULL, NULL, 1, 23, 14, NULL),
-(22, 707.875, NULL, 56, 12.640625, NULL, NULL, 1, 24, 4, NULL),
-(23, 1188, NULL, 99, 12, NULL, NULL, 1, 32, 15, NULL),
-(24, 2025, NULL, 45, 45, NULL, NULL, 1, 34, 32, NULL),
-(25, 568.828125, NULL, 45, 12.640625, NULL, NULL, 1, 34, 4, NULL),
-(27, 5, NULL, 5, 1, NULL, NULL, 1, 34, 14, NULL),
-(28, 2925, NULL, 45, 65, NULL, NULL, 1, 35, 26, NULL),
-(29, 3136, NULL, 56, 56, NULL, NULL, 1, 35, 23, NULL),
-(30, 568.828125, NULL, 45, 12.640625, NULL, NULL, 1, 39, 4, NULL),
-(31, 1462, NULL, 43, 34, NULL, NULL, 1, 40, 8, NULL),
-(32, 0, NULL, 15, 0, NULL, NULL, 1, 51, 34, NULL),
-(33, 12.375, NULL, 3, 4.125, NULL, NULL, 1, 53, 5, NULL),
-(34, 0, NULL, 234, 0, NULL, NULL, 1, 53, 35, NULL),
-(35, 145411.454436, NULL, 4234, 34.343754, NULL, NULL, 1, 55, 3, NULL),
-(36, 541.9375, NULL, 23, 23.5625, NULL, NULL, 1, 55, 6, NULL),
-(37, 2898.1875, NULL, 123, 23.5625, NULL, NULL, 1, 59, 6, NULL),
-(38, 67, NULL, 4, 16.75, NULL, NULL, 1, 60, 1, NULL),
-(40, 0, NULL, 56, 0, NULL, NULL, 1, 66, 37, NULL),
-(41, 1691.75, NULL, 101, 16.75, NULL, NULL, 1, 67, 1, NULL),
-(42, 167.5, NULL, 10, 16.75, NULL, NULL, 1, 68, 1, NULL),
-(45, 568.828125, NULL, 45, 12.640625, NULL, NULL, 1, 69, 4, NULL),
-(46, 0, NULL, 22, 0, NULL, NULL, 1, 69, 35, NULL),
-(48, 6.005126953125, NULL, 6, 1.0008544921875, NULL, NULL, 1, 71, 2, NULL),
-(61, 112, NULL, 4, 28, NULL, NULL, 1, 79, 23, NULL),
-(65, 140, NULL, 5, 28, NULL, NULL, 1, 79, 23, NULL),
-(66, 0, NULL, 4, 0, NULL, NULL, 1, 79, 36, NULL),
-(67, 4.00341796875, NULL, 4, 1.0008544921875, NULL, NULL, 1, 80, 2, NULL),
-(68, 0, NULL, 34, 0, NULL, NULL, 1, 80, 24, NULL),
-(69, 0, NULL, 45, 0, NULL, NULL, 1, 87, 36, NULL),
-(70, 20.625, NULL, 5, 4.125, NULL, NULL, 1, 87, 5, NULL),
-(71, 0, NULL, 5, 0, NULL, NULL, 1, 87, 21, NULL),
-(72, 67, NULL, 4, 16.75, NULL, NULL, 1, 88, 1, NULL),
-(73, 0, NULL, 32, 0, NULL, NULL, 1, 89, 18, NULL),
-(74, 83.75, NULL, 5, 16.75, NULL, NULL, 1, 90, 1, NULL),
-(75, 50.25, NULL, 3, 16.75, NULL, NULL, 1, 91, 1, NULL),
-(76, 938, NULL, 56, 16.75, NULL, NULL, 1, 92, 1, NULL),
-(77, 134, NULL, 8, 16.75, NULL, NULL, 1, 92, 1, NULL),
-(78, 100.5, NULL, 6, 16.75, NULL, NULL, 1, 92, 1, NULL),
-(79, 20.625, NULL, 5, 4.125, NULL, NULL, 1, 92, 5, NULL),
-(80, 12.375, NULL, 3, 4.125, NULL, NULL, 1, 92, 5, NULL),
-(81, 0, NULL, 55, 0, NULL, NULL, 1, 92, 19, NULL),
-(82, 5.0042724609375, NULL, 5, 1.0008544921875, NULL, NULL, 1, 93, 2, NULL),
-(83, 45.038452148438, NULL, 45, 1.0008544921875, NULL, NULL, 1, 94, 2, NULL),
-(84, 140, NULL, 5, 28, NULL, NULL, 1, 94, 23, NULL),
-(85, 20.625, NULL, 5, 4.125, NULL, NULL, 1, 95, 5, NULL),
-(86, 5.0042724609375, NULL, 5, 1.0008544921875, NULL, NULL, 1, 97, 2, NULL),
-(87, 83.75, NULL, 5, 16.75, NULL, NULL, 1, 98, 1, NULL),
-(88, 5.0042724609375, NULL, 5, 1.0008544921875, NULL, NULL, 1, 99, 2, NULL),
-(91, 60, NULL, 5, 12, NULL, NULL, 1, 100, 4, NULL),
-(92, 150, NULL, 10, 15, NULL, NULL, 1, 101, 1, NULL),
-(94, 150, NULL, 10, 15, NULL, NULL, 1, 102, 1, NULL),
-(95, 150, NULL, 10, 15, NULL, NULL, 1, 104, 1, NULL),
-(96, 45, NULL, 3, 15, NULL, NULL, 1, 105, 4, NULL),
-(97, 300, NULL, 20, 15, NULL, NULL, 1, 106, 4, NULL),
-(98, 0, NULL, 0, 10, NULL, NULL, 1, 107, 4, NULL),
-(99, 200, NULL, 1, 200, NULL, NULL, 1, 110, 5, NULL),
-(100, 600, NULL, 50, 12, NULL, NULL, 1, 141, 15, NULL);
+INSERT INTO `compradetalle` (`idCompraDetalle`, `subtotal`, `vencimiento`, `cantidad`, `costo`, `precio`, `precioE`, `precioM`, `descuentos`, `garantia`, `estado`, `idCompras`, `idProductos`, `idTipo`) VALUES
+(3, 200, NULL, 10, NULL, 20, NULL, NULL, NULL, NULL, 1, 3, 4, NULL),
+(4, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, 1, 7, 6, NULL),
+(5, 2, NULL, 1, NULL, 2, NULL, NULL, NULL, NULL, 1, 8, 6, NULL),
+(8, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, 1, 9, 11, NULL),
+(9, 12, NULL, 3, NULL, 4, NULL, NULL, NULL, NULL, 1, 9, 13, NULL),
+(15, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, 1, 19, 2, NULL),
+(16, 4, NULL, 2, NULL, 2, NULL, NULL, NULL, NULL, 1, 19, 14, NULL),
+(17, 2, NULL, 1, NULL, 2, NULL, NULL, NULL, NULL, 1, 21, 4, NULL),
+(18, 230, NULL, 5, NULL, 46, NULL, NULL, NULL, NULL, 1, 23, 6, NULL),
+(19, 270, NULL, 54, NULL, 5, NULL, NULL, NULL, NULL, 1, 23, 10, NULL),
+(20, 120, NULL, 5, NULL, 24, NULL, NULL, NULL, NULL, 1, 23, 15, NULL),
+(21, 5, NULL, 5, NULL, 1, NULL, NULL, NULL, NULL, 1, 23, 14, NULL),
+(22, 707.875, NULL, 56, NULL, 12.640625, NULL, NULL, NULL, NULL, 1, 24, 4, NULL),
+(23, 1188, NULL, 99, NULL, 12, NULL, NULL, NULL, NULL, 1, 32, 15, NULL),
+(24, 2025, NULL, 45, NULL, 45, NULL, NULL, NULL, NULL, 1, 34, 32, NULL),
+(25, 568.828125, NULL, 45, NULL, 12.640625, NULL, NULL, NULL, NULL, 1, 34, 4, NULL),
+(27, 5, NULL, 5, NULL, 1, NULL, NULL, NULL, NULL, 1, 34, 14, NULL),
+(28, 2925, NULL, 45, NULL, 65, NULL, NULL, NULL, NULL, 1, 35, 26, NULL),
+(29, 3136, NULL, 56, NULL, 56, NULL, NULL, NULL, NULL, 1, 35, 23, NULL),
+(30, 568.828125, NULL, 45, NULL, 12.640625, NULL, NULL, NULL, NULL, 1, 39, 4, NULL),
+(31, 1462, NULL, 43, NULL, 34, NULL, NULL, NULL, NULL, 1, 40, 8, NULL),
+(32, 0, NULL, 15, NULL, 0, NULL, NULL, NULL, NULL, 1, 51, 34, NULL),
+(33, 12.375, NULL, 3, NULL, 4.125, NULL, NULL, NULL, NULL, 1, 53, 5, NULL),
+(34, 0, NULL, 234, NULL, 0, NULL, NULL, NULL, NULL, 1, 53, 35, NULL),
+(35, 145411.454436, NULL, 4234, NULL, 34.343754, NULL, NULL, NULL, NULL, 1, 55, 3, NULL),
+(36, 541.9375, NULL, 23, NULL, 23.5625, NULL, NULL, NULL, NULL, 1, 55, 6, NULL),
+(37, 2898.1875, NULL, 123, NULL, 23.5625, NULL, NULL, NULL, NULL, 1, 59, 6, NULL),
+(38, 67, NULL, 4, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 60, 1, NULL),
+(40, 0, NULL, 56, NULL, 0, NULL, NULL, NULL, NULL, 1, 66, 37, NULL),
+(41, 1691.75, NULL, 101, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 67, 1, NULL),
+(42, 167.5, NULL, 10, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 68, 1, NULL),
+(45, 568.828125, NULL, 45, NULL, 12.640625, NULL, NULL, NULL, NULL, 1, 69, 4, NULL),
+(46, 0, NULL, 22, NULL, 0, NULL, NULL, NULL, NULL, 1, 69, 35, NULL),
+(48, 6.005126953125, NULL, 6, NULL, 1.0008544921875, NULL, NULL, NULL, NULL, 1, 71, 2, NULL),
+(61, 112, NULL, 4, NULL, 28, NULL, NULL, NULL, NULL, 1, 79, 23, NULL),
+(65, 140, NULL, 5, NULL, 28, NULL, NULL, NULL, NULL, 1, 79, 23, NULL),
+(66, 0, NULL, 4, NULL, 0, NULL, NULL, NULL, NULL, 1, 79, 36, NULL),
+(67, 4.00341796875, NULL, 4, NULL, 1.0008544921875, NULL, NULL, NULL, NULL, 1, 80, 2, NULL),
+(68, 0, NULL, 34, NULL, 0, NULL, NULL, NULL, NULL, 1, 80, 24, NULL),
+(69, 0, NULL, 45, NULL, 0, NULL, NULL, NULL, NULL, 1, 87, 36, NULL),
+(70, 20.625, NULL, 5, NULL, 4.125, NULL, NULL, NULL, NULL, 1, 87, 5, NULL),
+(71, 0, NULL, 5, NULL, 0, NULL, NULL, NULL, NULL, 1, 87, 21, NULL),
+(72, 67, NULL, 4, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 88, 1, NULL),
+(73, 0, NULL, 32, NULL, 0, NULL, NULL, NULL, NULL, 1, 89, 18, NULL),
+(74, 83.75, NULL, 5, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 90, 1, NULL),
+(75, 50.25, NULL, 3, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 91, 1, NULL),
+(76, 938, NULL, 56, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 92, 1, NULL),
+(77, 134, NULL, 8, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 92, 1, NULL),
+(78, 100.5, NULL, 6, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 92, 1, NULL),
+(79, 20.625, NULL, 5, NULL, 4.125, NULL, NULL, NULL, NULL, 1, 92, 5, NULL),
+(80, 12.375, NULL, 3, NULL, 4.125, NULL, NULL, NULL, NULL, 1, 92, 5, NULL),
+(81, 0, NULL, 55, NULL, 0, NULL, NULL, NULL, NULL, 1, 92, 19, NULL),
+(82, 5.0042724609375, NULL, 5, NULL, 1.0008544921875, NULL, NULL, NULL, NULL, 1, 93, 2, NULL),
+(83, 45.038452148438, NULL, 45, NULL, 1.0008544921875, NULL, NULL, NULL, NULL, 1, 94, 2, NULL),
+(84, 140, NULL, 5, NULL, 28, NULL, NULL, NULL, NULL, 1, 94, 23, NULL),
+(85, 20.625, NULL, 5, NULL, 4.125, NULL, NULL, NULL, NULL, 1, 95, 5, NULL),
+(86, 5.0042724609375, NULL, 5, NULL, 1.0008544921875, NULL, NULL, NULL, NULL, 1, 97, 2, NULL),
+(87, 83.75, NULL, 5, NULL, 16.75, NULL, NULL, NULL, NULL, 1, 98, 1, NULL),
+(88, 5.0042724609375, NULL, 5, NULL, 1.0008544921875, NULL, NULL, NULL, NULL, 1, 99, 2, NULL),
+(91, 60, NULL, 5, NULL, 12, NULL, NULL, NULL, NULL, 1, 100, 4, NULL),
+(92, 150, NULL, 10, NULL, 15, NULL, NULL, NULL, NULL, 1, 101, 1, NULL),
+(94, 150, NULL, 10, NULL, 15, NULL, NULL, NULL, NULL, 1, 102, 1, NULL),
+(95, 150, NULL, 10, NULL, 15, NULL, NULL, NULL, NULL, 1, 104, 1, NULL),
+(96, 45, NULL, 3, NULL, 15, NULL, NULL, NULL, NULL, 1, 105, 4, NULL),
+(97, 300, NULL, 20, NULL, 15, NULL, NULL, NULL, NULL, 1, 106, 4, NULL),
+(98, 0, NULL, 0, NULL, 10, NULL, NULL, NULL, NULL, 1, 107, 4, NULL),
+(99, 200, NULL, 1, NULL, 200, NULL, NULL, NULL, NULL, 1, 110, 5, NULL),
+(100, 600, NULL, 50, NULL, 12, NULL, NULL, NULL, NULL, 1, 141, 15, NULL),
+(102, 0, NULL, 45, NULL, 0, NULL, NULL, NULL, NULL, 1, 144, 17, NULL),
+(103, 0, NULL, 45, NULL, 0, NULL, NULL, NULL, NULL, 1, 145, 17, NULL),
+(104, 0, NULL, 5, NULL, 0, NULL, NULL, NULL, NULL, 1, 145, 17, NULL),
+(108, 400, NULL, 20, 20, 50, 45, 42.5, NULL, NULL, 1, 150, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -211,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `compras` (
   KEY `CompraDistribuidor_idx` (`idDistribuidor`),
   KEY `CompraTipo_idx` (`tipoCompra`),
   KEY `ComprasUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=143 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=155 ;
 
 --
 -- Volcado de datos para la tabla `compras`
@@ -222,10 +227,6 @@ INSERT INTO `compras` (`idCompras`, `fecha`, `total`, `estado`, `tipoCompra`, `N
 (7, '2016-09-22 07:10:58', 0, 1, 1, NULL, NULL, NULL),
 (8, '2016-09-22 07:17:32', 0, 1, 1, NULL, NULL, NULL),
 (9, '2016-09-22 07:20:24', 0, 1, 1, NULL, NULL, NULL),
-(14, '2016-09-22 07:44:12', 0, 0, 1, NULL, 1, NULL),
-(15, '2016-09-22 07:45:24', 12, 0, 1, NULL, 2, NULL),
-(16, '2016-09-23 01:53:53', 22, 0, 1, NULL, 1, NULL),
-(17, '2016-09-23 01:56:02', 1, 0, 1, NULL, 1, NULL),
 (19, '2016-09-23 02:03:29', 5, 1, 1, NULL, 1, NULL),
 (21, '2016-09-23 19:09:10', 2, 1, 1, NULL, 6, NULL),
 (23, '2016-09-23 20:15:06', 625, 1, 1, NULL, 7, NULL),
@@ -268,7 +269,9 @@ INSERT INTO `compras` (`idCompras`, `fecha`, `total`, `estado`, `tipoCompra`, `N
 (107, '2016-09-28 06:48:50', 0, 1, 1, NULL, 2, NULL),
 (110, '2016-09-29 02:53:50', 200, 1, 1, NULL, 1, NULL),
 (141, '2016-09-30 07:47:42', 600, 1, 1, '1234s', 1, 33),
-(142, '2016-09-30 07:49:27', 0, 2, 1, NULL, 1, 33);
+(144, '2016-10-01 06:49:52', 0, 1, 1, NULL, 1, 33),
+(145, '2016-10-01 06:52:45', 0, 1, 1, NULL, 1, 33),
+(150, '2016-10-01 07:17:52', 400, 1, 1, NULL, 1, 33);
 
 -- --------------------------------------------------------
 
@@ -287,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `cuentascobrar` (
   `CreditoDado` double DEFAULT NULL,
   PRIMARY KEY (`idCuentasC`),
   UNIQUE KEY `idCompras` (`idVentas`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Volcado de datos para la tabla `cuentascobrar`
@@ -318,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `cuentaspagar` (
   `CreditoDado` double DEFAULT NULL,
   PRIMARY KEY (`idCuentasP`),
   UNIQUE KEY `idVentas` (`idCompras`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Volcado de datos para la tabla `cuentaspagar`
@@ -409,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `inventario` (
 --
 
 INSERT INTO `inventario` (`idInventario`, `idProducto`, `precioCosto`, `precioVenta`, `precioClienteEs`, `precioDistribuidor`, `cantidad`) VALUES
-(1, 1, 15, 20, 18, 17, 30),
+(1, 1, 20, 50, 45, 42.5, 50),
 (2, 2, 1.0008544921875, 1, 1, 1, 70),
 (4, 3, 34.343751999999995, 1, 1, 1, 4430),
 (5, 4, 10, 30, 27, 25.5, 202),
@@ -423,7 +426,7 @@ INSERT INTO `inventario` (`idInventario`, `idProducto`, `precioCosto`, `precioVe
 (14, 13, 2, 5, 6, 6, -3),
 (15, 14, 1, 2, 2, 2, 12),
 (16, 15, 12, 24, 24, 24, 50),
-(18, 17, 0, 0, 0, 0, 0),
+(18, 17, 0, 0, 0, 0, 50),
 (19, 18, 0, 0, 0, 0, 30),
 (20, 19, 0, 0, 0, 0, 50),
 (21, 20, 0, 0, 0, 0, 0),
@@ -807,7 +810,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`idUsuarios`),
   KEY `UsuarioEmpleado_idx` (`idEmpleados`),
   KEY `UsuarioRol_idx` (`idRol`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -836,25 +839,22 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   KEY `ClienteVenta_idx` (`idCliente`),
   KEY `VentaTipo_idx` (`tipoVenta`),
   KEY `VentasUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=125 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=128 ;
 
 --
 -- Volcado de datos para la tabla `ventas`
 --
 
 INSERT INTO `ventas` (`idVentas`, `fecha`, `total`, `estado`, `tipoVenta`, `nocomprobante`, `idCliente`, `idUsuario`) VALUES
-(24, '2016-09-24 19:24:20', 18, 0, 1, 0, 2, NULL),
 (25, '2016-09-24 19:34:27', 285, 1, 1, 0, 2, NULL),
 (26, '2016-09-24 19:36:06', 2100, 1, 1, 0, 2, NULL),
 (27, '2016-09-24 19:39:46', 231, 1, 1, 0, 2, NULL),
 (28, '2016-09-24 19:51:21', 2205, 1, 1, 0, 1, NULL),
-(29, '2016-09-24 19:53:21', 315, 0, 1, 0, 1, NULL),
 (32, '2016-09-24 20:59:16', 226, 1, 1, 2, 2, NULL),
 (49, '2016-09-26 04:45:50', 55, 1, 1, 3, 1, NULL),
 (50, '2016-09-26 04:46:40', 3120, 1, 1, 4, 2, NULL),
 (54, '2016-09-26 04:53:23', 245, 1, 1, 5, 2, NULL),
 (56, '2016-09-26 05:14:32', 1320, 1, 1, 6, 2, NULL),
-(57, '2016-09-26 05:22:23', 0, 0, 1, 7, 1, NULL),
 (59, '2016-09-26 05:27:27', 0, 1, 1, 8, 2, NULL),
 (60, '2016-09-26 05:28:05', 1176, 1, 1, 9, 1, NULL),
 (63, '2016-09-26 08:17:21', 15, 1, 1, 10, 1, NULL),
@@ -904,33 +904,25 @@ CREATE TABLE IF NOT EXISTS `ventasdetalle` (
   KEY `VentaDetalleTipo_idx` (`idTipo`),
   KEY `VentaDetalle_idx` (`idVenta`),
   KEY `VentaDetalleProducto_idx` (`idProductos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
 
 --
 -- Volcado de datos para la tabla `ventasdetalle`
 --
 
 INSERT INTO `ventasdetalle` (`idVentaDetalle`, `Subtotal`, `Vencimiento`, `Cantidad`, `precio`, `garantia`, `idVenta`, `idProductos`, `idTipo`, `estado`) VALUES
-(5, 9, NULL, 3, 3, NULL, 24, 4, NULL, 1),
-(7, 9, NULL, 3, 3, NULL, 24, 4, NULL, 1),
-(8, 0, NULL, 5, 0, NULL, 24, 30, NULL, 1),
-(9, 25, NULL, 5, 5, NULL, 24, 10, NULL, 1),
-(10, 0, NULL, 5, 0, NULL, 24, 9, NULL, 1),
-(11, 18, NULL, 6, 3, NULL, 24, 4, NULL, 1),
 (12, 15, NULL, 5, 3, NULL, 25, 4, NULL, 1),
 (13, 30, NULL, 6, 5, NULL, 25, 13, NULL, 1),
 (14, 240, NULL, 5, 48, NULL, 25, 6, NULL, 1),
 (15, 2100, NULL, 100, 21, NULL, 26, 1, NULL, 1),
 (18, 231, NULL, 11, 21, NULL, 27, 1, NULL, 1),
 (19, 2205, NULL, 105, 21, NULL, 28, 1, NULL, 1),
-(20, 315, NULL, 10, 21, NULL, 29, 1, NULL, 1),
 (21, 97, NULL, 96, 1, NULL, 32, 5, NULL, 1),
 (22, 129, NULL, 43, 3, NULL, 32, 8, NULL, 1),
 (23, 55, NULL, 55, 1, NULL, 49, 2, NULL, 1),
 (24, 3120, NULL, 65, 48, NULL, 50, 6, NULL, 1),
 (25, 245, NULL, 49, 5, NULL, 54, 10, NULL, 1),
 (26, 1320, NULL, 55, 24, NULL, 56, 15, NULL, 1),
-(27, 0, NULL, 5, 0, NULL, 57, 14, NULL, 1),
 (28, 0, NULL, 55, 0, NULL, 59, 23, NULL, 1),
 (29, 1176, NULL, 49, 24, NULL, 60, 15, NULL, 1),
 (31, 15, NULL, 5, 3, NULL, 63, 4, NULL, 1),
@@ -998,8 +990,8 @@ ALTER TABLE `compradetalle`
 -- Filtros para la tabla `compras`
 --
 ALTER TABLE `compras`
-  ADD CONSTRAINT `ComprasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
   ADD CONSTRAINT `CompraProveedor2` FOREIGN KEY (`idDistribuidor`) REFERENCES `proveedor` (`idproveedor`),
+  ADD CONSTRAINT `ComprasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
   ADD CONSTRAINT `CompraTipo` FOREIGN KEY (`tipoCompra`) REFERENCES `tipocompra` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1036,15 +1028,15 @@ ALTER TABLE `inventario`
 -- Filtros para la tabla `movimientosc`
 --
 ALTER TABLE `movimientosc`
-  ADD CONSTRAINT `MovimientosCUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
-  ADD CONSTRAINT `MovimientoCCuentasC` FOREIGN KEY (`idCuentasC`) REFERENCES `cuentascobrar` (`idCuentasC`);
+  ADD CONSTRAINT `MovimientoCCuentasC` FOREIGN KEY (`idCuentasC`) REFERENCES `cuentascobrar` (`idCuentasC`),
+  ADD CONSTRAINT `MovimientosCUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`);
 
 --
 -- Filtros para la tabla `movimientosp`
 --
 ALTER TABLE `movimientosp`
-  ADD CONSTRAINT `MovimientosPUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
-  ADD CONSTRAINT `MovimientoPCuentasP` FOREIGN KEY (`idCuentasP`) REFERENCES `cuentaspagar` (`idCuentasP`);
+  ADD CONSTRAINT `MovimientoPCuentasP` FOREIGN KEY (`idCuentasP`) REFERENCES `cuentaspagar` (`idCuentasP`),
+  ADD CONSTRAINT `MovimientosPUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`);
 
 --
 -- Filtros para la tabla `productos`
@@ -1071,8 +1063,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  ADD CONSTRAINT `VentasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
   ADD CONSTRAINT `VentaCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `VentasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
   ADD CONSTRAINT `VentaTipo` FOREIGN KEY (`tipoVenta`) REFERENCES `tipoventa` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
