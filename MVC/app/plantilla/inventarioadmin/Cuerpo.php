@@ -84,7 +84,7 @@
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <form id="formUser" class="col s8">
-                    <div id="mensaje"></div>
+                    <div id="mensajeINA"></div>
                     <div class="row">
                         <div class="nav-wrapper grey darken-4">
                             <div>
@@ -94,6 +94,11 @@
                             </div>
 
                         </div>
+                    </div>
+                     <div class="input-field col s10">
+                      
+                        <input id="idproducto" disabled type="text" class="validate">
+                        
                     </div>
                     <div class="input-field col s10">
                         <i class="material-icons prefix"><img class="iconologin" src="../app/img/producto.png" /></i>
@@ -125,11 +130,11 @@
 
                     <div class="input-field col s10">
                         <i class="material-icons prefix"><img class="iconologin" src="../app/img/precioGeneral.png" /></i>
-                        <input id="precioG"  type="number" class="validate">
+                        <input id="precioG"  type="number" class="validate" onChange="calcula();" onKeyUp="calcula();">
                         <label for="icon_prefix" ><span class="etiquelogin">Precio General</span></label>
                     </div>
                     <div class="input-field col s1">
-                        <input id="precioEP"  type="text" class="validate" value="15">
+                        <input id="precioEP"  type="text" class="validate" value="10"  onChange="calcula();" onKeyUp="calcula();">
                         <label for="icon_prefix" ><span class="etiquelogin"></span>% Especial</label>
                     </div>
 
@@ -141,7 +146,7 @@
                         <label for="icon_prefix" ><span class="etiquelogin">Precio Especial</span></label>
                     </div>
                     <div class="input-field col s1">
-                        <input id="precioGP"    type="number" class="validate"  value="20">
+                        <input id="precioMP"    type="number" class="validate"  value="15"  onChange="calcula();" onKeyUp="calcula();">
                         <label for="icon_prefix" ><span class="etiquelogin"></span>% Mayoreo</label>
                     </div>
 
@@ -156,7 +161,7 @@
 
                     <div class="modal-footer">
 
-                        <a id="btnActualizar" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a>
+                        <a onClick="guardarInventario();" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a>
 
 
                     </div>

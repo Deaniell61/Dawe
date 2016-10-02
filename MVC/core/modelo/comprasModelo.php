@@ -132,6 +132,7 @@ function agregaInventario($datos)
 				
 				 		$mysql->query("ROLLBACK");
 			 		}
+					
 					else
 					if(!$mysql->query("update compradetalle set estado=1 where idcompras='".$_SESSION['idCompra']."'"))
 					 {

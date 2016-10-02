@@ -55,7 +55,7 @@ function mostrarInventario()
 				$tabla .="<td>" .toMoney($fila["6"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["7"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["8"]).      "</td>";
-        $tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["0"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
+        $tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["2"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
         $tabla .="</td>";
 
             }

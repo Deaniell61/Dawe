@@ -37,6 +37,7 @@ require_once('../modelo/ProductoModelo.php');
 require_once('../modelo/clienteModelo.php');
 require_once('../modelo/cuentasPagarModelo.php');
 require_once('../modelo/cuentasCobrarModelo.php');
+require_once('../modelo/inventarioModelo.php');
 require_once('../../vista/usuarioVista.php');
 require_once('../../vista/compra2Vista.php');
 require_once('../../vista/empleadoVista.php');
