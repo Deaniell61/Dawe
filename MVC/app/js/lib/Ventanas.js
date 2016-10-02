@@ -14,9 +14,19 @@ $('#compras').click(function(){
     window.location.href="Compras.php";
 });
 
+$('#anularC').click(function(){
+
+    window.location.href="CompraAnulada.php";
+});
+
 $('#ventas').click(function(){
 
     window.location.href="Ventas.php";
+});
+
+$('#anularV').click(function(){
+
+    window.location.href="VentaAnulada.php";
 });
 
 $('#inventario').click(function(){
@@ -35,17 +45,17 @@ $('#estadistica').click(function(){
 });
 
 $('#ayuda').click(function(){
-	
+
   window.location.href="Ayuda.php";
-	
-	
+
+
 });
 
 $('#pagos').click(function(){
-	
+
   window.location.href="Pagos.php";
-	
-	
+
+
 });
 
 
@@ -56,16 +66,16 @@ $('#compraL').click(function(){
 });
 
 $('#generarC').click(function(){
-	
+
   window.location.href="GenerarCompras.php";
-	
-	
+
+
 });
 $('#generarV').click(function(){
-	
+
   window.location.href="GenerarVentas.php";
-	
-	
+
+
 });
 
 $('#ventaL').click(function(){
@@ -74,74 +84,74 @@ $('#ventaL').click(function(){
 });
 
 $('#inventarioV').click(function(){
-	
+
   window.location.href="inventario.php";
-	
-	
+
+
 });
 $('#inventarioA').click(function(){
-	
+
   window.location.href="inventarioAdministrador.php";
-	
-	
+
+
 });
 
 $('#inventarioI').click(function(){
-	
+
   window.location.href="inventarioInicial.php";
-	
-	
+
+
 });
 
 
 
 $('#vendedor').click(function(){
-	
+
   window.location.href="Vendedor.php";
-	
-	
+
+
 });
 
 
 $('#flujo').click(function(){
-	
+
   window.location.href="Flujo.php";
-	
-	
+
+
 });
 
 
 
 
 $('#estadisticaVentas').click(function(){
-	
+
   window.location.href="estadisticaVenta.php";
-	
-	
+
+
 });
 
 
 
 
 $('#sueldo').click(function(){
-	
+
   window.location.href="Sueldos.php";
-	
-	
+
+
 });
 
 $('#comi').click(function(){
-	
+
   window.location.href="Comisiones.php";
-	
-	
+
+
 });
 
 $('#gastos').click(function(){
-	
+
   window.location.href="Gastos.php";
-	
-	
+
+
 });
 
 

@@ -7,19 +7,20 @@
 
       <div class="row">
       <?php
-	  if($_SESSION['SOFT_ACCESOAgrega'.'compras']=='1')
+	  if($_SESSION['SOFT_ACCESOAgrega'.'ventas']=='1')
 				{
 	  ?>
            <div>
          	<ul>
 
-         		<li class="centrarli"><a id="generarC" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarco.png" /></i>Generar Compra</a></li>
-         		  <li class="centrarli"><a id="anularC" href="#!" class="red accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Detalle Anulado</a></li>
+         		<li class="centrarli"><a id="generarV" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Generar Venta</a></li>
+            <li class="centrarli"><a id="anularV" href="#!" class="red accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Detalle Anulado</a></li>
+
          	</ul>
           </div>
 
      <?php
-	 }?>
+				}?>
 
          <center>
 
@@ -31,9 +32,9 @@
 
 					     <?php
 
-						  include('../vista/compra2Vista.php');
+						  include('../vista/ventaAnuladaVista.php');
 
-						  mostrarCompras();
+						  mostrarVentas();
 
 
 						  ?>
@@ -134,7 +135,7 @@
 
           	 		   <div class=" nav-wrapper grey darken-4">
                     		          <div>
-                            		      <p class="encabezadotextomodal"> Ver Compras </p>
+                            		      <p class="encabezadotextomodal"> Ver Ventas </p>
 
                                   			<a id="modalcerrar1" class=" modal-action modal-close  waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
                              			 </div>
@@ -157,8 +158,8 @@
                               <div class="input-field col s5">
 
 										 <i class="material-icons prefix"><img class="iconologin" src="../app/img/usuario.png" /> </i>
-										<input id="Proveedor" disabled class="" type="text" onKeyUp="buscarProveedor(this,event)" class="validate">
-										    <label class="active" for="fecha" >Proveedor</label>
+										<input id="Cliente" disabled class="" type="text" onKeyUp="buscarProveedor(this,event)" class="validate">
+										    <label class="active" for="fecha" >Cliente</label>
 							  </div>
 
 
@@ -201,7 +202,7 @@
 								  <option value="1" selected>Contado</option>
 								  <option value="3">Donación</option>
 								</select>
-								<label>Tipo de Compra</label>
+								<label>Tipo de Venta</label>
 							  </div>
 
 
@@ -215,7 +216,7 @@
 								<!-- reumen -->
 
 
-									<div id="resumenC" class="col s12"  >
+									<div id="resumenCV" class="col s12"  >
 
 										 Tabla
 

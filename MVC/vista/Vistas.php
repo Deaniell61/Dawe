@@ -31,6 +31,13 @@ function Compra2()
     include('../app/plantilla/compra2/Pie.php');
 }
 
+function   CompraAnulada()
+{
+    include('../app/plantilla/compraanulada/Cabecera.php');
+    include('../app/plantilla/compraanulada/Cuerpo.php');
+    include('../app/plantilla/compraanulada/Pie.php');
+}
+
 
 
 function Cuentas()
@@ -141,7 +148,7 @@ function Distribuidor()
 }
 
 function Usuario()
-{   
+{
     include('../app/plantilla/usuario/Cabecera.php');
     include('../app/plantilla/usuario/Cuerpo.php');
     include('../app/plantilla/usuario/Pie.php');
@@ -156,13 +163,20 @@ function Venta()
 
 }
 
+function VentaAnulada()
+{
+    include('../app/plantilla/ventaanulada/Cabecera.php');
+    include('../app/plantilla/ventaanulada/Cuerpo.php');
+    include('../app/plantilla/ventaanulada/Pie.php');
+
+}
 
 function Vendedor()
 {
 	 include('../app/plantilla/vendedor/Cabecera.php');
     include('../app/plantilla/vendedor/Cuerpo.php');
     include('../app/plantilla/vendedor/Pie.php');
-	
+
 }
 
 function Flujo()
