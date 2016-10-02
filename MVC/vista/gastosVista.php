@@ -10,12 +10,12 @@ function mostrarGasto()
 <table id='tabla' class='bordered centered highlight responsive-table centrarT'>
     <thead>
         <tr>
-           
+
             <th>Fecha</th>
             <th>Descripcion</th>
             <th>Monto</th>
             <th></th>
-            
+
         </tr>
     </thead>
     <tbody>
@@ -43,14 +43,14 @@ function mostrarGasto()
                 $tabla .="<td>"     .$fila["0"].    "</td>";
                 $tabla .="<td>" .$fila["1"].      "</td>";
                 $tabla .="<td>" .$fila["2"].      "</td>";
-				
-				
-				
-                $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
 
-              
 
-                $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onclick=\"eliminar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a></td>";
+
+
+
+
+
+                $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onclick=\"eliminar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a></td>";
                 $tabla .= "</tr>";
 
             }
@@ -94,9 +94,9 @@ function mostrarDetallesCompras($id)
             <th>Empleado</th>
             <th>Descripcion</th>
             <th>Monto</th>
-           
-          
-            
+
+
+
         </tr>
     </thead>
     <tbody>
@@ -125,8 +125,8 @@ function mostrarDetallesCompras($id)
                 $tabla .="<td>" .$fila["1"].      "</td>";
                 $tabla .="<td>" .$fila["2"].      "</td>";
 				$tabla .="<td>" .$fila["3"].      "</td>";
-				
-               
+
+
                 $tabla .= "</tr>";
 
             }

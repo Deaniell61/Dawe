@@ -56,7 +56,7 @@ function mostrarVentas()
   				{
                   
   				}
-  				
+
 
 
                   $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm modalver'  onClick=\"buscarVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
