@@ -1,8 +1,8 @@
 
 
-  
+
 <div id="contenidoCrud">
-    
+
 
    <ul class="collapsible popout" data-collapsible="accordion">
         <li>
@@ -24,8 +24,8 @@
                 </div>
             </div>
         </li>
-      
-    </ul>  
+
+    </ul>
 
 
     <!-- ********************************** tabla inicio ********************************** -->
@@ -38,14 +38,14 @@
                 <label for="motos">Motos</label>
             </div>
 
-            <div class="radioFiltro carroEspacio">   
+            <div class="radioFiltro carroEspacio">
                 <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/coche.png" /></i>
                 <input class="radioColor" name="group1" type="radio" id="carros" />
                 <label for="carros">Carros</label>
-            </div>      
+            </div>
         </center>
     </div>
-   
+
     <div class="centrartabla">
 
 
@@ -53,8 +53,8 @@
             <tr>
                 <td class="">
                     <div class="input-field ">
-                       
-                    </div>	
+
+                    </div>
                 </td>
                 <td class="">
 
@@ -69,7 +69,7 @@
 
 
 
-        <?php 
+        <?php
         include('../vista/inventarioAdminVista.php');
         mostrarInventario();
 
@@ -77,9 +77,9 @@
         ?>
 
 
-        <!-- ********************************** modal ********************************** --> 
+        <!-- ********************************** modal ********************************** -->
 
-        <!-- nuevo ---> 
+        <!-- nuevo --->
 
         <div id="modal1" class="modal">
             <div class="modal-content">
@@ -90,266 +90,90 @@
                             <div>
                                 <p class="encabezadotextomodal">Inventario</p>
 
-                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
-                            </div>	
+                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
+                            </div>
 
                         </div>
                     </div>
                     <div class="input-field col s10">
-                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/usuario.png" /></i>
-                        <input id="user" type="text" class="validate">
-                        <label for="icon_prefix" ><span class="etiquelogin">Nombre de Usuario</span></label>
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/producto.png" /></i>
+                        <input id="producto" disabled type="text" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Productos</span></label>
                     </div>
                     <div class="input-field col s10">
-                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
-                        <input id="password" type="password" class="validate">
-                        <label for="icon_telephone" ><span class="etiquelogin">Contraseña</span></label>
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/marca.png" /></i>
+                        <input id="marca" disabled type="text" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Marca</span></label>
                     </div>
                     <div class="input-field col s10">
-                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
-                        <input id="password2" type="password" class="validate">
-                        <label for="icon_telephone" ><span class="etiquelogin">Repetir Contraseña</span></label>
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/descripcion.png" /></i>
+                        <input id="descripcion" disabled type="text" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Descripcion</span></label>
                     </div>
-                    <!--
-<div class="input-field col s10">
-<i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
-<input id="icon_telephone" type="text" class="validate">
-<label for="icon_telephone" ><span class="etiquelogin">Email</span></label>
-</div>
--->
-
                     <div class="input-field col s10">
-                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/rolActivo.png"/></i>
-                        <select class="selectrol" id="rol">
-                            <option value="" disabled selected>Selecione un Rol</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Vendedor</option>
-                        </select>
-
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/precioCosto.png" /></i>
+                        <input id="costo" disabled type="text" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Costo</span></label>
+                    </div>
+                    <div class="input-field col s10">
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/cantidad.png" /></i>
+                        <input id="cantidad" disabled type="number" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Cantidad</span></label>
                     </div>
 
-                    <div class="input-field col s10">
-                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/modulo.png"/></i>
-                    </div>       
+
 
                     <div class="input-field col s10">
-
-                        <ul id="comprasUsu" class="dropdown-content">
-                            <li>
-                                <p >
-                                    <input type="checkbox" id="comprasIns" />
-                                    <label for="comprasIns">Insertar</label>
-                                </p>
-                            </li>
-                            <li>
-                                <p >
-                                    <input type="checkbox" id="comprasEdi" />
-                                    <label for="comprasEdi">Editar</label>
-                                </p>    
-                            </li>
-                            <li>
-                                <p >
-                                    <input type="checkbox" id="compraEli" />
-                                    <label for="compraEli">Eliminar</label>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <input type="checkbox" id="compraMos" />
-                                    <label for="compraMos">Mostrar</label>
-                                </p>
-                            </li>
-                        </ul>
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/precioGeneral.png" /></i>
+                        <input id="precioG"  type="number" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Precio General</span></label>
+                    </div>
+                    <div class="input-field col s1">
+                        <input id="precioEP"  type="text" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin"></span>% Especial</label>
+                    </div>
 
 
-                        <ul id="VentasUsu" class="dropdown-content">
-                            <li>
-                                <p >
-                                    <input type="checkbox" id="VentasIns" />
-                                    <label for="VentasIns">Insertar</label>
-                                </p>
-                            </li>
-                            <li>
-                                <p >
-                                    <input type="checkbox" id="VentasEdi" />
-                                    <label for="VentasEdi">Editar</label>
-                                </p>    
-                            </li>
-                            <li>
-                                <p >
-                                    <input type="checkbox" id="VentasEli" />
-                                                                        <label for="VentasEli">Eliminar</label>
-                            </p>
-                        </li>
-                    <li>
-                        <p>
-                            <input type="checkbox" id="VentasMos" />
-                                                                <label for="VentasMos">Mostrar</label>
-                    </p>
-                </li>
-            </ul>
 
-        <ul id="InventarioUsu" class="dropdown-content">
-            <li>
-                <p >
-                    <input type="checkbox" id="InventarioIns" />
-                    <label for="comprasIns">Inventario Inicial</label>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <input type="checkbox" id="compraMos" />
-                    <label for="compraMos">Mostrar</label>
-                </p>
-            </li>
-        </ul> 
+                    <div class="input-field col s10">
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/precioespecial.png" /></i>
+                        <input id="precioE"  disabled type="number" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Precio Especial</span></label>
+                    </div>
+                    <div class="input-field col s1">
+                        <input id="precioGP"    type="number" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin"></span>% Mayoreo</label>
+                    </div>
 
 
 
 
+                    <div class="input-field col s10">
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/preciomayoreo.png" /></i>
+                        <input id="precioM"  disabled type="number" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Precio Mayoreo</span></label>
+                    </div>
 
-        <ul id="CuentaCUsu" class="dropdown-content">
+                    <div class="modal-footer">
 
-
-            <li>
-                <p>
-                    <input type="checkbox" id="CuentasCIns" />
-                    <label for="CuentasCIns">Insertar</label>
-                </p>
-            </li>
-            <li>
-                <p >
-                    <input type="checkbox" id="CuentasCEdi" />
-                    <label for="CuentasCEdi">Editar</label>
-                </p>    
-            </li>
-            <li>
-                <p >
-                    <input type="checkbox" id="CuentasCEli" />
-                    <label for="CuentasCEli">Eliminar</label>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <input type="checkbox" id="CuentasCMos" />
-                    <label for="CuentasCMos">Mostrar</label>
-                </p>
-            </li>
+                        <a id="btnActualizar" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a>
 
 
-
-        </ul>
-
-        <ul id="CuentaPUsu" class="dropdown-content">
-
-
-            <li>
-                <p>
-                    <input type="checkbox" id="CuentasPIns" />
-                    <label for="CuentasPIns">Insertar</label>
-                </p>
-            </li>
-            <li>
-                <p >
-                    <input type="checkbox" id="CuentasPEdi" />
-                    <label for="CuentasPEdi">Editar</label>
-                </p>    
-            </li>
-            <li>
-                <p >
-                    <input type="checkbox" id="CuentasPEli" />
-                    <label for="CuentasPEli">Eliminar</label>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <input type="checkbox" id="CuentasPMos" />
-                    <label for="CuentasPMos">Mostrar</label>
-                </p>
-            </li>
-
-
-
-        </ul> 
-
-        <ul id="EstadisticasUsu" class="dropdown-content">
-
-            <li>
-                <p>
-                    <input type="checkbox" id="EstadisticaMos" />
-                    <label for="CuentasPMos">Mostrar</label>
-                </p>
-            </li>
-        </ul>
-
-        <ul id="moduloUsu" class="dropdown-content">
-
-            <li>
-                <p>
-                    <input type="checkbox" id="usuariosIns" />
-                    <label for="CuentasPIns">Insertar</label>
-                </p>
-            </li>
-            <li>
-                <p >
-                    <input type="checkbox" id="usuariosEdi" />
-                    <label for="CuentasPEdi">Editar</label>
-                </p>    
-            </li>
-            <li>
-                <p >
-                    <input type="checkbox" id="usuariosEli" />
-                    <label for="CuentasPEli">Eliminar</label>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <input type="checkbox" id="usuariosMos" />
-                    <label for="CuentasPMos">Mostrar</label>
-                </p>
-            </li>
-
-        </ul>
-
-
-        <div class="modulo">
-
-
-            <li><a class="dropdown-button" href="#" data-activates="comprasUsu">Compras</a></li>
-
-            <li><a class="dropdown-button" href="#" data-activates="VentasUsu">Ventas</a></li>
-
-            <li><a class="dropdown-button" href="#" data-activates="InventarioUsu">Inventario</a></li>
-
-            <li><a class="dropdown-button" href="#" data-activates="CuentaCUsu">Cuentas Por Cobrar</a></li>
-
-            <li><a class="dropdown-button" href="#" data-activates="CuentaPUsu">Cuentas Por Pagar</a></li>
-
-            <li><a class="dropdown-button" href="#" data-activates="EstadisticasUsu">Estadistica</a></li>
-
-            <li><a class="dropdown-button" href="#" data-activates="moduloUsu">Usuarios</a></li>
-
-
-
-
+                    </div>
 
         </div>
     </div>
 
     </form>
-</div>
-<div class="modal-footer">
-    <a id="btnInsertar" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a>
-    <a id="btnActualizar" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a>
 
 
 </div>
 
-</div>
+
 <!-- nuevo fin --->
 
 
-<!-- Eliminar ---> 
+<!-- Eliminar --->
 <div id="modal3" class="modal">
     <div class="modal-content">
         <form class="col s8">
@@ -360,8 +184,8 @@
                             <div>
                                 <p class="encabezadotextomodal"> Eliminar </p>
 
-                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
-                            </div>	
+                                <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
+                            </div>
 
                         </div>
 
@@ -388,8 +212,6 @@
     </div>
 </div>
 
-<!-- Eliminar fin --->   
+<!-- Eliminar fin --->
 
-<!-- ********************************** modal fin ********************************** -->  
-
-
+<!-- ********************************** modal fin ********************************** -->
