@@ -328,7 +328,7 @@ function buscarCompra($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,c.tipocompra,c.idcompras,p.direccion FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor where c.estado=1 and c.idcompras='".$dato[0]."' ";
+    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,c.tipocompra,c.idcompras,p.direccion FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor where (c.estado=1 or c.estado=0) and c.idcompras='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {

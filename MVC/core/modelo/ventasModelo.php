@@ -352,7 +352,7 @@ function buscarVenta($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,c.tipoventa,c.idventas,p.direccion FROM ventas c inner join cliente p on p.idcliente=c.idcliente where c.estado=1 and c.idventas='".$dato[0]."' ";
+    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,c.tipoventa,c.idventas,p.direccion FROM ventas c inner join cliente p on p.idcliente=c.idcliente where (c.estado=1 or c.estado=0) and c.idventas='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {

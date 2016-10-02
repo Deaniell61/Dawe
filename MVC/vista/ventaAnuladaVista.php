@@ -26,7 +26,7 @@ function mostrarVentas()
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,(select tv.Descripcion from tipoventa tv where tv.idtipo=c.tipoventa),c.idventas FROM ventas c inner join cliente p on p.idcliente=c.idcliente where c.estado=1 order by c.fecha desc";
+    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,(select tv.Descripcion from tipoventa tv where tv.idtipo=c.tipoventa),c.idventas FROM ventas c inner join cliente p on p.idcliente=c.idcliente where c.estado=0 order by c.fecha desc";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -51,20 +51,17 @@ function mostrarVentas()
 				$tabla .="<td>" .$fila["3"].      "</td>";
 				$tabla .="<td>" .toMoney($fila["4"]).      "</td>";
 
-				$tabla .="<td>" .$fila["5"].      "</td>";
-				if($_SESSION['SOFT_ACCESOElimina'.'ventas']=='1')
-				{
-              
-				}
-				else
-				{
-					$tabla .="<td class='anchoC'>";
-				}
+				$tabla .="<td class='anchoC'>";
+  				if($_SESSION['SOFT_ACCESOElimina'.'ventas']=='1')
+  				{
+                  
+  				}
+  				
 
 
-                $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm modalver'  onClick=\"buscarVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
-                $tabla .= "</tr>";
-				$contaId++;
+                  $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm modalver'  onClick=\"buscarVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
+                  $tabla .= "</tr>";
+  				$contaId++;
             }
 
             $resultado->free();//librerar variable
@@ -117,7 +114,7 @@ function cargarDetalleVentas($id)
         <?php
 	$extra="";
     $mysql = conexionMysql();
-   $sql = "SELECT cd.idventadetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos) FROM ventasdetalle cd where (cd.estado=2 or cd.estado=1) and cd.idventa='".$id."'";
+   $sql = "SELECT cd.idventadetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos) FROM ventasdetalle cd where (cd.estado=0) and cd.idventa='".$id."'";
     $tabla="";
 	$tipo="";
     if($resultado = $mysql->query($sql))

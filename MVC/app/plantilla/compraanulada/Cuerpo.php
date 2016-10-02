@@ -13,8 +13,8 @@
            <div>
          	<ul>
 
-         		<li class="centrarli"><a id="generarC" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarco.png" /></i>Generar Compra</a></li>
-            <li class="centrarli"><a id="anularC" href="#!" class="red accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Detalle Anulado</a></li>
+         		<li class="centrarli"><a id="compraL" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarco.png" /></i>Compras</a></li>
+            
 
          	</ul>
           </div>

@@ -52,14 +52,12 @@
   				$tabla .="<td>" .toMoney($fila["4"]).      "</td>";
 
   				$tabla .="<td>" .$fila["5"].      "</td>";
+				$tabla .="<td class='anchoC'>";
   				if($_SESSION['SOFT_ACCESOElimina'.'ventas']=='1')
   				{
-                  $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm ' onClick=\"anularVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
+                  $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm ' onClick=\"anularVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
   				}
-  				else
-  				{
-  					$tabla .="<td class='anchoC'>";
-  				}
+  				
 
 
                   $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm modalver'  onClick=\"buscarVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
@@ -117,7 +115,7 @@
           <?php
   	$extra="";
       $mysql = conexionMysql();
-     $sql = "SELECT cd.idventadetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos) FROM ventasdetalle cd where (cd.estado=2 or cd.estado=1) and cd.idventa='".$id."'";
+     $sql = "SELECT cd.idventadetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos) FROM ventasdetalle cd where (cd.estado=2 or cd.estado=1 or cd.estado=0) and cd.idventa='".$id."'";
       $tabla="";
   	$tipo="";
       if($resultado = $mysql->query($sql))

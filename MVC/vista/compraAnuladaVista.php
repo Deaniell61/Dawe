@@ -26,7 +26,7 @@ function mostrarCompras()
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,(select tv.Descripcion from tipocompra tv where tv.idtipo=c.tipocompra),c.idcompras FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor where c.estado=1 order by c.fecha desc";
+    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,(select tv.Descripcion from tipocompra tv where tv.idtipo=c.tipocompra),c.idcompras FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor where c.estado=0 order by c.fecha desc";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -115,7 +115,7 @@ function mostrarDetallesCompras($id)
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT cd.idcompradetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos),cd.precioE,cd.precioM,cd.costo FROM compradetalle cd where (cd.estado=2 or cd.estado=1) and cd.idcompras='".$id."'";
+    $sql = "SELECT cd.idcompradetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos),cd.precioE,cd.precioM,cd.costo FROM compradetalle cd where (cd.estado=0) and cd.idcompras='".$id."'";
     $tabla="";
 	$tipo="";
     if($resultado = $mysql->query($sql))
