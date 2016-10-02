@@ -4,4 +4,9 @@ define('USER','root');
 define('PASS','1234');
 define('DB','SofTronic');
 #define('DB','hectorrepuestos');
+/*
+define('HOST','mysql.hostinger.mx');
+define('USER','u986121875_soft');
+define('PASS','softronic16');
+define('DB','u986121875_soft');*/
 ?>

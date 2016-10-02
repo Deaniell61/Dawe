@@ -25,7 +25,7 @@ function mostrarEmpeados()
 	<?php
 	
     $mysql = conexionMysql();
-    $sql = "SELECT u.idEmpleados, u.Nombre, u.Apellido, u.Telefono, u.Direccion,(SELECT r.Descripcion FROM Puestos r WHERE r.idPuestos=u.Puesto ),(SELECT r.user FROM Usuarios r WHERE r.idEmpleados=u.idEmpleados ) FROM Empleados u WHERE estado=1";
+    $sql = "SELECT u.idEmpleados, u.Nombre, u.Apellido, u.Telefono, u.Direccion,(SELECT r.Descripcion FROM puestos r WHERE r.idPuestos=u.Puesto ),(SELECT r.user FROM usuarios r WHERE r.idEmpleados=u.idEmpleados ) FROM empleados u WHERE estado=1";
 	$tabla="";
     if($resultado = $mysql->query($sql))
     {

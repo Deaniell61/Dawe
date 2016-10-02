@@ -439,6 +439,11 @@ function anularCompra($datos)
 //echo $sql;
     if($mysql->query($sql))
     {
+		if(!$mysql->query("update compradetalle set estado='0' where idcompras='".$datos[0]."'"))
+		{
+			$mysql->query("ROLLBACK");
+		}
+		else
 		if($con=$mysql->query("select cantidad,idproductos from compradetalle where idcompras='".$datos[0]."'"))
     	{
 			while($fila = $con->fetch_row())
@@ -485,6 +490,7 @@ function  buscarMarca($dato)
  
     if($resultado = $mysql->query($sql))
     {
+		
       if($resultado->num_rows>0 )
 	  {
 		  	

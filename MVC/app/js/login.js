@@ -67,7 +67,7 @@ function login()
                }
 			else
                {
-                   
+                  //$('#mensajeI').html(resp);  
                    location.href=resp;
                    
                             

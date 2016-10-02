@@ -22,7 +22,7 @@ function mostrarUsuarios()
 	<?php
 	
     $mysql = conexionMysql();
-    $sql = "SELECT u.idusuarios, u.user,(SELECT r.descripcion FROM Roles r WHERE r.idrol=u.idrol ) FROM Usuarios u WHERE estado=1";
+    $sql = "SELECT u.idUsuarios, u.user,(SELECT r.Descripcion FROM roles r WHERE r.idRol=u.idRol ) FROM usuarios u WHERE Estado=1";
 	$tabla="";
     if($resultado = $mysql->query($sql))
     {

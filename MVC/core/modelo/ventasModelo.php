@@ -463,6 +463,11 @@ function anularVenta($datos)
 //echo $sql;
     if($mysql->query($sql))
     {
+		if(!$mysql->query("update ventasdetalle set estado='0' where idventa='".$datos[0]."'"))
+				{
+					$mysql->query("ROLLBACK");
+				}
+				else
 		if($con=$mysql->query("select cantidad,idproductos from ventasdetalle where idventa='".$datos[0]."'"))
     	{
 			while($fila = $con->fetch_row())
