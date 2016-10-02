@@ -5,7 +5,7 @@ function ingresoCuentaPagar($datos)
     $form="";
 	
 		$mysql->query("BEGIN");
-    $sql = "insert cuentasPagar(plazo,tipoPlazo,total,idcompras,estado,CreditoDado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
+    $sql = "insert cuentasPagar(plazo,tipoPlazo,total,idproveedor,estado,CreditoDado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
 //echo $sql;
     if($mysql->query($sql))
     {
@@ -17,7 +17,7 @@ function ingresoCuentaPagar($datos)
     }
     else
     {   
-		$sql = "update cuentasPagar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."' where idcompras='".$datos[0]."'";
+		$sql = "update cuentasPagar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."' where idproveedor='".$datos[0]."'";
 //echo $sql;
 			if($mysql->query($sql))
 			{
@@ -47,7 +47,7 @@ function editarCuentasP($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idcompras,(select c.nombreempresa from proveedor c where c.idproveedor=(select v.iddistribuidor from compras v where v.idcompras=cc.idcompras limit 1) limit 1) FROM cuentaspagar cc  WHERE cc.estado=1 and cc.idcuentasP='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idproveedor,(select c.nombreempresa from proveedor c where c.idproveedor=cc.idproveedor limit 1) FROM cuentaspagar cc  WHERE cc.estado=1 and cc.idcuentasP='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {
@@ -98,7 +98,7 @@ function verCuentaP($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idcompras,(select c.nombreempresa from proveedor c where c.idproveedor=(select v.iddistribuidor from compras v where v.idcompras=cc.idcompras limit 1) limit 1),(select c.direccion from proveedor c where c.idproveedor=(select v.iddistribuidor from compras v where v.idcompras=cc.idcompras limit 1) limit 1),(select c.telefono from proveedor c where c.idproveedor=(select v.iddistribuidor from compras v where v.idcompras=cc.idcompras limit 1) limit 1) FROM cuentaspagar cc  WHERE cc.estado=1 and cc.idcuentasP='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idproveedor,(select c.nombreempresa from proveedor c where c.idproveedor=cc.idproveedor limit 1),(select c.direccion from proveedor c where c.idproveedor=cc.idproveedor limit 1),(select c.telefono from proveedor c where c.idproveedor=cc.idproveedor limit 1) FROM cuentaspagar cc  WHERE cc.estado=1 and cc.idcuentasP='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {

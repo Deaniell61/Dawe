@@ -252,7 +252,7 @@ function insertarEmpleado($datos)
     
     
 
-    $sql = "INSERT INTO empleados (nombre, apellido, direccion,puesto,telefono,estado) VALUES ('".$datos[0]."','".$datos[1]."','".$datos[3]."','".$datos[4]."','".$datos[2]."',1)";
+    $sql = "INSERT INTO empleados (nombre, apellido, direccion,puesto,telefono,estado,sueldo) VALUES ('".$datos[0]."','".$datos[1]."','".$datos[3]."','".$datos[4]."','".$datos[2]."',1,'".$datos[5]."')";
     
     $mysql = conexionMysql(); 
     
@@ -314,7 +314,7 @@ function  editarEmpleado($idedit)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT u.nombre,u.apellido,u.telefono,u.direccion,u.puesto FROM empleados u WHERE estado=1 and u.idempleados=$idedit";
+    $sql = "SELECT u.nombre,u.apellido,u.telefono,u.direccion,u.puesto,u.sueldo FROM empleados u WHERE estado=1 and u.idempleados=$idedit";
     
     if($resultado = $mysql->query($sql))
     {
@@ -327,6 +327,7 @@ function  editarEmpleado($idedit)
 	$form .=" \$('#apel').val('".$fila[1]."');\$('#apel').focus();";
 	$form .=" \$('#dir').val('".$fila[3]."');\$('#dir').focus();";
 	$form .=" \$('#tel').val('".$fila[2]."');\$('#tel').focus();";
+	$form .=" \$('#sueldos').val('".$fila[5]."');\$('#sueldos').focus();";
 	$form .=" document.getElementById('pue').value='".$fila[4]."';\$('select').material_select();";
     $form .=" \$('#btnActualizar').show();";
     $form .=" \$('#btnInsertar').hide();  ";
@@ -356,17 +357,18 @@ function actualizarEmpleado($datos)
     
     
 
-    $sql = "update empleados set nombre='".$datos[0]."', apellido='".$datos[1]."', direccion='".$datos[3]."',puesto='".$datos[4]."',telefono='".$datos[2]."' where idempleados=".$datos[5]."";
+    $sql = "update empleados set nombre='".$datos[0]."', apellido='".$datos[1]."', direccion='".$datos[3]."',puesto='".$datos[4]."',telefono='".$datos[2]."',sueldo='".$datos[6]."' where idempleados=".$datos[5]."";
     
     $mysql = conexionMysql(); 
-    
+    $mysql->query("BEGIN");
     if($resultado = $mysql->query($sql))
     {
         $respuesta = "<div> Exito </div>";
-		
+			$mysql->query("COMMIT");	
     }
     else
     { 
+	$mysql->query("ROLLBACK");
         $respuesta = "<div>Error en en la insercion </div>"; 
         echo 1;
     }

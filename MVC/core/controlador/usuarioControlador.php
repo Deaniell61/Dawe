@@ -85,6 +85,8 @@ if($_POST)
 		$datos[2]=$telefono = $_POST['telefono'];
 		$datos[3]=$direccion = $_POST['direccion'];
 		$datos[4]=$puesto = $_POST['puesto'];
+		$datos[5]=$puesto = $_POST['sueldo'];
+		
 		
 		        
         insertarEmpleado($datos);
@@ -117,12 +119,13 @@ if($_POST)
     else if($transaccion == 9)
     {
 
-        $datos[0]=$nombre = $_POST['nombre'];
-		$datos[1]=$apellido = $_POST['apellido'];
-		$datos[2]=$telefono = $_POST['telefono'];
-		$datos[3]=$direccion = $_POST['direccion'];
-		$datos[4]=$puesto = $_POST['puesto'];
-		$datos[5]=$puesto = $_POST['id'];
+        $datos[0]= $_POST['nombre'];
+		$datos[1]= $_POST['apellido'];
+		$datos[2]= $_POST['telefono'];
+		$datos[3]= $_POST['direccion'];
+		$datos[4]= $_POST['puesto'];
+		$datos[5]= $_POST['id'];
+		$datos[6]= $_POST['sueldo'];
 		
 		        
         actualizarEmpleado($datos);

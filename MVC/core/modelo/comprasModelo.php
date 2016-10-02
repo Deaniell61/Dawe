@@ -21,6 +21,7 @@ function  buscarProveedor($nit)
 		$form .="/* document.getElementById('rol').value='".$fila[2]."';\$('#rol').focus();*/";
 		$form .=" \$('#Proveedor').val('".$fila[1]."');\$('#Proveedor').focus();document.getElementById('Proveedor').disabled=true;";
 		$form .=" \$('#direccionC').val('".$fila[2]."');\$('#direccionC').focus();document.getElementById('direccionC').disabled=true;";
+		$form .=" document.getElementById('codigoProveedor').value='".$fila[3]."';";
 		$form .=" \$('#botonGuardar').show();";
 		$form .=" \$('#botonNuevo').show();";
 		$form .="iniciarCompra('".$fila[3]."'); ";
@@ -126,7 +127,7 @@ function agregaInventario($datos)
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update cuentasPagar set estado=1 where idCompras='".$_SESSION['idCompra']."'"))
+					 if(!$mysql->query("update cuentasPagar set estado=1 where idproveedor='".$datos[6]."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");
@@ -181,7 +182,7 @@ function ingresoCompra($datos)
 				 $mysql->query("ROLLBACK");
 			 }
 			 else
-			 if(!$mysql->query("update cuentasPagar set total=total+".$total.",CreditoDado=CreditoDado+".$total.",estado=2 where idCompras='".$_SESSION['idCompra']."'"))
+			 if(!$mysql->query("update cuentasPagar set total=total+".$total.",CreditoDado=CreditoDado+".$total.",estado=2 where idproveedor='".$datos[6]."'"))
 			 {
 				
 				 $mysql->query("ROLLBACK");

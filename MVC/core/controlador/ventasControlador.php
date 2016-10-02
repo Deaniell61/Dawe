@@ -46,6 +46,7 @@ if($_POST)
 		$datos['4'] = $_POST['precioE'];
 		$datos['5'] = $_POST['precioM'];
 		$datos['6'] = $_POST['precioGuardar'];
+		$datos['7'] = $_POST['cliente'];
         
         ingresoVenta($datos);
         
@@ -148,6 +149,7 @@ if($_POST)
 
         $datos[0]=$nombre = $_POST['codigo'];
 		$datos[1]=$puesto = $_POST['cantidad'];
+		$datos[2]=$puesto = $_POST['cliente'];
 		
 		        
         quitaInventario($datos);

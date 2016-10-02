@@ -108,7 +108,7 @@
                     <div class="input-field col s10">
                         <i  class="material-icons prefix"><img class="iconologin" src="../app/img/sueldo.png"/></i>
                         <input id="sueldos" type="number" class="validate">
-                        <label for="icon_telephone" ><span class="etiquelogin">Sueldo</span></label>
+                        <label for="sueldos" ><span class="etiquelogin">Sueldo</span></label>
                     </div>
 
                     <div class="input-field col s10">

@@ -129,7 +129,7 @@
                         <label for="icon_prefix" ><span class="etiquelogin">Precio General</span></label>
                     </div>
                     <div class="input-field col s1">
-                        <input id="precioEP"  type="text" class="validate">
+                        <input id="precioEP"  type="text" class="validate" value="15">
                         <label for="icon_prefix" ><span class="etiquelogin"></span>% Especial</label>
                     </div>
 
@@ -141,7 +141,7 @@
                         <label for="icon_prefix" ><span class="etiquelogin">Precio Especial</span></label>
                     </div>
                     <div class="input-field col s1">
-                        <input id="precioGP"    type="number" class="validate">
+                        <input id="precioGP"    type="number" class="validate"  value="20">
                         <label for="icon_prefix" ><span class="etiquelogin"></span>% Mayoreo</label>
                     </div>
 

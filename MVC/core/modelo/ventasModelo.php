@@ -21,6 +21,7 @@ function  buscarCliente($nit)
 		$form .="/* document.getElementById('rol').value='".$fila[2]."';\$('#rol').focus();*/";
 		$form .=" \$('#Cliente').val('".$fila[1]."');\$('#Cliente').focus();document.getElementById('Cliente').disabled=true;";
 		$form .=" \$('#direccionC').val('".$fila[2]."');\$('#direccionC').focus();document.getElementById('direccionC').disabled=true;\$('#factura').focus();";
+		$form .=" document.getElementById('codigoCliente').value='".$fila[4]."';";
 		$form .=" \$('#botonGuardar').show();";
 		$form .=" \$('#botonNuevo').show();";
 		$form .="iniciarVenta('".$fila[4]."'); ";
@@ -118,31 +119,31 @@ function quitaInventario($datos)
 				 }
 	if($datos[1]>0)
 	{			 
-		$total=$datos[3]*$datos[1];
+		
 			 
     $sql = "update inventario set cantidad=cantidad-".$datos[1]." where idproducto='".$datos[0]."'";
  	
     if($mysql->query($sql))
     {
-			 
+			
 				 	
 			//		 echo "<script>window.location.href = 'Ventas.php';/script>";
-					echo '2';
+					//echo '2';
 			if(!$mysql->query("update ventas set estado=1 where idventas='".$_SESSION['idVenta']."'"))
 					 {
 						
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update cuentasCobrar set estado=1 where idVentas='".$_SESSION['idVenta']."'"))
+					 if(!$mysql->query("update cuentasCobrar set estado=1 where idcliente='".$datos[0]."'"))
 			 		{
-				
+						
 				 		$mysql->query("ROLLBACK");
 			 		}
 					else
-					if(!$mysql->query("update ventasdetalle set estado=1 where idventas='".$_SESSION['idVenta']."'"))
+					if(!$mysql->query("update ventasdetalle set estado=1 where idventa='".$_SESSION['idVenta']."'"))
 					 {
-						
+						 
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
@@ -201,7 +202,7 @@ function ingresoVenta($datos)
 					 }
 					 else
 					 
-					 if(!$mysql->query("update cuentasCobrar set total=total+".$total.",CreditoDado=CreditoDado+".$total." where idVentas='".$_SESSION['idVenta']."'"))
+					 if(!$mysql->query("update cuentasCobrar set total=total+".$total.",CreditoDado=CreditoDado+".$total." where idcliente='".$datos[7]."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");

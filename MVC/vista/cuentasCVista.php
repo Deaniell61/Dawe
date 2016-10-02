@@ -22,7 +22,7 @@ function mostrarCuentasC()
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT cc.fecha,cc.total,(select c.nombre from cliente c where c.idcliente=(select v.idcliente from ventas v where v.idventas=cc.idventas limit 1) limit 1),(select c.apellido from cliente c where c.idcliente=(select v.idcliente from ventas v where v.idventas=cc.idventas limit 1) limit 1),idcuentasC FROM cuentascobrar cc  WHERE cc.estado=1";
+    $sql = "SELECT cc.fecha,cc.total,(select c.nombre from cliente c where c.idcliente=cc.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=cc.idcliente limit 1),idcuentasC FROM cuentascobrar cc  WHERE cc.estado=1";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {

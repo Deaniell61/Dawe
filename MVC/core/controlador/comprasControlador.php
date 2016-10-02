@@ -45,6 +45,7 @@ if($_POST)
 		$datos['3'] = $cantidad = $_POST['precioG'];
 		$datos['4'] = $cantidad = $_POST['precioE'];
 		$datos['5'] = $cantidad = $_POST['precioM'];
+		$datos['6'] = $cantidad = $_POST['proveedor'];
         
         ingresoCompra($datos);
         
@@ -152,6 +153,7 @@ if($_POST)
 		$datos[3]=$puesto = $_POST['precioG'];
 		$datos[4]=$puesto = $_POST['precioE'];
 		$datos[5]=$puesto = $_POST['precioM'];
+		$datos[6]=$puesto = $_POST['proveedor'];
 		
 		        
         agregaInventario($datos);

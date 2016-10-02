@@ -94,13 +94,14 @@ $('#btnInsertar').click(function(){
 		telefono = $('#tel').val();
 		
 		puesto = $('#pue').val();
+		sueldo = $('#sueldos').val();
 		
 		trasDato = 6;
 		$.ajax
 		({
 			type:"POST",
 			url:"../core/controlador/usuarioControlador.php",
-			data:' nombre=' +  nombre + '&apellido=' + apellido + '&direccion=' + direccion + '&telefono=' + telefono + '&puesto=' + puesto + '&trasDato=' + trasDato,
+			data:' nombre=' +  nombre + '&apellido=' + apellido + '&sueldo=' + sueldo + '&direccion=' + direccion + '&telefono=' + telefono + '&puesto=' + puesto + '&trasDato=' + trasDato,
 			success: function(resp)
 			{
 				
@@ -238,12 +239,14 @@ $('#btnActualizar').click(function()
 		
 		puesto = $('#pue').val();
 		
+		sueldo = $('#sueldos').val();
+		
 		
 		$.ajax
 		({
 			type:"POST",
 			url:"../core/controlador/usuarioControlador.php",
-			data:' nombre=' +  nombre + '&apellido=' + apellido + '&direccion=' + direccion + '&telefono=' + telefono + '&puesto=' + puesto + '&trasDato=' + trasDato+ '&id=' + idedit,
+			data:' nombre=' +  nombre + '&sueldo=' + sueldo + '&apellido=' + apellido + '&direccion=' + direccion + '&telefono=' + telefono + '&puesto=' + puesto + '&trasDato=' + trasDato+ '&id=' + idedit,
 			success: function(resp)
 			{
 				
@@ -266,7 +269,7 @@ $('#btnActualizar').click(function()
 					
 					setTimeout(window.location.reload(), 3000);
 	
-	
+	//$('#mensaje').html(resp);     
 				}
 				
 			 
@@ -326,4 +329,6 @@ function formularioDis(res)
 		$('#tel').prop( "disabled", res );
 		
 	    $('#pue').prop( "disabled", res );
+		
+		$('#sueldos').prop( "disabled", res );
 }

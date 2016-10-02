@@ -182,6 +182,7 @@ function agregaInvetario()
 		precioG=(document.getElementById('PrecioG'+cont).innerHTML);
 		precioE=(document.getElementById('PrecioE'+cont).innerHTML);
 		precioM=(document.getElementById('PrecioM'+cont).innerHTML);
+		proveedor=$('#codigoProveedor').val();
 		var  cantidad,trasDato;
 		trasDato = 13;
 		
@@ -189,7 +190,7 @@ function agregaInvetario()
         ({
             type:"POST",
             url:"../core/controlador/comprasControlador.php",
-            data:' codigo=' +  codigo + '&cantidad=' + cantidad + '&costo=' + costo + '&precioG=' + precioG + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
+            data:' codigo=' +  codigo + '&cantidad=' + cantidad + '&costo=' + costo + '&precioG=' + precioG + '&precioE=' + precioE + '&precioM=' + precioM + '&proveedor=' + proveedor + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -405,13 +406,14 @@ function ingresoCompra(prod)
 		precioG=$('#precioG').val();
 		precioE=$('#precioE').val();
 		precioM=$('#precioM').val();
+		proveedor=$('#codigoProveedor').val();
 
 
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/comprasControlador.php",
-            data:' prod=' +  prod + '&cod=' + cod + '&cantidad=' + cantidad + '&precioC=' + precioC + '&precioG=' + precioG + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
+            data:' prod=' +  prod + '&cod=' + cod + '&cantidad=' + cantidad + '&precioC=' + precioC + '&precioG=' + precioG + '&precioE=' + precioE + '&precioM=' + precioM + '&proveedor=' + proveedor + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -759,7 +761,7 @@ function ingresoCuentaPagar()
 		//alert(2);
 		tipo=document.getElementById('tipoPlazo').value;
 		plazo=document.getElementById('plazo').value;
-		id=document.getElementById('codigoCompra').value;
+		id=document.getElementById('codigoProveedor').value;
         $.ajax
         ({
             type:"POST",

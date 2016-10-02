@@ -22,14 +22,14 @@ function mostrarCuentasP()
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT cc.fecha,cc.total,(select c.nombreempresa from proveedor c where c.idproveedor=(select v.iddistribuidor from compras v where v.idcompras=cc.idcompras limit 1) limit 1),cc.idcuentasp FROM cuentaspagar cc  WHERE cc.estado=1";
+    $sql = "SELECT cc.fecha,cc.total,(select c.nombreempresa from proveedor c where c.idproveedor=cc.idproveedor limit 1),cc.idcuentasp FROM cuentaspagar cc  WHERE cc.estado=1";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
 
         if(mysqli_num_rows($resultado)==0)
         {
-            $respuesta = "<div class='error'>No hay usuarios BD vacia</div>";
+            $respuesta = "<div class='error'>No hay Cuentas BD vacia</div>";
         }
 
         else

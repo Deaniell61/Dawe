@@ -196,6 +196,7 @@ function quitaInvetario()
 {
 	cont=0;
 	var real=1;
+	cliente=$('#codigoCliente').val();
 	while(document.getElementById('Cantidad'+cont))
 	{
 		cantidad=(document.getElementById('Cantidad'+cont).innerHTML);
@@ -207,7 +208,7 @@ function quitaInvetario()
         ({
             type:"POST",
             url:"../core/controlador/ventasControlador.php",
-            data:' codigo=' +  codigo + '&cantidad=' + cantidad + '&trasDato=' + trasDato,
+            data:' codigo=' +  codigo + '&cantidad=' + cantidad + '&cliente=' + cliente + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -383,6 +384,7 @@ function ingresoVenta(prod)
 		precioG=$('#precioG').val();
 		precioE=$('#precioE').val();
 		precioM=$('#precioM').val();
+		cliente=$('#codigoCliente').val();
 		var precioGuardar=precioG;
 		switch(seleccionPrecio)
 		{
@@ -407,7 +409,7 @@ function ingresoVenta(prod)
         ({
             type:"POST",
             url:"../core/controlador/ventasControlador.php",
-            data:' prod=' +  prod + '&cantidad=' + cantidad + '&precioG=' + precioG + '&precioGuardar=' + precioGuardar + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
+            data:' prod=' +  prod + '&cantidad=' + cantidad + '&precioG=' + precioG + '&precioGuardar=' + precioGuardar + '&precioE=' + precioE + '&precioM=' + precioM + '&cliente=' + cliente + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -754,7 +756,7 @@ function ingresoCuentaCobrar()
 		//alert(2);
 		tipo=document.getElementById('tipoPlazo').value;
 		plazo=document.getElementById('plazo').value;
-		id=document.getElementById('codigoVenta').value;
+		id=document.getElementById('codigoCliente').value;
         $.ajax
         ({
             type:"POST",

@@ -29,6 +29,11 @@
 										<input id="codigoCompra" type="text" class="validate">
 										 
 							  </div>
+                              <div class="input-field col s5" hidden>
+                              <i class="material-icons prefix"><img class="iconologin" src="../app/img/carnet.png" /> </i>
+										<input id="codigoProveedor" type="text" class="validate">
+										 
+							  </div>
                     	<div class="input-field col s5">
 
 
