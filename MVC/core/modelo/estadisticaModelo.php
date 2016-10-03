@@ -1,5 +1,85 @@
 <?php
-
+function graficaVendedores($datos)
+{
+	
+	?>
+    <script>
+   		 var chart = c3.generate({
+								bindto: '#chart',
+								data: {
+									x: 'x',
+							//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
+									columns: [
+										
+									],
+									type:"bar"
+								},
+								axis: {
+									x: {
+										type: 'timeseries',
+										tick: {
+											format: '%Y-%m-%d'
+										},
+									y: {
+											show: true,
+											tick: {
+												format: d3.format("Q")
+											}
+										}
+									}
+								},
+								bar: {
+									width: {
+										ratio: 0.25// this makes bar width 50% of length between ticks
+									}
+								},
+								color: {
+								  pattern: ['#ff571c']
+								},
+								tooltip: {
+									format: {
+										value: function (value, id) {
+											var format = d3.format('Q');
+											return format(value);
+										}
+							
+									}
+								}
+							});
+							</script>
+    <?php
+    $mysql = conexionMysql();
+    $form="";
+    $sql = "SELECT v.total,u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$datos[1]."')";
+ 
+    if($resultado = $mysql->query($sql))
+    {
+      
+    $fila = $resultado->fetch_row();    
+        
+    
+    $form .="<script>";
+    $form .=" 
+	
+	";
+	
+    $form .="</script>";
+        
+    $resultado->free();    
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return printf($form);
+}
 function graficoProductos($datos)
 {
 	

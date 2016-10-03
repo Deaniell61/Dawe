@@ -1,12 +1,14 @@
-function cargarGrafico(tipo,fecha,id)
+function cargarGrafico(tipo)
 {
 	var  trasDato;
-	trasDato = 1;
+	trasDato = tipo;
+	fechaini =document.getElementById('fechaI').value;
+	fechafin =document.getElementById('fechaF').value;
 	
             $.ajax({
-                url:"../core/controlador/pagosControlador.php",
+                url:"../core/controlador/estadisticaControlador.php",
                 type: 'POST',
-                data: 'fecha='+fecha+'&id='+id+ '&trasDato=' + trasDato,
+                data: 'fechaini='+fechaini+'&fechafin='+fechafin+'&trasDato=' + trasDato,
                 success: function (resp) {
                     $('#comoGraficar').html(resp);
                 }

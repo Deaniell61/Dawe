@@ -38,7 +38,7 @@
     			                 <div class="input-field col s6">
                                  
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaI" class="fechas" type="date"  min="2013-01-01" max="2013-12-31" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" >
+								  <input  id="fechaI" class="fechas" type="date" class="validate" onChange="cargarGrafico('6');" value="<?php echo date('Y-m-d')?>" >
 								  <label class="active" for="fecha" >Fecha de Inicio</label>
 								
 								</div>
@@ -46,7 +46,7 @@
     		                      <div class="input-field col s6">
                                  
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaF" class="fechas" type="date" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" >
+								  <input  id="fechaF" class="fechas" type="date" class="validate" onChange="cargarGrafico('6');" value="<?php echo date('Y-m-d')?>" >
 								  <label class="active" for="fecha" >Fecha Final</label>
 								</div>
 								
@@ -55,12 +55,18 @@
     		
     		<div class="col s12">
     			<center>
-    					  <?php 
-    
-    include('../vista/vendedorVista.php');
-   mostrarVendedor();
-    
-    ?>
+    				<div id="chart" style=" width:700px;height: 300px;max-height: 300px;"></div>
+                    
+                    <div id="comoGraficar">
+<script>
+cargarGrafico('6');/*
+cargarGrafico('2',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
+cargarGrafico('3',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
+cargarGrafico('4',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
+cargarGrafico('5',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');*/
+
+</script>
+</div>
 
 </center>
     			

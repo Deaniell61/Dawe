@@ -82,17 +82,13 @@ if($_POST)
     // insertar
     else if($transaccion == 6)
     {
-        
-          
 
-        
-         $datos[0] = $_POST['prod'];
-		 $datos[1] = $_POST['fechaini'];
-		 $datos[2] = $_POST['fechafin'];
+		 $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
        
 
         
-        seleccionaUsuario($datos);
+        graficaVendedores($datos);
         
     
     }
