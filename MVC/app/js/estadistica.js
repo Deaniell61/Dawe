@@ -1,10 +1,12 @@
-
-function cargarGrafico(fecha,prov)
+function cargarGrafico(tipo,fecha,id)
 {
+	var  trasDato;
+	trasDato = 1;
+	
             $.ajax({
-                url: '../php/graficos/cargarGraficos.php',
+                url:"../core/controlador/pagosControlador.php",
                 type: 'POST',
-                data: 'codigo='+prov+'&fecha='+fecha+'&tipo=1',
+                data: 'fecha='+fecha+'&id='+id+ '&trasDato=' + trasDato,
                 success: function (resp) {
                     $('#comoGraficar').html(resp);
                 }
