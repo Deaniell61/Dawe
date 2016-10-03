@@ -61,7 +61,7 @@ mostrarGasto();
      <div id="modal1" class="modal">
               <div class="modal-content">
                   
-                  <div id="mensaje"></div>
+                  
                       <div class="row">
                           <div class="nav-wrapper grey darken-4">
                               <div>
@@ -80,12 +80,12 @@ mostrarGasto();
                   
                      <div class="row">
                     
-							
+							<div id="mensajeGastos"></div>
 							   <div class=" col s8 espacio">
                               	
                              
                                					<div class="input-field col s7" hidden>
-													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/codigo.png"/></i>
+													  
 													  <input id="codigo" type="text" class="validate">
 													  <label for="icon_telephone" ><span class="etiquelogin">Codigo</span></label>
 												 </div>
@@ -93,15 +93,15 @@ mostrarGasto();
 												 
 												  <div class="input-field col s7">
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-													  <input id="fecha" onKeyUp="buscaProductoVenta(this)" type="date" class="validate">
-													  <label for="icon_telephone" ><span class="etiquelogin">Fecha</span></label>
+													  <input id="fecha" type="date" class="validate" value="<?php echo date('Y-m-d')?>">
+													   <label class="active" for="fecha" >Fecha Inicio</label>
 												 </div>
 												 
 												  
 												 
 												   <div class="input-field col s7 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/descripcion.png"/></i>
-													  <input id="descripcion"  type="text" class="validate" onKeyUp="siguiente(event,'fecha');">
+													  <input id="descripcion"  type="text" class="validate" onKeyUp="siguiente(event,'monto');" autofocus placeholder="Gastos Varios">
 													  <label for="icon_telephone" ><span class="etiquelogin">Descripcion</span></label>
 												  </div>
                                                   
@@ -110,7 +110,7 @@ mostrarGasto();
                                           
 												   <div class="input-field col s7 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/monto.png"/></i>
-													  <input id="monto" type="text" class="validate" onKeyUp="siguiente(event,'precioC');">
+													  <input id="monto" type="number" class="validate">
 													  <label for="icon_telephone" ><span class="etiquelogin">Monto</span></label>
 												  </div>
 												  
@@ -124,8 +124,7 @@ mostrarGasto();
               
                    </div>   
               <div class="modal-footer">
-                  <a id="modalnuevo" onClick="ingresoVenta(document.getElementById('codigo').value);" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a></div>
- <script>setTimeout(function(){buscaProductoVenta(document.getElementById('nombreC'));},500);</script>
+                  <a onClick="ingresoGasto();" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a></div>
 
               </div>
           </div>
@@ -151,7 +150,7 @@ mostrarGasto();
                         <div>
                             <p> Ingrese la contraseña para </p>
                         </div>
-
+<div id="reselim"></div>
                         <div class="input-field col s10">
                             <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
                             <input id="contraElim" type="password" class="validate">
@@ -165,7 +164,7 @@ mostrarGasto();
         </form>
     </div>
     <div class="modal-footer">
-        <a class=" modal-action waves-effect waves-light btn blue lighten-1 eliminar" >Aceptar</a>
+        <a class=" modal-action waves-effect waves-light btn blue lighten-1"  onClick="EliminarGasto(document.getElementById('contraElim').value);" >Aceptar</a>
 
 
     </div>

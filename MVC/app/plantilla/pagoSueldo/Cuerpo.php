@@ -59,7 +59,7 @@ mostrarSueldo();
      <div id="modal1" class="modal">
               <div class="modal-content">
                   
-                  <div id="mensaje"></div>
+                  <div id="mensajeEmpleado"></div>
                       <div class="row">
                           <div class="nav-wrapper grey darken-4">
                               <div>
@@ -71,7 +71,7 @@ mostrarSueldo();
                           </div>
                       </div>
                       
-                      <div id="productosVenta" class="anchoFila col s4">
+                      <div id="Empleados" class="anchoFila col s4">
                                    
                                     </div>
                    
@@ -87,20 +87,20 @@ mostrarSueldo();
                               	
                              
                                					<div class="input-field col s7" hidden>
-													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/codigo.png"/></i>
-													  <input id="empleado" type="text" class="validate">
-													  <label for="icon_telephone" ><span class="etiquelogin">Empleado</span></label>
+													
+													  <input id="codigo" type="text" class="validate">
+													  
 												 </div>
 												 <div class="input-field col s7" >
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/codigo.png"/></i>
-													  <input id="empleado" type="text" class="validate">
+													  <input id="empleados" type="text" class="validate" onKeyUp="buscaEmpleado(this.value);">
 													  <label for="icon_telephone" ><span class="etiquelogin">Empleado</span></label>
 												 </div>
-												 <div class="input-field col s7">
-													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-													  <input id="nombreC" onKeyUp="buscaProductoVenta(this)" type="date" class="validate">
-													  <label for="icon_telephone" ><span class="etiquelogin">Fecha</span></label>
-												 </div>
+												  <div class="input-field col s7">
+                                                  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
+                                                  <input  id="fecha" type="date" class="validate" value="<?php echo date('Y-m-d')?>" >
+                                                  <label class="active" for="fecha" >Fecha</label>
+                                                </div>
 												 
 												  
 												 
@@ -115,7 +115,7 @@ mostrarSueldo();
                                           
 												   <div class="input-field col s7 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/monto.png"/></i>
-													  <input id="monto" type="text" class="validate" onKeyUp="siguiente(event,'precioC');">
+													  <input id="monto" type="number" class="validate" onKeyUp="siguiente(event,'precioC');">
 													  <label for="icon_telephone" ><span class="etiquelogin">Monto</span></label>
 												  </div>
 												  
@@ -129,8 +129,8 @@ mostrarSueldo();
               
                    </div>   
               <div class="modal-footer">
-                  <a id="modalnuevo" onClick="ingresoVenta(document.getElementById('codigo').value);" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a></div>
- <script>setTimeout(function(){buscaProductoVenta(document.getElementById('nombreC'));},500);</script>
+                  <a onClick="ingresoSueldo();" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a></div>
+
 
               </div>
           </div>
@@ -152,7 +152,9 @@ mostrarSueldo();
                             </div>	
 
                         </div>
-
+							
+                        <div id="reselim" class="red"></div> 
+                         
                         <div>
                             <p> Ingrese la contraseña para </p>
                         </div>
@@ -170,7 +172,7 @@ mostrarSueldo();
         </form>
     </div>
     <div class="modal-footer">
-        <a class=" modal-action waves-effect waves-light btn blue lighten-1 eliminar" >Aceptar</a>
+        <a class=" modal-action waves-effect waves-light btn blue lighten-1" onClick="EliminarSueldo(document.getElementById('contraElim').value);" >Aceptar</a>
 
 
     </div>

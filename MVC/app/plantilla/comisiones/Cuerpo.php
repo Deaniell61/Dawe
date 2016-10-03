@@ -61,7 +61,7 @@ mostrarComision();
      <div id="modal1" class="modal">
               <div class="modal-content">
                   
-                  <div id="mensaje"></div>
+                 
                       <div class="row">
                           <div class="nav-wrapper grey darken-4">
                               <div>
@@ -72,8 +72,8 @@ mostrarComision();
 
                           </div>
                       </div>
-                      
-                      <div id="productosVenta" class="anchoFila col s4">
+                       <div id="mensajeUsuarios"></div>
+                      <div id="Usuarios1" class="anchoFila col s4">
                                    
                                     </div>
                    
@@ -88,35 +88,40 @@ mostrarComision();
                               <div class=" col s8 espacio">
                               	
                              
+                             					
                                					<div class="input-field col s7" hidden>
-													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/codigo.png"/></i>
-													  <input id="vendedor" type="text" class="validate">
-													  <label for="icon_telephone" ><span class="etiquelogin">Vendedor</span></label>
+                                                
+													  <input id="codigo" type="text" class="validate">
+													  
 												 </div>
 												 <div class="input-field col s7">
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/codigo.png"/></i>
-													  <input id="nombreC" onKeyUp="buscaProductoVenta(this)" type="text" class="validate">
+													  <input id="vendedores" onKeyUp="buscaUsuarios(this.value)" type="text" class="validate">
 													  <label for="icon_telephone" ><span class="etiquelogin">Vendedor</span></label>
 												 </div>
-												 
+												 <?php
+												 $fecha = date('Y-m-d');
+												 $nuevafecha = strtotime ( '-1 month' , strtotime ( $fecha ) ) ;
+												 $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+												 ?>
 												  
 												  <div class="input-field col s7 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-													  <input id="fechaI"  onKeyUp="buscaProductoVenta(this)" type="text" class="validate">
-													  <label for="icon_telephone" ><span class="etiquelogin">Fecha Inicio</span></label>
+													  <input id="fechaI" type="date" class="validate"  value="<?php echo $nuevafecha;?>" onChange="seleccionaUsuarios(document.getElementById('codigo').value);">
+													  <label class="active" for="fecha" >Fecha Inicio</label>
 												  </div>
 												
 												   <div class="input-field col s7 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-													  <input id="fechaF"  onKeyUp="buscaProductoVenta(this)" type="text" class="validate">
-													  <label for="icon_telephone" ><span class="etiquelogin">Fecha Fin</span></label>
+													  <input id="fechaF" type="date" class="validate" value="<?php echo $fecha;?>" onChange="seleccionaUsuarios(document.getElementById('codigo').value);">
+													  <label class="active" for="fecha" >Fecha Fin</label>
 												  </div>
 												 
                                                    
                                           
 												   <div class="input-field col s7 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/monto.png"/></i>
-													  <input id="Monto" type="text" class="validate" onKeyUp="siguiente(event,'precioC');">
+													  <input id="Monto" type="number" class="validate">
 													  <label for="icon_telephone" ><span class="etiquelogin">Monto</span></label>
 												  </div>
 												  
@@ -124,7 +129,7 @@ mostrarComision();
 												  
 												   <div class="input-field col s7 ">   
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/porcentaje.png"/></i>
-													  <input id="porcentaje" type="text" class="validate" onKeyUp="siguiente(event,'precioE');">
+													  <input id="porcentaje" type="number" class="validate" onKeyUp="calculaComi(this.value);">
 													  <label for="icon_telephone" ><span class="etiquelogin">Porcentaje</span></label>
 												  </div>
 												  
@@ -141,8 +146,7 @@ mostrarComision();
               
                    </div>   
               <div class="modal-footer">
-                  <a id="modalnuevo" onClick="ingresoVenta(document.getElementById('codigo').value);" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a></div>
- <script>setTimeout(function(){buscaProductoVenta(document.getElementById('nombreC'));},500);</script>
+                  <a onClick="ingresoComision();" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a></div>
 
               </div>
           </div>
@@ -164,7 +168,7 @@ mostrarComision();
                             </div>	
 
                         </div>
-
+						<div id="reselim" class="red"></div> 
                         <div>
                             <p> Ingrese la contraseña para </p>
                         </div>
@@ -182,7 +186,7 @@ mostrarComision();
         </form>
     </div>
     <div class="modal-footer">
-        <a class=" modal-action waves-effect waves-light btn blue lighten-1 eliminar" >Aceptar</a>
+        <a class=" modal-action waves-effect waves-light btn blue lighten-1"  onClick="EliminarComision(document.getElementById('contraElim').value);" >Aceptar</a>
 
 
     </div>

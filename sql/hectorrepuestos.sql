@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2016 a las 06:10:02
+-- Tiempo de generación: 03-10-2016 a las 06:18:34
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `hectorrepuestos`
+-- Base de datos: `softronic`
 --
 
 -- --------------------------------------------------------
@@ -60,6 +60,25 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   KEY `ClientePais_idx` (`Pais`),
   KEY `ClineteDepartamento_idx` (`Departamento`),
   KEY `ClienteMunicipio_idx` (`Municipio`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comisiones`
+--
+
+CREATE TABLE IF NOT EXISTS `comisiones` (
+  `idComisiones` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaIni` date DEFAULT NULL,
+  `fechaFin` date DEFAULT NULL,
+  `monto` double DEFAULT NULL,
+  `porcentaje` double DEFAULT NULL,
+  `total` double DEFAULT NULL,
+  `idUsuarios` int(11) DEFAULT NULL,
+  `Estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idComisiones`),
+  KEY `ComisionesUsuarios` (`idUsuarios`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -198,6 +217,21 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `sueldo` double DEFAULT NULL,
   PRIMARY KEY (`idEmpleados`),
   KEY `EmpleadoPuesto_idx` (`Puesto`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `gastos`
+--
+
+CREATE TABLE IF NOT EXISTS `gastos` (
+  `idGastos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `Descripcion` text,
+  `Monto` double DEFAULT NULL,
+  `Estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idGastos`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -385,6 +419,23 @@ CREATE TABLE IF NOT EXISTS `roles` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `sueldos`
+--
+
+CREATE TABLE IF NOT EXISTS `sueldos` (
+  `idSueldos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `Descripcion` text,
+  `monto` double DEFAULT NULL,
+  `idEmpleado` int(11) DEFAULT NULL,
+  `Estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idSueldos`),
+  KEY `SueldosEmpleado` (`idEmpleado`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipocompra`
 --
 
@@ -521,6 +572,12 @@ ALTER TABLE `cliente`
   ADD CONSTRAINT `ClientePais` FOREIGN KEY (`Pais`) REFERENCES `pais` (`idPais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `comisiones`
+--
+ALTER TABLE `comisiones`
+  ADD CONSTRAINT `ComisionesUsuarios` FOREIGN KEY (`idUsuarios`) REFERENCES `usuarios` (`idUsuarios`);
+
+--
 -- Filtros para la tabla `compradetalle`
 --
 ALTER TABLE `compradetalle`
@@ -593,6 +650,12 @@ ALTER TABLE `proveedor`
   ADD CONSTRAINT `ProveedorDepartamento` FOREIGN KEY (`IdDepartamento`) REFERENCES `departamentos` (`idDepartamentos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `ProveedorMunicipio` FOREIGN KEY (`IdMuniciopio`) REFERENCES `municipio` (`idMunicipio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `ProveedorPais` FOREIGN KEY (`IdPais`) REFERENCES `pais` (`idPais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `sueldos`
+--
+ALTER TABLE `sueldos`
+  ADD CONSTRAINT `SueldosEmpleado` FOREIGN KEY (`idEmpleado`) REFERENCES `empleados` (`idEmpleados`);
 
 --
 -- Filtros para la tabla `usuarios`

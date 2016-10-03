@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2016 a las 06:07:59
+-- Tiempo de generación: 03-10-2016 a las 06:18:16
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -91,6 +91,33 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 INSERT INTO `cliente` (`idCliente`, `Nombre`, `Apellido`, `Nit`, `Departamento`, `Municipio`, `Pais`, `estado`, `direccion`, `telefono`) VALUES
 (1, '564', '654', '564', NULL, NULL, NULL, 1, '654', '654'),
 (2, 'Daniel', 'Rodriguez', '7031734', NULL, NULL, NULL, 1, 'Mazate', '54646431');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comisiones`
+--
+
+CREATE TABLE IF NOT EXISTS `comisiones` (
+  `idComisiones` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaIni` date DEFAULT NULL,
+  `fechaFin` date DEFAULT NULL,
+  `monto` double DEFAULT NULL,
+  `porcentaje` double DEFAULT NULL,
+  `total` double DEFAULT NULL,
+  `idUsuarios` int(11) DEFAULT NULL,
+  `Estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idComisiones`),
+  KEY `ComisionesUsuarios` (`idUsuarios`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+
+--
+-- Volcado de datos para la tabla `comisiones`
+--
+
+INSERT INTO `comisiones` (`idComisiones`, `fechaIni`, `fechaFin`, `monto`, `porcentaje`, `total`, `idUsuarios`, `Estado`) VALUES
+(19, '2016-09-03', '2016-10-03', 123, 1, 1.23, 35, 1),
+(20, '2016-09-03', '2016-10-03', 123, 1, 1.23, 35, 1);
 
 -- --------------------------------------------------------
 
@@ -393,6 +420,28 @@ INSERT INTO `empleados` (`idEmpleados`, `Nombre`, `Apellido`, `Telefono`, `Direc
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `gastos`
+--
+
+CREATE TABLE IF NOT EXISTS `gastos` (
+  `idGastos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `Descripcion` text,
+  `Monto` double DEFAULT NULL,
+  `Estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idGastos`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `gastos`
+--
+
+INSERT INTO `gastos` (`idGastos`, `fecha`, `Descripcion`, `Monto`, `Estado`) VALUES
+(1, '2016-10-03', 'Gastos Varios', 200, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `inventario`
 --
 
@@ -414,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `inventario` (
 
 INSERT INTO `inventario` (`idInventario`, `idProducto`, `precioCosto`, `precioVenta`, `precioClienteEs`, `precioDistribuidor`, `cantidad`) VALUES
 (1, 1, 20, 50, 45, 42.5, 60),
-(2, 2, 1.0008544921875, 1, 1, 1, 60),
+(2, 2, 1.0008544921875, 10, 9, 8.5, 60),
 (4, 3, 34.343751999999995, 1, 1, 1, 4430),
 (5, 4, 10, 30, 27, 25.5, 206),
 (6, 5, 200, 500, 450, 425, 10),
@@ -717,6 +766,30 @@ INSERT INTO `roles` (`idRol`, `Descripcion`, `ModulosDefecto`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `sueldos`
+--
+
+CREATE TABLE IF NOT EXISTS `sueldos` (
+  `idSueldos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `Descripcion` text,
+  `monto` double DEFAULT NULL,
+  `idEmpleado` int(11) DEFAULT NULL,
+  `Estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idSueldos`),
+  KEY `SueldosEmpleado` (`idEmpleado`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `sueldos`
+--
+
+INSERT INTO `sueldos` (`idSueldos`, `fecha`, `Descripcion`, `monto`, `idEmpleado`, `Estado`) VALUES
+(1, '2016-10-03 06:00:00', 'Pago de sueldo del mes de October', 2800, 12, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipocompra`
 --
 
@@ -982,6 +1055,12 @@ ALTER TABLE `cliente`
   ADD CONSTRAINT `ClientePais` FOREIGN KEY (`Pais`) REFERENCES `pais` (`idPais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `comisiones`
+--
+ALTER TABLE `comisiones`
+  ADD CONSTRAINT `ComisionesUsuarios` FOREIGN KEY (`idUsuarios`) REFERENCES `usuarios` (`idUsuarios`);
+
+--
 -- Filtros para la tabla `compradetalle`
 --
 ALTER TABLE `compradetalle`
@@ -1054,6 +1133,12 @@ ALTER TABLE `proveedor`
   ADD CONSTRAINT `ProveedorDepartamento` FOREIGN KEY (`IdDepartamento`) REFERENCES `departamentos` (`idDepartamentos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `ProveedorMunicipio` FOREIGN KEY (`IdMuniciopio`) REFERENCES `municipio` (`idMunicipio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `ProveedorPais` FOREIGN KEY (`IdPais`) REFERENCES `pais` (`idPais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `sueldos`
+--
+ALTER TABLE `sueldos`
+  ADD CONSTRAINT `SueldosEmpleado` FOREIGN KEY (`idEmpleado`) REFERENCES `empleados` (`idEmpleados`);
 
 --
 -- Filtros para la tabla `usuarios`

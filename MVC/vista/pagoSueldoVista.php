@@ -24,14 +24,14 @@ function mostrarSueldo()
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT cd.idcompradetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal FROM compradetalle cd where cd.estado=1";
+    $sql = "SELECT s.idsueldos,s.fecha,e.nombre,e.apellido,s.descripcion,s.monto FROM sueldos s inner join empleados e on e.idempleados=s.idempleado where s.estado=1;";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
 
         if(mysqli_num_rows($resultado)==0)
         {
-            $respuesta = "<div class='error'>No hay Compras BD vacia</div>";
+            $respuesta = "<div class='error'>No hay sueldos pagados. BD vacia</div>";
         }
 
         else
@@ -42,10 +42,10 @@ function mostrarSueldo()
 
                 $tabla .= "<tr>";
 
-                $tabla .="<td>"     .$fila["0"].    "</td>";
-                $tabla .="<td>" .$fila["1"].      "</td>";
-                $tabla .="<td>" .$fila["2"].      "</td>";
-				$tabla .="<td>" .$fila["3"].      "</td>";
+                $tabla .="<td>"     .$fila["1"].    "</td>";
+                $tabla .="<td>" .$fila["2"]." " .$fila["3"]."</td>";
+                $tabla .="<td>" .$fila["4"].      "</td>";
+				$tabla .="<td>" .toMoney($fila["5"]).      "</td>";
 
               
 
@@ -79,83 +79,6 @@ function mostrarSueldo()
 <?php
 
 }
-
-function mostrarDetallesCompras($id)
-{
-
-
-
-    //creacion de la tabla
-?>
-
-<table id='tabla2' class='bordered centered highlight responsive-table centrarT'>
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Empleado</th>
-            <th>Descripcion</th>
-            <th>Monto</th>
-
-
-
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-	$extra="";
-    $mysql = conexionMysql();
-    $sql = "SELECT cd.idcompradetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal FROM compradetalle cd where cd.estado=1 and cd.idcompras='".$id."'";
-    $tabla="";
-    if($resultado = $mysql->query($sql))
-    {
-
-        if(mysqli_num_rows($resultado)==0)
-        {
-            $respuesta = "<div class='error'>No hay Compras BD vacia</div>";
-        }
-
-        else
-        {
-
-            while($fila = $resultado->fetch_row())
-            {
-
-                $tabla .= "<tr>";
-
-                $tabla .="<td>"     .$fila["0"].    "</td>";
-                $tabla .="<td>" .$fila["1"].      "</td>";
-                $tabla .="<td>" .$fila["2"].      "</td>";
-				$tabla .="<td>" .$fila["3"].      "</td>";
-
-
-                $tabla .= "</tr>";
-
-            }
-
-            $resultado->free();//librerar variable
-
-
-            $respuesta = $tabla;
-        }
-    }
-    else
-    {
-        $respuesta = "<div class='error'>Error: no se ejecuto la consulta a BD</div>";
-
-    }
-
-    //cierro la conexion
-    $mysql->close();
-
-    //debuelvo la variable resultado
-    return printf($respuesta);
-        ?>
-    </tbody>
-</table>
-<?php
-
-}
-
 
 
 

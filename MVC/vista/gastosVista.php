@@ -22,14 +22,14 @@ function mostrarGasto()
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT cd.idcompradetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal FROM compradetalle cd where cd.estado=1";
+    $sql = "SELECT g.fecha,g.descripcion,g.monto,g.idgastos FROM gastos g where g.estado=1";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
 
         if(mysqli_num_rows($resultado)==0)
         {
-            $respuesta = "<div class='error'>No hay Compras BD vacia</div>";
+            $respuesta = "<div class='error'>No hay Gastos BD vacia</div>";
         }
 
         else
@@ -50,7 +50,7 @@ function mostrarGasto()
 
 
 
-                $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onclick=\"eliminar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a></td>";
+                $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onclick=\"eliminar('".$fila["3"]."')\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a></td>";
                 $tabla .= "</tr>";
 
             }
