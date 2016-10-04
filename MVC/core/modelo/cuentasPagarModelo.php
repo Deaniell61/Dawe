@@ -5,7 +5,7 @@ function ingresoCuentaPagar($datos)
     $form="";
 	
 		$mysql->query("BEGIN");
-    $sql = "insert cuentasPagar(plazo,tipoPlazo,total,idproveedor,estado,CreditoDado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
+    $sql = "insert cuentaspagar(plazo,tipoPlazo,total,idproveedor,estado,CreditoDado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
 //echo $sql;
     if($mysql->query($sql))
     {
@@ -17,7 +17,7 @@ function ingresoCuentaPagar($datos)
     }
     else
     {   
-		$sql = "update cuentasPagar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."' where idproveedor='".$datos[0]."'";
+		$sql = "update cuentaspagar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."' where idproveedor='".$datos[0]."'";
 //echo $sql;
 			if($mysql->query($sql))
 			{
@@ -162,7 +162,7 @@ function abonarCuentaP($datos)
 	$saldo=$datos[3]-$datos[1];
 	if($datos[1]>0)
 	{		 
-    $sql = "INSERT INTO movimientosP(credito,abono,saldo,fecha,descripcion,idcuentasP,idusuario) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].",'".$_SESSION['SOFT_USER_ID']."')";
+    $sql = "INSERT INTO movimientosp(credito,abono,saldo,fecha,descripcion,idcuentasP,idusuario) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].",'".$_SESSION['SOFT_USER_ID']."')";
  
     if($mysql->query($sql))
     {

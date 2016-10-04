@@ -85,20 +85,20 @@ $('#ventaL').click(function(){
 
 $('#inventarioV').click(function(){
 
-  window.location.href="inventario.php";
+  window.location.href="Inventario.php";
 
 
 });
 $('#inventarioA').click(function(){
 
-  window.location.href="inventarioAdministrador.php";
+  window.location.href="InventarioAdministrador.php";
 
 
 });
 
 $('#inventarioI').click(function(){
 
-  window.location.href="inventarioInicial.php";
+  window.location.href="InventarioInicial.php";
 
 
 });

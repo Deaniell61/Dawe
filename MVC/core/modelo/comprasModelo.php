@@ -127,7 +127,7 @@ function agregaInventario($datos)
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update cuentasPagar set estado=1 where idproveedor='".$datos[6]."'"))
+					 if(!$mysql->query("update cuentaspagar set estado=1 where idproveedor='".$datos[6]."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");
@@ -172,7 +172,7 @@ function ingresoCompra($datos)
 	session_start();
 	$mysql->query("BEGIN");
 	$total=$datos[2]*$datos[1];
-    $sql = "INSERT INTO compraDetalle(cantidad,precio,estado,idcompras,idproductos,subtotal,costo,precioE,precioM) values('".$datos[1]."','".$datos[3]."',2,'".$_SESSION['idCompra']."',".$datos[0].",".$total.",".$datos[2].",".$datos[4].",".$datos[5].")";
+    $sql = "INSERT INTO compradetalle(cantidad,precio,estado,idcompras,idproductos,subtotal,costo,precioE,precioM) values('".$datos[1]."','".$datos[3]."',2,'".$_SESSION['idCompra']."',".$datos[0].",".$total.",".$datos[2].",".$datos[4].",".$datos[5].")";
  
     if($mysql->query($sql))
     {
@@ -183,7 +183,7 @@ function ingresoCompra($datos)
 				 $mysql->query("ROLLBACK");
 			 }
 			 else
-			 if(!$mysql->query("update cuentasPagar set total=total+".$total.",CreditoDado=CreditoDado+".$total.",estado=2 where idproveedor='".$datos[6]."'"))
+			 if(!$mysql->query("update cuentaspagar set total=total+".$total.",CreditoDado=CreditoDado+".$total.",estado=2 where idproveedor='".$datos[6]."'"))
 			 {
 				
 				 $mysql->query("ROLLBACK");

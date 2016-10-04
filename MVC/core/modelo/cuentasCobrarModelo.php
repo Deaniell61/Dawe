@@ -5,7 +5,7 @@ function ingresoCuentaCobrar($datos)
     $form="";
 	
 		$mysql->query("BEGIN");
-    $sql = "insert cuentasCobrar(plazo,tipoPlazo,total,idcliente,estado,creditodado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
+    $sql = "insert cuentascobrar(plazo,tipoPlazo,total,idcliente,estado,creditodado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
 //echo $sql;
     if($mysql->query($sql))
     {
@@ -17,7 +17,7 @@ function ingresoCuentaCobrar($datos)
     }
     else
     {   
-		$sql = "update cuentasCobrar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."' where idcliente='".$datos[0]."'";
+		$sql = "update cuentascobrar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."' where idcliente='".$datos[0]."'";
 //echo $sql;
 			if($mysql->query($sql))
 			{
@@ -161,7 +161,7 @@ function abonarCuentaC($datos)
 	$saldo=$datos[3]-$datos[1];
 	if($datos[1]>0)
 	{		 
-    $sql = "INSERT INTO movimientosC(credito,abono,saldo,fecha,descripcion,idcuentasC,idusuario) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].",'".$_SESSION['SOFT_USER_ID']."')";
+    $sql = "INSERT INTO movimientosc(credito,abono,saldo,fecha,descripcion,idcuentasC,idusuario) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].",'".$_SESSION['SOFT_USER_ID']."')";
  
     if($mysql->query($sql))
     {

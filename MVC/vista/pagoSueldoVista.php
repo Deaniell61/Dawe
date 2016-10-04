@@ -24,7 +24,7 @@ function mostrarSueldo()
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT s.idsueldos,s.fecha,e.nombre,e.apellido,s.descripcion,s.monto FROM sueldos s inner join empleados e on e.idempleados=s.idempleado where s.estado=1;";
+   $sql = "SELECT s.idsueldos,s.fecha,e.nombre,e.apellido,s.descripcion,s.monto FROM sueldos s inner join empleados e on e.idempleados=s.idempleado where s.estado=1;";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {

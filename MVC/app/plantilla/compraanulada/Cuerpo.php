@@ -32,7 +32,7 @@
 
 					     <?php
 
-						  include('../vista/CompraAnuladaVista.php');
+						  include('../vista/compraAnuladaVista.php');
 
 						  mostrarCompras();
 
