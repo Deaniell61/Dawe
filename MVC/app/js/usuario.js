@@ -312,7 +312,8 @@ $('.eliminar').click(function(event)
             pass=$('#contraElim').val();
             trasDato = 3;
     		
-            
+            if(confirm("Si elimina el usuario, eliminara todos los datos del mismo"))
+			{
             $.ajax
             ({
                 type:"POST",
@@ -320,21 +321,15 @@ $('.eliminar').click(function(event)
                 data:'idelim=' + idelim  + '&pass=' + pass  + '&trasDato=' + trasDato,
                 success: function(resp)
                 {
-                    if(resp == '1')
-                    {
-						
-                    }
-                    else
-                    {
-						$('#mensaje').html(resp);
-                        setTimeout(window.location.reload(), 3000);
+                   
+						$('#mensajeElim').html(resp);
+                        //setTimeout(window.location.reload(), 3000);
 
-
-                    }
 
                    
                 }     
-            });            
+            });
+			}
     
 });
 

@@ -51,77 +51,59 @@
 								</div>
 								
 								
-							
-    		
-    		<div class="col s12">
-    			<center>
-    			 
- <div id="total"></div>
-               <center>
-             
-<div id="chart" style=" width:500px;height: 300px;max-height: 300px;margin-left: 150px;position: absolute;"></div>
-<div id="chart2" style="width: 500px;height: 300px;max-height: 300px;position: relative;margin-left: 850px;right: 200px;"></div>
+					<div class="row">
+      <div class="col s12">
+        <div class="col s6 ">
+          <div class="">
+          Grafica Grande 1
+          </div>
+          <div  id="" class="  ">
+            cuerpo
+          </div>
+        </div>
+        <div class="col s6 ">
+          <div class="">
+          Grafica Grande 2
+          </div>
+          <div  id="" class="  ">
+            cuerpo
+          </div>
+        </div>
+        <div class="col s4 borde ">
+            <div class="">
+            Grafica pequeña 1
+            </div>
+            <div  id="" class="  ">
+              cuerpo
+            </div>
+        </div>
+        <div class="col s4 borde ">
+          <div class="">
+          Grafica pequeña 2
+          </div>
+            <div  id="" class=" ">
+              cuerpo
+            </div>
+        </div>
+        <div class="col s4 borde">
+          <div class=" ">
+          Grafica pequeña 3
+          </div>
+            <div  id="" class=" ">
+              cuerpo
+            </div>
+        </div>
 
-<div>
-<div id="PromD" class="tablaEstadisticasDatos" >
-	<center>
-    <div id="PromD1" class="tituloPromedio">
-    	<strong>Promedio</strong>
-    </div>
-    </center>
-    <div id="PromD2" class="averaPromedio">
-    	<span style="font-size:24px;">$481</span>
-        <br>Promedio
-    </div>
-    <div id="PromD3" class="maxMinPromedio">
-    		Max:
-       <br> Min:
-    </div>
-    
-    <div id="PromD4" class="miniEstadisticaPromedio">
-    	titulo
-    </div>
-    
-</div>
-<div id="PromO" class="tablaEstadisticasDatos" >
-	<center>
-    <div id="PromO1" class="tituloPromedio">
-    	<strong>Promedio</strong>
-    </div>
-    </center>
-    <div id="PromO2" class="averaPromedio">
-    	<span style="font-size:24px;">$481</span>
-        <br>Promedio
-    </div>
-    <div id="PromO3" class="maxMinPromedio">
-    		Max:
-       <br> Min:
-    </div>
-    
-    <div id="PromO4" class="miniEstadisticaPromedio">
-    	titulo
-    </div>
-</div>
-<div id="PromTO" class="tablaEstadisticasDatos" >
-	<center>
-    <div id="PromTO1" class="tituloPromedio">
-    	<strong>Promedio</strong>
-    </div>
-    </center>
-    <div id="PromTO2" class="averaPromedio">
-    	<span style="font-size:24px;">$481</span>
-        <br>Promedio
-    </div>
-    <div id="PromTO3" class="maxMinPromedio">
-    		Max:
-       <br> Min:
-    </div>
-    
-    <div id="PromTO4" class="miniEstadisticaPromedio">
-    	titulo
-    </div>
-</div>
-</div>
+        <div class="col s6 ">
+              Tabla 1
+        </div>
+        <div class="col s6 ">
+            Tabla  2
+        </div>
+      </div>
+    </div>		
+    		
+    		
 
 <div>
 <div id="best5" style="display: inline-table;width: 550px;height: 250px;text-align: left;" ></div>

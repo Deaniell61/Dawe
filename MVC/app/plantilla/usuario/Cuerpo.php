@@ -171,7 +171,7 @@
                             </div>
 
                         </div>
-
+<div id="mensajeElim"></div>
                         <div>
                             <p> Ingrese la contraseña para </p>
                         </div>

@@ -120,19 +120,23 @@ function eliminarUsuario($idelim,$pass)
      
      if($pass==$_SESSION['SOFT_PASS'])
 	 {
-     
-		 $sql = "DELETE FROM usuarios WHERE idusuarios=$idelim";
-		 echo $sql;
 		 $mysql = conexionMysql(); 
+     	$mysql->query("BEGIN");
+		 
+		 $sql = "update usuarios set estado=0 WHERE idUsuarios=$idelim";
+		 
+		 
 	
+		 
 		 if($resultado = $mysql->query($sql))
 		 {
-			 $respuesta = "<script>alert('El usuario se elimino');</script>";
+			 $mysql->query("COMMIT");
+			 $respuesta = "<script>alert('El usuario se elimino');setTimeout(window.location.reload(), 3000);</script>";
 		 }
 		 else
 		 { 
 			 
-			 echo 1;
+			 echo "error de base de datos";
 		 }
 	
 	
@@ -142,7 +146,7 @@ function eliminarUsuario($idelim,$pass)
 	 }
 	 else
 	 {
-		 echo 1;
+		 $respuesta = "<div class=\"red \">Contraseña incorrecta</div>";
 	 }
      
  }
@@ -280,7 +284,7 @@ function eliminarEmpleado($datos)
      
      if($datos[1]==$_SESSION['SOFT_PASS'])
 	 {
-		 $sql = "DELETE FROM empleados WHERE idempleados=".$datos[0];
+		 $sql = "update empleados set estado=0 WHERE idEmpleados=".$datos[0];
 		 
 		 $mysql = conexionMysql(); 
 	
