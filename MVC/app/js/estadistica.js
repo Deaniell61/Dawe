@@ -17,7 +17,7 @@ function cargarGrafico(tipo)
     
 }
 
-$(document).ready(mostrarResultados(2016));  
+/*$(document).ready(mostrarResultados(2016));  
                 function mostrarResultados(año){
                     $.ajax({
                         type:'POST',
@@ -58,5 +58,5 @@ $(document).ready(mostrarResultados(2016));
                         }
                     });
                     return false;
-                }
+                }*/
 

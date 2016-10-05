@@ -88,7 +88,7 @@ if($_POST)
        
 
         
-        graficaVendedores($datos);
+        graficaVendedoresBarra($datos);
         
     
     }

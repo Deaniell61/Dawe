@@ -1,5 +1,7 @@
 <?php
-function graficaVendedores($datos)
+$meses="";
+$fecha3 = date('Y-m-d');
+function graficaVendedoresBarra($datos)
 {
 	
 	?>
@@ -34,13 +36,13 @@ function graficaVendedores($datos)
 									}
 								},
 								color: {
-								  pattern: ['#ff571c']
+								  pattern: ['#1E88E5']
 								},
 								tooltip: {
 									format: {
 										value: function (value, id) {
-											var format = d3.format('Q');
-											return format(value);
+											var format = d3.format('$');
+											return format(value).replace("$","Q");
 										}
 							
 									}
@@ -50,17 +52,88 @@ function graficaVendedores($datos)
     <?php
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT v.total,u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$datos[1]."')";
+  $sql = "SELECT sum(v.total),u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$datos[1]."') group by date(v.fecha)";
  
+ 	$fecha3 = date('Y-m-d');
+     
+ $nuevafecha3 = strtotime ( '-1 day' , strtotime ( $fecha3 ) ) ;
+$fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
+	if($datos[0]<=$datos[1])
+	{$fecha3=$datos[1];
+    	$titulo="['x'";
+		$meses="";
+		$contar=0;
+		$fechas[]="";
+		$fecha2=$datos[0];
+		$titulo.=",'".$fecha2."'";
+			$meses.=",'".($contar+1)."'";
+			$fechas[$contar]=$fecha2;
+			$contar++;	
+		while($fecha2<($fecha3))
+		{
+			
+			
+			$nuevafecha2 = strtotime ( '+1 day' , strtotime ( $fecha2 ) ) ;
+			$fecha2 = date ( 'Y-m-d' , $nuevafecha2 );
+			$titulo.=",'".$fecha2."'";
+			$meses.=",'".($contar+1)."'";
+			$fechas[$contar]=$fecha2;
+			$contar++;			
+			
+		}
+	}
     if($resultado = $mysql->query($sql))
     {
       
-    $fila = $resultado->fetch_row();    
-        
-    
+		
+			if($resultado->num_rows>0)
+			{
+				$contar2=0;
+				while($row= $fila = $resultado->fetch_row())
+				{
+						
+						$reem=(round($row[0],5,5));
+						//echo $reem.",";
+						$meses=verificarDato($reem,$fechas,$contar,substr($row[2],0,10),$meses);
+						
+				}
+				$meses=limpiarDato($reem,$fechas,$contar,"",$meses);
+				echo "
+							<script>
+							chart.load({
+									columns: [
+										".$titulo."],
+										['Sales'".$meses."]
+												
+											]
+											
+									});
+							
+							</script>
+							";
+			}
+			else
+			{
+				$reem="";
+				$meses=limpiarDato($reem,$fechas,$contar,"",$meses);
+				echo "
+							<script>
+							chart.load({
+									columns: [
+										".$titulo."],
+										['Sales'".$meses."]
+												
+											]
+											
+									});
+							
+							</script>
+							";
+			}
+			
     $form .="<script>";
     $form .=" 
-	
+				
 	";
 	
     $form .="</script>";
@@ -80,6 +153,114 @@ function graficaVendedores($datos)
     
     return printf($form);
 }
+
+function graficaVendedoresPie($codigo,$fecha,$nuevafecha,$ayer)
+{
+	
+	$squery="select orderid, timoford, sum(grandtotal), orderunits, ordsou, tranum,codorden,shifee,(grandtotal),shicar from tra_ord_enc where (timoford <= '".$fecha."' and timoford >= '".$nuevafecha."') group by ordsou order by ordsou ";
+	//echo $squery;
+		?>
+        <script>
+		var chart2 = c3.generate({
+								bindto: '#chart2',
+								data: {
+									columns: [
+										
+									],
+									type:"pie"
+									,
+										selection: {
+													enabled: true
+												  },
+									onselected: function (d, element) 
+									{ 
+										
+										cargarGrafico('3',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>',d.id);
+										cargarGrafico('4',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>',d.id);
+									 },
+									 onunselected: function (d, element) 
+									{ 
+										
+										cargarGrafico('3',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
+										cargarGrafico('4',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
+									 }
+								},
+								color: {
+								  pattern: ['#61B045','#F7742C','#D4AE18','#F6921E','#9E1F63','#26A9E0','#8BC53F','#D6DE23']
+								}/*,
+								
+								pie: {
+									label: {
+										format: function (value, ratio, id) {
+											
+											return "$"+currency(d3.format('')((value)));
+										}
+									}
+								}*/,
+								tooltip: {
+									format: {
+										value: function (value, id) {
+											var format = d3.format('$');
+											return format(value);
+										}
+							
+									}
+								}
+							});
+					</script>
+        
+        <?php
+		
+		$meses="";
+		
+		$total=0;
+		
+		
+		if($ejecuta=mysqli_query(conexion($_SESSION['pais']),$squery))
+		{
+			if($ejecuta->num_rows>0)
+			{
+				$contar2=0;
+				while($row=mysqli_fetch_array($ejecuta,MYSQLI_NUM))
+				{
+					
+						
+						$meses.="['".(($row[4]))."','".(round($row[2],5,2))."'],";
+						
+						$total=$total+round($row[2],10,2);
+				}
+				
+				echo "
+							<script>
+							/*document.getElementById('total').innerHTML='Grand Total Sales: ".toMoney($total)."';*/
+							chart2.load({
+									columns: [
+										
+										".substr($meses,0,strlen($meses)-1)."
+												
+											]
+											
+									});
+								setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
+								
+							</script>
+							";
+			}
+			else
+			{
+				echo "
+							<script>
+							
+							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
+							
+							</script>
+							";
+			}
+			mysqli_close(conexion($_SESSION['pais']));
+			
+		}
+}
+
 function graficoProductos($datos)
 {
 	
@@ -363,112 +544,6 @@ function graficoProductos($datos)
 		}
 }
 
-function buscarGraficoPie($codigo,$fecha,$nuevafecha,$ayer)
-{
-	
-	$squery="select orderid, timoford, sum(grandtotal), orderunits, ordsou, tranum,codorden,shifee,(grandtotal),shicar from tra_ord_enc where (timoford <= '".$fecha."' and timoford >= '".$nuevafecha."') group by ordsou order by ordsou ";
-	//echo $squery;
-		?>
-        <script>
-		var chart2 = c3.generate({
-								bindto: '#chart2',
-								data: {
-									columns: [
-										
-									],
-									type:"pie"
-									,
-										selection: {
-													enabled: true
-												  },
-									onselected: function (d, element) 
-									{ 
-										
-										cargarGrafico('3',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>',d.id);
-										cargarGrafico('4',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>',d.id);
-									 },
-									 onunselected: function (d, element) 
-									{ 
-										
-										cargarGrafico('3',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
-										cargarGrafico('4',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
-									 }
-								},
-								color: {
-								  pattern: ['#61B045','#F7742C','#D4AE18','#F6921E','#9E1F63','#26A9E0','#8BC53F','#D6DE23']
-								}/*,
-								
-								pie: {
-									label: {
-										format: function (value, ratio, id) {
-											
-											return "$"+currency(d3.format('')((value)));
-										}
-									}
-								}*/,
-								tooltip: {
-									format: {
-										value: function (value, id) {
-											var format = d3.format('$');
-											return format(value);
-										}
-							
-									}
-								}
-							});
-					</script>
-        
-        <?php
-		
-		$meses="";
-		
-		$total=0;
-		
-		
-		if($ejecuta=mysqli_query(conexion($_SESSION['pais']),$squery))
-		{
-			if($ejecuta->num_rows>0)
-			{
-				$contar2=0;
-				while($row=mysqli_fetch_array($ejecuta,MYSQLI_NUM))
-				{
-					
-						
-						$meses.="['".(($row[4]))."','".(round($row[2],5,2))."'],";
-						
-						$total=$total+round($row[2],10,2);
-				}
-				
-				echo "
-							<script>
-							/*document.getElementById('total').innerHTML='Grand Total Sales: ".toMoney($total)."';*/
-							chart2.load({
-									columns: [
-										
-										".substr($meses,0,strlen($meses)-1)."
-												
-											]
-											
-									});
-								setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-								
-							</script>
-							";
-			}
-			else
-			{
-				echo "
-							<script>
-							
-							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-							
-							</script>
-							";
-			}
-			mysqli_close(conexion($_SESSION['pais']));
-			
-		}
-}
 
 function buscarBestFive($codigo,$fecha,$nuevafecha,$ayer,$cod2)
 {
