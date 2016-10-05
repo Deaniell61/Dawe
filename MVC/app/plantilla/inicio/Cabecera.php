@@ -2,6 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inicio</title>
         <?php include('../app/plantilla/general/libCss.php');   ?>
         <link type="text/css" rel="stylesheet" href="../app/css/inicio.css"  />
@@ -12,7 +13,7 @@
 
         <!-- ********************************** nav inicio ********************************** -->
 
-      <?php 
+      <?php
 	  $_SESSION['SOFT_NAV']="inicio";
 	  include('../app/plantilla/general/Cabecera.php');   ?>
         <!-- ********************************** nav fin ********************************** -->
@@ -23,6 +24,3 @@
 
         <?php include('../app/plantilla/general/Nav.php');   ?>
         <!-- ********************************** tabs fin ********************************** -->
-
-
-
