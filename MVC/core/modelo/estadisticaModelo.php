@@ -1,7 +1,7 @@
 <?php
 $meses="";
 $fecha3 = date('Y-m-d');
-function graficaVendedoresBarra($datos)
+function graficaVentasBarra($datos)
 {
 	
 	?>
@@ -52,12 +52,13 @@ function graficaVendedoresBarra($datos)
     <?php
     $mysql = conexionMysql();
     $form="";
-  $sql = "SELECT sum(v.total),u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$datos[1]."') group by date(v.fecha)";
+ 
  
  	$fecha3 = date('Y-m-d');
      
- $nuevafecha3 = strtotime ( '-1 day' , strtotime ( $fecha3 ) ) ;
+ $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
+  $sql = "SELECT sum(v.total),u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 group by date(v.fecha)";
 	if($datos[0]<=$datos[1])
 	{$fecha3=$datos[1];
     	$titulo="['x'";
@@ -154,11 +155,10 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
     return printf($form);
 }
 
-function graficaVendedoresPie($codigo,$fecha,$nuevafecha,$ayer)
+function graficaVentasPie($datos)
 {
 	
-	$squery="select orderid, timoford, sum(grandtotal), orderunits, ordsou, tranum,codorden,shifee,(grandtotal),shicar from tra_ord_enc where (timoford <= '".$fecha."' and timoford >= '".$nuevafecha."') group by ordsou order by ordsou ";
-	//echo $squery;
+	
 		?>
         <script>
 		var chart2 = c3.generate({
@@ -174,15 +174,15 @@ function graficaVendedoresPie($codigo,$fecha,$nuevafecha,$ayer)
 												  },
 									onselected: function (d, element) 
 									{ 
+										cargarGrafico('2',d.id);
+										cargarGrafico('3',d.id);
 										
-										cargarGrafico('3',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>',d.id);
-										cargarGrafico('4',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>',d.id);
 									 },
 									 onunselected: function (d, element) 
 									{ 
+										cargarGrafico('2','');
+										cargarGrafico('3','');
 										
-										cargarGrafico('3',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
-										cargarGrafico('4',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
 									 }
 								},
 								color: {
@@ -200,7 +200,7 @@ function graficaVendedoresPie($codigo,$fecha,$nuevafecha,$ayer)
 								tooltip: {
 									format: {
 										value: function (value, id) {
-											var format = d3.format('$');
+											var format = d3.format('');
 											return format(value);
 										}
 							
@@ -211,28 +211,51 @@ function graficaVendedoresPie($codigo,$fecha,$nuevafecha,$ayer)
         
         <?php
 		
-		$meses="";
+		$mysql = conexionMysql();
+    $form="";
+ 
+ 
+ 	$fecha3 = date('Y-m-d');
+     
+ $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
+$fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
+  $sql = "SELECT count(*),p.tipoRepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 group by p.tipoRepuesto";
+	if($datos[0]<=$datos[1])
+	{	$meses="";
 		
-		$total=0;
+			
 		
+	
+    if($resultado = $mysql->query($sql))
+    {
+      
 		
-		if($ejecuta=mysqli_query(conexion($_SESSION['pais']),$squery))
-		{
-			if($ejecuta->num_rows>0)
+			if($resultado->num_rows>0)
 			{
 				$contar2=0;
-				while($row=mysqli_fetch_array($ejecuta,MYSQLI_NUM))
+				while($row= $fila = $resultado->fetch_row())
 				{
+					if($row[1]=='1')
+					{
+						$titulo="Moto";
+					}
+					else
+					if($row[1]=='2')
+					{
+						$titulo="Carro";
+					}
+					else
 					
+					{
+						$titulo="No definido";
+					}
+					$meses.="['".(($titulo))."','".(round($row[0],5,2))."'],";
 						
-						$meses.="['".(($row[4]))."','".(round($row[2],5,2))."'],";
 						
-						$total=$total+round($row[2],10,2);
 				}
 				
 				echo "
 							<script>
-							/*document.getElementById('total').innerHTML='Grand Total Sales: ".toMoney($total)."';*/
 							chart2.load({
 									columns: [
 										
@@ -241,473 +264,93 @@ function graficaVendedoresPie($codigo,$fecha,$nuevafecha,$ayer)
 											]
 											
 									});
-								setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-								
+							
 							</script>
 							";
 			}
 			else
 			{
-				echo "
-							<script>
-							
-							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-							
-							</script>
-							";
+				
 			}
-			mysqli_close(conexion($_SESSION['pais']));
 			
-		}
-}
-
-function graficoProductos($datos)
-{
-	
-	$squery="select v.total,v. from ventasdetalle ";
-	//echo $squery;
-		?>
-        <script>
-							document.getElementById('PromD4').style.width = '50%';
-							document.getElementById('PromO4').style.width = '50%';
-							document.getElementById('PromTO4').style.width = '50%';
-		var chart = c3.generate({
-								bindto: '#chart',
-								data: {
-									x: 'x',
-							//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
-									columns: [
-										
-									],
-									type:"bar"
-								},
-								axis: {
-									x: {
-										type: 'timeseries',
-										tick: {
-											format: '%Y-%m-%d'
-										},
-									y: {
-											show: true,
-											tick: {
-												format: d3.format("$")
-											}
-										}
-									}
-								},
-								bar: {
-									width: {
-										ratio: 0.25// this makes bar width 50% of length between ticks
-									}
-								},
-								color: {
-								  pattern: ['#ff571c']
-								},
-								tooltip: {
-									format: {
-										value: function (value, id) {
-											var format = d3.format('$');
-											return format(value);
-										}
-							
-									}
-								}
-							});
-			/*var chart2 = c3.generate({
-								bindto: '#PromD4',
-								data: {
-									x: 'x',
-							//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
-									columns: [
-										
-									],
-									type:"bar"
-								},
-								axis: {
-									x: {
-										type: 'timeseries',
-										tick: {
-											format: '%Y-%m-%d'
-										},
-									y: {
-											show: true,
-											tick: {
-												format: d3.format("$")
-											}
-										}
-									}
-								},
-								bar: {
-									width: {
-										ratio: 0.25// this makes bar width 50% of length between ticks
-									}
-								},
-								color: {
-								  pattern: ['#ff571c']
-								},
-								tooltip: {
-									format: {
-										value: function (value, id) {
-											var format = d3.format('$');
-											return format(value);
-										}
-							
-									}
-								}
-							});
-			var chart3 = c3.generate({
-								bindto: '#PromO4',
-								data: {
-									x: 'x',
-							//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
-									columns: [
-										
-									],
-									type:"bar"
-								},
-								axis: {
-									x: {
-										type: 'timeseries',
-										tick: {
-											format: '%Y-%m-%d'
-										},
-									y: {
-											show: true,
-											tick: {
-												format: d3.format("$")
-											}
-										}
-									}
-								},
-								bar: {
-									width: {
-										ratio: 0.25// this makes bar width 50% of length between ticks
-									}
-								},
-								color: {
-								  pattern: ['#ff571c']
-								},
-								tooltip: {
-									format: {
-										value: function (value, id) {
-											var format = d3.format('$');
-											return format(value);
-										}
-							
-									}
-								}
-							});
-			var chart4 = c3.generate({
-								bindto: '#PromTO4',
-								data: {
-									x: 'x',
-							//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
-									columns: [
-										
-									],
-									type:"bar"
-								},
-								axis: {
-									x: {
-										type: 'timeseries',
-										tick: {
-											format: '%Y-%m-%d'
-										},
-									y: {
-											show: true,
-											tick: {
-												format: d3.format("$")
-											}
-										}
-									}
-								},
-								bar: {
-									width: {
-										ratio: 0.25// this makes bar width 50% of length between ticks
-									}
-								},
-								color: {
-								  pattern: ['#ff571c']
-								},
-								tooltip: {
-									format: {
-										value: function (value, id) {
-											var format = d3.format('$');
-											return format(value);
-										}
-							
-									}
-								}
-							});
-							
-							*/
-		
-					</script>
+    
         
-        <?php
-		$titulo="['x'";
-		$meses="";
-		$total=0;
-		$contar=0;
-		$fechas[]="";
-		$fecha2=$nuevafecha;
-		$titulo.=",'".$fecha2."'";
-			$meses.=",'".($contar+1)."'";
-			$fechas[$contar]=$fecha2;
-			$contar++;	
-		while($fecha2<($ayer))
-		{
-			
-			
-			$nuevafecha2 = strtotime ( '+1 day' , strtotime ( $fecha2 ) ) ;
-			$fecha2 = date ( 'Y-m-d' , $nuevafecha2 );
-			$titulo.=",'".$fecha2."'";
-			$meses.=",'".($contar+1)."'";
-			$fechas[$contar]=$fecha2;
-			$contar++;			
-			
-		}
-		
-		if($ejecuta=mysqli_query(conexion($_SESSION['pais']),$squery))
-		{
-			if($ejecuta->num_rows>0)
-			{
-				$contar2=0;
-				while($row=mysqli_fetch_array($ejecuta,MYSQLI_NUM))
-				{
-					
-						//$titulo.=",'".substr($row[1],0,10)."'";
-						
-						$reem=(round($row[2],5,2));
-						$meses=verificarDato($reem,$fechas,$contar,substr($row[1],0,10),$meses);
-						$total=$total+round($row[2],10,2);
-				}
-				$meses=limpiarDato($reem,$fechas,$contar,"",$meses);
-				echo "
-							<script>
-							document.getElementById('total').innerHTML='".$lang[$idioma]['TotalDiaGraf']." ".toMoney($total)."';
-							chart.load({
-									columns: [
-										".$titulo."],
-										['Sales'".$meses."]
-												
-											]
-											
-									});
-							chart2.load({
-									columns: [
-										".$titulo."],
-										['Sales'".$meses."]
-												
-											]
-											
-									});
-							chart3.load({
-									columns: [
-										".$titulo."],
-										['Sales'".$meses."]
-												
-											]
-											
-									});
-							chart4.load({
-									columns: [
-										".$titulo."],
-										['Sales'".$meses."]
-												
-											]
-											
-									});
-							document.getElementById('PromD4').style.width = '59%';
-							document.getElementById('PromO4').style.width = '59%';
-							document.getElementById('PromTO4').style.width = '59%';
-							document.getElementById('total').innerHTML='".$lang[$idioma]['TotalDiaGraf']." ".toMoney($total)."';
-							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-							</script>
-							";
-			}
-			else
-			{
-				echo "
-							<script>
-							document.getElementById('PromD4').style.width = '59%';
-							document.getElementById('PromO4').style.width = '59%';
-							document.getElementById('PromTO4').style.width = '59%';
-							document.getElementById('total').innerHTML='".$lang[$idioma]['TotalDiaGraf']." ".toMoney($total)."';
-							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-							
-							</script>
-							";
-			}
-			mysqli_close(conexion($_SESSION['pais']));
-			
-		}
+    $resultado->free();    
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    }
+    $mysql->close();
+    
+    return printf($form);
 }
 
 
-function buscarBestFive($codigo,$fecha,$nuevafecha,$ayer,$cod2)
+function buscarBestFive($datos)
 {
-	$idioma=idioma();
-include('../idiomas/'.$idioma.'.php');
-$mas="";
-	if($cod2!='')
-	{
-		$mas="and en.ordsou='".$cod2."'";
-	}
-	$squery="select sum(en.grandtotal), tr.prodname,sum(de.qty),de.productid from tra_ord_enc en inner join tra_ord_det de on de.codorden=en.codorden inner join tra_bun_det tr on (tr.amazonsku=de.productid or tr.mastersku=de.productid) and tr.prodname IS NOT NULL where (en.timoford <= '".$fecha."' and en.timoford >= '".$nuevafecha."') $mas group by de.productid order by sum(qty) desc limit 5;";
-	//echo $squery;
-	 
-		?>
-                
-        <?php
-		
-		$meses="";
-		
-		$total=0;
-		
-		
-		if($ejecuta=mysqli_query(conexion($_SESSION['pais']),$squery))
-		{
-			if($ejecuta->num_rows>0)
-			{
-				$meses.="<table id=\"tablas\" style=\"font-size:12px;width:550px;\"  border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"hover tablas table\"><thead><th>".$lang[$idioma]['Nombre']."</th><th>".$lang[$idioma]['amazonSKU']."</th><th>".$lang[$idioma]['cantidadDespacho']."</th><th>".$lang[$idioma]['Sale']."</th></thead><tbody>";
-				while($row=mysqli_fetch_array($ejecuta,MYSQLI_NUM))
-				{
-					
-						
-						$meses.= "<tr><td>".$row[1]."</td><td>".$row[3]."</td><td>".$row[2]."</td><td>".toMoney($row[0])."</td></tr>";
-						
-						$total=$total+round($row[0],10,2);
-				}
-				
-				echo "
-							<script>
-							document.getElementById('best5').innerHTML='';
-							document.getElementById('best5').innerHTML='".$lang[$idioma]['Top5Unit']." <div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
-							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-							setTimeout(function(){\$('#cargaLoadG').dialog('close');},500);
-							</script>
-							";
-			}
-			else
-			{
-				echo "
-							<script>
-							document.getElementById('best5').innerHTML='';
-							document.getElementById('best5').innerHTML='".$lang[$idioma]['Top5Unit']." <div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
-							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-							setTimeout(function(){\$('#cargaLoadG').dialog('close');},500);
-							</script>
-							";
-			}
-			mysqli_close(conexion($_SESSION['pais']));
-			
-		}
-}
-function buscarBestFiveDolar($codigo,$fecha,$nuevafecha,$ayer,$cod2)
-{
-	$idioma=idioma();
-include('../idiomas/'.$idioma.'.php');
-$mas="";
-	if($cod2!='')
-	{
-		$mas="and en.ordsou='".$cod2."'";
-	}
-	$squery="select sum(en.grandtotal), tr.prodname,sum(de.qty),de.productid from tra_ord_enc en inner join tra_ord_det de on de.codorden=en.codorden inner join tra_bun_det tr on (tr.amazonsku=de.productid or tr.mastersku=de.productid) and tr.prodname IS NOT NULL where (en.timoford <= '".$fecha."' and en.timoford >= '".$nuevafecha."') $mas group by de.productid order by sum(en.grandtotal) desc limit 5;";
 	
-	 //echo $squery;
-		?>
-                
-        <?php
-		
-		$meses="";
-		
-		$total=0;
-		
-		
-		if($ejecuta=mysqli_query(conexion($_SESSION['pais']),$squery))
-		{
-			if($ejecuta->num_rows>0)
-			{
-				$meses.="<table id=\"tablas\" style=\"font-size:12px;width:550px;\"  border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"hover tablas table\"><thead><th>".$lang[$idioma]['Nombre']."</th><th>".$lang[$idioma]['amazonSKU']."</th><th>".$lang[$idioma]['cantidadDespacho']."</th><th>".$lang[$idioma]['Sale']."</th></thead><tbody>";
-				$contar2=0;
-				
-				while($row=mysqli_fetch_array($ejecuta,MYSQLI_NUM))
-				{
-					
-						
-						$meses.= "<tr><td>".$row[1]."</td><td>".$row[3]."</td><td>".$row[2]."</td><td>".toMoney($row[0])."</td></tr>";
-						
-						
-				}
-				
-				echo "
-							<script>
-							document.getElementById('best5D').innerHTML='';
-							document.getElementById('best5D').innerHTML='".$lang[$idioma]['Top5Dol']." <div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
-							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-							setTimeout(function(){\$('#cargaLoadG').dialog('close');},500);
-							
-							</script>
-							";
-			}
-			else
-			{
-				echo "
-							<script>
-							
-							document.getElementById('best5D').innerHTML='';
-							document.getElementById('best5D').innerHTML='".$lang[$idioma]['Top5Dol']." <div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".$meses."</tbody></table>';
-							setTimeout(function(){document.getElementById('chart').style.position='absolute';},200);
-							setTimeout(function(){\$('#cargaLoadG').dialog('close');},500);
-							</script>
-							";
-			}
-			mysqli_close(conexion($_SESSION['pais']));
-			
-		}
-}
-
-function buscarAveSales($codigo,$fecha,$nuevafecha,$ayer,$cod2)
-{
-	$idioma=idioma();
-include('../idiomas/'.$idioma.'.php');
 $mas="";
+$cod2=$datos[2];
+				if($cod2=='Moto')
+					{
+						$titulo="=1";
+					}
+					else
+					if($cod2=='Carro')
+					{
+						$titulo="=2";
+					}
+					else
+					
+					{
+						$titulo=" is NULL";
+					}
 	if($cod2!='')
 	{
-		$mas="and en.ordsou='".$cod2."'";
+		$mas="and p.tiporepuesto".$titulo."";
 	}
-	$squery="select sum(en.grandtotal), tr.prodname,sum(de.qty),de.productid from tra_ord_enc en inner join tra_ord_det de on de.codorden=en.codorden inner join tra_bun_det tr on (tr.amazonsku=de.productid or tr.mastersku=de.productid) and tr.prodname IS NOT NULL where (en.timoford <= '".$fecha."' and en.timoford >= '".$nuevafecha."') $mas group by de.productid order by sum(qty) desc limit 5;";
-	//echo $squery;
-	 
-		?>
-                
-        <?php
+	
+$mysql = conexionMysql();
+    $form="";
+ 
+ 
+ 	$fecha3 = date('Y-m-d');
+     
+ $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
+$fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
+    $sql = "SELECT sum(dv.subtotal),dv.cantidad,p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 and p.estado=1 $mas group by p.idproductos order by sum(dv.subtotal) desc limit 5;";
+	if($datos[0]<=$datos[1])
+	{	$meses="";
 		
-		$meses="";
+			
 		
-		$total=0;
-		
-		
-		if($ejecuta=mysqli_query(conexion($_SESSION['pais']),$squery))
-		{
-			if($ejecuta->num_rows>0)
+	
+    if($resultado = $mysql->query($sql))
+    {
+      
+		$meses.="<table id='tabla' class='bordered centered highlight responsive-table centrarT'><thead><th>Producto</th><th>Codigo</th><th>Cantidad</th><th>Venta</th></thead><tbody>";
+			if($resultado->num_rows>0)
 			{
-				$meses.="<table id=\"tablas\" style=\"font-size:12px;width:550px;\"  border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"hover tablas table\"><thead><th>".$lang[$idioma]['Nombre']."</th><th>".$lang[$idioma]['amazonSKU']."</th><th>".$lang[$idioma]['cantidadDespacho']."</th><th>".$lang[$idioma]['Sale']."</th></thead><tbody>";
-				while($row=mysqli_fetch_array($ejecuta,MYSQLI_NUM))
+				$contar2=0;
+				while($row= $fila = $resultado->fetch_row())
 				{
 					
+					$meses.= "<tr><td>".$row[2]."</td><td>".$row[3]."</td><td>".$row[1]."</td><td>".toMoney($row[0])."</td></tr>";
 						
-						$meses.= "<tr><td>".$row[1]."</td><td>".$row[3]."</td><td>".$row[2]."</td><td>".toMoney($row[0])."</td></tr>";
 						
-						$total=$total+round($row[0],10,2);
 				}
 				
 				echo "
 							<script>
 							document.getElementById('best5').innerHTML='';
-							document.getElementById('best5').innerHTML='".$lang[$idioma]['Top5Unit']." <div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
-							setTimeout(function(){\$('#cargaLoadG').dialog('close');},500);
+							document.getElementById('best5').innerHTML='Top 5 Prodcutos mas vendidos<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
+							
 							</script>
 							";
 			}
@@ -716,14 +359,122 @@ $mas="";
 				echo "
 							<script>
 							document.getElementById('best5').innerHTML='';
-							document.getElementById('best5').innerHTML='".$lang[$idioma]['Top5Unit']." <div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
-							setTimeout(function(){\$('#cargaLoadG').dialog('close');},500);
+							document.getElementById('best5').innerHTML='Top 5 Prodcutos mas vendidos<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
+							
 							</script>
 							";
 			}
-			mysqli_close(conexion($_SESSION['pais']));
 			
-		}
+    
+        
+    $resultado->free();    
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    }
+    $mysql->close();
+    
+    return printf($form);
+				
+				
+}
+function buscarBestFiveQ($datos)
+{
+	
+$mas="";
+$cod2=$datos[2];
+				if($cod2=='Moto')
+					{
+						$titulo="=1";
+					}
+					else
+					if($cod2=='Carro')
+					{
+						$titulo="=2";
+					}
+					else
+					
+					{
+						$titulo=" is NULL";
+					}
+	if($cod2!='')
+	{
+		$mas="and p.tiporepuesto".$titulo."";
+	}
+	
+$mysql = conexionMysql();
+    $form="";
+ 
+ 
+ 	$fecha3 = date('Y-m-d');
+     
+ $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
+$fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
+    $sql = "SELECT sum(dv.subtotal),dv.cantidad,p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 and p.estado=1 $mas group by p.idproductos order by dv.cantidad desc limit 5;";
+	if($datos[0]<=$datos[1])
+	{	$meses="";
+		
+			
+		
+	
+    if($resultado = $mysql->query($sql))
+    {
+      
+		$meses.="<table id='tabla' class='bordered centered highlight responsive-table centrarT'><thead><th>Producto</th><th>Codigo</th><th>Cantidad</th><th>Venta</th></thead><tbody>";
+			if($resultado->num_rows>0)
+			{
+				$contar2=0;
+				while($row= $fila = $resultado->fetch_row())
+				{
+					
+					$meses.= "<tr><td>".$row[2]."</td><td>".$row[3]."</td><td>".$row[1]."</td><td>".toMoney($row[0])."</td></tr>";
+						
+						
+				}
+				
+				echo "
+							<script>
+							document.getElementById('best5Q').innerHTML='';
+							document.getElementById('best5Q').innerHTML='Top 5 Prodcutos mas solicitados<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
+							
+							</script>
+							";
+			}
+			else
+			{
+				echo "
+							<script>
+							document.getElementById('best5Q').innerHTML='';
+							document.getElementById('best5Q').innerHTML='Top 5 Prodcutos mas solicitados<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
+							
+							</script>
+							";
+			}
+			
+    
+        
+    $resultado->free();    
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    }
+    $mysql->close();
+    
+    return printf($form);
+				
+				
 }
 function verificarDato($reem,$fechas,$contar,$fecha,$meses)
 {

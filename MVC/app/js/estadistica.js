@@ -1,4 +1,4 @@
-function cargarGrafico(tipo)
+function cargarGrafico(tipo,mas)
 {
 	var  trasDato;
 	trasDato = tipo;
@@ -8,7 +8,7 @@ function cargarGrafico(tipo)
             $.ajax({
                 url:"../core/controlador/estadisticaControlador.php",
                 type: 'POST',
-                data: 'fechaini='+fechaini+'&fechafin='+fechafin+'&trasDato=' + trasDato,
+                data: 'fechaini='+fechaini+'&fechafin='+fechafin+'&mas='+mas+'&trasDato=' + trasDato,
                 success: function (resp) {
                     $('#comoGraficar').html(resp);
                 }

@@ -277,7 +277,7 @@ function limpiarProducto()
 	$('#agregarProd').show();
 	$('#nombreC').focus();
 	$('#precioM').val(''); 
-	document.getElementById('retoCompra').hidden=true;
+	
 	
 }
 
@@ -304,7 +304,7 @@ function buscarNIT(nit)
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/VentasControlador.php",
+            url:"../core/controlador/ventasControlador.php",
             data:' nit=' +  nit + '&trasDato=' + trasDato,
             success: function(resp)
             {
@@ -336,7 +336,7 @@ function iniciarVenta(id)
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/VentasControlador.php",
+            url:"../core/controlador/ventasControlador.php",
             data:' prov=' +  id + '&tipo=' + tipo + '&trasDato=' + trasDato,
             success: function(resp)
             {
@@ -441,7 +441,7 @@ function guardarCompra()
 		
        $.ajax ({
             type:"POST",
-            url:"../core/controlador/VentasControlador.php",
+            url:"../core/controlador/ventasControlador.php",
             data:'trasDato=' + trasDato,
             success: function(resp)
             {
@@ -474,7 +474,7 @@ function cargarDetalleVentas(id)
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/VentasControlador.php",
+            url:"../core/controlador/ventasControlador.php",
             data:' id=' +  id + '&trasDato=' + trasDato,
             success: function(resp)
             {
@@ -578,7 +578,7 @@ function buscaMarca(obj)
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/VentasControlador.php",
+            url:"../core/controlador/ventasControlador.php",
             data:' id=' +  prod + '&trasDato=' + trasDato,
             success: function(resp)
             {
@@ -651,7 +651,7 @@ function cambiarTipo(tipo,id)
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/VentasControlador.php",
+            url:"../core/controlador/ventasControlador.php",
             data:' tipo=' +  tipo + '&id=' + id + '&trasDato=' + trasDato,
             success: function(resp)
             {
@@ -686,7 +686,7 @@ function agregarFacturaVenta(tipo,id)
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/VentasControlador.php",
+            url:"../core/controlador/ventasControlador.php",
             data:' tipo=' +  tipo + '&id=' + id + '&trasDato=' + trasDato,
             success: function(resp)
             {

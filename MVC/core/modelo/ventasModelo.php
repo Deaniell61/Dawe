@@ -8,7 +8,7 @@ function  buscarCliente($nit)
     $mysql = conexionMysql();
     $form="";
     $sql = "SELECT nit,nombre,direccion,apellido,idcliente FROM cliente WHERE nit='$nit' or nombre='$nit'";
- 
+ 	echo $sql;
     if($resultado = $mysql->query($sql))
     {
       if($resultado->num_rows>0)
@@ -109,7 +109,7 @@ function quitaInventario($datos)
 	session_start();
 	$mysql->query("BEGIN");
 	
-	$cont=$mysql->query("select cantidad from inventario where idproducto='".$datos[0]."'");
+	$cont=$mysql->query("select cantidad from inventario where idProducto='".$datos[0]."'");
 			 
 				 $fila = $cont->fetch_row();
 				 
@@ -121,28 +121,28 @@ function quitaInventario($datos)
 	{			 
 		
 			 
-    $sql = "update inventario set cantidad=cantidad-".$datos[1]." where idproducto='".$datos[0]."'";
- 	
+    $sql = "update inventario set cantidad=cantidad-".$datos[1]." where idProducto='".$datos[0]."'";
+
     if($mysql->query($sql))
     {
 			
 				 	
 			//		 echo "<script>window.location.href = 'Ventas.php';/script>";
 					//echo '2';
-			if(!$mysql->query("update ventas set estado=1 where idventas='".$_SESSION['idVenta']."'"))
+			if(!$mysql->query("update ventas set estado=1 where idVentas='".$_SESSION['idVenta']."'"))
 					 {
 						
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update cuentasCobrar set estado=1 where idcliente='".$datos[0]."'"))
+					 if(!$mysql->query("update cuentascobrar set estado=1 where idCliente='".$datos[0]."'"))
 			 		{
 						
 				 		$mysql->query("ROLLBACK");
 			 		}
 					
 					else
-					if(!$mysql->query("update ventasdetalle set estado=1 where idventa='".$_SESSION['idVenta']."'"))
+					if(!$mysql->query("update ventasdetalle set estado=1 where idVenta='".$_SESSION['idVenta']."'"))
 					 {
 						 
 						 $mysql->query("ROLLBACK");
@@ -150,7 +150,7 @@ function quitaInventario($datos)
 					 else
 					 {	     
 			 
-			 
+			 			echo "si se pudo";
 		
     					$mysql->query("COMMIT");
 					}
@@ -191,7 +191,7 @@ function ingresoVenta($datos)
 	$total=$datos[6]*$datos[1];
 	if($datos[1]>0)
 	{				 
-    $sql = "INSERT INTO ventasDetalle(cantidad,precio,estado,idventa,idproductos,subtotal) values('".$datos[1]."','".$datos[6]."',2,'".$_SESSION['idVenta']."',".$datos[0].",".$total.")";
+    $sql = "INSERT INTO ventasdetalle(cantidad,precio,estado,idventa,idproductos,subtotal) values('".$datos[1]."','".$datos[6]."',2,'".$_SESSION['idVenta']."',".$datos[0].",".$total.")";
  
     if($mysql->query($sql))
     {
@@ -203,7 +203,7 @@ function ingresoVenta($datos)
 					 }
 					 else
 					 
-					 if(!$mysql->query("update cuentasCobrar set total=total+".$total.",CreditoDado=CreditoDado+".$total." where idcliente='".$datos[7]."'"))
+					 if(!$mysql->query("update cuentascobrar set total=total+".$total.",CreditoDado=CreditoDado+".$total." where idcliente='".$datos[7]."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");
@@ -302,7 +302,7 @@ function  buscarPrecioProductoVenta($dato)
     $mysql = conexionMysql();
     $form="";
     $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,p.marca2,p.tipoRepuesto FROM inventario i inner join productos p on p.idproductos=i.idproducto WHERE p.idproductos='".$dato[0]."' ";
- 	
+ 	echo $sql;
     if($resultado = $mysql->query($sql))
     {
       if($resultado->num_rows>0)
@@ -509,12 +509,21 @@ function anularDetalleVenta($datos)
     $form="";
 	session_start();
 		$mysql->query("BEGIN");
-    $sql = "delete from ventasdetalle where idventadetalle='".$datos[0]."'";
+	 $sql = "update ventas set total=total-(select subtotal from ventasdetalle where idventadetalle='".$datos[0]."') where idventas=(select d.idventa from ventasdetalle d where d.idventadetalle='".$datos[0]."')";
+    
 //echo $sql;
     if($mysql->query($sql))
     {
+		if(!$mysql->query("delete from ventasdetalle where idventadetalle='".$datos[0]."'"))
+		{
+			$mysql->query("ROLLBACK");
+		}
+		else
+		{
 		
-		$mysql->query("COMMIT");
+			$mysql->query("COMMIT");
+		}
+		
 			    
 		$form = "<script>cargarDetalleVentas('".$_SESSION['idVenta']."');</script>";
     

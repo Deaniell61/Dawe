@@ -204,6 +204,8 @@ function anularVenta(id)
 	var  trasDato;
 	trasDato = 10;
 
+	if(confirm("Desea anular esta venta?"))
+		{
         $.ajax
         ({
             type:"POST",
@@ -231,6 +233,7 @@ function anularVenta(id)
 
             }     
         });
+		}
 }
 
 function verificaProductoVenta()

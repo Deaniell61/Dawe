@@ -10,11 +10,12 @@ if($_POST)
   
     if($transaccion == 1)
     {
-        $datos[0] = $_POST['prod'];
-		$datos[0] = $_POST['prod'];
-		$datos[0] = $_POST['prod'];
-         
-        graficoProductos($datos);
+        $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+       
+
+        
+        graficaVentasPie($datos);
         
         
     
@@ -27,29 +28,30 @@ if($_POST)
         
           
 
-        
-         $datos[0] = $_POST['prod'];
+        $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+		  $datos[2] = $_POST['mas'];
        
 
         
-        seleccionaEmpleado($datos);
+        buscarBestFive($datos);
+         
         
     
     }
-    else if($transaccion == 3)
+    else if($transaccion ==3)
     {
         
           
 
-        
-         $datos[0] = $_POST['id'];
-		 $datos[1] = $_POST['fecha'];
-		 $datos[2] = $_POST['descripcion'];
-		 $datos[3] = $_POST['monto'];
+        $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+		  $datos[2] = $_POST['mas'];
        
 
         
-        ingresaSueldo($datos);
+        buscarBestFiveQ($datos);
+         
         
     
     }
@@ -88,7 +90,7 @@ if($_POST)
        
 
         
-        graficaVendedoresBarra($datos);
+        graficaVentasBarra($datos);
         
     
     }

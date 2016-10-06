@@ -172,6 +172,8 @@ function anularCompra(id)
 	var  trasDato;
 	trasDato = 10;
 
+		if(confirm("Desea anular esta compra?"))
+		{
         $.ajax
         ({
             type:"POST",
@@ -199,6 +201,7 @@ function anularCompra(id)
 
             }     
         });
+		}
 }
 
 function verificaProductoCompra()

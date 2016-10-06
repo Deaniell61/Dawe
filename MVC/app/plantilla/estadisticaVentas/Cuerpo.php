@@ -38,7 +38,7 @@
     			                 <div class="input-field col s6">
 
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaI" class="fechas" type="date" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" onChange="cargarGrafico('6');">
+								  <input  id="fechaI" class="fechas" type="date" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" onChange="cargarGrafico('6','');cargarGrafico('1','');cargarGrafico('2','');cargarGrafico('3','');">
 								  <label class="active" for="fecha" >Fecha de Inicio</label>
 
 								</div>
@@ -46,7 +46,7 @@
     		                      <div class="input-field col s6">
 
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaF" class="fechas" type="date" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" onChange="cargarGrafico('6');">
+								  <input  id="fechaF" class="fechas" type="date" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" onChange="cargarGrafico('6','');cargarGrafico('1','');cargarGrafico('2','');cargarGrafico('3','');">
 								  <label class="active" for="fecha" >Fecha Final</label>
 								</div>
 
@@ -57,47 +57,20 @@
           <div class="" id="chart">
         
           </div>
-          <div  id="" class="  ">
-            cuerpo
-          </div>
+         
         </div>
         <div class="col s6 ">
-          <div class="">
+          <div class="" id="chart2">
           Grafica Grande 2
           </div>
-          <div  id="" class="  ">
-            cuerpo
-          </div>
+          
         </div>
-        <div class="col s4 borde ">
-            <div class="">
-            Grafica pequeña 1
-            </div>
-            <div  id="" class="  ">
-              cuerpo
-            </div>
-        </div>
-        <div class="col s4 borde ">
-          <div class="">
-          Grafica pequeña 2
-          </div>
-            <div  id="" class=" ">
-              cuerpo
-            </div>
-        </div>
-        <div class="col s4 borde">
-          <div class=" ">
-          Grafica pequeña 3
-          </div>
-            <div  id="" class=" ">
-              cuerpo
-            </div>
-        </div>
+     
 
-        <div class="col s6 ">
+        <div class="col s6 " id="best5">
               Tabla 1
         </div>
-        <div class="col s6 ">
+        <div class="col s6 " id="best5Q">
             Tabla  2
         </div>
       </div>
@@ -105,20 +78,13 @@
 
 
 
-<div>
-<div id="best5" style="display: inline-table;width: 550px;height: 250px;text-align: left;" ></div>
-<div id="best5D" style="display: inline-table;width: 550px;height: 250px;text-align: left;"></div>
-</div>
-
-
 
 <div id="comoGraficar">
 <script>
-cargarGrafico('6');
-/*cargarGrafico('2',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
-cargarGrafico('3',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
-cargarGrafico('4',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');
-cargarGrafico('5',document.getElementById('filtro').value,'<?php echo $_SESSION['codprov'];?>','');*/
+cargarGrafico('6','');
+cargarGrafico('1','');
+cargarGrafico('2','');
+cargarGrafico('3','');
 
 </script>
 </div>

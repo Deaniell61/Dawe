@@ -535,13 +535,19 @@ function anularDetalleCompra($datos)
     $form="";
 	session_start();
 		$mysql->query("BEGIN");
-    $sql = "delete from compradetalle where idcompradetalle='".$datos[0]."'";
+    $sql = "update compras set total=total-(select subtotal from compradetalle where idcompradetalle='".$datos[0]."') where idcompras=(select d.idcompras from compradetalle d where d.idcompradetalle='".$datos[0]."')";
 //echo $sql;
     if($mysql->query($sql))
     {
 		
-		$mysql->query("COMMIT");
-			    
+		if(!$mysql->query("delete from compradetalle where idcompradetalle='".$datos[0]."'"))
+		{
+			$mysql->query("ROLLBACK");
+		}
+		else
+		{
+			$mysql->query("COMMIT");
+		}
 		$form = "<script>cargarDetalleCompras('".$_SESSION['idCompra']."');</script>";
     
     }
