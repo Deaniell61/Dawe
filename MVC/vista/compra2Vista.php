@@ -5,6 +5,12 @@ function mostrarCompras()
 {
 
 
+$busca="";
+	
+	if($_SESSION['SOFT_ROL']!='1')
+	{
+		$busca="and c.idusuario='".$_SESSION['SOFT_USER_ID']."'";
+	}
 
     //creacion de la tabla
 ?>
@@ -26,7 +32,7 @@ function mostrarCompras()
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,(select tv.Descripcion from tipocompra tv where tv.idtipo=c.tipocompra),c.idcompras FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor where c.estado=1 order by c.fecha desc";
+    $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,(select tv.Descripcion from tipocompra tv where tv.idtipo=c.tipocompra),c.idcompras FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor where c.estado=1 $busca order by c.fecha desc";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {

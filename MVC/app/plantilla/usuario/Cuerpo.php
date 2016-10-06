@@ -118,6 +118,15 @@
                         </select>
 
                     </div>
+                    
+                    <div class="input-field col s10">
+                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/rolActivo.png"/></i>
+                        <select class="selectrol" id="emple">
+                            <option value="" disabled selected>Selecione un Empleado</option>
+                           		<?php  comboEmpleados();?>
+                        </select>
+
+                    </div>
 
                       <div class="input-field col s10">
 						  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/modulo.png"/></i>

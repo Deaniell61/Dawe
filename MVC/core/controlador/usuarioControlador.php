@@ -34,9 +34,10 @@ if($_POST)
         $user = $_POST['user'];
         $pass = $_POST['pass'];
         $rol = $_POST['rol'];
+        $empleado = $_POST['empleado'];
 
         
-        insertarUsuario($user, $pass,$rol);
+        insertarUsuario($user, $pass,$rol,$empleado);
         
     
     }
@@ -69,9 +70,9 @@ if($_POST)
         $pass = $_POST['pass'];
         $rol = $_POST['rol'];
 		 $id = $_POST['id'];
-
+		$empleado = $_POST['empleado'];
         
-        actualizarUsuario($user, $pass,$rol,$id);
+        actualizarUsuario($user, $pass,$rol,$id,$empleado);
 
     }
 	else if($transaccion == 6)

@@ -5,7 +5,12 @@
   {
 
 
-
+$busca="";
+	
+	if($_SESSION['SOFT_ROL']!='1')
+	{
+		$busca="and c.idusuario='".$_SESSION['SOFT_USER_ID']."'";
+	}
       //creacion de la tabla
   ?>
 
@@ -26,7 +31,7 @@
           <?php
   	$extra="";
       $mysql = conexionMysql();
-      $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,(select tv.Descripcion from tipoventa tv where tv.idtipo=c.tipoventa),c.idventas FROM ventas c inner join cliente p on p.idcliente=c.idcliente where c.estado=1 order by c.fecha desc";
+      $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,(select tv.Descripcion from tipoventa tv where tv.idtipo=c.tipoventa),c.idventas FROM ventas c inner join cliente p on p.idcliente=c.idcliente where c.estado=1 $busca order by c.fecha desc";
       $tabla="";
       if($resultado = $mysql->query($sql))
       {

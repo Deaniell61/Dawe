@@ -87,12 +87,12 @@ function cargarModulos($idUser)
 
 
 
-function insertarUsuario($user, $pass, $rol)
+function insertarUsuario($user, $pass, $rol, $empleado)
 {
     
     
 
-    $sql = "INSERT INTO usuarios (user, contra, idrol,estado) VALUES ('$user','$pass',$rol,1)";
+    $sql = "INSERT INTO usuarios (user, contra, idrol,estado,idempleados) VALUES ('$user','$pass',$rol,1,'$empleado')";
     
     $mysql = conexionMysql(); 
     
@@ -156,7 +156,7 @@ function  editarUsuario($idedit)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT user,contra,idrol,idusuarios FROM usuarios WHERE idusuarios=$idedit";
+    $sql = "SELECT user,contra,idrol,idusuarios,idempleados FROM usuarios WHERE idusuarios=$idedit";
  
     if($resultado = $mysql->query($sql))
     {
@@ -168,6 +168,7 @@ function  editarUsuario($idedit)
     $form .=" \$('#user').val('".$fila[0]."');\$('#user').focus();\n";
 	$form .=" \$('#codigo').val('".$fila[3]."');\$('#codigo').focus();\n";
 	$form .=" document.getElementById('rol').value='".$fila[2]."';\n";
+	$form .=" document.getElementById('emple').value='".$fila[4]."';\n";
    // $form .="/* \$('#password').val('".$fila[1]."');\$('#password').focus();*/\n";
     $form .=" \$('#btnActualizar').show();\n";
     $form .=" \$('#btnInsertar').hide();  \n";
@@ -220,17 +221,17 @@ function  editarUsuario($idedit)
     
 }
 
-function actualizarUsuario($user, $pass, $rol,$id)
+function actualizarUsuario($user, $pass, $rol,$id,$idempleados)
 {
 	
     if($pass=="")
 	{
 
-    	$sql = "UPDATE usuarios set user='$user', idrol=$rol where idusuarios=$id";
+    	$sql = "UPDATE usuarios set user='$user', idrol=$rol,idempleados='".$idempleados."' where idusuarios=$id";
 	}
 	else
 	{
-		$sql = "UPDATE usuarios set user='$user', idrol=$rol,contra='$pass' where idusuarios=$id ";
+		$sql = "UPDATE usuarios set user='$user', idrol=$rol,contra='$pass',idempleados='".$idempleados."' where idusuarios=$id ";
 	}
 	
     $mysql = conexionMysql(); 

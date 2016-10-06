@@ -58,7 +58,7 @@ function verificaEnter(evt)
 	
 	if(evt.keyCode=='13')
 	{
-		alert(2);
+		
 		eliminaFun();
 	}
 }
@@ -262,13 +262,14 @@ $('#btnInsertar').click(function(){
 		pass = $('#password').val();
 		
 		rol = $('#rol').val();
+		empleado = $('#emple').val();
 		
 		trasDato = 2;
 		$.ajax
 		({
 			type:"POST",
 			url:"../core/controlador/usuarioControlador.php",
-			data:' user=' +  user + '&pass=' + pass + '&rol=' + rol + '&trasDato=' + trasDato,
+			data:' user=' +  user + '&pass=' + pass + '&empleado=' + empleado + '&rol=' + rol + '&trasDato=' + trasDato,
 			success: function(resp)
 			{
 				
@@ -431,12 +432,13 @@ function actualizarUsuario()
 		pass = $('#password').val();
 		
 		rol = $('#rol').val();
+		empleado = $('#emple').val();
 		document.getElementById('Modulos').hidden=true;
 		$.ajax
 		({
 			type:"POST",
 			url:"../core/controlador/usuarioControlador.php",
-			data:' user=' +  user + '&pass=' + pass + '&rol=' + rol+ '&id=' + idedit + '&trasDato=' + trasDato,
+			data:' user=' +  user + '&empleado=' + empleado + '&pass=' + pass + '&rol=' + rol+ '&id=' + idedit + '&trasDato=' + trasDato,
 			success: function(resp)
 			{
 				
@@ -498,12 +500,13 @@ $('#btnActualizar').click(function()
 		pass = $('#password').val();
 		
 		rol = $('#rol').val();
+		empleado = $('#emple').val();
 		document.getElementById('Modulos').hidden=true;
 		$.ajax
 		({
 			type:"POST",
 			url:"../core/controlador/usuarioControlador.php",
-			data:' user=' +  user + '&pass=' + pass + '&rol=' + rol+ '&id=' + idedit + '&trasDato=' + trasDato,
+			data:' user=' +  user + '&empleado=' + empleado + '&pass=' + pass + '&rol=' + rol+ '&id=' + idedit + '&trasDato=' + trasDato,
 			success: function(resp)
 			{
 				
