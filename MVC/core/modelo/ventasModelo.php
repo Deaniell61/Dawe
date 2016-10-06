@@ -135,7 +135,7 @@ function quitaInventario($datos)
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update cuentascobrar set estado=1 where idCliente='".$datos[0]."'"))
+					 if(!$mysql->query("update cuentascobrar set estado=1 where idCliente='".$datos[2]."'"))
 			 		{
 						
 				 		$mysql->query("ROLLBACK");

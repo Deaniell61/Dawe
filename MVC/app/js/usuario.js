@@ -53,7 +53,15 @@ $('#modalnuevo').click(function(){
 	
 	
 });
-
+function verificaEnter(evt)
+{
+	
+	if(evt.keyCode=='13')
+	{
+		alert(2);
+		eliminaFun();
+	}
+}
 function cerrarEsto()
 {
 	if(document.getElementById('codigo').value!="")
@@ -335,7 +343,34 @@ $('.eliminar').click(function(event)
 
 
 
+function eliminaFun()
+{
+	
+			var idelim,pass, trasDato; 
+			
+            idelim=gobIDElim;
+            pass=$('#contraElim').val();
+            trasDato = 3;
+    		
+            if(confirm("Si elimina el usuario, eliminara todos los datos del mismo"))
+			{
+            $.ajax
+            ({
+                type:"POST",
+                url:"../core/controlador/usuarioControlador.php",
+                data:'idelim=' + idelim  + '&pass=' + pass  + '&trasDato=' + trasDato,
+                success: function(resp)
+                {
+                   
+						$('#mensajeElim').html(resp);
+                        //setTimeout(window.location.reload(), 3000);
 
+
+                   
+                }     
+            });
+			}
+}
 
 
 function editar(id)

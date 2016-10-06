@@ -178,7 +178,7 @@
 
                         <div class="input-field col s10">
                             <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
-                            <input id="contraElim" type="password" class="validate">
+                            <input id="contraElim" type="password" class="validate" onKeyUp="verificaEnter(event);">
                             <label for="icon_telephone" ><span class="etiquelogin">Contraseña</span></label>
                         </div>
 
