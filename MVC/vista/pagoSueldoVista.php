@@ -42,7 +42,7 @@ function mostrarSueldo()
 
                 $tabla .= "<tr>";
 
-                $tabla .="<td>"     .$fila["1"].    "</td>";
+                $tabla .="<td>"     .substr($fila["1"],0,10).    "</td>";
                 $tabla .="<td>" .$fila["2"]." " .$fila["3"]."</td>";
                 $tabla .="<td>" .$fila["4"].      "</td>";
 				$tabla .="<td>" .toMoney($fila["5"]).      "</td>";

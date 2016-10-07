@@ -40,7 +40,7 @@ function mostrarCuentasC()
 
                 $tabla .= "<tr>";
 
-                $tabla .="<td>"     .$fila["0"].    "</td>";
+                $tabla .="<td>"     .substr($fila["0"],0,10).    "</td>";
                 $tabla .="<td>" .$fila["2"].      " " .$fila["3"].      "</td>";
                 $tabla .="<td>" .toMoney($fila["1"]).      "</td>";
 				if($_SESSION['SOFT_ACCESOModifica'.'cuentas']=='1')

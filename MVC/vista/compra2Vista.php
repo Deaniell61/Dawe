@@ -50,7 +50,7 @@ $busca="";
 
                 $tabla .= "<tr>";
 
-                $tabla .="<td>"     .$fila["0"].    "</td>";
+                $tabla .="<td>"     .substr($fila["0"],0,10).    "</td>";
                 $tabla .="<td>" .$fila["1"].      "</td>";
                 $tabla .="<td>" .$fila["2"].      "</td>";
 				$tabla .="<td>" .$fila["3"].      "</td>";

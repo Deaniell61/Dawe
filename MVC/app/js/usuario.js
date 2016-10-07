@@ -291,7 +291,7 @@ $('#btnInsertar').click(function(){
 				else
 				{
 					passHabilita=0;
-					
+					//$('#mensaje').html(resp);  
 					setTimeout(window.location.reload(), 3000);
 	
 	

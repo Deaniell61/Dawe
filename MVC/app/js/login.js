@@ -52,14 +52,14 @@ function login()
       success: function(resp)
        {
          
-           if(resp == '1')
+           if(resp == 1)
                {
                    
                   $('#mensajeI').css("display","block");         
                    $('#precargar').css("display","none");    
                }
            else
-		   if(resp == '2')
+		   if(resp == 2)
                {
                    
                   $('#mensajeI').css("display","block");         

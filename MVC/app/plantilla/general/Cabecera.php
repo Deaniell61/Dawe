@@ -52,7 +52,8 @@ function nitificaciones()
 				}
 				$nuevafecha1 = strtotime ( '+'.$fila[2].' '.$tipoPlazo , strtotime ( $fecha1 ) ) ;
 				$fecha1 = date ( 'Y-m-d' , $nuevafecha1 );
-				if($fecha1<=$fecha3)
+				//echo $fecha1."  ".$hoy;
+				if($fecha1<=$hoy)
 				{
 					
 					$_SESSION['notified1'][($contador)] = $fila[4]." ".$fila[5]."  ".toMoney($fila[3]);//substr($fila[0],0,10);
@@ -105,7 +106,7 @@ function nitificaciones()
 				}
 				$nuevafecha1 = strtotime ( '+'.$fila[2].' '.$tipoPlazo , strtotime ( $fecha1 ) ) ;
 				$fecha1 = date ( 'Y-m-d' , $nuevafecha1 );
-				if($fecha1<=$fecha3)
+				if($fecha1<=$hoy)
 				{
 					
 					$_SESSION['notified22'][($contP)] = $fila[4]." sfsd ".toMoney($fila[3]);//substr($fila[0],0,10);

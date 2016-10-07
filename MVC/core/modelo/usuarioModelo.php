@@ -33,18 +33,18 @@ function login($user, $pass)
 			}
 			else
 			{  
-				echo 1;
+				echo '1';
 			}
 		}
 		else
 		{  
-			echo 2;
+			echo '2';
 		}
 		
     }
     else
     {  
-        echo 1;
+        echo '1';
     }
     
     
@@ -94,9 +94,16 @@ function cargarModulos($idUser)
 function insertarUsuario($user, $pass, $rol, $empleado)
 {
     
-    
+    if($empleado=="" || $empleado=="null")
+	{
+		$sql = "INSERT INTO usuarios (user, contra, idrol,estado) VALUES ('$user','$pass',$rol,1)";
+	}
+	else
+	{
+		$sql = "INSERT INTO usuarios (user, contra, idrol,estado,idempleados) VALUES ('$user','$pass',$rol,1,'$empleado')";
+	}
 
-    $sql = "INSERT INTO usuarios (user, contra, idrol,estado,idempleados) VALUES ('$user','$pass',$rol,1,'$empleado')";
+    //echo $sql;
     
     $mysql = conexionMysql(); 
     
@@ -230,12 +237,29 @@ function actualizarUsuario($user, $pass, $rol,$id,$idempleados)
 	
     if($pass=="")
 	{
+		if($idempleados=="" || $idempleados=="null")
+		{
+			$sql = "UPDATE usuarios set user='$user', idrol=$rol where idusuarios=$id";
+		}
+		else
+		{
+			$sql = "UPDATE usuarios set user='$user', idrol=$rol,idempleados='".$idempleados."' where idusuarios=$id";
+		}
 
-    	$sql = "UPDATE usuarios set user='$user', idrol=$rol,idempleados='".$idempleados."' where idusuarios=$id";
+    	
 	}
 	else
 	{
-		$sql = "UPDATE usuarios set user='$user', idrol=$rol,contra='$pass',idempleados='".$idempleados."' where idusuarios=$id ";
+		
+		if($idempleados=="" || $idempleados=="null")
+		{
+			$sql = "UPDATE usuarios set user='$user', idrol=$rol,contra='$pass' where idusuarios=$id ";
+		}
+		else
+		{
+			$sql = "UPDATE usuarios set user='$user', idrol=$rol,contra='$pass',idempleados='".$idempleados."' where idusuarios=$id ";
+		}
+		
 	}
 	
     $mysql = conexionMysql(); 

@@ -8,8 +8,10 @@
 
         <link rel="stylesheet" href="../app/css/estadistica.css">
         <link href="../app/css/lib/c3.css" rel="stylesheet" type="text/css">
+        <?php include('../app/plantilla/general/libJs.php');   ?>
         <script src="../app/js/lib/d3.v3.min.js" charset="utf-8"></script>
 		<script src="../app/js/lib/c3.min.js"></script>
+        <script type="text/javascript" src="../app/js/estadistica.js"></script>
     </head>
     <body>
 

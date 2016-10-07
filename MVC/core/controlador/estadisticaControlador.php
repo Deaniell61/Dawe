@@ -61,12 +61,12 @@ if($_POST)
           
 
         
-         $datos[0] = $_POST['id'];
-		 $datos[1] = $_POST['contra'];
-       
+         $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+
 
         
-        anularSueldo($datos);
+        graficaVendedoresBarra($datos);
         
     
     }
