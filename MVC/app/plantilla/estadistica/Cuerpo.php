@@ -17,6 +17,6 @@
 <br>
 <br>
 
-<div>
+<div id="contenidoCrud">
    <img id="iniciologo" src="../app/img/marcadeaguadehectorrepuesto.png" class="marcaagua">
    </div>

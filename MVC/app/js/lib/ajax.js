@@ -12,7 +12,16 @@ $('#logoutR').click(function(){
     cerrarSesion();
 	
 });
+$('.row').click(function(){
 
+    document.getElementById('globoNotificacion').hidden=true;
+	
+});
+$('#contenidoCrud').click(function(){
+
+    document.getElementById('globoNotificacion').hidden=true;
+	
+});
 
 function cerrarSesion()
 {

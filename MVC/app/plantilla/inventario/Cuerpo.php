@@ -10,7 +10,7 @@
                         <div class="lipUsuario">
                             <li class="centrarli"><a id="inventarioV" href="#" class="yellow darken-4 btn white-text tamatabsa "><i class="material-icons left"><img class="iconotab" src="../app/img/empleado.png" /></i>Vendedor</a></li>
                              <?php
-	  if($_SESSION['SOFT_ROL']=='1' or $_SESSION['SOFT_ROL']=='3')
+	  if($_SESSION['SOFT_ROL']=='1' or $_SESSION['SOFT_ROL']=='0' or $_SESSION['SOFT_ROL']=='3')
 				{
 	  ?>
                             <li class="centrarli"><a id="inventarioA" href="#" class="yellow darken-3   btn white-text  tamatabsa1"><i class="material-icons left"><img class="iconotab" src="../app/img/avatar.png" /></i>Administrador</a></li>
@@ -20,7 +20,7 @@
 					   ?>
                        
                   <?php
-	  if($_SESSION['SOFT_ROL']=='1')
+	  if($_SESSION['SOFT_ROL']=='0')
 				{
 	  ?>
                             <li class="centrarli"><a id="inventarioI" href="#" class="yellow darken-3   btn white-text  tamatabsa"><i class="material-icons left"><img class="iconotab" src="../app/img/avatar.png" /></i>Inicial</a></li>

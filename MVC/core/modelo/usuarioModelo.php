@@ -23,6 +23,10 @@ function login($user, $pass)
 				$_SESSION['SOFT_USER_ID']=$fila['4'];
 				$_SESSION['idCompra']="";
 				$_SESSION['idVenta']="";
+				$_SESSION['notified']="";
+				$_SESSION['notified2']="";
+				$_SESSION['notified1']="";
+				$_SESSION['notified22']="";
 		   
 		   			cargarModulos($_SESSION['SOFT_USER_ID']);
 				echo "Modulo/Inicio.php";

@@ -7,7 +7,7 @@ function mostrarCompras()
 
 $busca="";
 	
-	if($_SESSION['SOFT_ROL']!='1')
+	if($_SESSION['SOFT_ROL']!='1' && $_SESSION['SOFT_ROL']!='0')
 	{
 		$busca="and c.idusuario='".$_SESSION['SOFT_USER_ID']."'";
 	}
