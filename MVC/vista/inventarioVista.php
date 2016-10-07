@@ -26,7 +26,7 @@ function mostrarInventario()
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2 FROM inventario i inner join productos p on p.idproductos=i.idproducto";
+    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto FROM inventario i inner join productos p on p.idproductos=i.idproducto";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -44,7 +44,7 @@ function mostrarInventario()
 
                 $tabla .= "<tr>";
 
-                $tabla .="<td>"     .$fila["2"].    "</td>";
+                $tabla .="<td>"     .$fila["11"].    "</td>";
                 $tabla .="<td>" .$fila["0"].      "</td>";
                 $tabla .="<td>" .$fila["10"].      "</td>";
 				 $tabla .="<td>" .($fila["4"]).      "</td>";

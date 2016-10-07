@@ -219,7 +219,9 @@ function graficaVentasPie($datos)
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
-  $sql = "SELECT count(*),p.tipoRepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 group by p.tipoRepuesto";
+
+  
+   $sql = "SELECT sum(dv.subtotal),sum(dv.cantidad),p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 and p.estado=1  group by p.idproductos order by sum(dv.cantidad) desc limit 5;";
 	if($datos[0]<=$datos[1])
 	{	$meses="";
 		
@@ -249,7 +251,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 					{
 						$titulo="No definido";
 					}
-					$meses.="['".(($titulo))."','".(round($row[0],5,2))."'],";
+					$meses.="['".(($row[2]))."','".(round($row[1],5,2))."'],";
 						
 						
 				}
@@ -313,7 +315,7 @@ $cod2=$datos[2];
 					}
 	if($cod2!='')
 	{
-		$mas="and p.tiporepuesto".$titulo."";
+		$mas="and p.nombre='".$cod2."'";
 	}
 	
 $mysql = conexionMysql();
@@ -324,7 +326,7 @@ $mysql = conexionMysql();
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
-    $sql = "SELECT sum(dv.subtotal),dv.cantidad,p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 and p.estado=1 $mas group by p.idproductos order by sum(dv.subtotal) desc limit 5;";
+   $sql = "SELECT sum(dv.subtotal),dv.cantidad,p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 and p.estado=1 $mas group by p.idproductos order by sum(dv.subtotal) desc limit 5;";
 	if($datos[0]<=$datos[1])
 	{	$meses="";
 		
@@ -405,7 +407,7 @@ $cod2=$datos[2];
 					}
 	if($cod2!='')
 	{
-		$mas="and p.tiporepuesto".$titulo."";
+		$mas="and p.nombre='".$cod2."'";
 	}
 	
 $mysql = conexionMysql();
