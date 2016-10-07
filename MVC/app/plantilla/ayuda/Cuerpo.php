@@ -21,6 +21,12 @@
          		<li><a id="usuariosA" href="#!" class="" >Usuarios</a></li>
          		<li><a id="empleadosA"  href="#!" class="">Empleados</a></li>
          		<li><a id="comprasA" href="#!" class="" >Compras</a></li>
+            <li><a id="cuentasCA" href="#!" class="" >Cuentas por Cobrar</a></li>
+            <li><a id="cuentasPA" href="#!" class="" >Cuentas por Pagar</a></li>
+            <li><a id="EstadisticaA" href="#!" class="" >Estadística</a></li>
+            <li><a id="InventarioC" href="#!" class="" >Inventarios</a></li>
+            <li><a id="ventasA" href="#!" class="" >Ventas</a></li>
+            <li><a id="pagosC" href="#!" class="" >Pagos</a></li>
          	</ul>
           </div>	
          </center>
@@ -138,7 +144,7 @@
                    <p class="parrafo1">a)  En el módulo de usuarios podrá crear uno  nuevo según el criterio del administrador. </p>  
                    <p class="parrafo1">b)  En esta área se mostraran todos los usuarios ingresados. </p>  
                    <p class="parrafo1">c)  El módulo de usuarios contiene una caja de búsqueda que permitirá filtrar y buscar los datos de manera eficiente sobre todos los registros ingresados de usuarios.</p>  
-                   <p class="parrafo1">d)  Por cada usuario ingresado se mostrar un panel de mantenimiento en la cual contiene los botones de: editar, eliminar y ver para administrarlos según el criterio del usuario.</p>  
+                   <p class="parrafo1">d)  Por cada usuario ingresado se mostrara un panel de mantenimiento en la cual contiene los botones de: editar, eliminar y ver para administrarlos según el criterio del usuario.</p>  
                    <p class="parrafo1">e)  Contiene un submenú en forma de acordeón que posee los botones de empleados y usuarios para administración de cualquiera de estos módulos.</p>  
                    <p class="parrafo1">f)  Contiene un Filtro de Registro para determinar la cantidad de datos que se desea mostrar a medida de localizar la información rápidamente. </p>  
                    <p class="parrafo1">g)  Contiene un Administrador de Vistas de Tablas que muestran los registros en forma de páginas según el rango que se tiene en el Filtro de Registros.     </p>  
@@ -161,7 +167,28 @@
 				  <!-- empleados --> 
 				   <div id="empleadosC"  style="display: none;" >
                        <h4>Empleados</h4>
-						<p> empleados </p>
+						<p class="subtitulo1">Administración de Empleados</p>
+                   <p class="parrafo1">Es la información necesaria que representa a todos los empleados que posee la empresa, estos pueden estar determinados como usuarios o solo puede ser una información que servirá para el flujo de efectivo. Este módulo permite el ingreso del sueldo del empleado para determinar el flujo de efectivo que se genera en un tiempo determinado. </p>  
+                   <img src='../app/img/Ayuda/Empleados1.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a)  En el módulo de empleados podrá crear uno  nuevo según el criterio del administrador. </p>  
+                   <p class="parrafo1">b)  En esta área se mostraran todos los empleados ingresados y si posee algun usuario activo. </p>  
+                   <p class="parrafo1">c)  El módulo de empleados contiene una caja de búsqueda que permitirá filtrar y buscar los datos de manera eficiente sobre todos los registros ingresados de empleados.</p>  
+                   <p class="parrafo1">d)  Por cada empleado ingresado se mostrara un panel de mantenimiento en la cual contiene los botones de: editar, eliminar y ver, para administrarlos según el criterio del usuario.</p>  
+                   <p class="parrafo1">e)  Contiene un submenú en forma de acordeón que posee los botones de empleados y usuarios para administración de cualquiera de estos módulos.</p>  
+                   <p class="parrafo1">f)  Contiene un Filtro de Registro para determinar la cantidad de datos que se desea mostrar a medida de localizar la información rápidamente. </p>  
+                   <p class="parrafo1">g)  Contiene un Administrador de Vistas de Tablas que muestran los registros en forma de páginas según el rango que se tiene en el Filtro de Registros.     </p>  
+           <p class="subtitulo1">Nuevo Empleado</p>
+                   <p class="parrafo1">Podrá generar los empleados según posea la empresa.</p>          
+                   <img src='../app/img/Ayuda/Empleados1_1.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <br><img src='../app/img/Ayuda/Empleados2.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) Cuando se genera un nuevo empleado deberá ingresar el nombre o nombres que tiene la persona.</p>  
+                   <p class="parrafo1">b) Deberá ingresar el o los apellidos que posea el empleado.</p>  
+                   <p class="parrafo1">c) Deberá ingresar un número de teléfono para contacto del empleado (no es obligado el campo) .</p>  
+                   <p class="parrafo1">d) Deberá ingresar la dirección especifica del empleado.</p>  
+                   <p class="parrafo1">e) El sueldo es un ingreso necesario que permitirá determinar el flujo de efectivo dentro de los procesos que genere la empresa.</p>  
+                   <p class="parrafo1">f) Deberá de seleccionar el puesto que posee la empresa.</p> 
+                   <p class="parrafo1">g) Al finalizar el llenado del formulario deberá dar aceptar para almacenar los datos dentro de la base de datos correspondiente. </p> 
+
 
 				  </div>
 
@@ -172,7 +199,43 @@
 
 			             </div>
 			             
-			             
+			       
+              <div id="cuentasCc"  style="display: none;" >
+                      <h4>Cuentas por Cobrar</h4>
+                      <p> cuentasc </p>
+
+              </div>
+
+              <div id="cuentasPC"  style="display: none;" >
+                      <h4>Cuentas por Pagar</h4>
+                      <p> cuentasP </p>
+
+              </div>
+
+              <div id="EstadisticaC"  style="display: none;" >
+                      <h4>Estadística </h4>
+                      <p> estadistica </p>
+
+              </div>
+
+              <div id="InventarioC"  style="display: none;" >
+                      <h4>Inventario </h4>
+                      <p> inventario </p>
+
+              </div>
+
+              <div id="ventasC"  style="display: none;" >
+                      <h4>Ventas </h4>
+                      <p> ventas </p>
+
+              </div>
+
+              <div id="pagosC"  style="display: none;" >
+                      <h4>Pagos </h4>
+                      <p> pagos </p>
+
+              </div>
+                   
 			      
 			             
 			             
