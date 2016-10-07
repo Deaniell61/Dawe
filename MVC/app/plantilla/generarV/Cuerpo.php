@@ -9,7 +9,7 @@
          <div class="">
          	<ul>
 
-             <li class="centrarli"><a id="ventaL" href="#!" class="amber accent-3 btn white-text tamaniobot "><i class="material-icons left"><img class="iconotab" src="../app/img/detallec.png" /></i>Detalle Ventas</a></li>
+             <li class="centrarli"><a id="generarV" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Generar Venta</a></li>
                 <li class="centrarli"><a id="Cotizacion" href="#!" class="red accent-3 btn white-text tamaniobot "><i class="material-icons left"><img class="iconotab" src="../app/img/detallec.png" /></i>Cotizacion</a></li>
 
 
@@ -193,6 +193,15 @@
 
 
 							  <div class=" col s4">
+                  <div style="display: none" class="">
+                             <p>
+                           <input  type="checkbox" id="Moto" checked="checked" />
+                           <label for="Moto">Moto</label>
+                           <input   type="checkbox" id="Carro"  />
+                           <label for="Carro">Carro</label>
+                           </p>
+
+                 </div>
 							 	<div id="productosVenta" class="alto">
 
                                     </div>
