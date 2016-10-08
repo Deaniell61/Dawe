@@ -322,10 +322,11 @@ function cargarDetalleVentas(id)
 	var  trasDato;
 	trasDato = 5;
 		
+					 
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/VentasControlador.php",
+            url:"../core/controlador/ventasControlador.php",
             data:' id=' +  id + '&trasDato=' + trasDato,
             success: function(resp)
             {
@@ -342,14 +343,17 @@ function cargarDetalleVentas(id)
 					
                    
 					
-					 $('#resumenCV').html(resp);
+					 $('#resumenCVV2').html(resp);
 					  
 
                 }
 
 
+					 
+
             }     
         });
+					 
 }
 function llamarCliente()
 {

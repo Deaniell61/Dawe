@@ -122,6 +122,7 @@ $busca="";
       $mysql = conexionMysql();
      $sql = "SELECT cd.idventadetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos) FROM ventasdetalle cd where (cd.estado=2 or cd.estado=1 or cd.estado=0) and cd.idventa='".$id."'";
       $tabla="";
+	  
   	$tipo="";
       if($resultado = $mysql->query($sql))
       {

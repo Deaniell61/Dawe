@@ -215,9 +215,9 @@
 								<!-- reumen -->
 
 
-									<div id="resumenCV" class="col s12"  >
+									<div id="resumenCVV2" class="col s12"  >
 
-										 Tabla
+										tabla2
 
 									   </div>
 
