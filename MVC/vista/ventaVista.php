@@ -102,7 +102,7 @@ $busca="";
       //creacion de la tabla
   ?>
 
-  <table id='tabla2' class='bordered centered highlight responsive-table centrarT'>
+  <table id='tabla' class='bordered centered highlight responsive-table centrarT'>
       <thead>
           <tr>
               <th>ID</th>
@@ -120,7 +120,7 @@ $busca="";
           <?php
   	$extra="";
       $mysql = conexionMysql();
-     $sql = "SELECT cd.idventadetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos) FROM ventasdetalle cd where (cd.estado=2 or cd.estado=1 or cd.estado=0) and cd.idventa='".$id."'";
+     $sql = "SELECT cd.idventadetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos) FROM ventasdetalle cd where cd.idventa='".$id."'";
       $tabla="";
 	  
   	$tipo="";

@@ -46,6 +46,7 @@ require_once('../../vista/compraAnuladaVista.php');
 require_once('../../vista/empleadoVista.php');
 require_once('../../vista/clientesVista.php');
 require_once('../../vista/ventaVista.php');
+require_once('../../vista/ventaAnuladaVista.php');
 require_once('../../vista/cuentasPVista.php');
 require_once('../../vista/cuentasCVista.php');
 require_once('../../vista/inventarioVista.php');

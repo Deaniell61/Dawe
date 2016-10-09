@@ -723,7 +723,129 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
     
     return printf($form);
 }
+function graficaVendedorPie($datos)
+{
+	
+	
+		?>
+        <script>
+		var chart2 = c3.generate({
+								bindto: '#chart2',
+								data: {
+									columns: [
+										
+									],
+									type:"pie"
+									,
+										selection: {
+													enabled: true
+												  },
+									onselected: function (d, element) 
+									{ 
+										
+										
+									 },
+									 onunselected: function (d, element) 
+									{ 
+										
+										
+									 }
+								},
+								color: {
+								  pattern: ['#61B045','#F7742C','#D4AE18','#F6921E','#9E1F63','#26A9E0','#8BC53F','#D6DE23']
+								}/*,
+								
+								pie: {
+									label: {
+										format: function (value, ratio, id) {
+											
+											return "$"+currency(d3.format('')((value)));
+										}
+									}
+								}*/,
+								tooltip: {
+									format: {
+										value: function (value, id) {
+											var format = d3.format('$');
+											return format(value).replace("$","Q");
+										}
+							
+									}
+								}
+							});
+					</script>
+        
+        <?php
+		
+		$mysql = conexionMysql();
+    $form="";
+ 
+ 
+ 	$fecha3 = date('Y-m-d');
+     
+ $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
+$fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 
+	$sql = "SELECT sum(v.total),u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 group by u.user";
+  
+   //$sql = "SELECT sum(dv.subtotal),sum(dv.cantidad),p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 and p.estado=1  group by p.idproductos order by sum(dv.cantidad) desc limit 5;";
+	if($datos[0]<=$datos[1])
+	{	$meses="";
+		
+			
+		
+	
+    if($resultado = $mysql->query($sql))
+    {
+      
+		
+			if($resultado->num_rows>0)
+			{
+				$contar2=0;
+				while($row= $fila = $resultado->fetch_row())
+				{
+					
+					$meses.="['".(($row[1]))."','".(round($row[0],5,2))."'],";
+						
+						
+				}
+				
+				echo "
+							<script>
+							chart2.load({
+									columns: [
+										
+										".substr($meses,0,strlen($meses)-1)."
+												
+											]
+											
+									});
+							
+							</script>
+							";
+			}
+			else
+			{
+				
+			}
+			
+    
+        
+    $resultado->free();    
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    }
+    $mysql->close();
+    
+    return printf($form);
+}
 function verificarDato($reem,$fechas,$contar,$fecha,$meses)
 {
 	for($i=1;$i<=$contar+1;$i++)

@@ -4,7 +4,9 @@
 <!------------------ Zonas de script -------------------->
 
 <script type="text/javascript" src="../app/js/venta.js"></script>   
-
+<script>
+mostrarVentasAnul();
+</script>
    </div>
  </body>
 </html>

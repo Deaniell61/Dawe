@@ -346,7 +346,6 @@ function buscarCompra($dato)
 			$form .="document.getElementById('Proveedor').disabled=false;document.getElementById('Proveedor').value='".$fila[3]."';document.getElementById('Proveedor').focus();document.getElementById('Proveedor').disabled=true;";
 			$form .="document.getElementById('direccionC').disabled=false;document.getElementById('direccionC').value='".$fila[7]."';document.getElementById('direccionC').focus();document.getElementById('direccionC').disabled=true;";
 			$form .="document.getElementById('factura').disabled=false;document.getElementById('factura').value='".$fila[1]."';document.getElementById('factura').focus();document.getElementById('factura').disabled=true;";
-			//$form .="document.getElementById('tipoCompra').disabled=false;document.getElementById('tipoCompra').value='".$fila[5]."'.selected;document.getElementById('tipoCompra').focus();document.getElementById('tipoCompra').disabled=true;";
 			$form .="\$('#tipoCompra').val(\"".$fila[5]."\");$('#tipoCompra').material_select('destroy'); $('#tipoCompra').material_select(); ";
 			$form .="cargarDetalleCompras('".$dato[0]."');";
 			$form .="</script>";

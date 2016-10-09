@@ -72,10 +72,16 @@ if($_POST)
     }
 	else if($transaccion == 5)
     {
-        $datos[0] = $_POST['prod'];
-         
-        buscarUsuarios($datos);
         
+          
+
+        
+         $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+
+
+        
+        graficaVendedorPie($datos);
         
     
     }

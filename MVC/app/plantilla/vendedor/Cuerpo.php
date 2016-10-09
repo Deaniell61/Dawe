@@ -31,7 +31,7 @@
     			                 <div class="input-field col s6">
 
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaI" class="fechas" type="date" class="validate" onChange="cargarGrafico('4','');" value="<?php echo date('Y-m-d')?>" >
+								  <input  id="fechaI" class="fechas" type="date" class="validate" onChange="cargarGrafico('4','');cargarGrafico('5','');" value="<?php echo date('Y-m-d')?>" >
 								  <label class="active" for="fecha" >Fecha de Inicio</label>
 
 								</div>
@@ -39,7 +39,7 @@
     		                      <div class="input-field col s6">
 
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaF" class="fechas" type="date" class="validate" onChange="cargarGrafico('4','');" value="<?php echo date('Y-m-d')?>" >
+								  <input  id="fechaF" class="fechas" type="date" class="validate" onChange="cargarGrafico('4','');cargarGrafico('5','');" value="<?php echo date('Y-m-d')?>" >
 								  <label class="active" for="fecha" >Fecha Final</label>
 								</div>
             
@@ -60,10 +60,10 @@
 
 
             <div class="col s6 " id="best5">
-                  Tabla 1
+                  
             </div>
             <div class="col s6 " id="best5Q">
-                Tabla  2
+                
             </div>
       </div>
     </div>
@@ -73,6 +73,7 @@
             
 
 cargarGrafico('4','');
+cargarGrafico('5','');
             </script>
         </div>
 

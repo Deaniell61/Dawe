@@ -24,9 +24,26 @@
 
          <center>
 
+<div>
+        <center>
+            <div class="radioFiltro">
+                <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/motocicleta.png" /></i>
+                <input class="radioColor" name="filtro" value="1" checked type="radio" id="motos" onChange=" mostrarVentasAnul();" />
+                <label for="motos">Motos</label>
+            </div>
 
-         <div class="col s12 ">
-         <div id="mensaje3"></div>
+            <div class="radioFiltro carroEspacio">
+                <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/coche.png" /></i>
+                <input class="radioColor" name="filtro" value="2" type="radio" id="carros" onChange=" mostrarVentasAnul();" />
+                <label for="carros">Carros</label>
+            </div>
+        </center>
+    </div>
+
+                <div class="col s12 ">
+                    <div id="mensaje3"></div>
+                    <!-- reumen -->
+                    <div id="tablaMostrar">
 				<!-- reumen -->
 				 <div   >
 
@@ -34,7 +51,7 @@
 
 						  include('../vista/ventaAnuladaVista.php');
 
-						  mostrarVentas();
+						  //mostrarVentasAnul();
 
 
 						  ?>
@@ -54,21 +71,7 @@
 
 
 
-      <div>
-        <center>
-            <div class="radioFiltro">
-                <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/motocicleta.png" /></i>
-                <input class="radioColor" name="group1" checked="checked" type="radio" id="motos" />
-                <label for="motos">Motos</label>
-            </div>
-
-            <div class="radioFiltro carroEspacio">
-                <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/coche.png" /></i>
-                <input class="radioColor" name="group1" type="radio" id="carros" />
-                <label for="carros">Carros</label>
-            </div>
-        </center>
-    </div>
+     
 
 
 
@@ -216,7 +219,7 @@
 								<!-- reumen -->
 
 
-									<div id="resumenCV" class="col s12"  >
+									<div id="resumenCVV2" class="col s12"  >
 
 										 Tabla
 

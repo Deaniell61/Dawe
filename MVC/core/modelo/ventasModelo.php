@@ -369,8 +369,8 @@ function buscarVenta($dato)
 			$form .="document.getElementById('Cliente').disabled=false;document.getElementById('Cliente').value='".$fila[3]."';document.getElementById('Cliente').focus();document.getElementById('Cliente').disabled=true;";
 			$form .="document.getElementById('direccionC').disabled=false;document.getElementById('direccionC').value='".$fila[7]."';document.getElementById('direccionC').focus();document.getElementById('direccionC').disabled=true;";
 			$form .="document.getElementById('factura').disabled=false;document.getElementById('factura').value='".$fila[1]."';document.getElementById('factura').focus();document.getElementById('factura').disabled=true;";
-			//$form .="document.getElementById('tipoVenta').disabled=false;document.getElementById('tipoVenta').value='".$fila[5]."'.selected;document.getElementById('tipoVenta').focus();document.getElementById('tipoVenta').disabled=true;";
-			$form .="\$('#tipoVenta').val(\"".$fila[5]."\");$('select').material_select(); ";
+			$form .="\$('#tipoVenta').val(\"".$fila[5]."\");$('#tipoVenta').material_select('destroy'); $('#tipoVenta').material_select(); ";
+			
 			$form .="cargarDetalleVentas('".$dato[0]."');";
 			$form .="</script>";
 			

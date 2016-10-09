@@ -185,7 +185,16 @@ if($_POST)
         mostrarVentas($datos);
 
     }
-    
+    else if($transaccion == 17)
+    {
+
+        $datos[0] = $_POST['tipo'];
+		
+		
+		        
+        mostrarVentasAnul($datos);
+
+    }
 //----------- fin gestion ----------/    
     
 }
