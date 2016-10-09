@@ -17,7 +17,7 @@ function ingresoCuentaCobrar($datos)
     }
     else
     {   
-		$sql = "update cuentascobrar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."' where idcliente='".$datos[0]."'";
+		$sql = "update cuentascobrar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."',fecha_ant=fecha,fecha='".date('Y-m-d')."' where idcliente='".$datos[0]."'";
 //echo $sql;
 			if($mysql->query($sql))
 			{

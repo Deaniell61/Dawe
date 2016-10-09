@@ -6,12 +6,14 @@ function mostrarCuentasP()
 {
 
     //creacion de la tabla
+	$fecha=date('Y-m-d');
 ?>
 
 <table id='tabla' class='bordered centered highlight responsive-table centrarT'>
     <thead>
         <tr>
             <th>Fecha</th>
+            <th>Dias Transcurridos</th>
             <th>Proveedor</th>
             <th>Saldo</th>
             <th></th>
@@ -37,10 +39,12 @@ function mostrarCuentasP()
 
             while($fila = $resultado->fetch_row())
             {
-
+				$segundos=strtotime($fecha) - strtotime($fila["0"]); //para tu fecha de ejmplo
+				$diferencia_dias=intval($segundos/60/60/24);
                 $tabla .= "<tr>";
 
                 $tabla .="<td>"     .substr($fila["0"],0,10).    "</td>";
+				$tabla .="<td>" .$diferencia_dias.      "</td>";
                 $tabla .="<td>" .$fila["2"].      "</td>";
                 $tabla .="<td>" .toMoney($fila["1"]).      "</td>";
 				if($_SESSION['SOFT_ACCESOModifica'.'cuentas']=='1')
