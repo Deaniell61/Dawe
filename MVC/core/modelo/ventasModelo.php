@@ -135,7 +135,7 @@ function quitaInventario($datos)
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update cuentascobrar set estado=1 where idCliente='".$datos[2]."'"))
+					 if(!$mysql->query("update cuentascobrar set estado=1,total=total+(select v.total from ventas v where idVentas='".$_SESSION['idVenta']."'),CreditoDado=CreditoDado+(select v.total from ventas v where idVentas='".$_SESSION['idVenta']."') where idCliente='".$datos[2]."'"))
 			 		{
 						
 				 		$mysql->query("ROLLBACK");
@@ -203,7 +203,7 @@ function ingresoVenta($datos)
 					 }
 					 else
 					 
-					 if(!$mysql->query("update cuentascobrar set total=total+".$total.",CreditoDado=CreditoDado+".$total." where idcliente='".$datos[7]."'"))
+					 if(!$mysql->query("update cuentascobrar set estado=estado where idcliente='".$datos[7]."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");
@@ -541,6 +541,51 @@ function anularDetalleVenta($datos)
     return printf($form);
 }
 
+function  buscarPlazoCuentaCobrar($dato)
+{
+    
 
+    $mysql = conexionMysql();
+    $form="";
+    $sql = "SELECT plazo,tipoPlazo FROM cuentascobrar WHERE idcliente='".$dato[0]."'";
+ 	//echo $sql;
+    if($resultado = $mysql->query($sql))
+    {
+      if($resultado->num_rows>0)
+	  {
+		$fila = $resultado->fetch_row();    
+			
+		
+		$form .="<script>";
+		$form .="\$('#plazo').val(\"".$fila[0]."\");\$('#plazo').focus(); ";
+		$form .="\$('#tipoPlazo').val(\"".$fila[1]."\");$('#tipoPlazo').material_select(); ";
+		$form .="ingresoCuentaCobrar();";
+		$form .="</script>";
+			
+		$resultado->free();    
+	  }
+	  else
+	  {
+		$form .="<script>";
+		$form .="\$('#plazo').val(\"\");\$('#plazo').focus(); ";
+		$form .="\$('#tipoPlazo').val(\"\");$('#tipoPlazo').material_select(); ";
+		$form .="</script>";
+		$resultado->free();   
+	  }
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return printf($form);
+    
+}
 
 ?>

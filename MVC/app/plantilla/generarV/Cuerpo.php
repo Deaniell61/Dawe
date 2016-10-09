@@ -76,7 +76,7 @@
 
           <div id="OtipoCompra" class="input-field col s10">
                                <i  class="material-icons prefix"><img class="iconologin" src="../app/img/TipoC.png"/></i>
-								<select id="tipoVenta" onChange="cambiarTipo(this.value,document.getElementById('codigoVenta').value);comprobarCredito(this);">
+								<select id="tipoVenta" onChange="cambiarTipo(this.value,document.getElementById('codigoVenta').value);comprobarCredito(this);buscarPlazoCuentaCobrar();">
 								  <option value="" disabled selected>Credito/Contado/Donación</option>
 								  <option value="2">Credito</option>
 								  <option value="1" selected>Contado</option>

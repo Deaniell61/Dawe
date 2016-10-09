@@ -160,6 +160,7 @@ function abonarCuentaP($datos)
 					 $datos[1]=$fila[0];
 				 }
 	$saldo=$datos[3]-$datos[1];
+	$total=$fila[0]-$datos[1];
 	if($datos[1]>0)
 	{		 
     $sql = "INSERT INTO movimientosp(credito,abono,saldo,fecha,descripcion,idcuentasP,idusuario) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].",'".$_SESSION['SOFT_USER_ID']."')";
@@ -174,6 +175,14 @@ function abonarCuentaP($datos)
 					 }
 					 else
 					 {
+						 if($total==0)
+						 {
+							 if(!$mysql->query("update cuentaspagar set estado=0 where idcuentasp='".$datos[0]."'"))
+							 {
+								  $mysql->query("ROLLBACK");
+							 }
+						 }
+						 
 						 echo "<script>window.location.reload();cargarDetalleCuentasP('".$datos[0]."');limpiarAbono();document.getElementById('saldoE').innerHTML='Saldo: ".toMoney($saldo)."';</script>";
 						 
 					 }
@@ -195,8 +204,9 @@ function abonarCuentaP($datos)
     }
 	else
 	{
-				
+		 	
 		 $mysql->query("ROLLBACK");
+		 
 	 }
 	}
 	else

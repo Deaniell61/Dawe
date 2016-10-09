@@ -73,7 +73,7 @@
 
                                <div class="input-field col s10">
                                <i  class="material-icons prefix"><img class="iconologin" src="../app/img/TipoC.png"/></i>
-								<select id="tipoCompra" onChange="cambiarTipo(this.value,document.getElementById('codigoCompra').value);comprobarCredito(this);">
+								<select id="tipoCompra" onChange="cambiarTipo(this.value,document.getElementById('codigoCompra').value);comprobarCredito(this);buscarPlazoCuentaPagar();">
 								  <option value="" disabled selected>Credito/Contado/Donación</option>
 								  <option value="2">Credito</option>
 								  <option value="1" selected>Contado</option>

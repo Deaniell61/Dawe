@@ -50,10 +50,22 @@ function nitificaciones()
 						break;
 					}
 				}
+				$nuevafecha2 = strtotime ( '+28 day' , strtotime ( $fecha1 ) ) ;
+				$fecha28 = date ( 'Y-m-d' , $nuevafecha2 );
+				$fechaOri=$fecha1;
 				$nuevafecha1 = strtotime ( '+'.$fila[2].' '.$tipoPlazo , strtotime ( $fecha1 ) ) ;
 				$fecha1 = date ( 'Y-m-d' , $nuevafecha1 );
+				
 				//echo $fecha1."  ".$hoy;
-				if($fecha1<=$hoy)
+				if($fecha1<=$hoy && $fila[3]>0)
+				{
+					
+					$_SESSION['notified1'][($contador)] = $fila[4]." ".$fila[5]."  ".toMoney($fila[3]);//substr($fila[0],0,10);
+					$_SESSION['direccione1'][($contador)] = $fila['1'];
+					$contador++;
+				}
+				else
+				if($fecha28<=$fecha3 && $fila[3]>0)
 				{
 					
 					$_SESSION['notified1'][($contador)] = $fila[4]." ".$fila[5]."  ".toMoney($fila[3]);//substr($fila[0],0,10);
@@ -65,7 +77,7 @@ function nitificaciones()
 		}
 		else
 		{  
-			echo 2;
+			
 		}
 		
     }
@@ -104,9 +116,21 @@ function nitificaciones()
 						break;
 					}
 				}
+				$nuevafecha2 = strtotime ( '+28 day' , strtotime ( $fecha1 ) ) ;
+				$fecha28 = date ( 'Y-m-d' , $nuevafecha2 );
+				$fechaOri=$fecha1;
 				$nuevafecha1 = strtotime ( '+'.$fila[2].' '.$tipoPlazo , strtotime ( $fecha1 ) ) ;
 				$fecha1 = date ( 'Y-m-d' , $nuevafecha1 );
-				if($fecha1<=$hoy)
+				if($fecha1<=$hoy && $fila[3]>0)
+				{
+					
+					$_SESSION['notified22'][($contP)] = $fila[4]." sfsd ".toMoney($fila[3]);//substr($fila[0],0,10);
+					$_SESSION['direccione22'][($contP)] = $fila['1'];
+					$contador++;
+					$contP++;
+				}
+				else
+				if($fecha28<=$fecha3 && $fila[3]>0)
 				{
 					
 					$_SESSION['notified22'][($contP)] = $fila[4]." sfsd ".toMoney($fila[3]);//substr($fila[0],0,10);
@@ -119,7 +143,7 @@ function nitificaciones()
 		}
 		else
 		{  
-			echo 2;
+			
 		}
 		
     }

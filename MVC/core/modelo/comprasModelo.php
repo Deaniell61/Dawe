@@ -127,7 +127,8 @@ function agregaInventario($datos)
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update cuentaspagar set estado=1 where idproveedor='".$datos[6]."'"))
+					 
+					 if(!$mysql->query("update cuentaspagar set estado=1,total=total+(select v.total from compras v where idcompras='".$_SESSION['idCompra']."'),CreditoDado=CreditoDado+(select v.total from compras v where idcompras='".$_SESSION['idCompra']."') where idproveedor='".$datos[6]."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");
@@ -183,7 +184,7 @@ function ingresoCompra($datos)
 				 $mysql->query("ROLLBACK");
 			 }
 			 else
-			 if(!$mysql->query("update cuentaspagar set total=total+".$total.",CreditoDado=CreditoDado+".$total.",estado=2 where idproveedor='".$datos[6]."'"))
+			 if(!$mysql->query("update cuentaspagar set estado=estado where idproveedor='".$datos[6]."'"))
 			 {
 				
 				 $mysql->query("ROLLBACK");
@@ -563,6 +564,51 @@ function anularDetalleCompra($datos)
     
     return printf($form);
 }
+function  buscarPlazoCuentaPagar($dato)
+{
+    
 
+    $mysql = conexionMysql();
+    $form="";
+    $sql = "SELECT plazo,tipoPlazo FROM cuentaspagar WHERE idproveedor='".$dato[0]."'";
+ 	//echo $sql;
+    if($resultado = $mysql->query($sql))
+    {
+      if($resultado->num_rows>0)
+	  {
+		$fila = $resultado->fetch_row();    
+			
+		
+		$form .="<script>";
+		$form .="\$('#plazo').val(\"".$fila[0]."\");\$('#plazo').focus(); ";
+		$form .="\$('#tipoPlazo').val(\"".$fila[1]."\");$('#tipoPlazo').material_select(); ";
+		$form .="buscarPlazoCuentaPagar();";
+		$form .="</script>";
+			
+		$resultado->free();    
+	  }
+	  else
+	  {
+		$form .="<script>";
+		$form .="\$('#plazo').val(\"\");\$('#plazo').focus(); ";
+		$form .="\$('#tipoPlazo').val(\"\");$('#tipoPlazo').material_select(); ";
+		$form .="</script>";
+		$resultado->free();   
+	  }
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return printf($form);
+    
+}
 
 ?>

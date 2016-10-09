@@ -159,43 +159,55 @@ function abonarCuentaC($datos)
 					 $datos[1]=$fila[0];
 				 }
 	$saldo=$datos[3]-$datos[1];
+	$total=$fila[0]-$datos[1];
 	if($datos[1]>0)
 	{		 
     $sql = "INSERT INTO movimientosc(credito,abono,saldo,fecha,descripcion,idcuentasC,idusuario) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].",'".$_SESSION['SOFT_USER_ID']."')";
  
-    if($mysql->query($sql))
-    {
-			 
-				 	  if(!$mysql->query("update cuentascobrar set total=total-".$datos[1]." where idcuentasC='".$datos[0]."'"))
-					 {
-						
-						 $mysql->query("ROLLBACK");
-					 }
-					 else
-					 {
-						 echo "<script>window.location.reload();cargarDetalleCuentasC('".$datos[0]."');limpiarAbono();document.getElementById('saldoE').innerHTML='Saldo: ".toMoney($saldo)."';</script>";
+		if($mysql->query($sql))
+		{
+				 
+						  if(!$mysql->query("update cuentascobrar set total=total-".$datos[1]." where idcuentasC='".$datos[0]."'"))
+						 {
+							
+							 $mysql->query("ROLLBACK");
+						 }
+						 else
+						 {
+							  if($total==0)
+						 		{
+									 if(!$mysql->query("update cuentascobrar set estado=0 where idcuentasC='".$datos[0]."'"))
+									 {
+										  $mysql->query("ROLLBACK");
+									 }
+								 }
+							 echo "<script>window.location.reload();cargarDetalleCuentasC('".$datos[0]."');limpiarAbono();document.getElementById('saldoE').innerHTML='Saldo: ".toMoney($saldo)."';</script>";
+							 
+						 }
 						 
-					 }
-				     
-			 
-			 
+				 
+				 
+			
+				$mysql->query("COMMIT");
+			
 		
-    		$mysql->query("COMMIT");
+		}
+		else
+		{   
 		
-	
-    }
-    else
-    {   
-    
-    	$form = $sql;
-    
-    }
+			$form = $sql;
+		
+		}
     
     }
 	else
 	{
 				
 		 $mysql->query("ROLLBACK");
+		 
+		 
+		 
+		 
 	 }
 	}
 	else

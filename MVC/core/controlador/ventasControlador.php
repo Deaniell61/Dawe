@@ -165,10 +165,14 @@ if($_POST)
         anularDetalleVenta($datos);
 
     }
-	else if($transaccion == 66)
+	else if($transaccion == 15)
     {
-        
-        CerrarSesion();
+
+        $datos[0] = $_POST['id'];
+		
+		
+		        
+        buscarPlazoCuentaCobrar($datos);
 
     }
     

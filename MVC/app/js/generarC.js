@@ -63,7 +63,7 @@ $('#tabla2').DataTable( {
 } );
 
 
-	$('#tipoPlazo').material_select();
+	//$('#tipoPlazo').material_select();
 
 //*********************************************************
 
@@ -327,6 +327,38 @@ function buscarNIT(nit)
             type:"POST",
             url:"../core/controlador/comprasControlador.php",
             data:' nit=' +  nit + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
+                }
+                else
+                {
+
+
+					 $('#mensaje').html(resp);
+
+                }
+
+
+            }
+        });
+}
+function buscarPlazoCuentaPagar()
+{
+	 var  trasDato;
+	trasDato = 15;
+	id=document.getElementById('codigoProveedor').value;
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/comprasControlador.php",
+            data:' id=' +  id + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
