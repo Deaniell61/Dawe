@@ -60,6 +60,7 @@ function inicioCompra($idProv)
     $form="";
 	session_start();
 		$mysql->query("BEGIN");
+		$mysql->query("delete from compradetalle where estado=2;");
 		$mysql->query("delete from compras where estado=2;");
     $sql = "INSERT INTO compras(total,estado,tipoCompra,iddistribuidor,idusuario) values(0,2,'".$idProv[1]."','".$idProv[0]."','".$_SESSION['SOFT_USER_ID']."')";
  
