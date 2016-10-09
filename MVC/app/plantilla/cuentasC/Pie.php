@@ -3,7 +3,9 @@
 <!------------------ Zonas de script -------------------->
 
 <script type="text/javascript" src="../app/js/cuentasCobrar.js"></script> 
-
+<script>
+mostrarCuentasC();
+</script>
   </div>
  </body>
 </html>

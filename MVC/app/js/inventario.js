@@ -59,7 +59,144 @@ $('.modaleliminar').click(function(){
 $(".dropdown-button").dropdown();
 
 //*********************************************************
+function mostrarInventario()
+{
+	var filto="";
+ 
+        var porNombre=document.getElementsByName("filtro");
+        
+        for(var i=0;i<porNombre.length;i++)
+        {
+            if(porNombre[i].checked)
+                filto=porNombre[i].value;
+        }
 
+	var  trasDato;
+	trasDato = 3;
+	
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/inventarioControlador.php",
+            data:' tipo=' +  filto + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');         
+                    //$('#precargar').hide();    
+                }
+                else
+                {
+                    
+					
+					 $('#tablaMostrar').html(resp); 
+					 
+					 $('#tabla').DataTable( {
+
+											info:     false,
+										
+										
+										
+											language: {
+										
+												search: "Buscar",
+												sLengthMenu:" _MENU_ ",
+										
+												paginate:{
+										
+													previous: "Anterior",
+													next: "Siguiente",
+										
+												},
+										
+											},
+											/*
+													   "scrollY":        "375px",
+												"scrollCollapse": true,
+												"paging":         true
+												 */
+										} );
+										$('select').material_select();
+
+                }
+
+
+            }     
+        });
+}
+function mostrarInventarioAdmin()
+{
+	var filto="";
+ 
+        var porNombre=document.getElementsByName("filtro");
+        
+        for(var i=0;i<porNombre.length;i++)
+        {
+            if(porNombre[i].checked)
+                filto=porNombre[i].value;
+        }
+
+	var  trasDato;
+	trasDato = 4;
+	
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/inventarioControlador.php",
+            data:' tipo=' +  filto + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');         
+                    //$('#precargar').hide();    
+                }
+                else
+                {
+                    
+					
+					 $('#tablaMostrar').html(resp); 
+					 
+					 $('#tabla').DataTable( {
+
+											info:     false,
+										
+										
+										
+											language: {
+										
+												search: "Buscar",
+												sLengthMenu:" _MENU_ ",
+										
+												paginate:{
+										
+													previous: "Anterior",
+													next: "Siguiente",
+										
+												},
+										
+											},
+											/*
+													   "scrollY":        "375px",
+												"scrollCollapse": true,
+												"paging":         true
+												 */
+										} );
+										$('select').material_select();
+
+                }
+
+
+            }     
+        });
+}
 function editar(id)
 {
 	$('#modal1').openModal();

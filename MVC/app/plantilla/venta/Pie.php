@@ -5,6 +5,9 @@
 
 <script type="text/javascript" src="../app/js/venta.js"></script>   
 
+<script>
+mostrarVentas();
+</script>
    </div>
  </body>
 </html>

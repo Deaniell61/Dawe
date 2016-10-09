@@ -1,9 +1,9 @@
   <?php
 
 
-  function mostrarVentas()
+  function mostrarVentas($datos)
   {
-
+session_start();
 
 $busca="";
 	
@@ -31,7 +31,7 @@ $busca="";
           <?php
   	$extra="";
       $mysql = conexionMysql();
-      $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,(select tv.Descripcion from tipoventa tv where tv.idtipo=c.tipoventa),c.idventas FROM ventas c inner join cliente p on p.idcliente=c.idcliente where c.estado=1 $busca order by c.fecha desc";
+       $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,(select tv.Descripcion from tipoventa tv where tv.idtipo=c.tipoventa),c.idventas FROM ventas c inner join cliente p on p.idcliente=c.idcliente inner join ventasdetalle cd on cd.idventa=c.idventas inner join productos pd on pd.idproductos=cd.idproductos where c.estado=1 and cd.estado=1 and pd.tiporepuesto='".$datos[0]."' $busca group by c.idventas order by c.fecha desc";
       $tabla="";
       if($resultado = $mysql->query($sql))
       {

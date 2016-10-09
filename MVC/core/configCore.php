@@ -42,11 +42,14 @@ require_once('../modelo/pagosModelo.php');
 require_once('../modelo/estadisticaModelo.php');
 require_once('../../vista/usuarioVista.php');
 require_once('../../vista/compra2Vista.php');
+require_once('../../vista/compraAnuladaVista.php');
 require_once('../../vista/empleadoVista.php');
 require_once('../../vista/clientesVista.php');
 require_once('../../vista/ventaVista.php');
 require_once('../../vista/cuentasPVista.php');
 require_once('../../vista/cuentasCVista.php');
+require_once('../../vista/inventarioVista.php');
+require_once('../../vista/inventarioAdminVista.php');
 
 
 ?>

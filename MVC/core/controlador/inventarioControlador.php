@@ -32,7 +32,26 @@ if($_POST)
         
     
     }
+    else if($transaccion == 3)
+    {
+        $datos[0]=$_POST['tipo'];
+		
+		
+        mostrarInventario($datos);
+        
+        
     
+    }
+	else if($transaccion == 4)
+    {
+        $datos[0]=$_POST['tipo'];
+		
+		
+        mostrarInventarioAdmin($datos);
+        
+        
+    
+    }
 //----------- fin gestion ----------/    
     
 }

@@ -22,18 +22,32 @@
 				}?>
 
          <center>
+<div>
+        <center>
+            <div class="radioFiltro">
+                <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/motocicleta.png" /></i>
+                <input class="radioColor" name="filtro" value="1" checked type="radio" id="motos" onChange=" mostrarVentas();" />
+                <label for="motos">Motos</label>
+            </div>
 
+            <div class="radioFiltro carroEspacio">
+                <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/coche.png" /></i>
+                <input class="radioColor" name="filtro" value="2" type="radio" id="carros" onChange=" mostrarVentas();" />
+                <label for="carros">Carros</label>
+            </div>
+        </center>
+    </div>
 
-         <div class="col s12 ">
-         <div id="mensaje3"></div>
-				<!-- reumen -->
-				 <div   >
+                <div class="col s12 ">
+                    <div id="mensaje3"></div>
+                    <!-- reumen -->
+                    <div id="tablaMostrar">
 
 					     <?php
 
 						  include('../vista/ventaVista.php');
 
-						  mostrarVentas();
+						 // mostrarVentas();
 
 
 						  ?>
@@ -53,21 +67,7 @@
 
 
 
-      <div>
-        <center>
-            <div class="radioFiltro">
-                <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/motocicleta.png" /></i>
-                <input class="radioColor" name="group1" checked="checked" type="radio" id="motos" />
-                <label for="motos">Motos</label>
-            </div>
-
-            <div class="radioFiltro carroEspacio">
-                <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/coche.png" /></i>
-                <input class="radioColor" name="group1" type="radio" id="carros" />
-                <label for="carros">Carros</label>
-            </div>
-        </center>
-    </div>
+      
 
 
 

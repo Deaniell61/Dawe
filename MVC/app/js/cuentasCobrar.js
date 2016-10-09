@@ -9,31 +9,7 @@ var passHabilita=0;
 */
 //***********************************
 //************************** tabla ***********************
-$('#tabla').DataTable( {
 
-    info:     false,
-
-
-
-    language: {
-
-        search: "Buscar",
-        sLengthMenu:" _MENU_ ",
-
-        paginate:{
-
-            previous: "Anterior",
-            next: "Siguiente",
-
-        },
-
-    },
-    /*
-			   "scrollY":        "375px",
-        "scrollCollapse": true,
-        "paging":         true
-         */
-} );
 
 $('select').material_select(); 
 
@@ -69,78 +45,30 @@ $(".dropdown-button").dropdown();
 
 //*********************************************************
 
-
-
-
-//comprobaciones
-
-$('#password2').keyup(function(){
-
-    compruebaPass();
-
-});
-$('#password').keyup(function(){
-
-    compruebaPass();
-
-});
-
-function compruebaPass()
+function mostrarCuentasC()
 {
-    pas1=$('#password').val();
-    pas2=$('#password2').val();
+	var filto="";
+ 
+        var porNombre=document.getElementsByName("filtro");
+        
+        for(var i=0;i<porNombre.length;i++)
+        {
+            if(porNombre[i].checked)
+                filto=porNombre[i].value;
+        }
 
-
-    if(pas1==pas2 && pas1!="" && pas1.length>8)
-    {
-        passHabilita=1;
-        $('#password2').css('border-color','#3F0');
-
-    }
-    else
-    {
-        passHabilita=0;
-        $('#password2').css('border-color','#F00');
-
-    }
-}
-//**********************
-
-
-
-$('#btnInsertar').click(function(){
-
-    // alert('hola');  
-
-    $('#precargar').show();
-
-    var  user, pass, email, trasDato;
-    if(passHabilita==1)
-    {
-        user = $('#user').val();
-
-        pass = $('#password').val();
-
-        rol = $('#rol').val();
-
-        trasDato = 2;
+	var  trasDato;
+	trasDato = 13;
+	
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/usuarioControlador.php",
-            data:' user=' +  user + '&pass=' + pass + '&rol=' + rol + '&trasDato=' + trasDato,
+            url:"../core/controlador/cuentasCobrarControlador.php",
+            data:' tipo=' +  filto + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
-                //console.log(trasDato);
-
-
-                //$('#mensaje').html(resp); 
-                // $('#precargar').css('display','none');  
-                $("#user").val("");
-                $("#password").val("");
-
-                if(resp == '1')
+               if(resp == '1')
                 {
 
 
@@ -149,24 +77,43 @@ $('#btnInsertar').click(function(){
                 }
                 else
                 {
-                    passHabilita=0;
+                    
+					
+					 $('#tablaMostrar').html(resp); 
+					 
+					 $('#tabla').DataTable( {
 
-                    setTimeout(window.location.reload(), 3000);
-
+											info:     false,
+										
+										
+										
+											language: {
+										
+												search: "Buscar",
+												sLengthMenu:" _MENU_ ",
+										
+												paginate:{
+										
+													previous: "Anterior",
+													next: "Siguiente",
+										
+												},
+										
+											},
+											/*
+													   "scrollY":        "375px",
+												"scrollCollapse": true,
+												"paging":         true
+												 */
+										} );
+										$('select').material_select();
 
                 }
 
 
             }     
         });
-    }
-    else
-    {
-        alert('password erroneo');
-    }
-
-
-});
+}
 function cargarDetalleCuentasC(id)
 {
 	var  trasDato;
@@ -302,159 +249,3 @@ function ver(id)
     });            
 
 }
-
-$('.eliminar').click(function(event)
-                     {
-
-    var idelim, trasDato; 
-
-    idelim=gobIDElim;
-
-    trasDato = 3;
-
-
-    $.ajax
-    ({
-        type:"POST",
-        url:"../core/controlador/usuarioControlador.php",
-        data:'idelim=' + idelim  + '&trasDato=' + trasDato,
-        success: function(resp)
-        {
-
-            console.log(idelim);
-
-            //$('#mensaje').html(resp); 
-            //$('#precargar').css('display','none');  
-            $("#user").val("");
-            $("#password").val("");
-
-            if(resp == '1')
-            {
-
-                //$('#mensaje').html('Datos Incorrectos.');         
-                //$('#precargar').hide();    
-            }
-            else
-            {
-
-                setTimeout(window.location.reload(), 3000);
-
-
-            }
-
-
-        }     
-    });            
-
-});
-
-
-
-
-
-
-
-$('.editar').click(function(event)
-                   {
-
-    event.preventDefault();
-
-    var idedit, trasDato; 
-
-    gobIDEdit = event.target.dataset.edit;
-
-    idedit = gobIDEdit;
-
-    $('#modal1').openModal();
-
-    trasDato = 4;
-
-
-    $.ajax
-    ({
-        type:"POST",
-        url:"../core/controlador/usuarioControlador.php",
-        data:'idedit=' + idedit  + '&trasDato=' + trasDato,
-        success: function(resp)
-        {
-
-
-
-            $('#mensaje').html(resp); 
-            // $('#precargar').css('display','none');  
-
-
-
-
-        }     
-    });            
-
-});
-
-$('#btnActualizar').click(function()
-                          {
-
-    var idedit, trasDato, user, pass, rol; 
-
-    idedit = gobIDEdit;
-
-    trasDato = 5;
-    //$('#precargar').show();
-
-
-    if($('#password').val()=="")
-    {
-        passHabilita=1;
-    }
-
-    if(passHabilita==1)
-    {
-        user = $('#user').val();
-
-        pass = $('#password').val();
-
-        rol = $('#rol').val();
-
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/usuarioControlador.php",
-            data:' user=' +  user + '&pass=' + pass + '&rol=' + rol+ '&id=' + idedit + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
-
-                //console.log(trasDato);
-
-
-                //$('#mensaje').html(resp); 
-                // $('#precargar').css('display','none');  
-                $("#user").val("");
-                $("#password").val("");
-
-                if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
-                }
-                else
-                {
-
-
-                    setTimeout(window.location.reload(), 3000);
-
-
-                }
-
-
-            }     
-        });
-    }
-    else
-    {
-        alert('password erroneo');
-    }
-
-
-});

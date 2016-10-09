@@ -4,6 +4,9 @@
 <!------------------ Zonas de script -------------------->
 
 <script type="text/javascript" src="../app/js/inventario.js"></script>
+<script>
+mostrarInventario();
+</script>
 
   </div>
  </body>

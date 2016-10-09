@@ -2,7 +2,7 @@
 
 
 
-function mostrarInventario()
+function mostrarInventarioAdmin($datos)
 {
 
     //creacion de la tabla
@@ -28,7 +28,7 @@ function mostrarInventario()
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto FROM inventario i inner join productos p on p.idproductos=i.idproducto ";
+    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto,i.idinventario FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."'";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -55,7 +55,7 @@ function mostrarInventario()
 				$tabla .="<td>" .toMoney($fila["6"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["7"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["8"]).      "</td>";
-        $tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["2"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
+        $tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["12"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
         $tabla .="</td>";
 
             }

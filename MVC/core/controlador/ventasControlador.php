@@ -175,6 +175,16 @@ if($_POST)
         buscarPlazoCuentaCobrar($datos);
 
     }
+	else if($transaccion == 16)
+    {
+
+        $datos[0] = $_POST['tipo'];
+		
+		
+		        
+        mostrarVentas($datos);
+
+    }
     
 //----------- fin gestion ----------/    
     

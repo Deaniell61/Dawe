@@ -72,7 +72,7 @@ function actualizaInventario($datos)
 	$mysql->query("BEGIN");
 	
 			 
-    $sql = "update inventario set precioventa='".$datos[1]."',precioClientees='".$datos[2]."',precioDistribuidor='".$datos[3]."' where idproducto='".$datos[0]."'";
+    $sql = "update inventario set precioventa='".$datos[1]."',precioClientees='".$datos[2]."',precioDistribuidor='".$datos[3]."' where idinventario='".$datos[0]."'";
  	
     if($mysql->query($sql))
     {

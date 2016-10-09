@@ -179,7 +179,26 @@ if($_POST)
         buscarPlazoCuentaPagar($datos);
 
     }
-	
+	else if($transaccion == 16)
+    {
+
+        $datos[0] = $_POST['tipo'];
+		
+		
+		        
+        mostrarCompras($datos);
+
+    }
+	else if($transaccion == 17)
+    {
+
+        $datos[0] = $_POST['tipo'];
+		
+		
+		        
+        mostrarComprasAnul($datos);
+
+    }
     
 //----------- fin gestion ----------/    
     

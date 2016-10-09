@@ -40,51 +40,44 @@
 
     <!-- ********************************** tabla inicio ********************************** -->
 
-    <div>
+   <div>
         <center>
             <div class="radioFiltro">
                 <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/motocicleta.png" /></i>
-                <input class="radioColor" name="group1" checked="checked" type="radio" id="motos" />
+                <input class="radioColor" name="filtro" value="1" checked type="radio" id="motos" onChange=" mostrarInventario();" />
                 <label for="motos">Motos</label>
             </div>
 
-            <div class="radioFiltro carroEspacio">   
+            <div class="radioFiltro carroEspacio">
                 <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/coche.png" /></i>
-                <input class="radioColor" name="group1" type="radio" id="carros" />
+                <input class="radioColor" name="filtro" value="2" type="radio" id="carros" onChange=" mostrarInventario();" />
                 <label for="carros">Carros</label>
-            </div>      
+            </div>
         </center>
     </div>
+
+                <div class="col s12 ">
+                    <div id="mensaje3"></div>
+                    <!-- reumen -->
+                    <div id="tablaMostrar" class="centrartabla">
+                    <?php 
+						include('../vista/inventarioVista.php');
+						//mostrarInventario('2');
+				
+				
+						?>
+                    </div>
+               </div>
    
     <div class="centrartabla">
 
 
-        <table>
-            <tr>
-                <td class="">
-                    <div class="input-field ">
-                        
-                    </div>	
-                </td>
-                <td class="">
+        
 
 
 
 
-                </td>
-            </tr>
-        </table>
-
-
-
-
-
-        <?php 
-        include('../vista/inventarioVista.php');
-        mostrarInventario();
-
-
-        ?>
+        
 
 
         <!-- ********************************** modal ********************************** --> 

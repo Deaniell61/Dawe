@@ -9,58 +9,7 @@ var passHabilita=0;
 */
 //***********************************
 //************************** tabla ***********************
-$('#tabla').DataTable( {
 
-    info:     false,
-
-
-
-    language: {
-
-        search: "Buscar",
-        sLengthMenu:" _MENU_ ",
-
-        paginate:{
-
-            previous: "Anterior",
-            next: "Siguiente",
-
-        },
-
-    },
-    /*
-			   "scrollY":        "375px",
-        "scrollCollapse": true,
-        "paging":         true
-         */
-} );
-
-
-$('#tabla2').DataTable( {
-
-    info:     false,
-
-
-
-    language: {
-
-        search: "Buscar",
-        sLengthMenu:" _MENU_ ",
-
-        paginate:{
-
-            previous: "Anterior",
-            next: "Siguiente",
-
-        },
-
-    },
-    /*
-			   "scrollY":        "375px",
-        "scrollCollapse": true,
-        "paging":         true
-         */
-} );
 
 $('select').material_select(); 
 
@@ -131,7 +80,75 @@ function buscarCliente(buscar,evt)
 	
 	
 }
+function mostrarVentas()
+{
+	var filto="";
+ 
+        var porNombre=document.getElementsByName("filtro");
+        
+        for(var i=0;i<porNombre.length;i++)
+        {
+            if(porNombre[i].checked)
+                filto=porNombre[i].value;
+        }
 
+	var  trasDato;
+	trasDato = 16;
+	
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/ventasControlador.php",
+            data:' tipo=' +  filto + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');         
+                    //$('#precargar').hide();    
+                }
+                else
+                {
+                    
+					
+					 $('#tablaMostrar').html(resp); 
+					 
+					 $('#tabla').DataTable( {
+
+											info:     false,
+										
+										
+										
+											language: {
+										
+												search: "Buscar",
+												sLengthMenu:" _MENU_ ",
+										
+												paginate:{
+										
+													previous: "Anterior",
+													next: "Siguiente",
+										
+												},
+										
+											},
+											/*
+													   "scrollY":        "375px",
+												"scrollCollapse": true,
+												"paging":         true
+												 */
+										} );
+										$('#tabla_length').material_select(); 
+
+                }
+
+
+            }     
+        });
+}
 function buscarVenta(id)
 {
 	$('#modalV').openModal();

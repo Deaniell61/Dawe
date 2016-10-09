@@ -2,9 +2,10 @@
 
 
 
-function mostrarCuentasC()
+function mostrarCuentasC($datos)
 {
 
+session_start();
     //creacion de la tabla
 ?>
 
@@ -22,7 +23,7 @@ function mostrarCuentasC()
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT cc.fecha,cc.total,(select c.nombre from cliente c where c.idcliente=cc.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=cc.idcliente limit 1),idcuentasC FROM cuentascobrar cc  WHERE cc.estado=1";
+    $sql = "SELECT cc.fecha,cc.total,(select c.nombre from cliente c where c.idcliente=cc.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=cc.idcliente limit 1),idcuentasC FROM cuentascobrar cc   WHERE cc.estado=1";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
