@@ -19,8 +19,11 @@
 
 <br>
 <br>
-
-     <div class="row">
+<center>
+                  <li class="centrarli"><a id="imprimirT" onClick="printDiv('contenidoImprimir');" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/imprimir.png" /></i>Imprimir</a></li>
+                </center>
+                <br>
+     <div class="row" id="contenidoImprimir">
 
     	<div class="col s12">
 
@@ -42,10 +45,7 @@
 								  <label class="active" for="fecha" >Fecha Final</label>
 								</div>
 
-                <center>
-                  <li class="centrarli"><a id="imprimirT" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/imprimir.png" /></i>Imprimir</a></li>
-                </center>
-                <br>
+                
 
 
 	<div class="row">

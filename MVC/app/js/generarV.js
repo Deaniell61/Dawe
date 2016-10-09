@@ -833,4 +833,6 @@ $("#btnGuardar").hide();
 $("#OtipoCompra").hide();
 
 $("#imprimir").show();
+$("#NIT").focus();
+
 });

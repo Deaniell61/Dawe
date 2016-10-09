@@ -17,7 +17,7 @@
           </div>
 
 
-      <div class="col s12 ">
+      <div class="col s12 " >
 
 
  <div id="mensajeVV"></div>
@@ -135,11 +135,13 @@
                            <a id="guardar" onClick="quitaInvetario();" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/guardar.png" /></i>Guardar</a>
 
                          </div>
-                                                  <a id="imprimir"  style="display: none"  onClick="" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
+                                              
                       </center>
                     </div>
            </div>
-
+           <center>
+               <a id="imprimir"  style="display: none"  onClick="printCoti('resumenC');" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
+			</center>
 
       </div>
 

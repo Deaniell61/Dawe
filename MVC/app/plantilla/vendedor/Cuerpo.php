@@ -17,7 +17,11 @@
 </ul>
 <br>
 <br>
-        <div class="row">
+<center>
+                  <li class="centrarli"><a id="imprimirT" onClick="printDiv('contenidoImprimir');" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/imprimir.png" /></i>Imprimir</a></li>
+                </center>
+                <br>
+        <div class="row" id="contenidoImprimir">
 
     	<div class="col s12">
 
@@ -38,10 +42,7 @@
 								  <input  id="fechaF" class="fechas" type="date" class="validate" onChange="cargarGrafico('4','');" value="<?php echo date('Y-m-d')?>" >
 								  <label class="active" for="fecha" >Fecha Final</label>
 								</div>
-            <center>
-              <li class="centrarli"><a id="imprimirT" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/imprimir.png" /></i>Imprimir</a></li>
-            </center>
-            <br>
+            
     <div class="row">
       <div class="col s12">
             <div class="col s6 ">

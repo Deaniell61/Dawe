@@ -158,6 +158,7 @@ function nitificaciones()
 }
 
 ?>
+
 <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper grey darken-4">
@@ -192,7 +193,7 @@ function nitificaciones()
 												for($i=0;$i<count($_SESSION['notified1']);$i++)
 												{
 												echo "
-													<li class=\"listaNotificacion\" >".$_SESSION['notified1'][($i)]." </li>
+													<li class=\"listaNotificacion\" onClick=\"location.href='Cobrar.php'\">".$_SESSION['notified1'][($i)]." </li>
 													";
 												}
 												echo "
@@ -201,7 +202,7 @@ function nitificaciones()
 												for($i=0;$i<count($_SESSION['notified22']);$i++)
 												{
 												echo "
-													<li class=\"listaNotificacion\" >".$_SESSION['notified22'][($i)]." </li>
+													<li class=\"listaNotificacion\"  onClick=\"location.href='Cobrar.php'\">".$_SESSION['notified22'][($i)]." </li>
 													";
 												}
 											} else {
