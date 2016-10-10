@@ -430,6 +430,33 @@ function cargarDetalleVentas(id)
                    
 					
 					 $('#resumenCVV2').html(resp);
+					 setTimeout(function(){
+					 $('#tabla2').DataTable( {
+
+											info:     false,
+										
+										
+										
+											language: {
+										
+												search: "Buscar",
+												sLengthMenu:" _MENU_ ",
+										
+												paginate:{
+										
+													previous: "Anterior",
+													next: "Siguiente",
+										
+												},
+										
+											},
+											
+													   "scrollY":        "375px",
+												"scrollCollapse": true,
+												"paging":         true
+												 
+										} );
+					 },0);
 					  
 
                 }

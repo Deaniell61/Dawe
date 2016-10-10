@@ -102,7 +102,7 @@ $busca="";
       //creacion de la tabla
   ?>
 
-  <table id='tabla' class='bordered centered highlight responsive-table centrarT'>
+  <table id='tabla2' class='bordered centered highlight responsive-table centrarT'>
       <thead>
           <tr>
               <th>ID</th>

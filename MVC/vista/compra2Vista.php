@@ -104,15 +104,21 @@ function mostrarDetallesCompras($id)
     //creacion de la tabla
 ?>
 
-<table id='tabla2' class='bordered centered highlight responsive-table centrarT'>
+<table id='tabla22' class='bordered centered highlight responsive-table centrarT'>
     <thead>
         <tr>
+        	<th hidden></th>
+            <th hidden></th>
+            <th hidden></th>
+            <th hidden></th>
+            <th hidden></th>
             <th>ID</th>
             <th>Producto</th>
             <th>Tipo</th>
             <th>Precio</th>
             <th>Cantidad</th>
             <th>SubTotal</th>
+            <th></th>
           
             
         </tr>

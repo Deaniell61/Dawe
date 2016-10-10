@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2016 a las 06:18:16
+-- Tiempo de generación: 10-10-2016 a las 20:13:16
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `accesos` (
   PRIMARY KEY (`idAccesos`),
   KEY `AccesoModulo_idx` (`idModulo`),
   KEY `AccesoUsuarios_idx` (`idUsuarios`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
 
 --
 -- Volcado de datos para la tabla `accesos`
@@ -52,14 +52,18 @@ INSERT INTO `accesos` (`idAccesos`, `Agrega`, `Modifica`, `Mostrar`, `Elimina`, 
 (21, 1, 1, 1, 1, 33, 7),
 (22, 1, 1, 1, 1, 33, 8),
 (46, 1, 1, NULL, 1, 33, 1),
-(47, 0, 0, NULL, 0, 35, 3),
+(47, 1, 1, NULL, 0, 35, 3),
 (48, 0, 0, NULL, 0, 35, 4),
-(49, 0, 0, NULL, 0, 35, 7),
+(49, 1, 1, NULL, 0, 35, 7),
 (53, 1, 1, NULL, 1, 35, 6),
 (54, 0, 0, NULL, 0, 35, 2),
 (55, 0, 0, NULL, 0, 35, 1),
 (56, 0, 0, NULL, 0, 35, 5),
-(57, 0, 0, NULL, 0, 35, 8);
+(57, 0, 0, NULL, 0, 35, 8),
+(58, 1, 1, NULL, 0, 36, 7),
+(59, 1, 1, NULL, 1, 36, 5),
+(60, 1, 1, NULL, 0, 42, 5),
+(61, 1, 1, NULL, 1, 42, 7);
 
 -- --------------------------------------------------------
 
@@ -109,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `comisiones` (
   `Estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idComisiones`),
   KEY `ComisionesUsuarios` (`idUsuarios`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Volcado de datos para la tabla `comisiones`
@@ -144,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `compradetalle` (
   KEY `DetalleCompra_idx` (`idCompras`),
   KEY `DetalleTipo_idx` (`idTipo`),
   KEY `DetalleProducto_idx` (`idProductos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=117 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126 ;
 
 --
 -- Volcado de datos para la tabla `compradetalle`
@@ -164,7 +168,7 @@ INSERT INTO `compradetalle` (`idCompraDetalle`, `subtotal`, `vencimiento`, `cant
 (20, 120, NULL, 5, NULL, 24, NULL, NULL, NULL, NULL, 1, 23, 15, NULL),
 (21, 5, NULL, 5, NULL, 1, NULL, NULL, NULL, NULL, 1, 23, 14, NULL),
 (22, 707.875, NULL, 56, NULL, 12.640625, NULL, NULL, NULL, NULL, 1, 24, 4, NULL),
-(23, 1188, NULL, 99, NULL, 12, NULL, NULL, NULL, NULL, 1, 32, 15, NULL),
+(23, 1188, NULL, 99, NULL, 12, NULL, NULL, NULL, NULL, 0, 32, 15, NULL),
 (24, 2025, NULL, 45, NULL, 45, NULL, NULL, NULL, NULL, 1, 34, 32, NULL),
 (25, 568.828125, NULL, 45, NULL, 12.640625, NULL, NULL, NULL, NULL, 1, 34, 4, NULL),
 (27, 5, NULL, 5, NULL, 1, NULL, NULL, NULL, NULL, 1, 34, 14, NULL),
@@ -173,8 +177,8 @@ INSERT INTO `compradetalle` (`idCompraDetalle`, `subtotal`, `vencimiento`, `cant
 (30, 568.828125, NULL, 45, NULL, 12.640625, NULL, NULL, NULL, NULL, 1, 39, 4, NULL),
 (31, 1462, NULL, 43, NULL, 34, NULL, NULL, NULL, NULL, 1, 40, 8, NULL),
 (32, 0, NULL, 15, NULL, 0, NULL, NULL, NULL, NULL, 1, 51, 34, NULL),
-(33, 12.375, NULL, 3, NULL, 4.125, NULL, NULL, NULL, NULL, 1, 53, 5, NULL),
-(34, 0, NULL, 234, NULL, 0, NULL, NULL, NULL, NULL, 1, 53, 35, NULL),
+(33, 12.375, NULL, 3, NULL, 4.125, NULL, NULL, NULL, NULL, 0, 53, 5, NULL),
+(34, 0, NULL, 234, NULL, 0, NULL, NULL, NULL, NULL, 0, 53, 35, NULL),
 (35, 145411.454436, NULL, 4234, NULL, 34.343754, NULL, NULL, NULL, NULL, 1, 55, 3, NULL),
 (36, 541.9375, NULL, 23, NULL, 23.5625, NULL, NULL, NULL, NULL, 1, 55, 6, NULL),
 (37, 2898.1875, NULL, 123, NULL, 23.5625, NULL, NULL, NULL, NULL, 1, 59, 6, NULL),
@@ -224,7 +228,14 @@ INSERT INTO `compradetalle` (`idCompraDetalle`, `subtotal`, `vencimiento`, `cant
 (104, 0, NULL, 5, NULL, 0, NULL, NULL, NULL, NULL, 1, 145, 17, NULL),
 (108, 400, NULL, 20, 20, 50, 45, 42.5, NULL, NULL, 1, 150, 1, NULL),
 (115, 120, NULL, 10, 12, 24, 24, 24, NULL, NULL, 1, 156, 15, NULL),
-(116, 200, NULL, 10, 20, 50, 45, 42.5, NULL, NULL, 1, 157, 1, NULL);
+(116, 200, NULL, 10, 20, 50, 45, 42.5, NULL, NULL, 1, 157, 1, NULL),
+(118, 40, NULL, 2, 20, 50, 45, 42.5, NULL, NULL, 1, 159, 1, NULL),
+(119, 2404.06264, NULL, 70, 34.343751999999995, 1, 1, 1, NULL, NULL, 1, 159, 3, NULL),
+(120, 500, NULL, 50, 10, 15, 13.5, 12.75, NULL, NULL, 1, 160, 18, NULL),
+(121, 300, NULL, 30, 10, 15, 13.5, 12.75, NULL, NULL, 1, 161, 18, NULL),
+(123, 2000, NULL, 200, 10, 20, 18, 17, NULL, NULL, 1, 167, 35, NULL),
+(124, 100, NULL, 10, 10, 18, 16.2, 15.3, NULL, NULL, 1, 168, 19, NULL),
+(125, 200, NULL, 10, 20, 20, 45, 42.5, NULL, NULL, 1, 169, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -245,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `compras` (
   KEY `CompraDistribuidor_idx` (`idDistribuidor`),
   KEY `CompraTipo_idx` (`tipoCompra`),
   KEY `ComprasUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=158 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=170 ;
 
 --
 -- Volcado de datos para la tabla `compras`
@@ -260,13 +271,13 @@ INSERT INTO `compras` (`idCompras`, `fecha`, `total`, `estado`, `tipoCompra`, `N
 (21, '2016-09-23 19:09:10', 2, 0, 1, NULL, 6, NULL),
 (23, '2016-09-23 20:15:06', 625, 1, 1, NULL, 7, NULL),
 (24, '2016-09-23 20:34:32', 707.875, 1, 1, NULL, 2, NULL),
-(32, '2016-09-24 01:54:47', 1188, 1, 1, NULL, 1, NULL),
+(32, '2016-09-24 01:54:47', 1188, 0, 1, NULL, 1, NULL),
 (34, '2016-09-24 06:06:14', 2598.828125, 1, 1, NULL, 8, NULL),
 (35, '2016-09-24 06:12:06', 6061, 1, 1, NULL, 7, NULL),
 (39, '2016-09-24 07:08:08', 568.828125, 1, 1, NULL, 1, NULL),
 (40, '2016-09-24 07:09:38', 1462, 1, 1, NULL, 1, NULL),
 (51, '2016-09-24 07:56:39', 0, 1, 1, NULL, 1, NULL),
-(53, '2016-09-24 08:01:37', 12.375, 1, 1, NULL, 1, NULL),
+(53, '2016-09-24 08:01:37', 12.375, 0, 1, NULL, 1, NULL),
 (55, '2016-09-24 08:40:53', 145953.391936, 1, 1, '789798', 1, NULL),
 (59, '2016-09-24 08:50:19', 2898.1875, 1, 1, '2345', 1, NULL),
 (60, '2016-09-24 08:55:27', 67, 1, 1, '85858', 3, NULL),
@@ -302,7 +313,13 @@ INSERT INTO `compras` (`idCompras`, `fecha`, `total`, `estado`, `tipoCompra`, `N
 (145, '2016-10-01 06:52:45', 0, 1, 1, NULL, 1, 33),
 (150, '2016-10-01 07:17:52', 400, 1, 1, NULL, 1, 33),
 (156, '2016-10-02 03:43:52', 120, 1, 2, NULL, 1, 33),
-(157, '2016-10-02 03:46:34', 200, 1, 2, NULL, 1, 33);
+(157, '2016-10-02 03:46:34', 200, 1, 2, NULL, 1, 33),
+(159, '2016-10-09 00:39:26', 2444.06264, 1, 2, NULL, 1, 33),
+(160, '2016-10-09 00:41:29', 500, 1, 2, NULL, 1, 33),
+(161, '2016-10-09 00:43:15', 300, 1, 2, NULL, 1, 33),
+(167, '2016-10-09 19:18:35', 2000, 1, 1, NULL, 1, 33),
+(168, '2016-10-09 19:19:09', 100, 1, 1, NULL, 2, 33),
+(169, '2016-10-09 19:19:53', 200, 1, 1, NULL, 2, 33);
 
 -- --------------------------------------------------------
 
@@ -319,17 +336,18 @@ CREATE TABLE IF NOT EXISTS `cuentascobrar` (
   `idCliente` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   `CreditoDado` double DEFAULT NULL,
+  `fecha_ant` date DEFAULT NULL,
   PRIMARY KEY (`idCuentasC`),
   UNIQUE KEY `idCompras` (`idCliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=87 ;
 
 --
 -- Volcado de datos para la tabla `cuentascobrar`
 --
 
-INSERT INTO `cuentascobrar` (`idCuentasC`, `fecha`, `plazo`, `tipoPlazo`, `total`, `idCliente`, `estado`, `CreditoDado`) VALUES
-(29, '2016-10-02 03:03:40', 2, '2', 9, 1, 2, 9),
-(38, '2016-10-02 03:14:11', 2, '2', 200, 2, 1, 218);
+INSERT INTO `cuentascobrar` (`idCuentasC`, `fecha`, `plazo`, `tipoPlazo`, `total`, `idCliente`, `estado`, `CreditoDado`, `fecha_ant`) VALUES
+(29, '2016-10-02 03:03:40', 2, '2', 2989, 1, 1, 2989, NULL),
+(38, '2016-10-02 03:14:11', 1, '2', 1200, 2, 1, 2723, NULL);
 
 -- --------------------------------------------------------
 
@@ -346,16 +364,17 @@ CREATE TABLE IF NOT EXISTS `cuentaspagar` (
   `idProveedor` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   `CreditoDado` double DEFAULT NULL,
+  `fecha_ant` date DEFAULT NULL,
   PRIMARY KEY (`idCuentasP`),
   UNIQUE KEY `idVentas` (`idProveedor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
 -- Volcado de datos para la tabla `cuentaspagar`
 --
 
-INSERT INTO `cuentaspagar` (`idCuentasP`, `fecha`, `plazo`, `tipoPlazo`, `total`, `idProveedor`, `estado`, `CreditoDado`) VALUES
-(27, '2016-10-02 03:41:09', 2, '2', 200, 1, 1, 320);
+INSERT INTO `cuentaspagar` (`idCuentasP`, `fecha`, `plazo`, `tipoPlazo`, `total`, `idProveedor`, `estado`, `CreditoDado`, `fecha_ant`) VALUES
+(27, '2016-10-02 03:41:09', 10, '1', 3300, 1, 1, 3420, NULL);
 
 -- --------------------------------------------------------
 
@@ -407,7 +426,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `sueldo` double DEFAULT NULL,
   PRIMARY KEY (`idEmpleados`),
   KEY `EmpleadoPuesto_idx` (`Puesto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Volcado de datos para la tabla `empleados`
@@ -462,29 +481,29 @@ CREATE TABLE IF NOT EXISTS `inventario` (
 --
 
 INSERT INTO `inventario` (`idInventario`, `idProducto`, `precioCosto`, `precioVenta`, `precioClienteEs`, `precioDistribuidor`, `cantidad`) VALUES
-(1, 1, 20, 50, 45, 42.5, 60),
-(2, 2, 1.0008544921875, 10, 9, 8.5, 60),
-(4, 3, 34.343751999999995, 1, 1, 1, 4430),
-(5, 4, 10, 30, 27, 25.5, 206),
-(6, 5, 200, 500, 450, 425, 10),
+(1, 1, 20, 20, 18, 17, 60),
+(2, 2, 1.0008544921875, 10, 9, 8.5, 50),
+(4, 3, 34.343751999999995, 34.343751999999995, 1, 1, 4100),
+(5, 4, 10, 30, 27, 25.5, 200),
+(6, 5, 200, 500, 450, 425, 7),
 (7, 6, 23.5625, 48, 24, 21, 100),
 (9, 8, 17, 3, 43, 34, 0),
-(10, 9, 0, 0, 0, 0, -5),
-(11, 10, 2.5, 5, 5, 5, 0),
+(10, 9, 0, 10, 9, 8.5, -5),
+(11, 10, 2.5, 11, 9.9, 9.35, 0),
 (12, 11, 0.5, 1, 1, 1, 1),
 (13, 12, 0, 0, 0, 0, 0),
-(14, 13, 2, 5, 6, 6, 3),
+(14, 13, 2, 5, 6, 6, 0),
 (15, 14, 1, 2, 2, 2, 10),
-(16, 15, 12, 24, 24, 24, 60),
+(16, 15, 12, 24, 24, 24, -49),
 (18, 17, 0, 0, 0, 0, 50),
-(19, 18, 0, 0, 0, 0, 30),
-(20, 19, 0, 0, 0, 0, 50),
+(19, 18, 10, 10, 13.5, 12.75, 110),
+(20, 19, 10, 10, 16.2, 15.3, 60),
 (21, 20, 0, 0, 0, 0, 0),
 (22, 21, 0, 0, 0, 0, 5),
 (23, 22, 0, 0, 0, 0, 0),
-(24, 23, 28, 65, 65, 5, 10),
-(25, 24, 0, 0, 0, 0, 34),
-(26, 25, 0, 0, 0, 0, 0),
+(24, 23, 28, 65, 65, 5, 0),
+(25, 24, 0, 20, 18, 17, 34),
+(26, 25, 0, 20, 18, 17, 0),
 (27, 26, 32.5, 0, 0, 0, 45),
 (28, 27, 0, 0, 0, 0, 0),
 (29, 28, 0, 0, 0, 0, 0),
@@ -494,7 +513,7 @@ INSERT INTO `inventario` (`idInventario`, `idProducto`, `precioCosto`, `precioVe
 (33, 32, 22.5, 68, 64, 64, 45),
 (34, 33, 0, 0, 0, 0, 0),
 (35, 34, 0, 0, 0, 0, 15),
-(36, 35, 0, 0, 0, 0, 256),
+(36, 35, 10, 10, 18, 17, 122),
 (37, 36, 0, 0, 0, 0, 49),
 (38, 37, 0, 0, 0, 0, 56);
 
@@ -558,7 +577,7 @@ CREATE TABLE IF NOT EXISTS `movimientosc` (
   PRIMARY KEY (`idMovimientoC`),
   KEY `MovimientoCCuentasC` (`idCuentasC`),
   KEY `MovimientosCUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Volcado de datos para la tabla `movimientosc`
@@ -566,7 +585,8 @@ CREATE TABLE IF NOT EXISTS `movimientosc` (
 
 INSERT INTO `movimientosc` (`idMovimientoC`, `credito`, `abono`, `saldo`, `fecha`, `descripcion`, `idCuentasC`, `idUsuario`) VALUES
 (14, 78, 8, 70, '2016-10-02 06:00:00', 'abono', 38, 33),
-(15, 218, 10, 200, '2016-10-02 06:00:00', 'abono 2', 38, 33);
+(15, 218, 10, 200, '2016-10-02 06:00:00', 'abono 2', 38, 33),
+(16, 1523, 1505, 0, '2016-10-09 06:00:00', 'cierre', 38, 33);
 
 -- --------------------------------------------------------
 
@@ -731,7 +751,7 @@ CREATE TABLE IF NOT EXISTS `puestos` (
   `idPuestos` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idPuestos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `puestos`
@@ -739,7 +759,8 @@ CREATE TABLE IF NOT EXISTS `puestos` (
 
 INSERT INTO `puestos` (`idPuestos`, `Descripcion`) VALUES
 (1, 'Jefe'),
-(2, 'Vendedor');
+(2, 'Vendedor'),
+(3, 'Rutero');
 
 -- --------------------------------------------------------
 
@@ -778,7 +799,7 @@ CREATE TABLE IF NOT EXISTS `sueldos` (
   `Estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSueldos`),
   KEY `SueldosEmpleado` (`idEmpleado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `sueldos`
@@ -878,7 +899,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`idUsuarios`),
   KEY `UsuarioEmpleado_idx` (`idEmpleados`),
   KEY `UsuarioRol_idx` (`idRol`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -886,7 +907,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`idUsuarios`, `Email`, `user`, `Contra`, `estado`, `idRol`, `idEmpleados`) VALUES
 (33, NULL, 'Admin', '123412341234', 1, 1, NULL),
-(35, NULL, 'Daniel', '123412341234', 1, 2, NULL);
+(35, NULL, 'Daniel', '123412341234', 1, 2, 12),
+(36, NULL, 'asfas1', '123456789', 1, 2, 12),
+(42, NULL, 'y2', '123456789', 1, 2, 14);
 
 -- --------------------------------------------------------
 
@@ -907,7 +930,7 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   KEY `ClienteVenta_idx` (`idCliente`),
   KEY `VentaTipo_idx` (`tipoVenta`),
   KEY `VentasUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=134 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=159 ;
 
 --
 -- Volcado de datos para la tabla `ventas`
@@ -950,10 +973,18 @@ INSERT INTO `ventas` (`idVentas`, `fecha`, `total`, `estado`, `tipoVenta`, `noco
 (91, '2016-09-28 20:34:54', 0, 1, 2, 32, 2, NULL),
 (92, '2016-09-29 02:54:38', 1000, 1, 1, 33, 2, NULL),
 (124, '2016-09-30 07:47:08', 0, 1, 1, 34, 2, 33),
-(130, '2016-10-02 03:11:23', 9, 2, 2, 35, 1, 33),
-(131, '2016-10-02 03:14:07', 69, 2, 2, 35, 2, 33),
 (132, '2016-10-02 03:17:04', 9, 1, 2, 35, 2, 33),
-(133, '2016-10-02 03:28:41', 140, 1, 2, 36, 2, 33);
+(133, '2016-10-02 03:28:41', 140, 1, 2, 36, 2, 33),
+(135, '2016-10-07 20:01:47', 650, 1, 1, 37, 2, 33),
+(136, '2016-10-07 20:04:27', 600, 1, 1, 38, 1, 35),
+(137, '2016-10-07 21:28:27', 240, 1, 1, 39, 2, 36),
+(138, '2016-10-07 21:29:20', 180, 1, 1, 40, 1, 42),
+(139, '2016-10-09 00:00:18', 15, 1, 2, 41, 2, 33),
+(140, '2016-10-09 00:01:21', 400, 1, 2, 42, 2, 33),
+(146, '2016-10-09 00:26:13', 0, 0, 2, 43, 2, 33),
+(148, '2016-10-09 00:36:47', 100, 1, 2, 44, 2, 33),
+(157, '2016-10-09 19:22:18', 1100, 0, 1, 45, 2, 33),
+(158, '2016-10-09 19:22:53', 1000, 1, 1, 46, 1, 33);
 
 -- --------------------------------------------------------
 
@@ -976,7 +1007,7 @@ CREATE TABLE IF NOT EXISTS `ventasdetalle` (
   KEY `VentaDetalleTipo_idx` (`idTipo`),
   KEY `VentaDetalle_idx` (`idVenta`),
   KEY `VentaDetalleProducto_idx` (`idProductos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=79 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
 
 --
 -- Volcado de datos para la tabla `ventasdetalle`
@@ -1030,10 +1061,19 @@ INSERT INTO `ventasdetalle` (`idVentaDetalle`, `Subtotal`, `Vencimiento`, `Canti
 (66, 0, NULL, 2, 0, NULL, 91, 18, NULL, 1),
 (67, 1000, NULL, 2, 500, NULL, 92, 5, NULL, 1),
 (72, 0, NULL, 2, 0, NULL, 124, 19, NULL, 1),
-(74, 9, NULL, 9, 1, NULL, 130, 2, NULL, 2),
-(75, 69, NULL, 69, 1, NULL, 131, 2, NULL, 2),
 (77, 9, NULL, 9, 1, NULL, 132, 2, NULL, 1),
-(78, 140, NULL, 5, 28, NULL, 133, 23, NULL, 1);
+(78, 140, NULL, 5, 28, NULL, 133, 23, NULL, 1),
+(80, 650, NULL, 10, 65, NULL, 135, 23, NULL, 1),
+(81, 100, NULL, 10, 10, NULL, 136, 2, NULL, 1),
+(82, 500, NULL, 10, 50, NULL, 136, 1, NULL, 1),
+(83, 240, NULL, 10, 24, NULL, 137, 15, NULL, 1),
+(84, 180, NULL, 6, 30, NULL, 138, 4, NULL, 1),
+(85, 15, NULL, 3, 5, NULL, 139, 13, NULL, 1),
+(86, 400, NULL, 400, 1, NULL, 140, 3, NULL, 1),
+(87, 0, NULL, 4, 0, NULL, 146, 21, NULL, 0),
+(89, 100, NULL, 2, 50, NULL, 148, 1, NULL, 1),
+(97, 1100, NULL, 110, 10, NULL, 157, 18, NULL, 0),
+(98, 1000, NULL, 100, 10, NULL, 158, 35, NULL, 1);
 
 --
 -- Restricciones para tablas volcadas
