@@ -16,17 +16,16 @@
          <center>
          <div class="izqC">
          	<ul>
-         	   <li><a id="resumenA" href="#!" class="" >Video Resumen</a></li>
+         	   
          	   <li><a id="mapacontenidoA" href="#!" class="" >Contenido</a></li>
          		<li><a id="usuariosA" href="#!" class="" >Usuarios</a></li>
          		<li><a id="empleadosA"  href="#!" class="">Empleados</a></li>
          		<li><a id="comprasA" href="#!" class="" >Compras</a></li>
-            <li><a id="cuentasCA" href="#!" class="" >Cuentas por Cobrar</a></li>
-            <li><a id="cuentasPA" href="#!" class="" >Cuentas por Pagar</a></li>
+            <li><a id="cuentasCA" href="#!" class="" >Cuentas</a></li>
             <li><a id="EstadisticaA" href="#!" class="" >Estadística</a></li>
-            <li><a id="InventarioC" href="#!" class="" >Inventarios</a></li>
+            <!--<li><a id="InventarioA" href="#!" class="" >Inventarios</a></li>
             <li><a id="ventasA" href="#!" class="" >Ventas</a></li>
-            <li><a id="pagosC" href="#!" class="" >Pagos</a></li>
+            <li><a id="pagosA" href="#!" class="" >Pagos</a></li> -->
          	</ul>
           </div>	
          </center>
@@ -39,7 +38,7 @@
           
           
 				<!-- reumen --> 
-				 <div id="resumenC"   >
+				 <div id="resumenC"  style="display: none;" >
                    <h4>Video Resumen</h4>
 				<video id="resumenV" controls>
 				   <source src="../app/video/video.mp4" type="video/mp4">
@@ -48,7 +47,7 @@
 				  </div>
 
 				  <!-- Detalle todos --> 
-				   <div id="mapacontenidoC"  style="display: none;" >
+				   <div id="mapacontenidoC"   >
                        <h4>Contenido General</h4>
 						
                      <p class="subtitulo1">Menú</p>
@@ -195,15 +194,76 @@
 				  <!-- compras --> 
 				   <div id="comprasC"  style="display: none;" >
                       <h4>Compras</h4>
-						<p> compras </p>
-
+						<p class="subtitulo1">Administración de Compras </p>
+                   <p class="parrafo1">Módulo que permite ingresar las compras hechas por la empresa para adquirir un nuevo producto. Esta compra se distribuirá en productos, inventarios, detalle de la compra y entre otros. Este módulo es importante para el flujo correspondiente de la empresa mediante el sistema. </p>  
+                   <img src='../app/img/Ayuda/compras1.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) En esta área se mostrara el detalle de todas las compras ingresados.</p>  
+                   <p class="parrafo1">b) El módulo de compras contiene una caja de búsqueda que permitirá filtrar y buscar los datos de manera eficiente sobre todos los registros ingresados del usuario.</p>  
+                   <p class="parrafo1">c) Por cada detalle de compra se mostrara  un panel de mantenimiento en la cual contiene los botones de: editar, eliminar y ver para administrarlos según el criterio del usuario. Si elimina un detalle de compra pasara al detalle anulado (inciso g).</p>  
+                   <p class="parrafo1">d) Contiene un Filtro de Registro para determinar la cantidad de datos que se desea mostrar a medida de localizar la información rápidamente. </p>  
+                   <p class="parrafo1">e) Contiene un Administrador de Vistas de Tablas que muestran los registros en forma de páginas según el rango que se tiene en el Filtro de Registros. </p>  
+                   <p class="parrafo1">f) Este módulo tiene un filtro que permitirá  observar solo motos o carros dependiendo el uso que desee.</p>  
+                   <p class="parrafo1">g) De las facturas que se han eliminado podrá verlos pero no recuperarlos ya que la utilización del botón de eliminar (inciso c), se solicita una contraseña para saber si está seguro de la operación ejecutada.</p>  
+                   <p class="parrafo1">h) Podrá ingresar un nuevo detalle de compras según factura o comprobante que posea</p>  
+           <p class="subtitulo1">Detalle de Compras</p>
+                   <p class="parrafo1">Podrá ingresar un nuevo detalle de compras</p>          
+                   <img src='../app/img/Ayuda/compras2.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <br><img src='../app/img/Ayuda/compras3.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) Para ingresar un detalle de compra deberá ingresar el NIT del proveedor. Puede escribirlo  o puede presionar la tecla ENTER para generar un nuevo proveedor.</p>  
+                   <p class="parrafo1">b) Al llenar el NIT automáticamente aparece la descripción del proveedor (nombre y dirección)</p>  
+                   <p class="parrafo1">c) Deberá de completar la información que se le solicite en este formulario para determinar el detalle de la compra.</p>  
+                   <p class="parrafo1">d) Podrá seleccionar un tipo de compra en la cual contiene si es al contado, crédito o alguna donación adquirida. Si es al crédito deberá de establecer el tipo de plazo como el día, mes y año, como también la cantidad del plazo en la cual pagará el total del crédito a pagar.</p>  
+                   <p class="parrafo1">e)  Al detalle de la compra podrá añadirle los productos que posee la empresa.</p>  
+                   <p class="parrafo1">f)  Cuando ingresa un nuevo producto que contiene la factura o comprobante  se mostrará en este espacio.</p> 
+                   <p class="parrafo1">g) Por cada descripción de la factura o comprobante ingresada podrá eliminarla y volverla a ingresar si no es la adecuada.</p>
+                   <p class="parrafo1">h) Al finalizar de ingresar la descripción de los productos que contiene la factura o comprobante deberá de guardarla para que quede establecida en el detalle de la compra.</p> 
+            <p class="subtitulo1">Crear o seleccionar un nuevo proveedor</p>
+                   <p class="parrafo1">Para seleccionar o crear un nuevo proveedor deberá presionar la tecla ENTER para acceder a al formulario correspondiente.</p>          
+                   <img src='../app/img/Ayuda/compras4.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <br><img src='../app/img/Ayuda/compras5.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) Podrá Generar un nuevo proveedor contemplando todos los datos de contacto correspondientes.</p>  
+                   <p class="parrafo1">b) Se mostraran en este espacio y podrá seleccionarlo según el detalle de la factura. Al seleccionarlo aparecerá en el detalle de la compra que se está generando.</p>  
+                   <p class="parrafo1">c) Podrá editar el proveedor si los datos no son los correctos, pero no podrá eliminarlo ya que estará ligado a toda o todas las facturas con ese proveedor.</p>  
+            
+            <p class="subtitulo1">Generar un nuevo producto</p>
+                   <p class="parrafo1">Para crear una nueva descripción del producto que contiene la factura o comprobante deberá de ingresar los datos que califiquen al producto ya que estos serán los que se mostraran en el inventario que posee la empresa.</p>          
+                   <img src='../app/img/Ayuda/compras6.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">Si el producto no existe dentro de la base de datos del inventario deberá hacer lo siguiente:.</p>          
+                   <br><img src='../app/img/Ayuda/compras7.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <br><img src='../app/img/Ayuda/compras8.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) Deberá de ingresar la información que se le solicita que permitirá describir el producto y utilizarlo de la mejor manera, ingresara un código de ese producto, nombre del producto, la marca, una pequeña descripción y el tipo de la compra.</p>  
+                   <p class="parrafo1">b) Al terminar de llenar este formulario deberá de agregar este producto para guardarlo dentro la base de datos.</p>  
+                   <p class="parrafo1">c) Al guardar lo podrá ingresar el estado financiero que mueve este producto como la cantidad, el precio de costo,  el precio de venta general y los demás campos se llenan automáticos según el porcentaje de ganancia que desee pero puede ser modificable si así lo prefiera.</p>
+                   <p class="parrafo1">d) Deberá de aceptar al terminar de llenar el formulario que se le solicitó. Este dejara en blanco el formulario para proseguir a llenarlo nuevamente siguiendo estos pasos, al finalizar con todos los productos que posee la factura deberá de cerrar este formulario.</p>        
+                   <br><p class="parrafo1">Si el producto si existe dentro de la base de datos del inventario tendrá que hacer lo siguiente:</p>          
+                    <br><img src='../app/img/Ayuda/compras9.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                    <p class="parrafo1">a)  Colocar el código o producto ya existen.</p>        
+                    <p class="parrafo1">b)  En este espacio se mostraran los productos similares o exactos de los que coloque (inciso a), y podrá seleccionarlos para que desplace la información del producto ya existente.</p>        
+                    <p class="parrafo1">c)  Deberá colocar la cantidad y si desea podrá modificar los costos para actualizar los datos dentro de la base de datos.</p>        
+                    <p class="parrafo1">d)  Deberá de aceptar al terminar de llenar el formulario que se le solicitó. Este dejara en blanco el formulario para proseguir a llenarlo nuevamente siguiendo estos pasos, al finalizar con todos los productos que posee la factura deberá de cerrar este formulario.</p>        
 			             </div>
 			             
 			       
               <div id="cuentasCc"  style="display: none;" >
-                      <h4>Cuentas por Cobrar</h4>
-                      <p> cuentasc </p>
-
+              <h4>Cuentas</h4>
+               <p class="subtitulo1">Cuentas por Cobrar y Cuentas por Pagar</p>
+                    <p class="parrafo1">Módulo que permite visualizar el crédito que ha generado la empresa ya sea por cobrar o por pagar, en el cual podrá abonar o acreditar según la necesidad de la empresa. Este módulo genera un aviso por cada cuenta que va a caducar, mostrará un aviso cuando hayan pasado veintiocho días (28 días)  del plazo o cinco días (5 días)  antes de vencerse el crédito.</p>          
+                    <img src='../app/img/Ayuda/cuentas1.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                    <p class="parrafo1">a)  Contiene un submenú en forma de acordeón que posee los botones de cuentas por cobrar y cuentas por pagar para administración de cualquiera de estos módulos.</p>        
+                    <p class="parrafo1">b)  En esta área se mostraran todos los créditos generados.</p>        
+                    <p class="parrafo1">c)  Por cada crédito generado se mostrará  un panel de mantenimiento en la cual contiene los botones de: editar, y ver para administrarlos según el criterio del usuario. En el botón de ver podrá abonar al crédito o liquidar el crédito de una vez.</p>        
+                    <p class="parrafo1">d)  Contiene un Filtro de Registro para determinar la cantidad de datos que se desea mostrar a medida de localizar la información rápidamente. </p>        
+                    <p class="parrafo1">e)  Contiene un Administrador de Vistas de Tablas que muestran los registros en forma de páginas según el rango que se tiene en el Filtro de Registros.</p>        
+                    <p class="parrafo1">f)  El módulo de cuentas  contiene una caja de búsqueda que permitirá filtrar y buscar los datos de manera eficiente sobre todos los registros ingresados del usuario.</p>        
+                    <p class="parrafo1">g)  Este módulo tiene un filtro que permitirá  observar solo motos o carros dependiendo el uso que desee. </p>        
+              <p class="subtitulo1">Para Abonar a una Cuenta</p>
+              <p class="parrafo1">Podrá abonar a un crédito que se tenga de parte de los clientes o de los proveedores, editando el contenido.</p>        
+                    <img src='../app/img/Ayuda/cuentas2.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                    <img src='../app/img/Ayuda/cuentas3.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                    <p class="parrafo1">a)  Deberá de colocar la cantidad del abono.</p>        
+                    <p class="parrafo1">b)  Deberá de colocar la descripción detallando de que trató el abono.</p>        
+                    <p class="parrafo1">c)  Al guardar se mostrará el saldo de la cuenta que se está abonando o acreditando.</p>        
+                    <p class="parrafo1">d)  Deberá guardar el resultado del abono para que quede registrado en la base de datos.</p>        
               </div>
 
               <div id="cuentasPC"  style="display: none;" >
@@ -214,7 +274,17 @@
 
               <div id="EstadisticaC"  style="display: none;" >
                       <h4>Estadística </h4>
-                      <p> estadistica </p>
+                    <p class="subtitulo1">Administración de Estadística </p>
+                    <p class="parrafo1">Módulo que permite mostrar el flujo de la empresa por medio de gráficas circulares y de barras para determinar y comparar los diferentes ingresos que generar la empresa. La estadística muestra en un determinando rango de fechas lo que ha sucedido en la empresa.</p>          
+                    <img src='../app/img/Ayuda/Estadistica.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                    <p class="parrafo1">a)  En este módulo se mostraran los botones de las diferentes estadísticas para determinar el flujo de la empresa.</p>
+                    <p class="parrafo1">b)  Podrá elegir un rango de fechas para establecer los criterios de las gráficas .</p>
+                    <p class="parrafo1">c)  Podrá observar una gráfica circular, en donde detallará los porcentajes correspondientes.</p>
+                    <p class="parrafo1">d)  Podrá observar una gráfica de barras en la cual determinara el periodo y los objetos de comparación.</p>          
+                    <p class="parrafo1">e)  En esta área determinaran todos los objetos que se estarán comparando .</p>          
+                    <p class="parrafo1">f)  Botón que permite imprimir las gráficas adecuándolas a la configuración que desee el usuario </p>          
+
+
 
               </div>
 
