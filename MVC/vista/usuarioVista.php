@@ -14,6 +14,7 @@ function mostrarUsuarios()
           <th>ID</th>
           <th>Nombre</th>
           <th>Rol</th>
+          <th>Empleado</th>
           <th></th>
           
           </tr>
@@ -22,7 +23,7 @@ function mostrarUsuarios()
 	<?php
 	
     $mysql = conexionMysql();
-    $sql = "SELECT u.idUsuarios, u.user,(SELECT r.Descripcion FROM roles r WHERE r.idRol=u.idRol ) FROM usuarios u WHERE Estado=1";
+    $sql = "SELECT u.idUsuarios, u.user,(SELECT r.Descripcion FROM roles r WHERE r.idRol=u.idRol ),(SELECT r.nombre FROM empleados r WHERE r.idEmpleados=u.idEmpleados limit 1),(SELECT r.apellido FROM empleados r WHERE r.idEmpleados=u.idEmpleados limit 1) FROM usuarios u WHERE Estado=1";
 	$tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -43,6 +44,7 @@ function mostrarUsuarios()
                 $tabla .="<td>"     .$fila["0"].    "</td>";
                 $tabla .="<td>" .$fila["1"].      "</td>";
                 $tabla .="<td>" .$fila["2"].      "</td>";
+				$tabla .="<td>" .$fila["3"].      " " .$fila["4"].      "</td>";
 				 $tabla .="<td class='anchoC'>";
 				if($_SESSION['SOFT_ACCESOModifica'.'usuario']=='1')
 				{
@@ -91,7 +93,7 @@ function comboEmpleados()
 	<?php
 	
     $mysql = conexionMysql();
-    $sql = "SELECT nombre,apellido,idempleados FROM empleados WHERE Estado=1";
+    $sql = "SELECT e.nombre,e.apellido,e.idempleados FROM empleados e WHERE Estado=1";
 	$tabla="";
     if($resultado = $mysql->query($sql))
     {

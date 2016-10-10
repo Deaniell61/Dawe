@@ -104,7 +104,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 							chart.load({
 									columns: [
 										".$titulo."],
-										['Sales'".$meses."]
+										['Ventas'".$meses."]
 												
 											]
 											
@@ -351,7 +351,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 				echo "
 							<script>
 							document.getElementById('best5').innerHTML='';
-							document.getElementById('best5').innerHTML='Top 5 Prodcutos mas vendidos<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
+							document.getElementById('best5').innerHTML='Top 5 Productos mas vendidos<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
 							
 							</script>
 							";
@@ -361,7 +361,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 				echo "
 							<script>
 							document.getElementById('best5').innerHTML='';
-							document.getElementById('best5').innerHTML='Top 5 Prodcutos mas vendidos<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
+							document.getElementById('best5').innerHTML='Top 5 Productos mas vendidos<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
 							
 							</script>
 							";
@@ -443,7 +443,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 				echo "
 							<script>
 							document.getElementById('best5Q').innerHTML='';
-							document.getElementById('best5Q').innerHTML='Top 5 Prodcutos mas solicitados<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
+							document.getElementById('best5Q').innerHTML='Top 5 Productos mas solicitados<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
 							
 							</script>
 							";
@@ -453,7 +453,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 				echo "
 							<script>
 							document.getElementById('best5Q').innerHTML='';
-							document.getElementById('best5Q').innerHTML='Top 5 Prodcutos mas solicitados<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
+							document.getElementById('best5Q').innerHTML='Top 5 Productos mas solicitados<div style=\" float:right; margin-right:20px;\"><strong>".$cod2."</strong></div><br>".str_replace("'","\'",$meses)."</tbody></table>';
 							
 							</script>
 							";

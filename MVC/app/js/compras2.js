@@ -142,7 +142,7 @@ function mostrarCompras()
 												"paging":         true
 												 */
 										} );
-										$('#tabla_wrapper').material_select();
+										$('#tabla_length').material_select(); 
 
                 }
 
@@ -211,7 +211,7 @@ function mostrarComprasAnul()
 												"paging":         true
 												 */
 										} );
-										$('#tabla_wrapper').material_select();
+										$('#tabla_length').material_select(); 
 
                 }
 
