@@ -582,7 +582,7 @@ function  buscarPlazoCuentaPagar($dato)
 		$form .="<script>";
 		$form .="\$('#plazo').val(\"".$fila[0]."\");\$('#plazo').focus(); ";
 		$form .="\$('#tipoPlazo').val(\"".$fila[1]."\");$('#tipoPlazo').material_select(); ";
-		$form .="buscarPlazoCuentaPagar();";
+		$form .="ingresoCuentaPagar();";
 		$form .="</script>";
 			
 		$resultado->free();    
