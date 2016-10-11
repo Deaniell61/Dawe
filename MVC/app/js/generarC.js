@@ -137,6 +137,9 @@ function ingresoProducto(id,compra)
 	trasDato = 1;
 	if(id=="")
 	{
+		
+		if($('#tipoRepuesto').val()!="" && $('#tipoRepuesto').val()!=null)
+		{
 	codigoproducto=$('#nombreC').val();
 	nombre=$('#Producto').val();
 	marca=$('#marca').val();
@@ -168,6 +171,11 @@ function ingresoProducto(id,compra)
 
             }
         });
+		}
+		else
+		{
+			alert("Debe seleccionar un tipo de repuesto");
+		}
 	}
 }
 function agregaInvetario()
