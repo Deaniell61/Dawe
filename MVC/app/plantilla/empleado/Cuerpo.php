@@ -83,12 +83,12 @@
                         <label for="icon_prefix" ><span class="etiquelogin">Nombre</span></label>
                     </div>
                     <div class="input-field col s10">
-                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
+                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/usuario.png"/></i>
                         <input id="apel" type="text" class="validate">
                         <label for="icon_telephone" ><span class="etiquelogin">Apellido</span></label>
                     </div>
                     <div class="input-field col s10">
-                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
+                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/telefono.png"/></i>
                         <input id="tel" type="text" class="validate">
                         <label for="icon_telephone" ><span class="etiquelogin">Telefono</span></label>
                     </div>
@@ -100,7 +100,7 @@
 </div>
 -->
                     <div class="input-field col s10">
-                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
+                        <i  class="material-icons prefix"><img class="iconologin" src="../app/img/calle.png"/></i>
                         <input id="dir" type="text" class="validate">
                         <label for="icon_telephone" ><span class="etiquelogin">Direccion</span></label>
                     </div>

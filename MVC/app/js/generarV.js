@@ -832,6 +832,7 @@ $("#nofactura").hide();
 $("#btnGuardar").hide();
 $("#OtipoCompra").hide();
 
+$("#generarV").show();
 $("#imprimir").show();
 $("#NIT").focus();
 

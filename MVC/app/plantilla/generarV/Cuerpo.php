@@ -9,7 +9,7 @@
          <div class="">
          	<ul>
 
-             <li class="centrarli"><a id="generarV" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Generar Venta</a></li>
+             <li class="centrarli"><a id="generarV" style="display: none;"  href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Generar Venta</a></li>
                 <li class="centrarli"><a id="Cotizacion" href="#!" class="red accent-3 btn white-text tamaniobot "><i class="material-icons left"><img class="iconotab" src="../app/img/detallec.png" /></i>Cotizacion</a></li>
 
 
@@ -135,7 +135,7 @@
                            <a id="guardar" onClick="quitaInvetario();" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/guardar.png" /></i>Guardar</a>
 
                          </div>
-                                              
+
                       </center>
                     </div>
            </div>
