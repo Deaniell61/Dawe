@@ -145,13 +145,14 @@ function quitaInventario($datos)
 					else
 					if(!$mysql->query("update ventasdetalle set estado=1 where idVenta='".$_SESSION['idVenta']."'"))
 					 {
+						
 						 
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
 					 {	     
 			 
-			 			echo "si se pudo";
+			 			
 		
     					$mysql->query("COMMIT");
 					}
