@@ -189,6 +189,7 @@ function agregaInvetario()
 		codigo=(document.getElementById('Codigo'+cont).innerHTML);
 		costo=(document.getElementById('Costo'+cont).innerHTML);
 		precioG=(document.getElementById('PrecioG'+cont).innerHTML);
+		
 		precioE=(document.getElementById('PrecioE'+cont).innerHTML);
 		precioM=(document.getElementById('PrecioM'+cont).innerHTML);
 		proveedor=$('#codigoProveedor').val();

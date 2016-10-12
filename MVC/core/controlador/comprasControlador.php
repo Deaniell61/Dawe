@@ -39,13 +39,13 @@ if($_POST)
     else if($transaccion == 3)
     {
         
-        $datos['0'] = $prod = $_POST['prod'];
-		$datos['1'] = $cantidad = $_POST['cantidad'];
-		$datos['2'] = $cantidad = $_POST['precioC'];
-		$datos['3'] = $cantidad = $_POST['precioG'];
-		$datos['4'] = $cantidad = $_POST['precioE'];
-		$datos['5'] = $cantidad = $_POST['precioM'];
-		$datos['6'] = $cantidad = $_POST['proveedor'];
+        $datos['0'] = $_POST['prod'];
+		$datos['1'] = $_POST['cantidad'];
+		$datos['2'] = $_POST['precioC'];
+		$datos['3'] = $_POST['precioG'];
+		$datos['4'] = $_POST['precioE'];
+		$datos['5'] = $_POST['precioM'];
+		$datos['6'] = $_POST['proveedor'];
         
         ingresoCompra($datos);
         
@@ -146,14 +146,14 @@ if($_POST)
 	else if($transaccion == 13)
     {
 
-        $datos[0]=$nombre = $_POST['codigo'];
-		$datos[1]=$puesto = $_POST['cantidad'];
+        $datos[0] = $_POST['codigo'];
+		$datos[1] = $_POST['cantidad'];
 		
-		$datos[2]=$puesto = $_POST['costo'];
-		$datos[3]=$puesto = $_POST['precioG'];
-		$datos[4]=$puesto = $_POST['precioE'];
-		$datos[5]=$puesto = $_POST['precioM'];
-		$datos[6]=$puesto = $_POST['proveedor'];
+		$datos[2] = $_POST['costo'];
+		$datos[3] = $_POST['precioG'];
+		$datos[4] = $_POST['precioE'];
+		$datos[5] = $_POST['precioM'];
+		$datos[6] = $_POST['proveedor'];
 		
 		        
         agregaInventario($datos);

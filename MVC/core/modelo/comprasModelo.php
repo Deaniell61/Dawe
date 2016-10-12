@@ -110,7 +110,7 @@ function agregaInventario($datos)
 				 $fila = $cont->fetch_row();
 				 
 				 
-	if($datos[1]>0)
+	if($datos[1]>=0)
 	{			 
 		$total=$datos[3]*$datos[1];
 			 

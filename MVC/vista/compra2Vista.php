@@ -127,7 +127,7 @@ function mostrarDetallesCompras($id)
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT cd.idcompradetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.costo,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos),cd.precioE,cd.precioM,cd.costo FROM compradetalle cd where (cd.estado=2 or cd.estado=1 or cd.estado=0) and cd.idcompras='".$id."'";
+    $sql = "SELECT cd.idcompradetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.costo,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos),cd.precioE,cd.precioM,cd.costo,cd.precio FROM compradetalle cd where (cd.estado=2 or cd.estado=1 or cd.estado=0) and cd.idcompras='".$id."'";
     $tabla="";
 	$tipo="";
     if($resultado = $mysql->query($sql))
@@ -157,7 +157,7 @@ $contaId=0;
 				$tabla .="<td hidden id=\"PrecioE$contaId\">"     .$fila["8"].    "</td>";
 				$tabla .="<td hidden id=\"PrecioM$contaId\">"     .$fila["9"].    "</td>";
 				$tabla .="<td hidden id=\"Costo$contaId\">"     .$fila["10"].    "</td>";
-				$tabla .="<td hidden id=\"PrecioG$contaId\">"     .$fila["2"].    "</td>";
+				$tabla .="<td hidden id=\"PrecioG$contaId\">"     .$fila["11"].    "</td>";
 				
                 $tabla .="<td>"     .$fila["7"].    "</td>";
                 $tabla .="<td>" .$fila["1"].      "</td>";
