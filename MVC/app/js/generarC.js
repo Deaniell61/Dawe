@@ -140,6 +140,7 @@ function ingresoProducto(id,compra)
 		
 		if($('#tipoRepuesto').val()!="" && $('#tipoRepuesto').val()!=null)
 		{
+			
 	codigoproducto=$('#nombreC').val();
 	nombre=$('#Producto').val();
 	marca=$('#marca').val();
@@ -440,6 +441,8 @@ function ingresoCompra(prod)
 {
 	var  cantidad,trasDato;
 	trasDato = 3;
+	if($('#Cantidad').val()>=0)
+	{
 		cantidad=$('#Cantidad').val();
 		cod=$('#codigo').val();
 		precioC=$('#precioC').val();
@@ -477,6 +480,11 @@ function ingresoCompra(prod)
 
             }
         });
+	}
+	else
+	{
+		alert('No se permite compras negativas');
+	}
 }
 function guardarCompra()
 {

@@ -261,7 +261,7 @@ function  buscarProductoVenta($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT p.nombre,i.precioventa,p.idproductos,p.codigoProducto,i.cantidad FROM inventario i inner join productos p on p.idproductos=i.idproducto WHERE (p.nombre like '%".$dato[0]."%' or p.codigoProducto like '%".$dato[0]."%') and i.cantidad>1";
+    $sql = "SELECT p.nombre,i.precioventa,p.idproductos,p.codigoProducto,i.cantidad FROM inventario i inner join productos p on p.idproductos=i.idproducto WHERE (p.nombre like '%".$dato[0]."%' or p.codigoProducto like '%".$dato[0]."%') and i.cantidad>=1";
  
     if($resultado = $mysql->query($sql))
     {
