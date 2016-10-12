@@ -23,8 +23,9 @@
          		<li><a id="comprasA" href="#!" class="" >Compras</a></li>
             <li><a id="cuentasCA" href="#!" class="" >Cuentas</a></li>
             <li><a id="EstadisticaA" href="#!" class="" >Estadística</a></li>
-            <!--<li><a id="InventarioA" href="#!" class="" >Inventarios</a></li>
             <li><a id="ventasA" href="#!" class="" >Ventas</a></li>
+            <li><a id="InventarioA" href="#!" class="" >Inventarios</a></li>
+            <!--
             <li><a id="pagosA" href="#!" class="" >Pagos</a></li> -->
          	</ul>
           </div>	
@@ -218,7 +219,7 @@
                    <p class="parrafo1">g) Por cada descripción de la factura o comprobante ingresada podrá eliminarla y volverla a ingresar si no es la adecuada.</p>
                    <p class="parrafo1">h) Al finalizar de ingresar la descripción de los productos que contiene la factura o comprobante deberá de guardarla para que quede establecida en el detalle de la compra.</p> 
             <p class="subtitulo1">Crear o seleccionar un nuevo proveedor</p>
-                   <p class="parrafo1">Para seleccionar o crear un nuevo proveedor deberá presionar la tecla ENTER para acceder a al formulario correspondiente.</p>          
+                   <p class="parrafo1">Para seleccionar o crear un nuevo proveedor deberá presionar la tecla ENTER para acceder al formulario correspondiente.</p>          
                    <img src='../app/img/Ayuda/compras4.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
                    <br><img src='../app/img/Ayuda/compras5.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
                    <p class="parrafo1">a) Podrá Generar un nuevo proveedor contemplando todos los datos de contacto correspondientes.</p>  
@@ -290,13 +291,63 @@
 
               <div id="InventarioC"  style="display: none;" >
                       <h4>Inventario </h4>
-                      <p> inventario </p>
-
+              <p class="subtitulo1">Administración de Inventarios </p>
+                   <p class="parrafo1">Módulo que permitirá mostrar los productos que fueron generados por alguna compra hecha en el sistema por el administrador o persona encargada, en la cual según la descripción, cantidad y costo que se ingresó se mostrara y se reflejará el movimiento que se le ha dado al producto. </p>  
+                   <img src='../app/img/Ayuda/inventario.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a)  En esta área se mostraran todos los productos ingresados según la compra establecida. </p>  
+                   <p class="parrafo1">b)  El módulo de inventario contiene una caja de búsqueda que permitirá filtrar y buscar los datos de manera eficiente sobre todos los registros ingresados de empleados.</p>  
+                   <p class="parrafo1">c)  Contiene un Filtro de Registro para determinar la cantidad de datos que se desea mostrar a medida de localizar la información rápidamente. </p>  
+                   <p class="parrafo1">d)  Contiene un Administrador de Vistas de Tablas que muestran los registros en forma de páginas según el rango que se tiene en el Filtro de Registros.     </p> 
+                   <p class="parrafo1">e) Podrá modificar algunos datos de los productos ingresados, como los precios y otros para determinar o actualizar el producto generado. Esto lo prodrá hacer el administrador</p>  
+                   <p class="parrafo1">f) Este módulo tiene un filtro que permitirá  observar solo motos o carros dependiendo el uso que desee.</p> 
+                   <p class="parrafo1">g) El administrador podrá observar un submenú en forma de acordeón que desplegara las diferentes vistas de los invnetarios. Estos botones son para reflejar un inventario para vendedores y otro para el administradors.</p>  
               </div>
 
               <div id="ventasC"  style="display: none;" >
                       <h4>Ventas </h4>
-                      <p> ventas </p>
+              <p class="subtitulo1">Administración de Ventas </p>
+                   <p class="parrafo1">Módulo que permite generar las ventas por medio de la búsqueda del producto que exite en el inventario. Esta venta se distribuirá en productos, inventarios, detalle de la venta y entre otros. Este módulo es importante para el flujo correspondiente de la empresa mediante el sistema. </p>  
+                   <img src='../app/img/Ayuda/ventas1.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) En esta área se mostrara el detalle de todas las ventas ingresadas.</p>  
+                   <p class="parrafo1">b) El módulo de ventas contiene una caja de búsqueda que permitirá filtrar y buscar los datos de manera eficiente sobre todos los registros ingresados del usuario.</p>  
+                   <p class="parrafo1">c) Por cada detalle de venta se mostrara  un panel de mantenimiento en la cual contiene los botones de: editar, eliminar y ver para administrarlos según el criterio del usuario. Si elimina un detalle de venta pasara al detalle anulado (inciso g).</p>  
+                   <p class="parrafo1">d) Contiene un Filtro de Registro para determinar la cantidad de datos que se desea mostrar a medida de localizar la información rápidamente. </p>  
+                   <p class="parrafo1">e) Contiene un Administrador de Vistas de Tablas que muestran los registros en forma de páginas según el rango que se tiene en el Filtro de Registros. </p>  
+                   <p class="parrafo1">f) Este módulo tiene un filtro que permitirá  observar solo motos o carros dependiendo el uso que desee.</p>  
+                   <p class="parrafo1">g) De las facturas que se han eliminado podrá verlos pero no recuperarlos ya que la utilización del botón de eliminar (inciso c), se solicita una contraseña para saber si está seguro de la operación ejecutada.</p>  
+                   <p class="parrafo1">h) Podrá ingresar un nuevo detalle de venta según el movimiento que genere la empresa</p>  
+           <p class="subtitulo1">Detalle de ventas</p>
+                   <p class="parrafo1">Podrá ingresar un nuevo detalle de ventas</p>          
+                   <img src='../app/img/Ayuda/ventas2.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <br><img src='../app/img/Ayuda/ventas3.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) Para ingresar un detalle de venta deberá ingresar el NIT del cliente. Puede escribirlo  o puede presionar la tecla ENTER para generar un nuevo cliente.</p>  
+                   <p class="parrafo1">b) Al llenar el NIT automáticamente aparece la descripción del cliente (nombre y dirección)</p>  
+                   <p class="parrafo1">c) Deberá de completar la información que se le solicite en este formulario para determinar el detalle de la venta.</p>  
+                   <p class="parrafo1">d) Podrá seleccionar un tipo de venta en la cual contiene si es al contado, crédito o alguna donación permitida. Si es al crédito deberá de establecer el tipo de plazo como el día, mes y año, como también la cantidad del plazo en la cual pagará el total del crédito a pagar.</p>  
+                   <p class="parrafo1">e)  Al detalle de la venta podrá añadirle los productos que posee la empresa.</p>  
+                   <p class="parrafo1">f)  Cuando ingresa un nuevo producto que solicite el cliente para su venta se mostrará en este espacio.</p> 
+                   <p class="parrafo1">g) Por cada descripción de la factura ingresada podrá eliminarla y volverla a ingresar si no es la adecuada.</p>
+                   <p class="parrafo1">h) Al finalizar de ingresar la descripción de los productos requeridas por el cliente deberá de guardarla para que quede establecida en el detalle de la venta.</p> 
+                   <p class="parrafo1">i) Se mostrara un espacio para la impresión de una cotización que desee el cliente, esta cotización solo imprimirá y no guardar la información ya que no es un flujo que ingreso a la empresa</p> 
+            <p class="subtitulo1">Crear o seleccionar un nuevo cliente</p>
+                   <p class="parrafo1">Para seleccionar o crear un nuevo cliente deberá presionar la tecla ENTER para acceder al formulario correspondiente.</p>          
+                   <img src='../app/img/Ayuda/ventas4.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <br><img src='../app/img/Ayuda/ventas5.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) Podrá Generar un nuevo cliente contemplando todos los datos de contacto correspondientes.</p>  
+                   <p class="parrafo1">b) Se mostraran en este espacio y podrá seleccionarlo según el detalle de la factura. Al seleccionarlo aparecerá en el detalle de la venta que se está generando.</p>  
+                   <p class="parrafo1">c) Podrá editar el cliente si los datos no son los correctos, pero no podrá eliminarlo ya que estará ligado a toda o todas las facturas con ese cliente.</p>  
+            
+            <p class="subtitulo1">Generar un nuevo producto</p>
+                   <p class="parrafo1">Para crear una nueva descripción del producto que solicite el cliente deberá de ingresar los datos que califiquen al producto que se encuentran en el inventario que posee la empresa.</p>          
+                   <img src='../app/img/Ayuda/ventas6.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <br><img src='../app/img/Ayuda/ventas7.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <br><img src='../app/img/Ayuda/ventas8.jpg' width="50%" height="30%" class="" onclick="zoomToggle('50%','30%','100%','60%',this);"/>   
+                   <p class="parrafo1">a) Deberá de colocar el nombre o código que tenga el producto que está ingresado dentro del inventario de la empresa y se mostrara en la parte derecha del formulario (inciso b)</p>  
+                   <p class="parrafo1">b)  Se mostrara todos los productos según el código o descripción ingresada (inciso a), deberá de seleccionar el indicado por el cliente. Cuando se selecciona el producto aparecerá automáticamente la información de este. </p>  
+                   <p class="parrafo1">c)  Deberá de ingresar la cantidad del producto que está pidiendo el cliente según la existencia del inventario.</p>  
+                   <p class="parrafo1">d)  Dentro de los diferentes precios de venta podrá modificarlo solo el administrador del sistema para algún cliente súper especial.</p>  
+                   <p class="parrafo1">e)  El sistema presentara diferentes tipos de precios que el vendedor pueda asignar al producto para la venta. Estará predeterminado el precio general pero el vendedor lo podrá cambiar según criterio del administrador.</p>  
+                   <p class="parrafo1">f)  Al terminar de ingresar el formulario deberá de presionar aceptar para generar el producto, si desea vender más producto sobre la misma factura tendrá que llenar nuevamente el formulario según el producto que el cliente este solicitando y si ya no desea agregar más deberá de cerrar esta ventana.</p>  
 
               </div>
 
