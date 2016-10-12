@@ -52,6 +52,17 @@ if($_POST)
         
     
     }
+	else if($transaccion == 5)
+    {
+        $datos[0]=$_POST['prod'];
+		$datos[1]=$_POST['inv'];
+		
+		
+        eliminarInventario($datos);
+        
+        
+    
+    }
 //----------- fin gestion ----------/    
     
 }

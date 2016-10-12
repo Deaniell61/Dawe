@@ -197,6 +197,41 @@ function mostrarInventarioAdmin()
             }     
         });
 }
+function eliminaInven(prod,inv)
+{
+	if(confirm("Se eliminara este producto de inventario"))
+	{
+			var  trasDato;
+		trasDato = 5;
+		
+			$.ajax
+			({
+				type:"POST",
+				url:"../core/controlador/inventarioControlador.php",
+				data:' prod=' +  prod + '&inv=' + inv + '&trasDato=' + trasDato,
+				success: function(resp)
+				{
+	
+				   if(resp == '1')
+					{
+	
+	
+						//$('#mensaje').html('Datos Incorrectos.');         
+						//$('#precargar').hide();    
+					}
+					else
+					{
+						
+						
+						 $('#mensajeINA').html(resp); 
+	
+					}
+	
+	
+				}     
+			});
+	}
+}
 function editar(id)
 {
 	$('#modal1').openModal();
@@ -223,7 +258,7 @@ function editar(id)
                 {
                     
 					
-					 $('#mensajeINA').html(resp); 
+					 $('#mensaje3').html(resp); 
 
                 }
 

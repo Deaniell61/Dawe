@@ -93,5 +93,38 @@ function actualizaInventario($datos)
     
     return printf($form);
 }
+function eliminarInventario($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+	session_start();
+	$mysql->query("BEGIN");
+	
+			 
+    $sql = "update productos set estado=0 where idproductos='".$datos[0]."'";
+ 	
+    if($mysql->query($sql))
+    {
+		
+			if(!$mysql->query("delete from inventario where idinventario='".$datos[1]."'"))
+			{
+				$mysql->query("ROLLBACK");
+			}
+    					$mysql->query("COMMIT");
+				echo "<script>alert('El producto fue retirado de inventario');location.reload();</script>";
+			
+    }
+    else
+    {   
+    		$mysql->query("ROLLBACK");
+    	$form = '1';
+    
+    }
+	
+    
+    $mysql->close();
+    
+    return printf($form);
+}
 
 ?>

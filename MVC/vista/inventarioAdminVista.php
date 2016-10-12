@@ -4,6 +4,7 @@
 
 function mostrarInventarioAdmin($datos)
 {
+	session_start();
 
     //creacion de la tabla
 ?>
@@ -28,7 +29,7 @@ function mostrarInventarioAdmin($datos)
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto,i.idinventario FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."'  and i.cantidad>=0";
+    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto,i.idinventario FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."'  and i.cantidad>=0 and p.estado=1";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -55,8 +56,12 @@ function mostrarInventarioAdmin($datos)
 				$tabla .="<td>" .toMoney($fila["6"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["7"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["8"]).      "</td>";
-        $tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["12"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
-        $tabla .="</td>";
+       			$tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["12"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
+        		if($_SESSION['SOFT_ACCESOElimina'.'inventario']=='1')
+				{
+                $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onClick=\"eliminaInven('".$fila["2"]."','".$fila["12"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
+				}
+		$tabla .="</td>";
 
             }
 
