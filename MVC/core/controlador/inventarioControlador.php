@@ -25,6 +25,9 @@ if($_POST)
 		$datos[1]=$_POST['precioG'];
 		$datos[2]=$_POST['precioE'];
 		$datos[3]=$_POST['precioM'];
+		$datos[4]=$_POST['costo'];
+		$datos[5]=$_POST['cantidad'];
+		$datos[6]=$_POST['minimo'];
 		
 		
         actualizaInventario($datos);

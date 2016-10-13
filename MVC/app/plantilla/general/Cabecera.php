@@ -124,7 +124,7 @@ function nitificaciones()
 				if($fecha1<=$hoy && $fila[3]>0)
 				{
 					
-					$_SESSION['notified22'][($contP)] = $fila[4]." sfsd ".toMoney($fila[3]);//substr($fila[0],0,10);
+					$_SESSION['notified22'][($contP)] = $fila[4]."    ".toMoney($fila[3]);//substr($fila[0],0,10);
 					$_SESSION['direccione22'][($contP)] = $fila['1'];
 					$contador++;
 					$contP++;
@@ -133,7 +133,7 @@ function nitificaciones()
 				if($fecha28<=$fecha3 && $fila[3]>0)
 				{
 					
-					$_SESSION['notified22'][($contP)] = $fila[4]." sfsd ".toMoney($fila[3]);//substr($fila[0],0,10);
+					$_SESSION['notified22'][($contP)] = $fila[4]."    ".toMoney($fila[3]);//substr($fila[0],0,10);
 					$_SESSION['direccione22'][($contP)] = $fila['1'];
 					$contador++;
 					$contP++;
@@ -145,12 +145,35 @@ function nitificaciones()
 		{  
 			
 		}
+	}
+		//*****************************************************
+	$sql = "select i.cantidad,i.minimo,p.nombre from inventario i inner join productos p on i.idproducto=p.idproductos";
+    $mysql = conexionMysql(); 
+	
+	if($resultado = $mysql->query($sql))
+    {
+		$contPr=0;
+		if($resultado->num_rows>0)
+		{
+			while($fila=$resultado->fetch_row())
+			{
+				
+				if($fila[0]<=$fila[1])
+				{
+					
+					$_SESSION['notified2P'][($contPr)] = $fila[2];//substr($fila[0],0,10);
+					$_SESSION['direccione2P'][($contPr)] = $fila['1'];
+					$contador++;
+					$contPr++;
+				}
+				
+			}
+			
+		}
+		
 		
     }
-    else
-    {  
-        echo 1;
-    }
+    
     
     
     $mysql->close();
@@ -182,8 +205,8 @@ function nitificaciones()
                  <?php }?>         
 						<li><a id="ayuda" class="right ayuda"><img class="ayudaI" src="../app/img/ayuda.png"></a></li>
 						<li><a class="right"  id="logout" href="#!">Cerrar Session</a></li>
-					     <div id="globoNotificacion" hidden> 
-                             <ul id="menuNotificacion">
+					     <div id="globoNotificacion" hidden style="overflow-y:auto; height:700px;"> 
+                             <ul id="menuNotificacion" >
                         			<?php 
 											if($_SESSION['notified']>0)
 											{
@@ -203,6 +226,15 @@ function nitificaciones()
 												{
 												echo "
 													<li class=\"listaNotificacion\"  onClick=\"location.href='Cobrar.php'\">".$_SESSION['notified22'][($i)]." </li>
+													";
+												}
+												echo "
+													<li class=\"tituloNotifica\" >Productos Inexistentes</li>
+													";
+												for($i=0;$i<count($_SESSION['notified2P']);$i++)
+												{
+												echo "
+													<li class=\"listaNotificacion\"  onClick=\"location.href='InventarioAdministrador.php'\">".$_SESSION['notified2P'][($i)]." </li>
 													";
 												}
 											} else {

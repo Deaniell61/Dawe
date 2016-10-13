@@ -7,7 +7,7 @@ function buscarInventario($datos)
     
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,(select p.descripcion from productos p where i.idproducto=p.idproductos),(select p.marca2 from productos p where i.idproducto=p.idproductos),(select p.nombre from productos p where i.idproducto=p.idproductos) from inventario i where idinventario='".$datos[0]."'";
+    $sql = "SELECT i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,(select p.descripcion from productos p where i.idproducto=p.idproductos),(select p.marca2 from productos p where i.idproducto=p.idproductos),(select p.nombre from productos p where i.idproducto=p.idproductos),i.minimo from inventario i where idinventario='".$datos[0]."'";
  
     if($resultado = $mysql->query($sql))
     {
@@ -27,6 +27,7 @@ function buscarInventario($datos)
 				document.getElementById('precioG').value='".$fila[1]."';
 				document.getElementById('precioE').value='".$fila[2]."';
 				document.getElementById('precioM').value='".$fila[3]."';
+				document.getElementById('MinimoCant').value='".$fila[8]."';
 				document.getElementById('producto').focus();
 				document.getElementById('marca').focus();
 				document.getElementById('descripcion').focus();
@@ -34,8 +35,9 @@ function buscarInventario($datos)
 				document.getElementById('cantidad').focus();
 				document.getElementById('precioE').focus();
 				document.getElementById('precioM').focus();
-				document.getElementById('precioG').focus();";
-		$form .=" habilita(true);";
+				document.getElementById('precioG').focus();
+				document.getElementById('MinimoCant').focus();";
+		$form .=" habilita(false);";
 		
 		
 		$form .="</script>";
@@ -72,7 +74,7 @@ function actualizaInventario($datos)
 	$mysql->query("BEGIN");
 	
 			 
-    $sql = "update inventario set precioventa='".$datos[1]."',precioClientees='".$datos[2]."',precioDistribuidor='".$datos[3]."' where idinventario='".$datos[0]."'";
+    $sql = "update inventario set precioventa='".$datos[1]."',precioClientees='".$datos[2]."',precioDistribuidor='".$datos[3]."',precioCosto='".$datos[4]."',cantidad='".$datos[5]."',minimo='".$datos[6]."' where idinventario='".$datos[0]."'";
  	
     if($mysql->query($sql))
     {

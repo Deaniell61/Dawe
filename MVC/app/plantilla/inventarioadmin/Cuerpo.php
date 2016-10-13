@@ -156,6 +156,12 @@
                         <input id="precioM"  disabled type="number" class="validate">
                         <label for="icon_prefix" ><span class="etiquelogin">Precio Mayoreo</span></label>
                     </div>
+                    
+                    <div class="input-field col s10">
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/preciomayoreo.png" /></i>
+                        <input id="MinimoCant"  type="number" class="validate">
+                        <label for="icon_prefix" ><span class="etiquelogin">Cantidad Minima</span></label>
+                    </div>
 
                     <div class="modal-footer">
 

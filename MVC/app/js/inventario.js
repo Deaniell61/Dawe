@@ -276,11 +276,14 @@ function guardarInventario()
 	precioG=document.getElementById('precioG').value;
 	precioE=document.getElementById('precioE').value;
 	precioM=document.getElementById('precioM').value;
+	Minimo=document.getElementById('MinimoCant').value;
+	costo=document.getElementById('costo').value;
+	cantidad=document.getElementById('cantidad').value;
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/inventarioControlador.php",
-            data:' id=' +  id + '&precioG=' + precioG + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
+            data:' id=' +  id + '&precioG=' + precioG + '&minimo=' + Minimo + '&costo=' + costo + '&cantidad=' + cantidad + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
             success: function(resp)
             {
 

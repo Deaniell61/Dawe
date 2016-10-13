@@ -99,7 +99,7 @@ function currency(value, decimals, separators) {
     separators = separators || [',', ",", '.'];
     var number = (parseFloat(value) || 0).toFixed(decimals);
     if (number.length <= (4 + decimals))
-        return "$"+number.replace('.', separators[separators.length - 1]);
+        return "Q"+number.replace('.', separators[separators.length - 1]);
     var parts = number.split(/[-.]/);
     value = parts[parts.length > 1 ? parts.length - 2 : 0];
     var result = value.substr(value.length - 3, 3) + (parts.length > 1 ?
