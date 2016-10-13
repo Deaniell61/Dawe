@@ -616,7 +616,7 @@ background: white;
 {
 	overflow-y:scroll;
 	padding-right:5px; 
-	height:700px;
+	height:650px;
 	margin-right:-14px;
 }
 
@@ -643,6 +643,7 @@ background: white;
     border-bottom: solid 1px;
     width: 100%;
     text-align: center;
+	line-height:1.7;
 
 }
  .tituloNotifica

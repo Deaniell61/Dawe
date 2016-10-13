@@ -8,6 +8,10 @@
 		{
 			$_SESSION['notified22'][($i)]="";
 		}
+		for($i=0;$i<count($_SESSION['notified2P']);$i++)
+		{
+			$_SESSION['notified2P'][($i)]="";
+		}
 $_SESSION['notified'] = nitificaciones();
 
 if ($_SESSION['notified'] != 0) {
@@ -148,7 +152,7 @@ function nitificaciones()
 		}
 	}
 		//*****************************************************
-	$sql = "select i.cantidad,i.minimo,p.nombre from inventario i inner join productos p on i.idproducto=p.idproductos";
+	$sql = "select i.cantidad,i.minimo,p.nombre from inventario i inner join productos p on i.idproducto=p.idproductos where i.cantidad>=0";
     $mysql = conexionMysql(); 
 	
 	if($resultado = $mysql->query($sql))
@@ -212,12 +216,12 @@ function nitificaciones()
                         			<?php 
 											if($_SESSION['notified']>0)
 											{
-												if ($_SESSION['notified'] > 10)
+												if ($_SESSION['notified'] >= 10 && $_SESSION['notified'] < 100)
 												{
 													echo "<script>document.getElementById('notificationsCont').style.width='25px'; </script>";
 												}
 												else
-												if ($_SESSION['notified'] > 100)
+												if ($_SESSION['notified'] >= 100)
 												{
 													echo "<script>document.getElementById('notificationsCont').style.width='32px';</script>";
 												}
