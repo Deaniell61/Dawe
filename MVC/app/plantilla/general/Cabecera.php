@@ -9,6 +9,7 @@
 			$_SESSION['notified22'][($i)]="";
 		}
 $_SESSION['notified'] = nitificaciones();
+
 if ($_SESSION['notified'] != 0) {
     $_SESSION['notified2'] = "(" . ($_SESSION['notified']) . ") ";
 } else {
@@ -205,11 +206,21 @@ function nitificaciones()
                  <?php }?>         
 						<li><a id="ayuda" class="right ayuda"><img class="ayudaI" src="../app/img/ayuda.png"></a></li>
 						<li><a class="right"  id="logout" href="#!">Cerrar Session</a></li>
-					     <div id="globoNotificacion" hidden style="overflow-y:auto; height:700px;"> 
+					     <div id="globoNotificacion" hidden>
+                         	<div id="notificacionesContenerdor"> 
                              <ul id="menuNotificacion" >
                         			<?php 
 											if($_SESSION['notified']>0)
 											{
+												if ($_SESSION['notified'] > 10)
+												{
+													echo "<script>document.getElementById('notificationsCont').style.width='25px'; </script>";
+												}
+												else
+												if ($_SESSION['notified'] > 100)
+												{
+													echo "<script>document.getElementById('notificationsCont').style.width='32px';</script>";
+												}
 												echo "
 													<li class=\"tituloNotifica\" >Cuentas por Cobrar </li>
 													";
@@ -244,7 +255,7 @@ function nitificaciones()
 											}
 													?>
                             </ul>
-    
+    </div>
                        	</div> 
                     </ul>	
                        

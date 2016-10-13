@@ -610,8 +610,15 @@ background: white;
     top: 60px;
     z-index: 3;
     right: 79px;
+	/**/
 }
-
+#notificacionesContenerdor
+{
+	overflow-y:scroll;
+	padding-right:5px; 
+	height:700px;
+	margin-right:-14px;
+}
 
  /*tringulo arriba*/	
 #globoNotificacion:before{
