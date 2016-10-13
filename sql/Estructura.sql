@@ -251,6 +251,7 @@ CREATE TABLE IF NOT EXISTS `inventario` (
   `precioClienteEs` double DEFAULT NULL,
   `precioDistribuidor` double DEFAULT NULL,
   `cantidad` double DEFAULT NULL,
+  `minimo` double DEFAULT 5,
   PRIMARY KEY (`idInventario`),
   KEY `InventarioProducto_idx` (`idProducto`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
