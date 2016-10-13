@@ -106,60 +106,27 @@ if($_POST)
           
 
         
-         $datos[0] = $_POST['id'];
-		 $datos[1] = $_POST['fechaIni'];
-		 $datos[2] = $_POST['fechaFin'];
-		 $datos[3] = $_POST['monto'];
-		 $datos[4] = $_POST['porcent'];
-		 $datos[5] = $_POST['PagarC'];
-       
+         $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+
 
         
-        ingresaComision($datos);
+        costosTotales($datos);
         
     
     }
-	 else if($transaccion == 8)
+	else if($transaccion == 8)
     {
         
           
 
         
-         $datos[0] = $_POST['id'];
-		 $datos[1] = $_POST['contra'];
-       
+         $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+
 
         
-        anularComision($datos);
-        
-    
-    }
-	else if($transaccion == 9)
-    {
-        
- 
-		 $datos[0] = $_POST['fecha'];
-		 $datos[1] = $_POST['descripcion'];
-		 $datos[2] = $_POST['monto'];
-       
-
-        
-        ingresarGastos($datos);
-        
-    
-    }
-	 else if($transaccion == 10)
-    {
-        
-          
-
-        
-         $datos[0] = $_POST['id'];
-		 $datos[1] = $_POST['contra'];
-       
-
-        
-        anularGastos($datos);
+        ingresosTotales($datos);
         
     
     }

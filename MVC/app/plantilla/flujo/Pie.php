@@ -3,7 +3,7 @@
 
 <!------------------ Zonas de script -------------------->
 
-<script type="text/javascript" src="../app/js/flujo.js"></script>   
+  <script type="text/javascript" src="../app/js/flujo.js"></script>  
 
   </div>
  </body>

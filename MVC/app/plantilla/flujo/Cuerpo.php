@@ -25,11 +25,16 @@
 
 
 
-
+<?php
+$fecha3 = date('Y-m-d');
+     
+ $nuevafecha3 = strtotime ( '-1 month' , strtotime ( $fecha3 ) ) ;
+$fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
+?>
     			                 <div class="input-field col s6">
 
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaI" class="fechas" type="date"  min="2013-01-01" max="2013-12-31" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" >
+								  <input  id="fechaI" class="fechas" type="date"  min="2013-01-01" max="2013-12-31" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo $fecha3?>" >
 								  <label class="active" for="fecha" >Fecha de Inicio</label>
 
 								</div>
@@ -42,11 +47,13 @@
 								</div>
 
                 <center>
-                  <li class="centrarli"><a id="imprimirT" href="#!" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/imprimir.png" /></i>Imprimir</a></li>
+                 <li class="centrarli"><a id="imprimirT" onClick="printDiv('contenidoImprimir');" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/imprimir.png" /></i>Imprimir</a></li>
                 </center>
                 <br>
 
-								<div class="input-field col s12">
+<div id="contenidoImprimir">					
+
+<div class="input-field col s12">
                                  <center>
                                  	 <h2>Utilidad</h2>
 
@@ -57,13 +64,14 @@
 
 										<div class="col s12">
 											<center>
+											 <h5 id="totalUtil111">
 											 <?php
 
 								include('../vista/flujoVista.php');
 								 mostrarFlujo();
 
 								?>
-
+</h5>
 											</center>
 
 										</div>
@@ -75,7 +83,7 @@
 											<br>
 														<div class="col s8">
                                                              <label class="active" for="fecha" >Ventas</label>
-                                                           <input  id="ventas" class="fechas" type="text"   class="validate"  value="">
+                                                           <input  id="ventas111" class="fechas" type="text"   class="validate"  value="">
 
 
 													    </div>
@@ -85,7 +93,7 @@
 
 													    <div class="col s8">
                                                              <label class="active" for="fecha" >Abono Pagados</label>
-                                                           <input  id="ventas" class="fechas" type="text"   class="validate"  value="">
+                                                           <input  id="abonosCobrados1111" class="fechas" type="text"   class="validate"  value="">
 
 
 													    </div>
@@ -96,7 +104,7 @@
 
 											            <div class="col s8">
                                                              <label class="active" for="fecha" >Total</label>
-                                                          <h5 id="totalS">Total</h5>
+                                                          <h5 id="totalV111">Total</h5>
 
 
 													    </div>
@@ -108,7 +116,7 @@
 
 													    <div class="col s8">
                                                              <label class="active" for="fecha" >Compras</label>
-                                                           <input  id="ventas" class="fechas" type="text"   class="validate"  value="">
+                                                           <input  id="compras111" type="text" class="validate">
 
 
 													    </div>
@@ -118,7 +126,7 @@
 
 													    <div class="col s8">
                                                              <label class="active" for="fecha" >Sueldo</label>
-                                                           <input  id="ventas" class="fechas" type="text"   class="validate"  value="">
+                                                           <input  id="sueldos111" type="text"   class="validate"  value="">
 
 
 													    </div>
@@ -129,7 +137,7 @@
 
 												        <div class="col s8">
                                                              <label class="active" for="fecha" >Creditos Pagados</label>
-                                                           <input  id="ventas" class="fechas" type="text"   class="validate"  value="">
+                                                           <input  id="creditosP111" class="fechas" type="text"   class="validate"  value="">
 
 
 													    </div>
@@ -141,7 +149,7 @@
 
 												       <div class="col s8">
                                                              <label class="active" for="fecha" >Gastos Varios</label>
-                                                           <input  id="ventas" class="fechas" type="text"   class="validate"  value="">
+                                                           <input  id="gVarios111" class="fechas" type="text"   class="validate"  value="">
 
 
 													    </div>
@@ -152,7 +160,7 @@
 
 											            <div class="col s8">
                                                              <label class="active" for="fecha" >Total</label>
-                                                             <h5 id="totalR">Total</h5>
+                                                             <h5 id="totalC111">Total</h5>
 
 
 													    </div>
@@ -176,12 +184,20 @@
 
 										</div>
 
+<div id="comoGraficar">
+<script>
+cargarGrafico('7','');
+cargarGrafico('8','');
 
+</script>
+</div>
 
 
 		</div>
 </div>
 
+
+</div>
     	<div id="modal1" class="modal">
         <div class="nav-wrapper grey darken-4">
             <div>
@@ -190,7 +206,12 @@
                 <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
             </div>
         </div>
-        cuerpo
+        
+        
+        	<div id="cuerpoModal1">
+            	
+            </div>
+       
     	</div>
 
       <div id="modal2" class="modal">
@@ -201,7 +222,11 @@
                 <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
             </div>
         </div>
-        cuerpo
+        
+       		<div id="cuerpoModal2">
+            	
+            </div>
+           
      	</div>
 
 
@@ -214,7 +239,9 @@
                 <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
             </div>
       </div>
-      cuerpo
+      		<div id="cuerpoModal3">
+            	
+            </div>
       </div>
 
       <div id="modal4" class="modal">

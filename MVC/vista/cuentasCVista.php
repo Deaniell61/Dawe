@@ -114,7 +114,11 @@ function mostrarMovimientosCuentasC($id)
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT cc.fecha,cc.descripcion,cc.abono,cc.credito FROM movimientosc cc  WHERE cc.idcuentasC=".$id;
+	if($id!="")
+	{
+		$id=" WHERE cc.idcuentasC=".$id;
+	}
+    $sql = "SELECT cc.fecha,cc.descripcion,cc.abono,cc.credito FROM movimientosc cc ".$id;
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
