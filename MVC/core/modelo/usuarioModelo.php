@@ -548,6 +548,41 @@ function desasignarModulos($datos)
     
     return printf($form);
 }
+function contraAdmin($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+    $sql = "SELECT u.contra FROM usuarios u WHERE estado=1 and u.idrol=1 and u.contra='".$datos[0]."' limit 1";
+    
+    if($resultado = $mysql->query($sql))
+    {
+      if(($resultado->num_rows)>0)
+		{
+    		$fila = $resultado->fetch_row();
+		    
+    		
+				echo '1';
+		}
+		else
+		{
+			echo '2';
+		}
+			
+    $resultado->free();    
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    
+}
 function CerrarSesion()
 {
 	session_start();

@@ -275,7 +275,7 @@
 												  </div>
 												  <div class="input-field col s4 ">
 
-													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm'><i class='material-icons left' onClick="deshabilita('precioG');"><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
+													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm' onClick="deshabilita('precioG');"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
 												  </div>
 
 												   <div class="input-field col s8 ">
@@ -285,7 +285,7 @@
 												  </div>
 												   <div class="input-field col s4 ">
 
-													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm'><i class='material-icons left' onClick="deshabilita('precioE');"><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
+													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm' onClick="deshabilita('precioE');"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
 												  </div>
 												  <div class="input-field col s8 ">
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/precioMayoreo.png"/></i>
@@ -294,7 +294,7 @@
 												  </div>
 												   <div class="input-field col s4 ">
 
-													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm'><i class='material-icons left' onClick="deshabilita('precioM');"><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
+													  <a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm' onClick="deshabilita('precioM');"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>
 												  </div>
 												   <div class="input-field col s8 ">
 																<p>

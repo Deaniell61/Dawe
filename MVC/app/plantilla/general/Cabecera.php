@@ -152,7 +152,7 @@ function nitificaciones()
 		}
 	}
 		//*****************************************************
-	$sql = "select i.cantidad,i.minimo,p.nombre from inventario i inner join productos p on i.idproducto=p.idproductos where i.cantidad>=0";
+	$sql = "select i.cantidad,i.minimo,p.nombre,p.codigoproducto from inventario i inner join productos p on i.idproducto=p.idproductos where i.cantidad>=0";
     $mysql = conexionMysql(); 
 	
 	if($resultado = $mysql->query($sql))
@@ -166,8 +166,8 @@ function nitificaciones()
 				if($fila[0]<=$fila[1])
 				{
 					
-					$_SESSION['notified2P'][($contPr)] = $fila[2];//substr($fila[0],0,10);
-					$_SESSION['direccione2P'][($contPr)] = $fila['1'];
+					$_SESSION['notified2P'][($contPr)] = $fila[2]." -- ".$fila[3];//substr($fila[0],0,10);
+					$_SESSION['direccione2P'][($contPr)] = "InventarioAdministrador.php?codigo=".$fila['3'];
 					$contador++;
 					$contPr++;
 				}
@@ -249,7 +249,7 @@ function nitificaciones()
 												for($i=0;$i<count($_SESSION['notified2P']);$i++)
 												{
 												echo "
-													<li class=\"listaNotificacion\"  onClick=\"location.href='InventarioAdministrador.php'\">".$_SESSION['notified2P'][($i)]." </li>
+													<li class=\"listaNotificacion\"  onClick=\"location.href='".$_SESSION['direccione2P'][($i)]."'\">".$_SESSION['notified2P'][($i)]." </li>
 													";
 												}
 											} else {

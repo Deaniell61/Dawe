@@ -160,6 +160,13 @@ if($_POST)
         desasignarModulos($datos);
 
     }
+	else if($transaccion == 13)
+    {
+
+		$datos[0]= $_POST['contra'];
+        contraAdmin($datos);
+
+    }
 	else if($transaccion == 66)
     {
         

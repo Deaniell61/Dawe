@@ -26,7 +26,7 @@ INSERT INTO `puestos` (`idPuestos`, `Descripcion`) VALUES
 --
 
 INSERT INTO `roles` (`idRol`, `Descripcion`, `ModulosDefecto`, `estado`) VALUES
-(0, 'Soporte', '12345678', 1),
+(0, 'Soporte', '12345678', 0),
 (1, 'Administrador', '12345678', 1),
 (2, 'Usuario', '1456', 1);
 
@@ -53,20 +53,20 @@ INSERT INTO `tipoventa` (`idTipo`, `Descripcion`, `Observacion`, `estado`) VALUE
 --
 
 INSERT INTO `usuarios` (`idUsuarios`, `Email`, `user`, `Contra`, `estado`, `idRol`, `idEmpleados`) VALUES
-(1, 'admin@hectorrepuestos.com', 'admin', '123412341234', 1, 1, NULL);
+(0, 'admin@hectorrepuestos.com', 'admin', '123412341234', 1, 0, NULL);
 
 --
 -- Volcado de datos para la tabla `accesos`
 --
 
 INSERT INTO `accesos` (`idAccesos`, `Agrega`, `Modifica`, `Mostrar`, `Elimina`, `idUsuarios`, `idModulo`) VALUES
-(1, 1, 1, 1, 1, 1, 1),
-(2, 1, 1, 1, 1, 1, 2),
-(3, 1, 1, 1, 1, 1, 3),
-(4, 1, 1, 1, 1, 1, 4),
-(5, 1, 1, 1, 1, 1, 5),
-(6, 1, 1, 1, 1, 1, 6),
-(7, 1, 1, 1, 1, 1, 7),
-(8, 1, 1, 1, 1, 1, 8);
+(1, 1, 1, 1, 1, 0, 1),
+(2, 1, 1, 1, 1, 0, 2),
+(3, 1, 1, 1, 1, 0, 3),
+(4, 1, 1, 1, 1, 0, 4),
+(5, 1, 1, 1, 1, 0, 5),
+(6, 1, 1, 1, 1, 0, 6),
+(7, 1, 1, 1, 1, 0, 7),
+(8, 1, 1, 1, 1, 0, 8);
 
 

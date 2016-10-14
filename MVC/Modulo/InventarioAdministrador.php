@@ -8,7 +8,16 @@ if(isset($_SESSION['SOFT_USER']))
 {
     include('configActivado.php');
 
-    //rol isset($_SESSION['SOF_USER']=='usuario')    
+   if(isset($_GET['codigo']))
+{
+	
+	$_SESSION['codigoBuscaProducto_SOFT']=$_GET['codigo'];
+}
+else
+{
+	
+	$_SESSION['codigoBuscaProducto_SOFT']="";
+}
 
    
 InventarioAdmin();

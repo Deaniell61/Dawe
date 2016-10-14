@@ -132,23 +132,51 @@ function buscarCliente(buscar,evt)
 
 
 }
-function deshabilita(id)
+
+function contraAdmin111()
 {
+	
+	return id;
+}
+
+function deshabilita(id)
+{	
+	var  trasDato;
+	trasDato = 13;
+	idd=1;
 	if(document.getElementById(id).disabled)
 	{
-		if(prompt("Ingrese Contraseña")=="1234")
+	var contra=prompt("Ingrese Contraseña");
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/usuarioControlador.php",
+            data:' id=' +  idd + '&contra=' + contra + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+	
+	
+		if(resp==1)
 		{
+			
 			document.getElementById(id).disabled=false;
 		}
 		else
 		{
 			alert('Contraseña Erronea');
 		}
+	
+               
+
+               
+            }
+        });
 	}
 	else
 	{
 		document.getElementById(id).disabled=true;
 	}
+	
 }
 function anularDetalleVenta1(id)
 {
