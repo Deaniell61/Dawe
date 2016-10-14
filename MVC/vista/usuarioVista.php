@@ -23,7 +23,7 @@ function mostrarUsuarios()
 	<?php
 	
     $mysql = conexionMysql();
-    $sql = "SELECT u.idUsuarios, u.user,(SELECT r.Descripcion FROM roles r WHERE r.idRol=u.idRol ),(SELECT r.nombre FROM empleados r WHERE r.idEmpleados=u.idEmpleados limit 1),(SELECT r.apellido FROM empleados r WHERE r.idEmpleados=u.idEmpleados limit 1) FROM usuarios u WHERE Estado=1";
+    $sql = "SELECT u.idUsuarios, u.user,(SELECT r.Descripcion FROM roles r WHERE r.idRol=u.idRol ),(SELECT r.nombre FROM empleados r WHERE r.idEmpleados=u.idEmpleados limit 1),(SELECT r.apellido FROM empleados r WHERE r.idEmpleados=u.idEmpleados limit 1) FROM usuarios u WHERE Estado=1 and u.idusuarios!=0";
 	$tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -148,7 +148,7 @@ function comboRolesUsuarios()
 	<?php
 	
     $mysql = conexionMysql();
-    $sql = "SELECT descripcion,idRol FROM roles";
+    $sql = "SELECT descripcion,idRol FROM roles where estado=1";
 	$tabla="";
     if($resultado = $mysql->query($sql))
     {

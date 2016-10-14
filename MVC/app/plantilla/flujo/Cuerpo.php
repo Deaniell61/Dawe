@@ -177,7 +177,9 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 										</div>
 										<div class="col s12">
 											<center>
-													Grafica
+                                            <div class="" id="chart2222">
+                  Grafica Grande 2
+                  </div>
 											</center>
 
 
@@ -188,6 +190,9 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 <script>
 cargarGrafico('7','');
 cargarGrafico('8','');
+setTimeout(function(){
+cargarGrafico('9','');
+},500);
 
 </script>
 </div>

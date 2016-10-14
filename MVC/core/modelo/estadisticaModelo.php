@@ -1089,4 +1089,99 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 				
 				
 }
+
+function graficaFlujoPie($datos)
+{
+	
+	
+		?>
+        <script>
+		var compras=parseFloat(document.getElementById('compras111').value.replace("Q","").replace(",",""));
+		var ventas=parseFloat(document.getElementById('ventas111').value.replace("Q","").replace(",",""));
+		var abonosp=parseFloat(document.getElementById('abonosCobrados1111').value.replace("Q","").replace(",",""));
+		var abonosC=parseFloat(document.getElementById('creditosP111').value.replace("Q","").replace(",",""));
+		var sueldos=parseFloat(document.getElementById('sueldos111').value.replace("Q","").replace(",",""));
+		var gastos=parseFloat(document.getElementById('gVarios111').value.replace("Q","").replace(",",""));
+		
+		var chart2 = c3.generate({
+								bindto: '#chart2222',
+								data: {
+									columns: [
+										['Compras',compras]
+										
+										
+										
+										
+									],
+									type:"pie"
+									,
+										selection: {
+													enabled: true
+												  },
+									onselected: function (d, element) 
+									{ 
+										
+										
+									 },
+									 onunselected: function (d, element) 
+									{ 
+										
+										
+									 }
+								},
+								color: {
+								  pattern: ['#61B045','#F7742C','#D4AE18','#F6921E','#9E1F63','#26A9E0','#8BC53F','#D6DE23']
+								}/*,
+								
+								pie: {
+									label: {
+										format: function (value, ratio, id) {
+											
+											return "$"+currency(d3.format('')((value)));
+										}
+									}
+								}*/,
+								tooltip: {
+									format: {
+										value: function (value, id) {
+											var format = d3.format('');
+											return format(value);
+										}
+							
+									}
+								}
+							});
+						setTimeout(function () {
+							chart2.load({
+								columns: [
+									['Ventas',ventas],
+									['Abonos Pagados',abonosp]
+								]
+							});
+						}, 500);
+						setTimeout(function () {
+							chart2.load({
+								columns: [
+									['Sueldos',sueldos],
+										['Creditos Pagados',abonosC]
+								]
+							});
+						}, 1000);
+						setTimeout(function () {
+							chart2.load({
+								columns: [
+									['Gastos',gastos]
+								]
+							});
+						}, 1500);
+						
+							
+							
+							
+					</script>
+        
+        <?php
+		
+		
+}
 ?>

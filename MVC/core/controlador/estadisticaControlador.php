@@ -130,6 +130,21 @@ if($_POST)
         
     
     }
+	else if($transaccion == 9)
+    {
+        
+          
+
+        
+         $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+
+
+        
+        graficaFlujoPie($datos);
+        
+    
+    }
 	
 //----------- fin gestion ----------/    
     
