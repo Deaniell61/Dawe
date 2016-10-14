@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inicio</title>
+        <title>Inicio <?php if(isset($_SESSION['notified2'])){echo $_SESSION['notified2'];}?></title>
         <?php include('../app/plantilla/general/libCss.php');   ?>
         <link type="text/css" rel="stylesheet" href="../app/css/inicio.css"  />
     </head>

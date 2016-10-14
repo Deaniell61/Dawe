@@ -209,7 +209,7 @@ function nitificaciones()
                    
                  <?php }?>         
 						<li><a id="ayuda" class="right ayuda"><img class="ayudaI" src="../app/img/ayuda.png"></a></li>
-						<li><a class="right"  id="logout" href="#!">Cerrar Session</a></li>
+						<li style="line-height:1;"><a><?php echo $_SESSION['SOFT_USER'];?></a><br><a class="right"  id="logout" href="#!">Cerrar Session</a></li>
 					     <div id="globoNotificacion" hidden>
                          	<div id="notificacionesContenerdor"> 
                              <ul id="menuNotificacion" >

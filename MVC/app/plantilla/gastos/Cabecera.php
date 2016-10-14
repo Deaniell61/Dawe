@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pagos</title>
+        <title>Gastos Varios <?php echo $_SESSION['notified2'];?></title>
         <link type="text/css" rel="stylesheet" href="../app/css/lib/datatable.css"  />
         <link type="text/css" rel="stylesheet" href="../app/css/cuentas.css"  />
          <link type="text/css" rel="stylesheet" href="../app/css/lib/materialize.css"  />

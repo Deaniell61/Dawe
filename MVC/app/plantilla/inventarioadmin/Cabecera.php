@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inventario</title>
+        <title>Inventario <?php echo $_SESSION['notified2'];?></title>
         <?php include('../app/plantilla/general/libCss.php');   ?>
         <link rel="stylesheet" href="../app/css/inventario.css">
     </head>

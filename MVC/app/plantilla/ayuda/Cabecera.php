@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Inicio</title>
+        <title>Ayuda  <?php echo $_SESSION['notified2'];?></title>
         <?php include('../app/plantilla/general/libCss.php');   ?>
         <link type="text/css" rel="stylesheet" href="../app/css/ayuda.css"  />
     </head>
