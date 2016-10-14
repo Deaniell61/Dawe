@@ -7,8 +7,8 @@ function  buscarCliente($nit)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT nit,nombre,direccion,apellido,idcliente FROM cliente WHERE nit='$nit' or nombre='$nit'";
- 	echo $sql;
+    $sql = "SELECT nit,nombre,direccion,apellido,idcliente FROM cliente WHERE nit='$nit' or nombre='$nit' OR idcliente='$nit'";
+ 	//echo $sql;
     if($resultado = $mysql->query($sql))
     {
       if($resultado->num_rows>0)
@@ -304,7 +304,7 @@ function  buscarPrecioProductoVenta($dato)
     $mysql = conexionMysql();
     $form="";
     $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,p.marca2,p.tipoRepuesto FROM inventario i inner join productos p on p.idproductos=i.idproducto WHERE p.idproductos='".$dato[0]."' ";
- 	echo $sql;
+ 	//echo $sql;
     if($resultado = $mysql->query($sql))
     {
       if($resultado->num_rows>0)

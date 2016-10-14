@@ -524,7 +524,7 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   `total` double DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   `tipoVenta` int(11) DEFAULT NULL,
-  `nocomprobante` int(11) DEFAULT NULL,
+  `nocomprobante` int(11) DEFAULT 1,
   `idCliente` int(11) DEFAULT NULL,
   `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`idVentas`),
