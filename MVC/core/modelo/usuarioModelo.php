@@ -151,15 +151,16 @@ function eliminarUsuario($idelim,$pass)
 			 echo "error de base de datos";
 		 }
 	
-	
-		 $mysql->close();
-	
-		 return printf($respuesta);    
+	$mysql->close();
+		   
 	 }
 	 else
 	 {
-		 $respuesta = "<div class=\"red \">Contraseña incorrecta</div>";
+		 $respuesta = "<div class=\"red\">Contraseña incorrecta</div>";
 	 }
+	 
+	
+		 return printf($respuesta);  
      
  }
 function  editarUsuario($idedit)
@@ -320,7 +321,7 @@ function eliminarEmpleado($datos)
 	
 		 if($resultado = $mysql->query($sql))
 		 {
-			 $respuesta = "<script>alert('El empleado se elimino');</script>";
+			 $respuesta = "<script>alert('El empleado se elimino');setTimeout(window.location.reload(), 3000);</script>";
 		 }
 		 else
 		 { 
@@ -334,7 +335,7 @@ function eliminarEmpleado($datos)
 	 { 
 	
 		
-		  $respuesta = "1"; 
+		  $respuesta = "<div class=\"red\">Contraseña incorrecta</div>";
 	 }
 
      

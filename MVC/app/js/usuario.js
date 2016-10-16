@@ -315,30 +315,7 @@ $('#btnInsertar').click(function(){
 $('.eliminar').click(function(event)
 {
     
-			var idelim,pass, trasDato; 
-			
-            idelim=gobIDElim;
-            pass=$('#contraElim').val();
-            trasDato = 3;
-    		
-            if(confirm("Si elimina el usuario, eliminara todos los datos del mismo"))
-			{
-            $.ajax
-            ({
-                type:"POST",
-                url:"../core/controlador/usuarioControlador.php",
-                data:'idelim=' + idelim  + '&pass=' + pass  + '&trasDato=' + trasDato,
-                success: function(resp)
-                {
-                   
-						$('#mensajeElim').html(resp);
-                        //setTimeout(window.location.reload(), 3000);
-
-
-                   
-                }     
-            });
-			}
+			eliminaFun();
     
 });
 
@@ -355,7 +332,8 @@ function eliminaFun()
     		
             if(confirm("Si elimina el usuario, eliminara todos los datos del mismo"))
 			{
-            $.ajax
+            
+			$.ajax
             ({
                 type:"POST",
                 url:"../core/controlador/usuarioControlador.php",
@@ -363,12 +341,12 @@ function eliminaFun()
                 success: function(resp)
                 {
                    
-						$('#mensajeElim').html(resp);
+						$('#mensajeElim111').html(resp);
                         //setTimeout(window.location.reload(), 3000);
 
 
                    
-                }     
+                }  
             });
 			}
 }

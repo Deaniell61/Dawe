@@ -58,6 +58,7 @@ $('.modaleliminar').click(function(){
     gobIDElim = event.target.dataset.elim;
 	
 	$('#modal3').openModal();
+	$('#contraElim').focus();
 	
 });
 
@@ -142,41 +143,39 @@ $('#btnInsertar').click(function(){
 $('.eliminar').click(function(event)
 {
     
+		     eliminaFun();  
+    
+});
+
+function eliminaFun()
+{
+	
 			var idelim, trasDato; 
 			
             idelim=gobIDElim;
             pass=$('#contraElim').val();
             trasDato = 7;
-    
+    		
+            if(confirm("Si elimina el empleado, eliminara todos los datos del mismo"))
+			{
             
-            $.ajax
+			$.ajax
             ({
                 type:"POST",
                 url:"../core/controlador/usuarioControlador.php",
                 data:'idelim=' + idelim  + '&pass=' + pass  + '&trasDato=' + trasDato,
                 success: function(resp)
                 {
-					
-                    if(resp == '1')
-                    {
-
-                        $('#mensajeE').html("<div>Contraseña incorrecta </div>");
-                    }
-                    else
-                    {
-						
-						
+                   
 						$('#mensajeE').html(resp);
-                        setTimeout(window.location.reload(), 3000);
-                    }
+                        //setTimeout(window.location.reload(), 3000);
+
 
                    
-                }     
-            });            
-    
-});
-
-
+                }  
+            });
+			}
+}
 
 
 
