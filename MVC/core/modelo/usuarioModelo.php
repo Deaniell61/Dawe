@@ -587,7 +587,7 @@ function contraAdmin($datos)
 function habilitaUsuarios($datos)
 {
 	
-    $sql = "update usuarios set estado='".$datos[0]."' where estado=".$datos[1]."";
+    $sql = "update usuarios set estado='".$datos[0]."' where estado=".$datos[1]." and idrol='2'";
     
     $mysql = conexionMysql(); 
     $mysql->query("BEGIN");

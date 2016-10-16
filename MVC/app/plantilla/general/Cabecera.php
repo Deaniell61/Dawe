@@ -153,7 +153,7 @@ function nitificaciones()
 			echo '2';
 		}
 		//*****************************************************
-	$sql = "select i.cantidad,i.minimo,p.nombre,p.codigoproducto from inventario i inner join productos p on i.idproducto=p.idproductos where i.cantidad>=0";
+	$sql = "select i.cantidad,i.minimo,p.nombre,p.codigoproducto from inventario i inner join productos p on i.idproducto=p.idproductos where i.cantidad>=0 and i.cantidad<=i.minimo and p.estado=1";
     $mysql = conexionMysql(); 
 	
 	if($resultado = $mysql->query($sql))
@@ -167,7 +167,7 @@ function nitificaciones()
 				if($fila[0]<=$fila[1])
 				{
 					
-					$_SESSION['notified2P'][($contPr)] = $fila[2]." -- ".$fila[3];//substr($fila[0],0,10);
+					$_SESSION['notified2P'][($contPr)] = $fila[2]." - ".$fila[3];//substr($fila[0],0,10);
 					$_SESSION['direccione2P'][($contPr)] = "InventarioAdministrador.php?codigo=".$fila['3'];
 					$contador++;
 					$contPr++;
@@ -245,7 +245,7 @@ function nitificaciones()
 													";
 												}
 												echo "
-													<li class=\"tituloNotifica\" >Productos Inexistentes</li>
+													<li class=\"tituloNotifica\" >Productos Escasos</li>
 													";
 												for($i=0;$i<count($_SESSION['notified2P']);$i++)
 												{

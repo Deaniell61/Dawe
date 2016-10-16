@@ -9,7 +9,7 @@ if(isset($_SESSION['codigoBuscaProducto_SOFT']))
 {
 	if($_SESSION['codigoBuscaProducto_SOFT']!="")
 	{
-		$mas=" and p.codigoproducto='".$_SESSION['codigoBuscaProducto_SOFT']."' ";
+		$mas=" and p.codigoproducto='".$_SESSION['codigoBuscaProducto_SOFT']."' and i.cantidad<=i.minimo ";
 	}
 	else
 		{
