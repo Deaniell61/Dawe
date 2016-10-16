@@ -224,7 +224,7 @@ function quitaInvetario()
 {
 	cont=0;
 	var real=1;
-	cliente=$('#codigoCliente').val();
+	cliente=$('#codigoVenta').val();
 	while(document.getElementById('Cantidad'+cont))
 	{
 		cantidad=(document.getElementById('Cantidad'+cont).innerHTML);
@@ -361,7 +361,7 @@ function buscarPlazoCuentaCobrar()
 {
 	 var  trasDato;
 	trasDato = 15;
-	id=document.getElementById('codigoCliente').value;
+	id=document.getElementById('codigoVenta').value;
         $.ajax
         ({
             type:"POST",
@@ -817,7 +817,7 @@ function ingresoCuentaCobrar()
 		//alert(2);
 		tipo=document.getElementById('tipoPlazo').value;
 		plazo=document.getElementById('plazo').value;
-		id=document.getElementById('codigoCliente').value;
+		id=document.getElementById('codigoVenta').value;
         $.ajax
         ({
             type:"POST",

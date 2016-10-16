@@ -136,7 +136,7 @@ function quitaInventario($datos)
 						 $mysql->query("ROLLBACK");
 					 }
 					 else
-					 if(!$mysql->query("update cuentascobrar set estado=1,total=total+(select v.total from ventas v where idVentas='".$_SESSION['idVenta']."'),CreditoDado=CreditoDado+(select v.total from ventas v where idVentas='".$_SESSION['idVenta']."') where idCliente='".$datos[2]."'"))
+					 if(!$mysql->query("update cuentascobrar set estado=1,total=(select v.total from ventas v where v.idVentas='".$_SESSION['idVenta']."'),CreditoDado=(select v.total from ventas v where v.idVentas='".$_SESSION['idVenta']."') where idventas='".$_SESSION['idVenta']."'"))
 			 		{
 						
 				 		$mysql->query("ROLLBACK");
@@ -205,7 +205,7 @@ function ingresoVenta($datos)
 					 }
 					 else
 					 
-					 if(!$mysql->query("update cuentascobrar set estado=estado where idcliente='".$datos[7]."'"))
+					 if(!$mysql->query("update cuentascobrar set estado=estado where idventas='".$_SESSION['idVenta']."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");
@@ -549,7 +549,7 @@ function  buscarPlazoCuentaCobrar($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT plazo,tipoPlazo FROM cuentascobrar WHERE idcliente='".$dato[0]."'";
+    $sql = "SELECT plazo,tipoPlazo FROM cuentascobrar WHERE idventas='".$dato[0]."'";
  	//echo $sql;
     if($resultado = $mysql->query($sql))
     {

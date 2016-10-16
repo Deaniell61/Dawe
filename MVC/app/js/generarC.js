@@ -282,6 +282,7 @@ function comprobarCredito(obj)
 	if(obj.value=='2')
 	{
 		$('#cuentasContenedor').show();
+		$('#tipoPlazo').material_select();
 	}
 	else
 	{
@@ -363,7 +364,7 @@ function buscarPlazoCuentaPagar()
 {
 	 var  trasDato;
 	trasDato = 15;
-	id=document.getElementById('codigoProveedor').value;
+	id=document.getElementById('codigoCompra').value;
         $.ajax
         ({
             type:"POST",
@@ -810,7 +811,7 @@ function ingresoCuentaPagar()
 		//alert(2);
 		tipo=document.getElementById('tipoPlazo').value;
 		plazo=document.getElementById('plazo').value;
-		id=document.getElementById('codigoProveedor').value;
+		id=document.getElementById('codigoCompra').value;
         $.ajax
         ({
             type:"POST",
@@ -830,7 +831,7 @@ function ingresoCuentaPagar()
                 {
 
 
-
+						
 					 $('#mensajeC').html(resp);
 
 

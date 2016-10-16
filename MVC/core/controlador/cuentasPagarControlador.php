@@ -146,10 +146,14 @@ if($_POST)
         agregarFactura($datos);
 
     }
-	else if($transaccion == 66)
+	else if($transaccion == 13)
     {
-        
-        CerrarSesion();
+
+        $datos[0]=$nombre = $_POST['tipo'];
+		
+		
+		        
+        mostrarCuentasP($datos);
 
     }
     

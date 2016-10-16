@@ -5,7 +5,7 @@ function ingresoCuentaCobrar($datos)
     $form="";
 	
 		$mysql->query("BEGIN");
-    $sql = "insert cuentascobrar(plazo,tipoPlazo,total,idcliente,estado,creditodado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
+    $sql = "insert cuentascobrar(plazo,tipoPlazo,total,idventas,estado,creditodado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
 //echo $sql;
     if($mysql->query($sql))
     {
@@ -17,7 +17,7 @@ function ingresoCuentaCobrar($datos)
     }
     else
     {   
-		$sql = "update cuentascobrar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."',fecha_ant=fecha,fecha='".date('Y-m-d')."' where idcliente='".$datos[0]."'";
+		$sql = "update cuentascobrar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."',fecha_ant=fecha,fecha='".date('Y-m-d')."' where idventas='".$datos[0]."'";
 //echo $sql;
 			if($mysql->query($sql))
 			{
@@ -47,7 +47,7 @@ function editarCuentaC($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idcliente,(select c.nombre from cliente c where c.idcliente=cc.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=cc.idcliente limit 1) FROM cuentascobrar cc where cc.estado=1 and cc.idcuentasC='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idventas,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1) FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas where cc.estado=1 and cc.idcuentasC='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {
@@ -98,7 +98,7 @@ function verCuentaC($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idcliente,(select c.nombre from cliente c where c.idcliente=cc.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=cc.idcliente limit 1),(select c.direccion from cliente c where c.idcliente=cc.idcliente limit 1),(select c.telefono from cliente c where c.idcliente=cc.idcliente limit 1) FROM cuentascobrar cc where cc.estado=1 and cc.idcuentasC='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idventas,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1),(select c.direccion from cliente c where c.idcliente=v.idcliente limit 1),(select c.telefono from cliente c where c.idcliente=v.idcliente limit 1) FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas where cc.estado=1 and cc.idcuentasC='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {

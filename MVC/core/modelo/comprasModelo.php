@@ -129,7 +129,7 @@ function agregaInventario($datos)
 					 }
 					 else
 					 
-					 if(!$mysql->query("update cuentaspagar set estado=1,total=total+(select v.total from compras v where idcompras='".$_SESSION['idCompra']."'),CreditoDado=CreditoDado+(select v.total from compras v where idcompras='".$_SESSION['idCompra']."') where idproveedor='".$datos[6]."'"))
+					 if(!$mysql->query("update cuentaspagar set estado=1,total=(select v.total from compras v where v.idcompras='".$_SESSION['idCompra']."'),CreditoDado=(select v.total from compras v where v.idcompras='".$_SESSION['idCompra']."') where idcompras='".$_SESSION['idCompra']."'"))
 			 		{
 				
 				 		$mysql->query("ROLLBACK");
@@ -185,7 +185,7 @@ function ingresoCompra($datos)
 				 $mysql->query("ROLLBACK");
 			 }
 			 else
-			 if(!$mysql->query("update cuentaspagar set estado=estado where idproveedor='".$datos[6]."'"))
+			 if(!$mysql->query("update cuentaspagar set estado=estado where idcompras='".$_SESSION['idCompra']."'"))
 			 {
 				
 				 $mysql->query("ROLLBACK");
@@ -570,7 +570,7 @@ function  buscarPlazoCuentaPagar($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT plazo,tipoPlazo FROM cuentaspagar WHERE idproveedor='".$dato[0]."'";
+    $sql = "SELECT plazo,tipoPlazo FROM cuentaspagar WHERE idcompras='".$dato[0]."'";
  	//echo $sql;
     if($resultado = $mysql->query($sql))
     {

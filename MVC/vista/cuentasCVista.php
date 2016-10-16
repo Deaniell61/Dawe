@@ -29,7 +29,7 @@ $fecha=date('Y-m-d');
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT cc.fecha,cc.total,(select c.nombre from cliente c where c.idcliente=cc.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=cc.idcliente limit 1),idcuentasC FROM cuentascobrar cc   WHERE cc.estado=1";
+    $sql = "SELECT cc.fecha,cc.total,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1),idcuentasC FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas inner join ventasdetalle vd on vd.idventa=v.idventas inner join productos pp on pp.idproductos=vd.idproductos WHERE cc.estado=1 and pp.tiporepuesto='".$datos[0]."' group by cc.idcuentasc ";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {

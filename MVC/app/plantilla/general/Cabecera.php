@@ -26,7 +26,7 @@ function nitificaciones()
     $nuevafecha3 = strtotime ( '+5 day' , strtotime ( $fecha3 ) ) ;
 	$hoy = date ( 'Y-m-d' , $nuevafecha3 );
 	$contador = 0;
-    	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombre,c.apellido from cuentascobrar cc inner join cliente c on c.idcliente=cc.idcliente";
+    	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombre,c.apellido from cuentascobrar cc inner join ventas v on cc.idventas=v.idventas inner join cliente c on c.idcliente=v.idcliente";
     $mysql = conexionMysql(); 
 	
 	if($resultado = $mysql->query($sql))
@@ -91,7 +91,7 @@ function nitificaciones()
         echo 1;
     }
 	
-	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombreempresa from cuentaspagar cc inner join proveedor c on c.idproveedor=cc.idproveedor";
+	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombreempresa from cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join proveedor c on c.idproveedor=v.iddistribuidor";
     $mysql = conexionMysql(); 
 	
 	if($resultado = $mysql->query($sql))
@@ -146,11 +146,12 @@ function nitificaciones()
 			}
 			
 		}
-		else
-		{  
-			
-		}
+		
 	}
+	else
+		{  
+			echo '2';
+		}
 		//*****************************************************
 	$sql = "select i.cantidad,i.minimo,p.nombre,p.codigoproducto from inventario i inner join productos p on i.idproducto=p.idproductos where i.cantidad>=0";
     $mysql = conexionMysql(); 

@@ -583,6 +583,31 @@ function contraAdmin($datos)
     
     
 }
+function habilitaUsuarios($datos)
+{
+	
+    $sql = "update usuarios set estado='".$datos[0]."' where estado=".$datos[1]."";
+    
+    $mysql = conexionMysql(); 
+    $mysql->query("BEGIN");
+    if($resultado = $mysql->query($sql))
+    {
+        $respuesta = "<div> <script>location.reload();</script> </div>";
+			$mysql->query("COMMIT");	
+    }
+    else
+    { 
+	$mysql->query("ROLLBACK");
+        $respuesta = "<div>Error en en la insercion </div>"; 
+        echo 1;
+    }
+    
+    
+    $mysql->close();
+    
+    return printf($respuesta);
+	
+}
 function CerrarSesion()
 {
 	session_start();

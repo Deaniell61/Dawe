@@ -596,3 +596,19 @@ function formularioDis(res)
 		
 	    
 }
+
+function deshabilitarUsuariosTurno(estado,estadofin)
+{
+	var trasDato; 
+  	trasDato =14;
+    $.ajax
+    ({
+        type:"POST",
+        url:"../core/controlador/usuarioControlador.php",
+        data:'estadoFin=' + estado  + '&estadoIni=' + estadofin  + '&trasDato=' + trasDato,
+        success: function(resp)
+        {
+            $('#resultadoUsu').html(resp); 
+	    }     
+    });  
+}

@@ -9,31 +9,7 @@ var passHabilita=0;
 */
 //***********************************
 //************************** tabla ***********************
-$('#tabla').DataTable( {
 
-    info:     false,
-
-
-
-    language: {
-
-        search: "Buscar",
-        sLengthMenu:" _MENU_ ",
-
-        paginate:{
-
-            previous: "Anterior",
-            next: "Siguiente",
-
-        },
-
-    },
-    /*
-			   "scrollY":        "375px",
-        "scrollCollapse": true,
-        "paging":         true
-         */
-} );
 
 $('select').material_select(); 
 
@@ -72,75 +48,30 @@ $(".dropdown-button").dropdown();
 
 
 
-//comprobaciones
-
-$('#password2').keyup(function(){
-
-    compruebaPass();
-
-});
-$('#password').keyup(function(){
-
-    compruebaPass();
-
-});
-
-function compruebaPass()
+function mostrarCuentasP()
 {
-    pas1=$('#password').val();
-    pas2=$('#password2').val();
+	var filto="";
+ 
+        var porNombre=document.getElementsByName("filtro");
+        
+        for(var i=0;i<porNombre.length;i++)
+        {
+            if(porNombre[i].checked)
+                filto=porNombre[i].value;
+        }
 
-
-    if(pas1==pas2 && pas1!="" && pas1.length>8)
-    {
-        passHabilita=1;
-        $('#password2').css('border-color','#3F0');
-
-    }
-    else
-    {
-        passHabilita=0;
-        $('#password2').css('border-color','#F00');
-
-    }
-}
-//**********************
-
-
-
-$('#btnInsertar').click(function(){
-
-    // alert('hola');  
-
-    $('#precargar').show();
-
-    var  user, pass, email, trasDato;
-    if(passHabilita==1)
-    {
-        user = $('#user').val();
-
-        pass = $('#password').val();
-
-        rol = $('#rol').val();
-
-        trasDato = 2;
+	var  trasDato;
+	trasDato = 13;
+	
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/usuarioControlador.php",
-            data:' user=' +  user + '&pass=' + pass + '&rol=' + rol + '&trasDato=' + trasDato,
+            url:"../core/controlador/cuentasPagarControlador.php",
+            data:' tipo=' +  filto + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
-                //console.log(trasDato);
-
-
-                //$('#mensaje').html(resp); 
-                // $('#precargar').css('display','none');  
-                $("#user").val("");
-                $("#password").val("");
-
-                if(resp == '1')
+               if(resp == '1')
                 {
 
 
@@ -149,24 +80,43 @@ $('#btnInsertar').click(function(){
                 }
                 else
                 {
-                    passHabilita=0;
+                    
+					
+					 $('#tablaMostrar').html(resp); 
+					 
+					 $('#tabla').DataTable( {
 
-                    setTimeout(window.location.reload(), 3000);
-
+											info:     false,
+										
+										
+										
+											language: {
+										
+												search: "Buscar",
+												sLengthMenu:" _MENU_ ",
+										
+												paginate:{
+										
+													previous: "Anterior",
+													next: "Siguiente",
+										
+												},
+										
+											},
+											/*
+													   "scrollY":        "375px",
+												"scrollCollapse": true,
+												"paging":         true
+												 */
+										} );
+										$('select').material_select();
 
                 }
 
 
             }     
         });
-    }
-    else
-    {
-        alert('password erroneo');
-    }
-
-
-});
+}
 function cargarDetalleCuentasP(id)
 {
 	var  trasDato;

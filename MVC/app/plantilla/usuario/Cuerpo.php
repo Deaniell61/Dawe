@@ -23,8 +23,21 @@
 
     </ul>
 
+<?php
+	if($_SESSION['SOFT_ROL']=='1' || $_SESSION['SOFT_ROL']=='0')
+				{		?>
+<ul id="tabsn" class="tabsUsuarios centrartab blue darken-1 ">
+    <div class="lipUsuario">
 
+           <li class="centrarli" onClick="deshabilitarUsuariosTurno('5','1');"><a href="#" class="red accent-4 btn white-text ">Deshabilitar Usuarios</a></li>
+            <li class="centrarli" onClick="deshabilitarUsuariosTurno('1','5');"><a href="#" class="green accent-7 btn white-text ">Habilitar Usuarios</a></li>
 
+          
+<!-- <div class="indicator blue" style="z-index:1"></div>  -->
+    </div>
+</ul>
+<?php 		}	
+?>
     <!-- ********************************** tabla inicio ********************************** -->
 
     <div class="centrartabla">
@@ -40,18 +53,15 @@
                         <a id="modalnuevo" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonesr " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/anadir.png" /></i>Nuevo</a>
                     </div>
                 </td>
-                <td class="">
-
-
-
-
-                </td>
+                
             </tr>
         </table>
 
 
 <?php 		}	
 ?>
+
+		<div id="resultadoUsu"></div>
 
         <?php
         include('../vista/usuarioVista.php');

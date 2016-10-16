@@ -167,6 +167,14 @@ if($_POST)
         contraAdmin($datos);
 
     }
+	else if($transaccion == 14)
+    {
+
+		$datos[0]= $_POST['estadoFin'];
+		$datos[1]= $_POST['estadoIni'];
+        habilitaUsuarios($datos);
+
+    }
 	else if($transaccion == 66)
     {
         
