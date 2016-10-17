@@ -16,7 +16,7 @@ echo "<script>$('#tipoCompra').material_select('destroy');</script>";
             <th>Nombre</th>
             <th>Direccion</th>
             <th>Nit</th>
-            <th>Cuenta</th>
+            <th>Telefono</th>
             <th></th>
 
 
@@ -51,7 +51,7 @@ echo "<script>$('#tipoCompra').material_select('destroy');</script>";
 				$tabla .="<td>" .$fila["4"].      "</td>";
                 $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn modal-close  green lighten-1 modal-trigger botonesm editar' onclick=\"seleccionar('".$fila["3"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/seleccion.png' /></i></a>";
 				//$tabla .="<td class='anchoC'><a class='waves-effect waves-light btn blue dark-1 modal-trigger botonesm editar' onclick=\"distribuidores('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/nuevod.png' /></i></a>";
-                   $tabla .="<a  onClick='abrirProvNuevo();' class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["0"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
+                   $tabla .="<a  onclick=\"editarProv('".$fila["0"]."')\" class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' )\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
 
 
                 $tabla .= "</tr>";

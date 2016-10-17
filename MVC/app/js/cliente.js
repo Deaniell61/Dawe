@@ -124,18 +124,26 @@ function ingresarClienteP(){
     var  nombre, direccion, telefono, nit, apellido,  trasDato;
 	
         nombre = $('#nombreP').val();
+		codigo = $('#codigoP').val();
 		apellido = $('#apellidoP').val();
 		direccion = $('#direccionP').val();
 		telefono = $('#telefonoP').val();
 		nit = $('#nitP').val();
 		
-
-        trasDato = 1;
+		if(codigo=="")
+		{
+			trasDato = 1;
+		}
+		else
+		{
+        	trasDato = 3;
+		}
+		
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/clientesControlador.php",
-            data:' nombre=' +  nombre + '&direccion=' + direccion + '&nit=' + nit + '&telefono=' + telefono + '&apellido=' + apellido + '&trasDato=' + trasDato,
+            data:' nombre=' +  nombre + '&direccion=' + direccion + '&nit=' + nit + '&telefono=' + telefono + '&apellido=' + apellido + '&codigo=' + codigo + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -152,7 +160,7 @@ function ingresarClienteP(){
                 {
                     
 						
-                  
+                  cierre();
 					llamarCliente();
                 }
 
@@ -164,163 +172,26 @@ function ingresarClienteP(){
 
 }
 
-
-
-
-$('.eliminar').click(function(event)
-                     {
-
-    var idelim, trasDato; 
-
-    idelim=gobIDElim;
-
-    trasDato = 3;
-
-
-    $.ajax
-    ({
-        type:"POST",
-        url:"../core/controlador/usuarioControlador.php",
-        data:'idelim=' + idelim  + '&trasDato=' + trasDato,
-        success: function(resp)
-        {
-
-            console.log(idelim);
-
-            //$('#mensaje').html(resp); 
-            //$('#precargar').css('display','none');  
-            $("#user").val("");
-            $("#password").val("");
-
-            if(resp == '1')
-            {
-
-                //$('#mensaje').html('Datos Incorrectos.');         
-                //$('#precargar').hide();    
-            }
-            else
-            {
-
-                setTimeout(window.location.reload(), 3000);
-
-
-            }
-
-
-        }     
-    });            
-
-});
-
-
-
-
-
-
-$('.editar').click(function(event)
-                   {
-
-    event.preventDefault();
-
-    var idedit, trasDato; 
-
-    gobIDEdit = event.target.dataset.edit;
-
-    idedit = gobIDEdit;
-
-  
-
-    trasDato = 4;
-
-
-    $.ajax
-    ({
-        type:"POST",
-        url:"../core/controlador/usuarioControlador.php",
-        data:'idedit=' + idedit  + '&trasDato=' + trasDato,
-        success: function(resp)
-        {
-
-
-
-            $('#mensaje').html(resp); 
-            // $('#precargar').css('display','none');  
-
-
-
-
-        }     
-    });            
-
-});
-
-$('#btnActualizar').click(function()
-                          {
-
-    var idedit, trasDato, user, pass, rol; 
-
-    idedit = gobIDEdit;
-
-    trasDato = 5;
-    //$('#precargar').show();
-
-
-    if($('#password').val()=="")
-    {
-        passHabilita=1;
-    }
-
-    if(passHabilita==1)
-    {
-        user = $('#user').val();
-
-        pass = $('#password').val();
-
-        rol = $('#rol').val();
-
+function editarCliente(id)
+{
+	$('#btnActualizar').show();
+    $('#btnInsertar').hide();
+    $('#modal1P').openModal();
+	trasDato = 2;
         $.ajax
         ({
             type:"POST",
-            url:"../core/controlador/usuarioControlador.php",
-            data:' user=' +  user + '&pass=' + pass + '&rol=' + rol+ '&id=' + idedit + '&trasDato=' + trasDato,
+            url:"../core/controlador/clientesControlador.php",
+            data:' id=' +  id + '&trasDato=' + trasDato,
             success: function(resp)
             {
-
-                //console.log(trasDato);
-
-
-                //$('#mensaje').html(resp); 
-                // $('#precargar').css('display','none');  
-                $("#user").val("");
-                $("#password").val("");
-
-                if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');         
-                    //$('#precargar').hide();    
-                }
-                else
-                {
-
-
-                    setTimeout(window.location.reload(), 3000);
-
-
-                }
-
-
+				$('#mensajeP2').html(resp);
             }     
         });
-    }
-    else
-    {
-        alert('password erroneo');
-    }
+	
+}
 
 
-});
 
 
 $('#modalcliente').click(function(){
