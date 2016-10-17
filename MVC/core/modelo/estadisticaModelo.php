@@ -215,13 +215,13 @@ function graficaVentasPie($datos)
     $form="";
  
  
- 	$fecha3 = date('Y-m-d');
+ 	$fecha3 = $datos[1];
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 
   
-   $sql = "SELECT sum(dv.subtotal),sum(dv.cantidad),p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$datos[1]."') and v.estado=1 and dv.estado=1 and p.estado=1  group by p.idproductos order by sum(dv.cantidad) desc limit 5;";
+    $sql = "SELECT (dv.subtotal),sum(dv.cantidad),p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$fecha3."') and v.estado=1 group by p.idproductos order by sum(dv.cantidad) desc limit 5;";
 	if($datos[0]<=$datos[1])
 	{	$meses="";
 		
@@ -322,11 +322,11 @@ $mysql = conexionMysql();
     $form="";
  
  
- 	$fecha3 = date('Y-m-d');
+ 	$fecha3 = $datos[1];
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
-   $sql = "SELECT sum(dv.subtotal),dv.cantidad,p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$datos[1]."') and v.estado=1 and dv.estado=1 and p.estado=1 $mas group by p.idproductos order by sum(dv.subtotal) desc limit 5;";
+   $sql = "SELECT sum(dv.subtotal),sum(dv.cantidad),p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$fecha3."') and v.estado=1 $mas group by p.idproductos order by sum(dv.subtotal) desc limit 5;";
 	if($datos[0]<=$datos[1])
 	{	$meses="";
 		
@@ -414,11 +414,11 @@ $mysql = conexionMysql();
     $form="";
  
  
- 	$fecha3 = date('Y-m-d');
+ 	$fecha3 = $datos[1];
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
-    $sql = "SELECT sum(dv.subtotal),dv.cantidad,p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$datos[1]."') and v.estado=1 and dv.estado=1 and p.estado=1 $mas group by p.idproductos order by dv.cantidad desc limit 5;";
+    $sql = "SELECT sum(dv.subtotal),sum(dv.cantidad),p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$fecha3."') and v.estado=1 $mas group by p.idproductos order by dv.cantidad desc limit 5;";
 	if($datos[0]<=$datos[1])
 	{	$meses="";
 		
@@ -532,11 +532,11 @@ function graficaVendedoresBarra($datos)
     $form="";
  
  
- 	$fecha3 = date('Y-m-d');
+ 	$fecha3 = $datos[1];
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
-  $sql = "SELECT sum(v.total),u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$datos[1]."') and v.estado=1 group by date(v.fecha)";
+  $sql = "SELECT sum(v.total),u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$fecha3."') and v.estado=1 group by date(v.fecha)";
 	if($datos[0]<=$datos[1])
 	{$fecha3=$datos[1];
     	$titulo="['x'";
@@ -781,12 +781,12 @@ function graficaVendedorPie($datos)
     $form="";
  
  
- 	$fecha3 = date('Y-m-d');
+ 	$fecha3 = $datos[1];
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 
-	$sql = "SELECT sum(v.total),u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$datos[1]."') and v.estado=1 group by u.user";
+	$sql = "SELECT sum(v.total),u.user,v.fecha FROM ventas v inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<'".$fecha3."') and v.estado=1 group by u.user";
   
    //$sql = "SELECT sum(dv.subtotal),sum(dv.cantidad),p.nombre,p.codigoproducto,p.tiporepuesto FROM ventas v  inner join ventasdetalle dv on dv.idventa=v.idventas inner join productos p on p.idproductos=dv.idproductos inner join usuarios u on v.idusuario=u.idusuarios where (v.fecha>'".$datos[0]."' and v.fecha<='".$fecha3."') and v.estado=1 and dv.estado=1 and p.estado=1  group by p.idproductos order by sum(dv.cantidad) desc limit 5;";
 	if($datos[0]<=$datos[1])
@@ -878,7 +878,7 @@ $mysql = conexionMysql();
     $form="";
  
  
- 	$fecha3 = date('Y-m-d');
+ 	$fecha3 = $datos[1];
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
@@ -888,7 +888,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 		$form.="<script>\n";
 			//$('#mover').append(resp);
 	//Compras!!!!!
-		$sql="SELECT sum(c.total) FROM compras c where (c.fecha>'".$datos[0]."' and c.fecha<='".$datos[1]."') and c.estado=1;";
+		$sql="SELECT sum(c.total) FROM compras c where (c.fecha>'".$datos[0]."' and c.fecha<='".$fecha3."') and c.estado=1;";
 		if($resultadoC = $mysql->query($sql))
 		{
 			
@@ -916,7 +916,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 		}
 		
 	//Sueldos!!!!!
-		$sql="SELECT sum(c.monto)+(select sum(co.monto) from comisiones co where (co.fechaINI>='".$datos[0]."' and co.fechaFin<='".$datos[1]."')) FROM sueldos c where (c.fecha>'".$datos[0]."' and c.fecha<='".$datos[1]."') and c.estado=1;";
+		$sql="SELECT sum(c.monto)+(select sum(co.monto) from comisiones co where (co.fechaINI>='".$datos[0]."' and co.fechaFin<='".$fecha3."')) FROM sueldos c where (c.fecha>'".$datos[0]."' and c.fecha<='".$fecha3."') and c.estado=1;";
 		if($resultadoC = $mysql->query($sql))
 		{
 			
@@ -943,7 +943,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 		
 		}
 	//Creditos pagados!!!!!
-		$sql="SELECT sum(c.abono) FROM movimientosp c where (c.fecha>'".$datos[0]."' and c.fecha<='".$datos[1]."');";
+		$sql="SELECT sum(c.abono) FROM movimientosp c where (c.fecha>'".$datos[0]."' and c.fecha<='".$fecha3."');";
 		if($resultadoC = $mysql->query($sql))
 		{
 			
@@ -970,7 +970,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 		
 		}
 	//Gastos varios!!!!!
-		$sql="SELECT sum(c.monto) FROM gastos c where (c.fecha>'".$datos[0]."' and c.fecha<='".$datos[1]."') and estado=1;";
+		$sql="SELECT sum(c.monto) FROM gastos c where (c.fecha>'".$datos[0]."' and c.fecha<='".$fecha3."') and estado=1;";
 		if($resultadoC = $mysql->query($sql))
 		{
 			
@@ -1014,7 +1014,7 @@ $mysql = conexionMysql();
     $form="";
  
  
- 	$fecha3 = date('Y-m-d');
+ 	$fecha3 = $datos[1];
      
  $nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fecha3 ) ) ;
 $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
@@ -1024,7 +1024,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 		$form.="<script>\n";
 			//$('#mover').append(resp);
 	//Compras!!!!!
-		$sql="SELECT sum(c.total) FROM ventas c where (c.fecha>'".$datos[0]."' and c.fecha<='".$datos[1]."') and c.estado=1;";
+		$sql="SELECT sum(c.total) FROM ventas c where (c.fecha>'".$datos[0]."' and c.fecha<='".$fecha3."') and c.estado=1;";
 		if($resultadoC = $mysql->query($sql))
 		{
 			
@@ -1051,7 +1051,7 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 		
 		}
 		//Creditos pagados!!!!!
-		$sql="SELECT sum(c.abono) FROM movimientosc c where (c.fecha>'".$datos[0]."' and c.fecha<='".$datos[1]."');";
+		$sql="SELECT sum(c.abono) FROM movimientosc c where (c.fecha>'".$datos[0]."' and c.fecha<='".$fecha3."');";
 		if($resultadoC = $mysql->query($sql))
 		{
 			
