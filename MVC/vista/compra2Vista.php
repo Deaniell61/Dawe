@@ -6,7 +6,7 @@ function mostrarCompras($datos)
 session_start();
 
 $busca="";
-	
+
 	if($_SESSION['SOFT_ROL']!='1' && $_SESSION['SOFT_ROL']!='0')
 	{
 		$busca="and c.idusuario='".$_SESSION['SOFT_USER_ID']."'";
@@ -25,7 +25,7 @@ $busca="";
             <th>Total</th>
             <th>Tipo de Compra</th>
               <th></th>
-            
+
         </tr>
     </thead>
     <tbody>
@@ -55,7 +55,7 @@ $busca="";
                 $tabla .="<td>" .$fila["2"].      "</td>";
 				$tabla .="<td>" .$fila["3"].      "</td>";
 				$tabla .="<td>" .toMoney($fila["4"]).      "</td>";
-				
+
 				$tabla .="<td>" .$fila["5"].      "</td>";
 				if($_SESSION['SOFT_ACCESOElimina'.'compras']=='1')
 				{
@@ -65,7 +65,7 @@ $busca="";
 				{
 					$tabla .="<td class='anchoC'>";
 				}
-           
+
 
                 $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm modalver'  onClick=\"buscarCompra('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
                 $tabla .= "</tr>";
@@ -107,11 +107,11 @@ function mostrarDetallesCompras($id)
 <table id='tabla22' class='bordered centered highlight responsive-table centrarT'>
     <thead>
         <tr>
-        	<th hidden></th>
-            <th hidden></th>
-            <th hidden></th>
-            <th hidden></th>
-            <th hidden></th>
+        	<th hidden class="ocultar"></th>
+            <th hidden class="ocultar"></th>
+            <th hidden class="ocultar"></th>
+            <th hidden class="ocultar"></th>
+            <th hidden class="ocultar"></th>
             <th>ID</th>
             <th>Producto</th>
             <th>Tipo</th>
@@ -119,8 +119,8 @@ function mostrarDetallesCompras($id)
             <th>Cantidad</th>
             <th>SubTotal</th>
             <th></th>
-          
-            
+
+
         </tr>
     </thead>
     <tbody>
@@ -153,12 +153,12 @@ $contaId=0;
 				}
 
                 $tabla .= "<tr>";
-				$tabla .="<td hidden id=\"Codigo$contaId\">"     .$fila["6"].    "</td>";
-				$tabla .="<td hidden id=\"PrecioE$contaId\">"     .$fila["8"].    "</td>";
-				$tabla .="<td hidden id=\"PrecioM$contaId\">"     .$fila["9"].    "</td>";
-				$tabla .="<td hidden id=\"Costo$contaId\">"     .$fila["10"].    "</td>";
-				$tabla .="<td hidden id=\"PrecioG$contaId\">"     .$fila["11"].    "</td>";
-				
+				$tabla .="<td hidden class=\"ocultar\" id=\"Codigo$contaId\">"     .$fila["6"].    "</td>";
+				$tabla .="<td hidden class=\"ocultar\" id=\"PrecioE$contaId\">"     .$fila["8"].    "</td>";
+				$tabla .="<td hidden class=\"ocultar\" id=\"PrecioM$contaId\">"     .$fila["9"].    "</td>";
+				$tabla .="<td hidden class=\"ocultar\" id=\"Costo$contaId\">"     .$fila["10"].    "</td>";
+				$tabla .="<td hidden class=\"ocultar\" id=\"PrecioG$contaId\">"     .$fila["11"].    "</td>";
+
                 $tabla .="<td>"     .$fila["7"].    "</td>";
                 $tabla .="<td>" .$fila["1"].      "</td>";
 				$tabla .="<td>" .$tipo.      "</td>";

@@ -6,7 +6,7 @@
 session_start();
 
 $busca="";
-	
+
 	if($_SESSION['SOFT_ROL']!='1' && $_SESSION['SOFT_ROL']!='0')
 	{
 		$busca="and c.idusuario='".$_SESSION['SOFT_USER_ID']."'";
@@ -62,7 +62,7 @@ $busca="";
   				{
                   $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm ' onClick=\"anularVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
   				}
-  				
+
 
 
                   $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm modalver'  onClick=\"buscarVenta('".$fila["6"]."');\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
@@ -122,7 +122,7 @@ $busca="";
       $mysql = conexionMysql();
      $sql = "SELECT cd.idventadetalle,(select p.nombre from productos p where p.idproductos=cd.idproductos),cd.precio,cd.cantidad,cd.subtotal,(select p.tiporepuesto from productos p where p.idproductos=cd.idproductos),cd.idproductos,(select p.codigoproducto from productos p where p.idproductos=cd.idproductos) FROM ventasdetalle cd where cd.idventa='".$id."'";
       $tabla="";
-	  
+
   	$tipo="";
       if($resultado = $mysql->query($sql))
       {
@@ -148,7 +148,7 @@ $busca="";
   				}
 
                   $tabla .= "<tr>";
-  				$tabla .="<td hidden id=\"Codigo$contaId\">"     .$fila["6"].    "</td>";
+  				$tabla .="<td  id=\"Codigo$contaId\">"     .$fila["6"].    "</td>";
 
                   $tabla .="<td>"     .$fila["7"].    "</td>";
                   $tabla .="<td>" .$fila["1"].      "</td>";

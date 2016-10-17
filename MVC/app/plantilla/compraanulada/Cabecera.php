@@ -6,6 +6,7 @@
         <title>Compras Anuladas <?php echo $_SESSION['notified2'];?></title>
         <?php include('../app/plantilla/general/libCss.php');   ?>
         <link rel="stylesheet" href="../app/css/compra2.css">
+          <link rel="stylesheet" href="../app/css/anularCompra.css">
     </head>
     <body>
 
