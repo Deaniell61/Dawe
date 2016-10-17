@@ -3,30 +3,40 @@
 $('#logout').click(function(){
 
     cerrarSesion();
-	
+
 });
 
 
 $('#logoutR').click(function(){
 
     cerrarSesion();
-	
+
 });
+
+function mostrar(){
+$('#globoN').toggle();
+//alert("mostrar");
+}
+
+
+
+
+
 $('.row').click(function(){
 
     document.getElementById('globoNotificacion').hidden=true;
-	
+
 });
 $('#contenidoCrud').click(function(){
 
     document.getElementById('globoNotificacion').hidden=true;
-	
+
 });
 
 function cerrarSesion()
 {
     var trasDato;
-     
+
      trasDato = 66;
    $.ajax
    ({
@@ -34,10 +44,10 @@ function cerrarSesion()
       url:"../core/controlador/usuarioControlador.php",
      data:'trasDato=' + trasDato,
       success: function(resp)
-       { 
+       {
            location.href=resp;
-          
-       }  
+
+       }
    });
 }
 
@@ -49,17 +59,17 @@ function siguiente(evt,id)
 		{
 			ingresoCompra(document.getElementById('codigo').value);
 		}
-		document.getElementById(id).focus();		
+		document.getElementById(id).focus();
 	}
 }
 function cierre()
 {
-	$('.lean-overlay').css('display','none');    
-	
+	$('.lean-overlay').css('display','none');
+
 }
 
 
-function printDiv(divName) 
+function printDiv(divName)
 {
      var printContents = document.getElementById(divName).innerHTML;
      var originalContents = document.body.innerHTML;
@@ -72,7 +82,7 @@ function printDiv(divName)
 	 location.reload();
 }
 
-function printCoti(divName) 
+function printCoti(divName)
 {
 	 var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:right;\">Hector Repuestos</div><div  style=\"height: 18px; text-align:right;\">\"Soluciones con Experiencia\"</div><div  style=\"height: 18px; text-align:right;\">Direccion: Retalhuleu</div><div  style=\"height: 18px; text-align:right;\">Tel. 77737775</div><div  style=\"height: 18px; text-align:right;\">Cel. 42207608</div></div></nav></div><br><p>Cliente: "+document.getElementById('Cliente').value+"</p>";
      var printContents = document.head.innerHTML+encab+document.getElementById(divName).innerHTML;
@@ -90,7 +100,7 @@ function printCoti(divName)
 function toMoney(input)
 {
 		input.value=(currency(input.value));
-		
+
 }
 
 function currency(value, decimals, separators) {
@@ -118,7 +128,7 @@ function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
 	//alert(charCode);
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) 
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
 	{
 		if(charCode==46)
 		{
@@ -131,5 +141,3 @@ function isNumber(evt) {
     }
     return true;
 }
-
-

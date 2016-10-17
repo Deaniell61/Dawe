@@ -45,29 +45,29 @@
 								  <label class="active" for="fecha" >Fecha Final</label>
 								</div>
 
-                
+
 
 
 	<div class="row">
       <div class="col s12">
-            <div class="col s6 ">
+            <div class="col s10 ">
                   <div class="" id="chart">
-        
+
                   </div>
-    
+
             </div>
-            <div class="col s6 ">
+            <div class="col s10" >
                   <div class="" id="chart2">
                   Grafica Grande 2
                   </div>
-    
+
             </div>
 
 
-            <div class="col s6 " id="best5">
+            <div class="col s10 " id="best5">
                   Tabla 1
             </div>
-            <div class="col s6 " id="best5Q">
+            <div class="col s10 " id="best5Q">
                 Tabla  2
             </div>
       </div>
