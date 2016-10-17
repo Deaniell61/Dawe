@@ -105,6 +105,7 @@ $busca="";
   <table id='tabla2' class='bordered centered highlight responsive-table centrarT'>
       <thead>
           <tr>
+          		<th style="display:none;"></th>
               <th>ID</th>
               <th>Producto</th>
               <th>Tipo</th>
@@ -148,7 +149,7 @@ $busca="";
   				}
 
                   $tabla .= "<tr>";
-  				$tabla .="<td  id=\"Codigo$contaId\">"     .$fila["6"].    "</td>";
+  				$tabla .="<td  id=\"Codigo$contaId\" style=\"display:none;\">"     .$fila["6"].    "</td>";
 
                   $tabla .="<td>"     .$fila["7"].    "</td>";
                   $tabla .="<td>" .$fila["1"].      "</td>";

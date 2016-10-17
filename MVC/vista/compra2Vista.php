@@ -107,11 +107,7 @@ function mostrarDetallesCompras($id)
 <table id='tabla22' class='bordered centered highlight responsive-table centrarT'>
     <thead>
         <tr>
-        	<th hidden class="ocultar"></th>
-            <th hidden class="ocultar"></th>
-            <th hidden class="ocultar"></th>
-            <th hidden class="ocultar"></th>
-            <th hidden class="ocultar"></th>
+        	
             <th>ID</th>
             <th>Producto</th>
             <th>Tipo</th>
@@ -119,6 +115,11 @@ function mostrarDetallesCompras($id)
             <th>Cantidad</th>
             <th>SubTotal</th>
             <th></th>
+            <th hidden class="ocultar" style="display:none;"></th>
+            <th hidden class="ocultar" style="display:none;"></th>
+            <th hidden class="ocultar" style="display:none;"></th>
+            <th hidden class="ocultar" style="display:none;"></th>
+            <th hidden class="ocultar" style="display:none;"></th>
 
 
         </tr>
@@ -153,11 +154,7 @@ $contaId=0;
 				}
 
                 $tabla .= "<tr>";
-				$tabla .="<td hidden class=\"ocultar\" id=\"Codigo$contaId\">"     .$fila["6"].    "</td>";
-				$tabla .="<td hidden class=\"ocultar\" id=\"PrecioE$contaId\">"     .$fila["8"].    "</td>";
-				$tabla .="<td hidden class=\"ocultar\" id=\"PrecioM$contaId\">"     .$fila["9"].    "</td>";
-				$tabla .="<td hidden class=\"ocultar\" id=\"Costo$contaId\">"     .$fila["10"].    "</td>";
-				$tabla .="<td hidden class=\"ocultar\" id=\"PrecioG$contaId\">"     .$fila["11"].    "</td>";
+				
 
                 $tabla .="<td>"     .$fila["7"].    "</td>";
                 $tabla .="<td>" .$fila["1"].      "</td>";
@@ -167,6 +164,11 @@ $contaId=0;
 				$tabla .="<td>" .toMoney($fila["4"]).      "</td>";
                 $tabla .="<td class='anchoC'>
 				<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm ' onClick=\"anularDetalleCompra('".$fila["0"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a><td>";
+				$tabla .="<td hidden class=\"ocultar\" style=\"display:none;\" id=\"Codigo$contaId\">"     .$fila["6"].    "</td>";
+				$tabla .="<td hidden class=\"ocultar\" style=\"display:none;\" id=\"PrecioE$contaId\">"     .$fila["8"].    "</td>";
+				$tabla .="<td hidden class=\"ocultar\" style=\"display:none;\" id=\"PrecioM$contaId\">"     .$fila["9"].    "</td>";
+				$tabla .="<td hidden class=\"ocultar\" style=\"display:none;\" id=\"Costo$contaId\">"     .$fila["10"].    "</td>";
+				$tabla .="<td hidden class=\"ocultar\" style=\"display:none;\" id=\"PrecioG$contaId\">"     .$fila["11"].    "</td>";
                 $tabla .= "</tr>";
 $contaId++;
             }
