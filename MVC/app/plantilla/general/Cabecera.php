@@ -274,11 +274,11 @@ function nitificaciones()
 
 <!-- mobil ----------------------------------------------------------->
       <ul class="side-nav" id="mobile-demo">
-				<li><a><h4 id="ocultarmensaje"><?php echo $_SESSION['SOFT_USER'];?></h4> </a></li>
+				<li><a style="cursor:pointer;" href="Inicio.php"><h4 id="ocultarmensaje"><?php echo $_SESSION['SOFT_USER'];?></h4> </a></li>
 				 <li><div class="divider"></div></li>
-        <li><a id="ayuda" href="ayuda.php" class="ayuda" >Ayuda</a></li>
-		<li><a id="logoutR"  >Cerrar Session</a></li>
- <li><a id="mensaje" onclick="mostrar()"  class="ayuda" >Mensajes</a></li>
+        <li><a id="ayuda" href="ayuda.php" class="ayuda" style="cursor:pointer;">Ayuda</a></li>
+		
+ <li><a id="mensaje" onclick="mostrar()"  class="ayuda" style="cursor:pointer;" >Mensajes <?php echo $_SESSION['notified2'];?></a></li>
 
 		<div id="globoN" hidden >
 							 <div id="notificacionesContenerdor">
@@ -331,6 +331,7 @@ function nitificaciones()
 								 </ul>
 </div>
 						 </div>
+                 <li><a id="logoutR" style="cursor:pointer;">Cerrar Session</a></li>
 
       </ul>
 <!-- mobil ----------------------------------------------------------->
