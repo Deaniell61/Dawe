@@ -47,12 +47,16 @@
                               <div>
                                   <p class="encabezadotextomodal"> Proveedor </p>
 
-                                  <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
+                                  <a id="modalcerrar"  onClick="cierre();" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
                               </div>	
 
                           </div>
                       </div>
-                      
+                      <div id="mensajeP2"></div>
+                      <div class="input-field col s10" hidden>
+                          <input id="codigoP" type="text" class="validate">
+                          
+                      </div>
                        <div class="input-field col s10">
                           <i  class="material-icons prefix"><img class="iconologin" src="../app/img/carnet.png"/></i>
                           <input id="nitP" type="text" class="validate">
