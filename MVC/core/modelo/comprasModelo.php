@@ -34,7 +34,8 @@ function  buscarProveedor($nit)
 	  {
 		$form .="<script>";
 		$form .="\$('#modal4').openModal();
-					llamarProveedor(); ";
+					setTimeout(function(){
+		llamarCliente();},300); ";
 		$form .="</script>";
 		$resultado->free();   
 	  }

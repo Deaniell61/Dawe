@@ -34,7 +34,8 @@ function  buscarCliente($nit)
 	  {
 		$form .="<script>";
 		$form .="\$('#modal4').openModal();
-					llamarCliente(); ";
+					setTimeout(function(){
+		llamarCliente();},300); ";
 		$form .="</script>";
 		$resultado->free();   
 	  }

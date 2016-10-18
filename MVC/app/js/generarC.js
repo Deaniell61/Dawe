@@ -116,7 +116,8 @@ function buscarProveedor(buscar,evt)
 	{
 
 		$('#modal4').openModal();
-		llamarProveedor();
+		setTimeout(function(){
+		llamarProveedor();},300);
 	}
 	else
 	if(buscar.value=="")
@@ -319,7 +320,8 @@ function buscarProveedor2(buscar)
 	if(buscar.value=="")
 	{
 		$('#modal4').openModal();
-		llamarProveedor();
+		setTimeout(function(){
+		llamarProveedor();},300);
 	}
 	else
 	{
@@ -340,23 +342,7 @@ function buscarNIT(nit)
             data:' nit=' +  nit + '&trasDato=' + trasDato,
             success: function(resp)
             {
-
-               if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
-
-
-					 $('#mensaje').html(resp);
-
-                }
-
-
+				$('#mensaje').html(resp);
             }
         });
 }

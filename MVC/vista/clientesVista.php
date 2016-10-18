@@ -26,7 +26,7 @@ echo "<script>$('#tipoVenta').material_select('destroy');</script>";
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT idcliente,Nombre,apellido,nit,direccion,Telefono FROM cliente order by idcliente asc";
+    $sql = "SELECT idcliente,Nombre,apellido,nit,direccion,Telefono FROM cliente ";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {

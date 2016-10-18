@@ -96,47 +96,10 @@
           <!-- nuevo fin --->
 
 
-          <!-- Eliminar ---> 
-          <div id="modal3P" class="modal">
-              <div class="modal-content">
-                  <form class="col s8">
-                      <div class="row">
-                          <form class="col s10">
-                              <div class="row">
-                                  <div class="nav-wrapper grey darken-4">
-                                      <div>
-                                          <p class="encabezadotextomodal"> Eliminar </p>
+         
 
-                                          <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a> 
-                                      </div>	
-
-                                  </div>
-
-                                  <div>
-                                      <p> Ingrese la contraseña para </p>
-                                  </div>
-
-                                  <div class="input-field col s10">
-                                      <i  class="material-icons prefix"><img class="iconologin" src="../app/img/cerrojo-cerrado.png"/></i>
-                                      <input id="icon_telephone" type="password" class="validate">
-                                      <label for="icon_telephone" ><span class="etiquelogin">Contraseña</span></label>
-                                  </div>
-
-                              </div>
-                          </form>
-                      </div>
-
-                  </form>
-              </div>
-              <div class="modal-footer">
-                  <a id="modalnuevo" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a>
-
-
-              </div>
-          </div>
-
-          <!-- Eliminar fin --->
-          <!-- modal distribuidor -->
+         
+          <!-- modal distribuidor 
           
           <div id="modal4P" class="modal">
               <div class="modal-content">
@@ -157,7 +120,7 @@
               </div>
              
           </div>
-          
+          -->
           <!-- Distribuidor Fin --> 
            
 
