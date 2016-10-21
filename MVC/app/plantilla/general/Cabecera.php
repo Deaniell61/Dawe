@@ -210,7 +210,7 @@ function nitificaciones()
 
                  <?php }?>
 						<li><a id="ayuda" class="right ayuda"><img class="ayudaI" src="../app/img/ayuda.png"></a></li>
-						<li><a><h4><?php echo $_SESSION['SOFT_USER'];?></h4> </a></li>
+						<li><a href="Inicio.php"><h4><?php echo $_SESSION['SOFT_USER'];?></h4> </a></li>
 						<li><a class="right"  id="logout" href="#!">Cerrar Session</a></li>
 
 

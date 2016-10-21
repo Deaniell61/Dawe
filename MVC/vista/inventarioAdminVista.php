@@ -35,6 +35,7 @@ else
             <th>Precio General</th>
             <th>Precio Especial</th>
             <th>Precio Mayorista</th>
+            <th>Ultimo Proveedor</th>
             <th></th>
 
         </tr>
@@ -43,7 +44,7 @@ else
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto,i.idinventario FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."' $mas and i.cantidad>=0 and p.estado=1";
+    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto,i.idinventario,p.idproductos FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."' $mas and i.cantidad>=0 and p.estado=1";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -70,6 +71,8 @@ else
 				$tabla .="<td>" .toMoney($fila["6"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["7"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["8"]).      "</td>";
+				$tabla .="<td>" .proveedorU($fila["13"]).      "</td>";
+				
        			$tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["12"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
         		if($_SESSION['SOFT_ACCESOElimina'.'inventario']=='1')
 				{
@@ -104,7 +107,41 @@ else
 }
 
 
-
+function proveedorU($id)
+{
+	$mysql = conexionMysql();
+    $form="";
+    $sql = "select pr.nombreempresa from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos='".$id."' order by c.idcompras desc limit 1";
+ 	//echo $sql;
+    if($resultado = $mysql->query($sql))
+    {
+      if($resultado->num_rows>0)
+	  {
+		$fila = $resultado->fetch_row();    
+			
+		
+		
+		$form .="".$fila[0]."";
+		
+		
+			
+		$resultado->free();    
+	  }
+	  
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return ($form);
+}
 
 
 

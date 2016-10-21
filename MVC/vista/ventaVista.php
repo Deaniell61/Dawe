@@ -23,6 +23,12 @@ $busca="";
               <th>Cliente</th>
               <th>Total</th>
               <th>Tipo de Venta</th>
+              <?php
+			  if($_SESSION['SOFT_ROL']=='1' || $_SESSION['SOFT_ROL']=='0')
+  				{
+					?>
+              <th>Vendedor</th>
+              <?php } ?>
                 <th></th>
 
           </tr>
@@ -31,7 +37,7 @@ $busca="";
           <?php
   	$extra="";
       $mysql = conexionMysql();
-       $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,(select tv.Descripcion from tipoventa tv where tv.idtipo=c.tipoventa),c.idventas FROM ventas c inner join cliente p on p.idcliente=c.idcliente inner join ventasdetalle cd on cd.idventa=c.idventas inner join productos pd on pd.idproductos=cd.idproductos where c.estado=1 and cd.estado=1 and pd.tiporepuesto='".$datos[0]."' $busca group by c.idventas order by c.fecha desc";
+       $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombre,c.total,(select tv.Descripcion from tipoventa tv where tv.idtipo=c.tipoventa),c.idventas,(select u.user from usuarios u where u.idusuarios=c.idusuario) FROM ventas c inner join cliente p on p.idcliente=c.idcliente inner join ventasdetalle cd on cd.idventa=c.idventas inner join productos pd on pd.idproductos=cd.idproductos where c.estado=1 and cd.estado=1 and pd.tiporepuesto='".$datos[0]."' $busca group by c.idventas order by c.fecha desc";
       $tabla="";
       if($resultado = $mysql->query($sql))
       {
@@ -57,6 +63,10 @@ $busca="";
   				$tabla .="<td>" .toMoney($fila["4"]).      "</td>";
 
   				$tabla .="<td>" .$fila["5"].      "</td>";
+				if($_SESSION['SOFT_ROL']=='1' || $_SESSION['SOFT_ROL']=='0')
+  				{
+				$tabla .="<td>" .$fila["7"].      "</td>";
+				}
 				$tabla .="<td class='anchoC'>";
   				if($_SESSION['SOFT_ACCESOElimina'.'ventas']=='1')
   				{
