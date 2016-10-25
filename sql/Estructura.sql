@@ -1,13 +1,14 @@
+
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2016 a las 02:07:07
--- Versión del servidor: 5.6.17
--- Versión de PHP: 5.5.12
+-- Servidor: localhost
+-- Tiempo de generación: 25-10-2016 a las 19:24:57
+-- Versión del servidor: 10.0.23-MariaDB
+-- Versión de PHP: 5.2.17
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `softronic`
+-- Base de datos: `u757044153_her`
 --
 
 -- --------------------------------------------------------
@@ -79,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `comisiones` (
   `Estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idComisiones`),
   KEY `ComisionesUsuarios` (`idUsuarios`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -167,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `cuentaspagar` (
   `fecha_ant` date DEFAULT NULL,
   PRIMARY KEY (`idCuentasP`),
   UNIQUE KEY `idVentas` (`idCompras`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -234,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `gastos` (
   `Monto` double DEFAULT NULL,
   `Estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idGastos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -301,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `movimientosc` (
   PRIMARY KEY (`idMovimientoC`),
   KEY `MovimientoCCuentasC` (`idCuentasC`),
   KEY `MovimientosCUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -321,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `movimientosp` (
   PRIMARY KEY (`idMovimientoP`),
   KEY `MovimientoPCuentasP` (`idCuentasP`),
   KEY `MovimientosPUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -434,7 +435,7 @@ CREATE TABLE IF NOT EXISTS `sueldos` (
   `Estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSueldos`),
   KEY `SueldosEmpleado` (`idEmpleado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -593,8 +594,8 @@ ALTER TABLE `compradetalle`
 --
 ALTER TABLE `compras`
   ADD CONSTRAINT `CompraProveedor2` FOREIGN KEY (`idDistribuidor`) REFERENCES `proveedor` (`idproveedor`),
-  ADD CONSTRAINT `ComprasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
-  ADD CONSTRAINT `CompraTipo` FOREIGN KEY (`tipoCompra`) REFERENCES `tipocompra` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `CompraTipo` FOREIGN KEY (`tipoCompra`) REFERENCES `tipocompra` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ComprasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`);
 
 --
 -- Filtros para la tabla `cuentascobrar`
@@ -672,8 +673,8 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `ventas`
   ADD CONSTRAINT `VentaCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `VentasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
-  ADD CONSTRAINT `VentaTipo` FOREIGN KEY (`tipoVenta`) REFERENCES `tipoventa` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `VentaTipo` FOREIGN KEY (`tipoVenta`) REFERENCES `tipoventa` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `VentasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`);
 
 --
 -- Filtros para la tabla `ventasdetalle`

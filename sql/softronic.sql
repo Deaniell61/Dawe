@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2016 a las 02:09:03
+-- Tiempo de generación: 25-10-2016 a las 21:39:09
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 INSERT INTO `cliente` (`idCliente`, `Nombre`, `Apellido`, `Nit`, `Departamento`, `Municipio`, `Pais`, `estado`, `direccion`, `telefono`) VALUES
 (1, '564', '654', '564', NULL, NULL, NULL, 1, '654', '654'),
 (2, 'Daniel', 'Rodriguez', '7031734', NULL, NULL, NULL, 1, 'Mazate', '54646431'),
-(3, 'Daniel1', 'Rodrigue1', 'C/F', NULL, NULL, NULL, 1, 'mazate', '354164'),
+(3, 'Daniel1', 'Rodrigue1', 'C/F', NULL, NULL, NULL, 1, 'mazate', '123123123'),
 (4, 'Daniel 2', 'rodiruge2', 'C/F', NULL, NULL, NULL, 1, 'reu', '6546 '),
 (5, 'nuevo22', 'nuevo otro', '', NULL, NULL, NULL, 1, '464654', '23465');
 
@@ -269,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `compras` (
   KEY `CompraDistribuidor_idx` (`idDistribuidor`),
   KEY `CompraTipo_idx` (`tipoCompra`),
   KEY `ComprasUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=191 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=192 ;
 
 --
 -- Volcado de datos para la tabla `compras`
@@ -342,7 +342,8 @@ INSERT INTO `compras` (`idCompras`, `fecha`, `total`, `estado`, `tipoCompra`, `N
 (184, '2016-10-12 17:59:03', 0, 1, 1, NULL, 1, 33),
 (185, '2016-10-12 20:19:05', 200, 1, 1, NULL, 1, 33),
 (187, '2016-10-13 05:47:30', 0, 1, 1, NULL, 1, 33),
-(190, '2016-10-16 19:20:38', 100, 1, 2, NULL, 1, 33);
+(190, '2016-10-16 19:20:38', 100, 1, 2, NULL, 1, 33),
+(191, '2016-10-17 00:37:10', 0, 2, 1, NULL, 2, 33);
 
 -- --------------------------------------------------------
 
@@ -362,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `cuentascobrar` (
   `fecha_ant` date DEFAULT NULL,
   PRIMARY KEY (`idCuentasC`),
   UNIQUE KEY `idCompras` (`idVentas`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Volcado de datos para la tabla `cuentascobrar`
@@ -391,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `cuentaspagar` (
   `fecha_ant` date DEFAULT NULL,
   PRIMARY KEY (`idCuentasP`),
   UNIQUE KEY `idVentas` (`idCompras`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Volcado de datos para la tabla `cuentaspagar`
@@ -765,8 +766,8 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
 --
 
 INSERT INTO `proveedor` (`idproveedor`, `NombreEmpresa`, `Direccion`, `Telefono`, `Nit`, `CuentaDepoito`, `IdDepartamento`, `IdMuniciopio`, `IdPais`, `Estado`) VALUES
-(1, 'Campero', 'Mazatenango', '54646431', '7031734', NULL, NULL, NULL, NULL, NULL),
-(2, 'asas', '654', '654', '654', '654', NULL, NULL, NULL, 1),
+(1, 'Campero', 'Mazatenango', '54646431', '7031734', NULL, NULL, NULL, NULL, 1),
+(2, 'esas', '654', '123412341234', '412331', '654', NULL, NULL, NULL, 1),
 (3, 'asdf', 'asfd', 'asf', 'asf', 'safsa', NULL, NULL, NULL, 1),
 (4, 'Mac', 'asfd', '654', '654', '654', NULL, NULL, NULL, 1),
 (5, 'Electronica', 'Reu', '1234', '1234123412', 'aasaf', NULL, NULL, NULL, 1),
