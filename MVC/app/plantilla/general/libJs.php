@@ -7,4 +7,15 @@
 
 
 
-
+<?php
+//&& $_SESSION['notified1'][0]!=""
+			if(count($_SESSION['notified1'])>0 && $_SESSION['notified1'][0]!="")
+			{
+				echo "<script>envioCorreo('".$_SESSION['SOFT_DESTINO_EMAIL']."','Cobrar','');</script>";
+			}
+			
+			if(count($_SESSION['notified22'])>0 && $_SESSION['notified22'][0]!="")
+			{
+				echo "<script>envioCorreo('".$_SESSION['SOFT_DESTINO_EMAIL']."','Pagar','');</script>";
+			}
+?>

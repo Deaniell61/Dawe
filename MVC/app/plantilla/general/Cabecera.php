@@ -233,6 +233,9 @@ function nitificaciones()
 												echo "
 													<li class=\"tituloNotifica\" >Cuentas por Cobrar </li>
 													";
+													
+												
+												
 												for($i=0;$i<count($_SESSION['notified1']);$i++)
 												{
 												echo "

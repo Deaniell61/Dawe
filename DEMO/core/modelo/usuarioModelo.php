@@ -28,6 +28,7 @@ function login($user, $pass)
 				$_SESSION['notified1']="";
 				$_SESSION['notified22']="";
 				$_SESSION['notified2P']="";
+				$_SESSION['SOFT_DESTINO_EMAIL']="jdanielr61@gmail.com";
 		   
 		   			cargarModulos($_SESSION['SOFT_USER_ID']);
 				echo "Modulo/Inicio.php";
@@ -616,6 +617,160 @@ function CerrarSesion()
 
     echo '../index.php';
 	
+}
+function compruebaEnvioCorreo($datos)
+{
+	
+    
+	session_start();
+    $mysql = conexionMysql();
+	$fecha = date('Y-m-d');
+	$tipo="";
+	if($datos[1]=="Cobrar")
+	{
+		$tipo=" and tipo=1";
+	}
+	else if($datos[1]=="Pagar")
+	{
+		$tipo=" and tipo=2";
+	}
+    $form="";
+    $sql = "SELECT fecha,correo,tipo from correos where fecha like '".$fecha."%' $tipo";
+    
+    if($resultado = $mysql->query($sql))
+    {
+      if(!($resultado->num_rows)>0)
+		{
+    		if(generarCorreo($datos))
+			{
+				$mysql->query("BEGING");
+				if($datos[1]=="Cobrar")
+				{
+					$sql = "insert into correos(correo,tipo) values('".$datos[0]."','1');";
+				}
+				else if($datos[1]=="Pagar")
+				{
+					$sql = "insert into correos(correo,tipo) values('".$datos[0]."','2');";
+				}
+				else
+				{
+					$sql = "insert into correos(correo,tipo) values('".$datos[0]."',3);";
+				}
+    
+				if($resultado = $mysql->query($sql))
+				{
+					$mysql->query("COMMIT");
+				}
+				else
+				{
+					$mysql->query("ROLLBACK");	
+				}
+			}
+		}
+		else
+		{
+			$form.="El dia de hoy ya se enviaron notificaciones";
+		}
+		
+        
+    $resultado->free();    
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('2');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+     return printf($form);
+	
+}
+
+function generarCorreo($datos)
+{
+
+	if(isset($datos[0]) &&!empty ($datos[0]))
+	{
+	
+		$destino =$datos[0];
+		$copia=$datos[2];
+		
+		$from="SofTronic Team Support  <support@mmmhr3.com>";
+		$headers = "MIME-Version: 1.0\r\n"; 
+		$headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+		$headers .= "From: $from\r\n"; 
+		$headers .= "Reply-To: $from\r\n"; 
+		$headers .= "Return-path: $from\r\n"; 
+		$headers .= "Bcc: $copia\r\n"."X-Mailer: PHP/".phpversion(); 
+		$desde=$headers;
+		$asunto="";
+		$mensaje="";
+		
+			if($datos[1]=="Cobrar")
+			{
+				$asunto = "Recordatorio Cuentas por Cobrar";
+				$mensaje = utf8_decode(
+							"
+							<html>
+							<head>
+							
+							</head>
+							<body>
+								<span style=\"text-align:center;
+									color:red;width:100%;margin-left:0%;\"><strong>Recordatorio de cuentas por Cobrar.</strong></span><br><br>
+									<center>
+									<div style=\"text-align:left;
+									color:blue;width:70%;\">
+										Tiene cuentas por cobrar pendientes<br><br>
+												</div></center>	
+										<br><br>
+									
+										<center> <a href=\"http://www.mmmhr3.com/\"><img style=\"cursor:pointer;\" src=\"http://mmmhr3.com/app/img/logo/logo.png\"  width='200' height='100' alt=\"Softronic\"></a>
+										<br><br>http://www.mmmhr3.com/ </center>
+								</body>	
+								</html>");
+			}
+			else if($datos[1]=="Pagar")
+			{
+				$asunto = "Recordatorio Cuentas por Pagar";
+				$mensaje = utf8_decode(
+							"
+							<html>
+							<head>
+							
+							</head>
+							<body>
+								<span style=\"text-align:center;
+									color:red;width:100%;margin-left:0%;\"><strong>Recordatorio de cuentas por Pagar.</strong></span><br><br>
+									<center>
+									<div style=\"text-align:left;
+									color:blue;width:70%;\">
+										Tiene cuentas por Pagar pendientes<br><br>
+												</div></center>	
+										<br><br>
+									
+										<center> <a href=\"http://www.mmmhr3.com/\"><img style=\"cursor:pointer;\" src=\"http://mmmhr3.com/app/img/logo/logo.png\"  width='200' height='100' alt=\"Softronic\"></a>
+										<br><br>http://www.mmmhr3.com/ </center>
+								</body>	
+								</html>");
+			}
+	
+	
+    
+    
+	
+    mail($destino, $asunto, $mensaje, $desde);
+	return true;
+    
+    
+    
+	}else{
+		return false;
+	}
 }
 
 ?>

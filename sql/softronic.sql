@@ -1126,6 +1126,16 @@ INSERT INTO `ventasdetalle` (`idVentaDetalle`, `Subtotal`, `Vencimiento`, `Canti
 (109, 600, NULL, 60, 10, NULL, 191, 18, NULL, 1),
 (110, 130, NULL, 2, 65, NULL, 191, 23, NULL, 1);
 
+
+CREATE TABLE IF NOT EXISTS `correos` (
+  `idCorreos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `correo` varchar(100) DEFAULT NULL,
+  `tipo` int(11) DEFAULT 1,
+  `estado` int(11) DEFAULT 1,
+  PRIMARY KEY (`idCorreos`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
 --
 -- Restricciones para tablas volcadas
 --

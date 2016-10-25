@@ -556,6 +556,15 @@ CREATE TABLE IF NOT EXISTS `ventasdetalle` (
   KEY `VentaDetalleProducto_idx` (`idProductos`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
+
+CREATE TABLE IF NOT EXISTS `correos` (
+  `idCorreos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `correo` varchar(100) DEFAULT NULL,
+  `tipo` int(11) DEFAULT 1,
+  `estado` int(11) DEFAULT 1,
+  PRIMARY KEY (`idCorreos`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 --
 -- Restricciones para tablas volcadas
 --

@@ -181,6 +181,15 @@ if($_POST)
         CerrarSesion();
 
     }
+	else if($transaccion == 67)
+    {
+
+		$datos[0]= $_POST['destino'];
+		$datos[1]= $_POST['mensaje'];
+		$datos[2]= $_POST['copia'];
+        compruebaEnvioCorreo($datos);
+
+    }
     
 //----------- fin gestion ----------/    
     

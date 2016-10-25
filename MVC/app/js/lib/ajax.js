@@ -51,6 +51,23 @@ function cerrarSesion()
    });
 }
 
+function envioCorreo(destino,mensaje,copia)
+{
+    var trasDato;
+
+     trasDato = 67;
+   $.ajax
+   ({
+      type:"POST",
+      url:"../core/controlador/usuarioControlador.php",
+     data:'destino=' + destino + '&mensaje=' + mensaje + '&copia=' + copia+ '&trasDato=' + trasDato,
+      success: function(resp)
+       {
+           console.log(resp);
+
+       }
+   });
+}
 function siguiente(evt,id)
 {
 	if(evt.keyCode=='13')
