@@ -191,7 +191,7 @@ function nitificaciones()
 <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper grey darken-4">
-                    <a  class="brand-logo"><img class="logo" src="../app/img/logoHectoRepuestos.png"/></a>
+                    <a  class="brand-logo"><img class="logo" src="../app/img/logo.png"/></a>
                      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons"><img src="../app/img/ordenar.png"></i></a>
 
 
@@ -233,9 +233,9 @@ function nitificaciones()
 												echo "
 													<li class=\"tituloNotifica\" >Cuentas por Cobrar </li>
 													";
-													
-												
-												
+
+
+
 												for($i=0;$i<count($_SESSION['notified1']);$i++)
 												{
 												echo "
@@ -280,7 +280,7 @@ function nitificaciones()
 				<li><a style="cursor:pointer;" href="Inicio.php"><h4 id="ocultarmensaje"><?php echo $_SESSION['SOFT_USER'];?></h4> </a></li>
 				 <li><div class="divider"></div></li>
         <li><a id="ayuda" href="ayuda.php" class="ayuda" style="cursor:pointer;">Ayuda</a></li>
-		
+
  <li><a id="mensaje" onclick="mostrar()"  class="ayuda" style="cursor:pointer;" >Mensajes <?php echo $_SESSION['notified2'];?></a></li>
 
 		<div id="globoN" hidden >
