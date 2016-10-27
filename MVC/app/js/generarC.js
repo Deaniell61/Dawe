@@ -74,6 +74,7 @@ $('#modalnuevo').click(function(){
     $('#modal1').openModal();
 	document.getElementById('nombreC').focus();
 	$('#tipoRepuesto').material_select();
+	cierre();
 });
 
 
@@ -112,6 +113,7 @@ $('#modalcerrar1').click(function(){
 //comprobaciones
 function buscarProveedor(buscar,evt)
 {
+	
 	if(evt.keyCode=='13' && buscar.value=="")
 	{
 
@@ -129,7 +131,7 @@ function buscarProveedor(buscar,evt)
 	{
 		buscarNIT(buscar.value)
 	}
-
+cierre();
 
 }
 function ingresoProducto(id,compra)

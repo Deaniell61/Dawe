@@ -7,7 +7,7 @@ function  buscarProveedor($nit)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT nit,nombreEmpresa,direccion,idproveedor FROM proveedor WHERE nit='$nit' or nombreEmpresa='$nit'";
+    $sql = "SELECT nit,nombreEmpresa,direccion,idproveedor FROM proveedor WHERE nit='$nit' or nombreEmpresa='$nit' or idproveedor='$nit'";
  
     if($resultado = $mysql->query($sql))
     {
@@ -24,7 +24,7 @@ function  buscarProveedor($nit)
 		$form .=" document.getElementById('codigoProveedor').value='".$fila[3]."';";
 		$form .=" \$('#botonGuardar').show();";
 		$form .=" \$('#botonNuevo').show();";
-		$form .="iniciarCompra('".$fila[3]."'); ";
+		$form .="iniciarCompra('".$fila[3]."');cierre(); ";
 		
 		$form .="</script>";
 			

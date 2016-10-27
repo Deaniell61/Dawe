@@ -165,7 +165,7 @@ function  buscarUsuarios($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT p.user,p.idusuarios from usuarios p WHERE (p.user like '%".$dato[0]."%' or p.email like '%".$dato[0]."%') and p.estado=1";
+    $sql = "SELECT p.user,p.idusuarios from usuarios p WHERE (p.user like '%".$dato[0]."%' or p.email like '%".$dato[0]."%') and p.estado=1 and p.user!='admin'";
  
     if($resultado = $mysql->query($sql))
     {

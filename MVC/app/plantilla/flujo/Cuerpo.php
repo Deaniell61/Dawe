@@ -34,7 +34,11 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
     			                 <div class="input-field col s6">
 
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaI" class="fechas" type="date" onChange="cargarGrafico('7','');cargarGrafico('8','');" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo $fecha3?>" >
+								  <input  id="fechaI" class="fechas" type="date" onChange="cargarGrafico('7','');
+cargarGrafico('8','');
+setTimeout(function(){
+cargarGrafico('9','');
+},500);" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo $fecha3?>" >
 								  <label class="active" for="fecha" >Fecha de Inicio</label>
 
 								</div>
@@ -42,7 +46,11 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
     		                      <div class="input-field col s6">
 
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fechaF" class="fechas" type="date" class="validate" onChange="cargarGrafico('7','');cargarGrafico('8','');" value="<?php echo date('Y-m-d')?>" >
+								  <input  id="fechaF" class="fechas" type="date" class="validate" onChange="cargarGrafico('7','');
+cargarGrafico('8','');
+setTimeout(function(){
+cargarGrafico('9','');
+},500);" value="<?php echo date('Y-m-d')?>" >
 								  <label class="active" for="fecha" >Fecha Final</label>
 								</div>
 
