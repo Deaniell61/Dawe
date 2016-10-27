@@ -29,6 +29,24 @@
 </div>
 
 
+<div id="banner" class="modal">
+                <div class="modal-content">
+                    <form class="col s8">
+                        <div class="row">
+                            <form class="col s10">
+                                <div class="row">
+                                    <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  "><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png" style="width: 20px;float: right;"></i></a>
+                                    <center>
+                                    <a href="http://api.hostinger.mx/redir/18086862" target="_blank"><img src="http://www.hostinger.mx/banners/mx/hostinger-600x400-1.gif" alt="Hosting" border="0" width="80%" height="80%" /></a>
+									</center>
+                                </div>
+                            </form>
+                        </div>
+
+                    </form>
+                </div>
+                
+            </div>
 
 
 
