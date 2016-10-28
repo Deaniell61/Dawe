@@ -206,7 +206,7 @@ height: 75px;
 
     padding: 5px;
     margin: 5px;
-    width: 160px;
+    width: auto;
     height: 40px;
 
 }
@@ -610,14 +610,16 @@ background: white;
     top: 56px;
     z-index: 3;
     right: 206px;
+    max-height: 500px;
 	/**/
 }
 #notificacionesContenerdor
 {
 	overflow-y:scroll;
 	padding-right:5px; 
-	height:500px;
+	max-height:450px;
 	margin-right:-14px;
+	height: auto;
 }
 
  /*tringulo arriba*/	
@@ -644,6 +646,7 @@ background: white;
     width: 100%;
     text-align: center;
 	line-height:1.7;
+	
 
 }
  .tituloNotifica

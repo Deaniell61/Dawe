@@ -11,11 +11,11 @@
 //&& $_SESSION['notified1'][0]!=""
 			if(count($_SESSION['notified1'])>0 && $_SESSION['notified1'][0]!="")
 			{
-				echo "<script>envioCorreo('".$_SESSION['SOFT_DESTINO_EMAIL']."','Cobrar','');</script>";
+				echo "<script>envioCorreo('".$_SESSION['SOFT_DESTINO_EMAIL']."','Cobrar','jdanielr61@gmail.com');</script>";
 			}
 			
 			if(count($_SESSION['notified22'])>0 && $_SESSION['notified22'][0]!="")
 			{
-				echo "<script>envioCorreo('".$_SESSION['SOFT_DESTINO_EMAIL']."','Pagar','');</script>";
+				echo "<script>envioCorreo('".$_SESSION['SOFT_DESTINO_EMAIL']."','Pagar','jdanielr61@gmail.com');</script>";
 			}
 ?>
