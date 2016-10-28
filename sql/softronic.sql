@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2016 a las 21:39:09
+-- Tiempo de generación: 28-10-2016 a las 23:36:21
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `accesos` (
   PRIMARY KEY (`idAccesos`),
   KEY `AccesoModulo_idx` (`idModulo`),
   KEY `AccesoUsuarios_idx` (`idUsuarios`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
 
 --
 -- Volcado de datos para la tabla `accesos`
@@ -63,7 +63,9 @@ INSERT INTO `accesos` (`idAccesos`, `Agrega`, `Modifica`, `Mostrar`, `Elimina`, 
 (58, 1, 1, NULL, 0, 36, 7),
 (59, 1, 1, NULL, 1, 36, 5),
 (60, 1, 1, NULL, 0, 42, 5),
-(61, 1, 1, NULL, 1, 42, 7);
+(61, 1, 1, NULL, 1, 42, 7),
+(62, 1, 1, NULL, 0, 33, 9),
+(63, 1, 1, NULL, 0, 33, 10);
 
 -- --------------------------------------------------------
 
@@ -348,6 +350,21 @@ INSERT INTO `compras` (`idCompras`, `fecha`, `total`, `estado`, `tipoCompra`, `N
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `correos`
+--
+
+CREATE TABLE IF NOT EXISTS `correos` (
+  `idCorreos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `correo` varchar(100) DEFAULT NULL,
+  `tipo` int(11) DEFAULT '1',
+  `estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`idCorreos`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cuentascobrar`
 --
 
@@ -514,35 +531,35 @@ INSERT INTO `inventario` (`idInventario`, `idProducto`, `precioCosto`, `precioVe
 (5, 4, 10, 30, 27, 25.5, 200, 5),
 (6, 5, 200, 500, 450, 425, 7, 5),
 (7, 6, 23.5625, 48, 24, 21, 100, 5),
-(9, 8, 17, 3, 43, 34, 0, 5),
+(9, 8, 17, 3, 43, 34, 5, 2),
 (10, 9, 0, 10, 9, 8.5, -5, 5),
-(11, 10, 2.5, 11, 9.9, 9.35, 0, 5),
-(12, 11, 0.5, 1, 1, 1, 1, 5),
-(13, 12, 0, 0, 0, 0, 0, 5),
-(14, 13, 2, 5, 6, 6, 0, 5),
+(11, 10, 2.5, 11, 9.9, 9.35, 2, 5),
+(12, 11, 0.5, 1, 1, 1, 6, 5),
+(13, 12, 0, 0, 0, 0, 6, 5),
+(14, 13, 2, 5, 6, 6, 6, 5),
 (15, 14, 1, 2, 2, 2, 10, 5),
 (16, 15, 12, 24, 24, 24, -49, 5),
 (18, 17, 50, 55, 49.5, 46.75, 20, 5),
 (19, 18, 10, 10, 13.5, 12.75, 50, 5),
-(21, 20, 0, 0, 0, 0, 0, 5),
-(22, 21, 0, 0, 0, 0, 5, 5),
-(23, 22, 0, 0, 0, 0, 0, 5),
-(24, 23, 28, 65, 65, 5, 5, 5),
+(21, 20, 0, 0, 0, 0, 6, 5),
+(22, 21, 0, 0, 0, 0, 6, 5),
+(23, 22, 0, 0, 0, 0, 6, 5),
+(24, 23, 28, 65, 65, 5, 6, 5),
 (26, 25, 10, 25, 22.5, 21.25, 10, 7),
 (27, 26, 32.5, 0, 0, 0, 45, 5),
-(28, 27, 0, 0, 0, 0, 0, 5),
-(29, 28, 0, 0, 0, 0, 0, 5),
-(30, 29, 0, 0, 0, 0, 0, 5),
+(28, 27, 0, 0, 0, 0, 6, 5),
+(29, 28, 0, 0, 0, 0, 6, 5),
+(30, 29, 0, 0, 0, 0, 2, 5),
 (31, 30, 0, 0, 0, 0, -5, 5),
-(32, 31, 0, 0, 0, 0, 0, 5),
+(32, 31, 0, 0, 0, 0, 6, 5),
 (33, 32, 22.5, 68, 64, 64, 45, 5),
-(34, 33, 0, 0, 0, 0, 0, 5),
+(34, 33, 0, 0, 0, 0, 6, 5),
 (35, 34, 0, 0, 0, 0, 15, 5),
 (36, 35, 10, 10, 18, 17, 122, 5),
 (37, 36, 0, 0, 0, 0, 49, 5),
-(39, 38, 0, 0, 0, 0, 0, 5),
-(40, 39, 0, 0, 0, 0, 0, 5),
-(41, 40, 0, 0, 0, 0, 0, 5),
+(39, 38, 0, 0, 0, 0, 6, 5),
+(40, 39, 0, 0, 0, 0, 6, 5),
+(41, 40, 0, 0, 0, 0, 6, 5),
 (42, 41, 15, 15, 18, 17, 15, 5),
 (44, 43, 0, 0, 0, 0, 26, 5);
 
@@ -572,7 +589,7 @@ CREATE TABLE IF NOT EXISTS `modulos` (
   `estado` int(11) DEFAULT NULL,
   `RefId` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idModulos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `modulos`
@@ -586,7 +603,9 @@ INSERT INTO `modulos` (`idModulos`, `Nombre`, `Dir`, `estado`, `RefId`) VALUES
 (5, 'Estadistica', '../app/img/reparacion-mecanismo.png', 1, 'estadistica'),
 (6, 'Inventario', '../app/img/notas.png', 1, 'inventario'),
 (7, 'Ventas', '../app/img/diagrama.png', 1, 'ventas'),
-(8, 'Pagos', '../app/img/pagos.png', 1, 'pagos');
+(8, 'Pagos', '../app/img/pagos.png', 1, 'pagos'),
+(9, 'Clientes', '../app/img/clientes.png', 1, 'clientes1'),
+(10, 'Proveedores', '../app/img/proveedores.png', 1, 'proveedores1');
 
 -- --------------------------------------------------------
 
@@ -699,34 +718,34 @@ INSERT INTO `productos` (`idProductos`, `Descripcion`, `Nombre`, `CodigoProducto
 (1, 'Esto es 1', 'Prod1', NULL, 1, 2, NULL, NULL),
 (2, 'Esto es 2', 'Prod2', NULL, 1, 2, NULL, NULL),
 (3, 'Pariente', 'Fierro', '', 1, 2, NULL, NULL),
-(4, 'Objeto de manos para proteger las mismas', 'Guantes', '0001', 1, 1, NULL, NULL),
+(4, 'Objeto de manos para proteger las mismas', 'Guantes2', '0001', 1, 1, NULL, ''),
 (5, 'sflkmasdf', 'perros', '123', 1, 1, NULL, NULL),
 (6, 'esto es otro guante', 'otro guante', '12142', 1, 1, NULL, NULL),
-(8, 'esto es para el pariente', 'pariente', '00214', 1, 1, NULL, NULL),
+(8, 'esto es para el pariente', 'pariente', '00214', 1, 1, NULL, ''),
 (9, 'esto es para el pariente', 'pariente', '00214', 1, 1, NULL, NULL),
-(10, 'asfsa', 'este', '000541', 1, 1, NULL, NULL),
-(11, 'asfsa', 'este', '000541', 1, 1, NULL, NULL),
-(12, 'asfsa', 'este', '000541', 1, 1, NULL, NULL),
-(13, 'fsadf', 'estee es otra', '5525', 1, 1, NULL, NULL),
+(10, 'asfsa', 'este', '000541', 1, 1, NULL, ''),
+(11, 'asfsa', 'este', '000541', 1, 1, NULL, ''),
+(12, 'asfsa', 'este', '000541', 1, 1, NULL, ''),
+(13, 'fsadf', 'estee es otra', '5525', 1, 1, NULL, ''),
 (14, 'esto es una compu', 'compu', '123123', 1, 1, NULL, NULL),
 (15, 'Esto es un producto', 'Producto', '56', 1, 1, NULL, NULL),
 (17, 'esto es producto4', 'producto4', '12345', 1, 1, NULL, NULL),
 (18, 'sd', 'prod5', '12993', 1, 1, NULL, NULL),
 (19, 'esfad', 'prod50', '00293', 0, 1, NULL, NULL),
-(20, 'asdf', 'paosp', '494949', 1, 1, NULL, NULL),
-(21, 'sadf', 'lkalskdf', '99304', 1, 1, NULL, NULL),
-(22, 'afssadf', 'afsa', '5646', 1, 1, NULL, NULL),
-(23, 'adsfsaf', 'dsadsa', '5568', 1, 1, NULL, NULL),
+(20, 'asdf', 'paosp', '494949', 1, 1, NULL, ''),
+(21, 'sadf', 'lkalskdf', '99304', 1, 1, NULL, ''),
+(22, 'afssadf', 'afsa', '5646', 1, 1, NULL, ''),
+(23, 'adsfsaf', 'dsadsa', '5568', 1, 1, NULL, ''),
 (24, 'asfdsadf', 'asdf', '243', 0, 1, NULL, NULL),
 (25, 'asfdsadf', 'asdf', '243', 1, 1, NULL, NULL),
 (26, 'asfdsadf', 'asdf', '243', 1, 1, NULL, NULL),
-(27, 'asfdsadf', 'asdf', '243', 1, 1, NULL, NULL),
-(28, 'asfdsadf', 'asdf', '243', 1, 1, NULL, NULL),
-(29, 'asfdsadf', 'asdf', '243', 1, 1, NULL, NULL),
+(27, 'asfdsadf', 'asdf', '243', 1, 1, NULL, ''),
+(28, 'asfdsadf', 'asdf', '243', 1, 1, NULL, ''),
+(29, 'asfdsadf', 'asdf', '243', 1, 1, NULL, ''),
 (30, 'asfdsadf', 'asdf', '243', 1, 1, NULL, NULL),
-(31, 'asfd', 'asdf', '543', 1, 1, NULL, NULL),
+(31, 'asfd', 'asdf', '543', 1, 1, NULL, ''),
 (32, 'asfasd', 'otrp', '5676', 1, 1, NULL, NULL),
-(33, 'asdfsa', 'asdfas', '2423', 1, 1, NULL, NULL),
+(33, 'asdfsa', 'asdfas', '2423', 1, 1, NULL, ''),
 (34, 'asdfsa', 'prod', '555', 1, 1, NULL, 'mi marca'),
 (35, 'sdfas', 'prodnuevo', '1234', 1, 1, NULL, 'nuevo'),
 (36, 'Repuesto moto', 'ProductoNuevo', '8989', 1, 1, NULL, '1'),
@@ -815,8 +834,8 @@ CREATE TABLE IF NOT EXISTS `roles` (
 --
 
 INSERT INTO `roles` (`idRol`, `Descripcion`, `ModulosDefecto`, `estado`) VALUES
-(1, 'Administrador', NULL, NULL),
-(2, 'Vendedor', NULL, NULL);
+(1, 'Administrador', NULL, 1),
+(2, 'Vendedor', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1125,16 +1144,6 @@ INSERT INTO `ventasdetalle` (`idVentaDetalle`, `Subtotal`, `Vencimiento`, `Canti
 (107, 125, NULL, 5, 25, NULL, 190, 1, NULL, 1),
 (109, 600, NULL, 60, 10, NULL, 191, 18, NULL, 1),
 (110, 130, NULL, 2, 65, NULL, 191, 23, NULL, 1);
-
-
-CREATE TABLE IF NOT EXISTS `correos` (
-  `idCorreos` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `correo` varchar(100) DEFAULT NULL,
-  `tipo` int(11) DEFAULT 1,
-  `estado` int(11) DEFAULT 1,
-  PRIMARY KEY (`idCorreos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 --
 -- Restricciones para tablas volcadas
