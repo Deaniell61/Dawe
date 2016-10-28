@@ -28,6 +28,7 @@ if($_POST)
         
         $idProv[0] = $_POST['prov'];
 		$idProv[1] = $_POST['tipo'];
+		$idProv[2] = $_POST['fecha'];
        
 
         
@@ -197,6 +198,16 @@ if($_POST)
 		
 		        
         mostrarComprasAnul($datos);
+
+    }
+	else if($transaccion == 18)
+    {
+
+        $datos[0]=$nombre = $_POST['fecha'];
+		$datos[1]=$puesto = $_POST['id'];
+		
+		        
+        cambiarFechaCompra($datos);
 
     }
     

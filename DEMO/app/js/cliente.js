@@ -54,6 +54,7 @@ function abrirProvNuevo(){
     $('#btnActualizar').hide();
     $('#btnInsertar').show();
     $('#modal1P').openModal();
+	cierre();
 }
 
 function seleccionar(id)

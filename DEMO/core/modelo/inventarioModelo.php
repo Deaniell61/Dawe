@@ -7,7 +7,7 @@ function buscarInventario($datos)
     
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,(select p.descripcion from productos p where i.idproducto=p.idproductos),(select p.marca2 from productos p where i.idproducto=p.idproductos),(select p.nombre from productos p where i.idproducto=p.idproductos),i.minimo from inventario i where idinventario='".$datos[0]."'";
+    $sql = "SELECT i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,(select p.descripcion from productos p where i.idproducto=p.idproductos),(select p.marca2 from productos p where i.idproducto=p.idproductos),(select p.nombre from productos p where i.idproducto=p.idproductos),i.minimo,i.idproducto from inventario i where idinventario='".$datos[0]."'";
  
     if($resultado = $mysql->query($sql))
     {
@@ -20,6 +20,7 @@ function buscarInventario($datos)
 		$form .=" 
 				document.getElementById('producto').value='".$fila[7]."';
 				document.getElementById('idproducto').value='".$datos[0]."';
+				document.getElementById('idproducto2').value='".$fila[9]."';
 				document.getElementById('marca').value='".$fila[6]."';
 				document.getElementById('descripcion').value='".$fila[5]."';
 				document.getElementById('costo').value='".$fila[0]."';
@@ -78,9 +79,15 @@ function actualizaInventario($datos)
  	
     if($mysql->query($sql))
     {
-		
-    					$mysql->query("COMMIT");
-				echo "<script>location.reload();</script>";
+						if(!$mysql->query("update productos set nombre='".$datos[7]."',marca2='".$datos[8]."',descripcion='".$datos[9]."' where idproductos='".$datos[10]."'"))
+						{
+							$mysql->query("ROLLBACK");
+						}
+						else
+						{
+							$mysql->query("COMMIT");
+							echo "<script>location.reload();</script>";
+						}
 			
     }
     else

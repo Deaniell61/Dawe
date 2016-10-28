@@ -404,6 +404,34 @@ function cambiarTipoCompra($datos)
     
     return printf($form);
 }
+function cambiarFechaCompra($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+	
+		$mysql->query("BEGIN");
+    $sql = "update compras set fecha='".$datos[0]."' where idcompras='".$datos[1]."'";
+//echo $sql;
+    if($mysql->query($sql))
+    {
+		
+		$mysql->query("COMMIT");
+			    
+		
+    
+    }
+    else
+    {   
+    	$mysql->query("ROLLBACK");
+    $form = "<div><script>console.log('".$datos[0]."');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return printf($form);
+}
 function agregarFactura($datos)
 {
 	$mysql = conexionMysql();

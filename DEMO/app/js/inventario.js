@@ -273,17 +273,24 @@ function guardarInventario()
 	 var  trasDato;
 	trasDato = 2;
 	id=document.getElementById('idproducto').value;
+	id2=document.getElementById('idproducto2').value;
 	precioG=document.getElementById('precioG').value;
 	precioE=document.getElementById('precioE').value;
 	precioM=document.getElementById('precioM').value;
 	Minimo=document.getElementById('MinimoCant').value;
 	costo=document.getElementById('costo').value;
 	cantidad=document.getElementById('cantidad').value;
+	
+	
+	nombre=document.getElementById('producto').value;
+	marca=document.getElementById('marca').value;
+	descripcion=document.getElementById('descripcion').value;
+	
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/inventarioControlador.php",
-            data:' id=' +  id + '&precioG=' + precioG + '&minimo=' + Minimo + '&costo=' + costo + '&cantidad=' + cantidad + '&precioE=' + precioE + '&precioM=' + precioM + '&trasDato=' + trasDato,
+            data:' id=' +  id + '&precioG=' + precioG + '&minimo=' + Minimo + '&costo=' + costo + '&cantidad=' + cantidad + '&precioE=' + precioE + '&precioM=' + precioM + '&nombre=' + nombre + '&marca=' + marca + '&descripcion=' + descripcion + '&prod=' + id2 + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -320,9 +327,9 @@ function calcula()
 }
 function habilita(ds)
 {
-	document.getElementById('producto').disabled=ds;
+	/*document.getElementById('producto').disabled=ds;
 	document.getElementById('marca').disabled=ds;
-	document.getElementById('descripcion').disabled=ds;
+	document.getElementById('descripcion').disabled=ds;*/
 	document.getElementById('costo').disabled=ds;
 	document.getElementById('cantidad').disabled=ds;
 	document.getElementById('precioE').disabled=ds;

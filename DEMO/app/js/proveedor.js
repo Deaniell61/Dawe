@@ -54,6 +54,7 @@ function abrirProvNuevo(){
     $('#btnActualizar').hide();
     $('#btnInsertar').show();
     $('#modal1P').openModal();
+	cierre();
 }
 
 function seleccionar(id)
@@ -61,8 +62,9 @@ function seleccionar(id)
 
 
 	buscarNIT(id);
-	 cierre();
+	 
 	$('#modal4').closeModal();
+	cierre();
 }
 $('.modaleliminarP').click(function(){
 
@@ -193,8 +195,8 @@ $('#modalProveedor').click(function(){
 
 $('#btnInsertarP').click(function(){
 
-	cierre();
+	
 	$('#modalP').closeModal();
-
+cierre();
 
 });
