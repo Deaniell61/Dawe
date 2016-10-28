@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-10-2016 a las 19:24:57
+-- Tiempo de generación: 28-10-2016 a las 19:56:52
 -- Versión del servidor: 10.0.23-MariaDB
 -- Versión de PHP: 5.2.17
 
@@ -133,6 +133,21 @@ CREATE TABLE IF NOT EXISTS `compras` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `correos`
+--
+
+CREATE TABLE IF NOT EXISTS `correos` (
+  `idCorreos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `correo` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tipo` int(11) DEFAULT '1',
+  `estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`idCorreos`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cuentascobrar`
 --
 
@@ -168,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `cuentaspagar` (
   `fecha_ant` date DEFAULT NULL,
   PRIMARY KEY (`idCuentasP`),
   UNIQUE KEY `idVentas` (`idCompras`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -251,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `inventario` (
   `precioClienteEs` double DEFAULT NULL,
   `precioDistribuidor` double DEFAULT NULL,
   `cantidad` double DEFAULT NULL,
-  `minimo` double DEFAULT '2',
+  `minimo` double DEFAULT '0',
   PRIMARY KEY (`idInventario`),
   KEY `InventarioProducto_idx` (`idProducto`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
@@ -556,15 +571,6 @@ CREATE TABLE IF NOT EXISTS `ventasdetalle` (
   KEY `VentaDetalleProducto_idx` (`idProductos`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
-
-CREATE TABLE IF NOT EXISTS `correos` (
-  `idCorreos` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `correo` varchar(100) DEFAULT NULL,
-  `tipo` int(11) DEFAULT 1,
-  `estado` int(11) DEFAULT 1,
-  PRIMARY KEY (`idCorreos`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 --
 -- Restricciones para tablas volcadas
 --
