@@ -206,7 +206,7 @@ height: 75px;
 
     padding: 5px;
     margin: 5px;
-    width: 160px;
+    width: auto;
     height: 40px;
 
 }
@@ -646,7 +646,7 @@ background: white;
     width: 100%;
     text-align: center;
 	line-height:1.7;
-	height: 25px;
+	
 
 }
  .tituloNotifica

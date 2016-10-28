@@ -28,7 +28,7 @@ function login($user, $pass)
 				$_SESSION['notified1']="";
 				$_SESSION['notified22']="";
 				$_SESSION['notified2P']="";
-				$_SESSION['SOFT_DESTINO_EMAIL']="jdanielr61@gmail.com";
+				$_SESSION['SOFT_DESTINO_EMAIL']="";
 		   
 		   			cargarModulos($_SESSION['SOFT_USER_ID']);
 				echo "Modulo/Inicio.php";
@@ -705,7 +705,7 @@ function generarCorreo($datos)
 		$headers .= "From: $from\r\n"; 
 		$headers .= "Reply-To: $from\r\n"; 
 		$headers .= "Return-path: $from\r\n"; 
-		$headers .= "Bcc: $copia\r\n"."X-Mailer: PHP/".phpversion(); 
+		$headers .= "Bcc: $copia \r\n"."X-Mailer: PHP/".phpversion(); 
 		$desde=$headers;
 		$asunto="";
 		$mensaje="";

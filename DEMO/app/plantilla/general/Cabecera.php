@@ -1,16 +1,16 @@
 <?php
 		for($i=0;$i<count($_SESSION['notified1']);$i++)
 		{
-			$_SESSION['notified1'][($i)]="";
+			($_SESSION['notified1'][($i)]="");
 		}
 
 		for($i=0;$i<count($_SESSION['notified22']);$i++)
 		{
-			$_SESSION['notified22'][($i)]="";
+			($_SESSION['notified22'][($i)]="");
 		}
 		for($i=0;$i<count($_SESSION['notified2P']);$i++)
 		{
-			$_SESSION['notified2P'][($i)]="";
+			($_SESSION['notified2P'][($i)]="");
 		}
 $_SESSION['notified'] = nitificaciones();
 
@@ -233,32 +233,43 @@ function nitificaciones()
 												echo "
 													<li class=\"tituloNotifica\" >Cuentas por Cobrar </li>
 													";
-
-
-
+													
+												
+												
 												for($i=0;$i<count($_SESSION['notified1']);$i++)
 												{
+													if($_SESSION['notified1'][($i)]!="" && $_SESSION['notified1'][($i)]!=NULL)
+													{
 												echo "
 													<li class=\"listaNotificacion\" onClick=\"location.href='Cobrar.php'\">".$_SESSION['notified1'][($i)]." </li>
 													";
+													}
 												}
+												
 												echo "
 													<li class=\"tituloNotifica\" >Cuentas por Pagar </li>
 													";
 												for($i=0;$i<count($_SESSION['notified22']);$i++)
 												{
+													if($_SESSION['notified22'][($i)]!="" && $_SESSION['notified22'][($i)]!=NULL)
+													{
 												echo "
 													<li class=\"listaNotificacion\"  onClick=\"location.href='Cobrar.php'\">".$_SESSION['notified22'][($i)]." </li>
 													";
+													}
 												}
+												
 												echo "
 													<li class=\"tituloNotifica\" >Productos Escasos</li>
 													";
 												for($i=0;$i<count($_SESSION['notified2P']);$i++)
 												{
+													if($_SESSION['notified2P'][($i)]!="" && $_SESSION['notified2P'][($i)]!=NULL)
+													{
 												echo "
 													<li class=\"listaNotificacion\"  onClick=\"location.href='".$_SESSION['direccione2P'][($i)]."'\">".$_SESSION['notified2P'][($i)]." </li>
 													";
+													}
 												}
 											} else {
 												echo "
@@ -280,7 +291,7 @@ function nitificaciones()
 				<li><a style="cursor:pointer;" href="Inicio.php"><h4 id="ocultarmensaje"><?php echo $_SESSION['SOFT_USER'];?></h4> </a></li>
 				 <li><div class="divider"></div></li>
         <li><a id="ayuda" href="ayuda.php" class="ayuda" style="cursor:pointer;">Ayuda</a></li>
-
+		
  <li><a id="mensaje" onclick="mostrar()"  class="ayuda" style="cursor:pointer;" >Mensajes <?php echo $_SESSION['notified2'];?></a></li>
 
 		<div id="globoN" hidden >
