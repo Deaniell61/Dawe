@@ -385,11 +385,12 @@ function iniciarCompra(id)
 	 var  trasDato;
 	trasDato = 2;
 	tipo=document.getElementById('tipoCompra').value;
+	fecha=document.getElementById('fecha').value;
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/comprasControlador.php",
-            data:' prov=' +  id + '&tipo=' + tipo + '&trasDato=' + trasDato,
+            data:' prov=' +  id + '&tipo=' + tipo + '&fecha=' + fecha + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -695,6 +696,41 @@ function cambiarTipo(tipo,id)
             type:"POST",
             url:"../core/controlador/comprasControlador.php",
             data:' tipo=' +  tipo + '&id=' + id + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');
+                    //$('#precargar').hide();
+                }
+                else
+                {
+
+
+
+					 $('#mensajeC').html(resp);
+
+
+                }
+
+
+            }
+        });
+}
+function cambiarFecha(tipo,id)
+{
+
+	var  trasDato;
+	trasDato = 18;
+		//alert(2);
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/comprasControlador.php",
+            data:' fecha=' +  tipo + '&id=' + id + '&trasDato=' + trasDato,
             success: function(resp)
             {
 

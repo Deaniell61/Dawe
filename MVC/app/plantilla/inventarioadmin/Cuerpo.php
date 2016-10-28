@@ -101,21 +101,22 @@
                      <div class="input-field col s10">
                       
                         <input id="idproducto" disabled type="text" class="validate">
+                        <input id="idproducto2" disabled type="text" class="validate">
                         
                     </div>
                     <div class="input-field col s10">
                         <i class="material-icons prefix"><img class="iconologin" src="../app/img/producto.png" /></i>
-                        <input id="producto" disabled type="text" class="validate">
+                        <input id="producto" type="text" class="validate">
                         <label for="icon_prefix" ><span class="etiquelogin">Productos</span></label>
                     </div>
                     <div class="input-field col s10">
                         <i class="material-icons prefix"><img class="iconologin" src="../app/img/marca.png" /></i>
-                        <input id="marca" disabled type="text" class="validate">
+                        <input id="marca" type="text" class="validate">
                         <label for="icon_prefix" ><span class="etiquelogin">Marca</span></label>
                     </div>
                     <div class="input-field col s10">
                         <i class="material-icons prefix"><img class="iconologin" src="../app/img/descripcion.png" /></i>
-                        <input id="descripcion" disabled type="text" class="validate">
+                        <input id="descripcion" type="text" class="validate">
                         <label for="icon_prefix" ><span class="etiquelogin">Descripcion</span></label>
                     </div>
                     <div class="input-field col s10">

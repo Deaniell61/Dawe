@@ -29,6 +29,11 @@ if($_POST)
 		$datos[5]=$_POST['cantidad'];
 		$datos[6]=$_POST['minimo'];
 		
+		$datos[7]=$_POST['nombre'];
+		$datos[8]=$_POST['marca'];
+		$datos[9]=$_POST['descripcion'];
+		$datos[10]=$_POST['prod'];
+		
 		
         actualizaInventario($datos);
         

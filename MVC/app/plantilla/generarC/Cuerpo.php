@@ -57,7 +57,7 @@
 
                                 <div class="input-field col s5">
                                   <i  class="material-icons prefix"><img class="iconologin" src="../app/img/fecha.png"/></i>
-								  <input  id="fecha" type="date" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" >
+								  <input  id="fecha" type="date" class="validate" onKeyUp="siguiente(event,'factura');" value="<?php echo date('Y-m-d')?>" onChange="cambiarFecha(this.value,document.getElementById('codigoCompra').value);" >
 								  <label class="active" for="fecha" >Fecha</label>
 								</div>
 

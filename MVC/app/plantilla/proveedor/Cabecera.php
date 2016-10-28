@@ -11,7 +11,7 @@
         <!-- ********************************** nav inicio ********************************** -->
 
         <?php
-		$_SESSION['SOFT_NAV']="proveedores";
+		$_SESSION['SOFT_NAV']="proveedores1";
 		include('../app/plantilla/general/Cabecera.php');   ?>
         <!-- ********************************** nav fin ********************************** -->
 

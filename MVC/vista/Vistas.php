@@ -127,6 +127,18 @@ function Cliente()
     include('../app/plantilla/cliente/Cuerpo.php');
     include('../app/plantilla/cliente/Pie.php');
 }
+function Proveedor2()
+{
+    include('../app/plantilla/proveedor/Cabecera.php');
+    include('../app/plantilla/proveedor/Cuerpo.php');
+    include('../app/plantilla/proveedor/Pie.php');
+}
+function Cliente2()
+{
+    include('../app/plantilla/cliente/Cabecera.php');
+    include('../app/plantilla/cliente/Cuerpo.php');
+    include('../app/plantilla/cliente/Pie.php');
+}
 function Producto()
 {
     //include('../app/plantilla/proveedor/Cabecera.php');

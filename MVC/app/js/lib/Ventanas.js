@@ -44,6 +44,16 @@ $('#estadistica').click(function(){
     window.location.href="Estadistica.php";
 });
 
+$('#clientes1').click(function(){
+
+    window.location.href="AClientes.php";
+});
+
+$('#proveedores1').click(function(){
+
+    window.location.href="AProveedores.php";
+});
+
 $('#ayuda').click(function(){
 
   window.location.href="Ayuda.php";
