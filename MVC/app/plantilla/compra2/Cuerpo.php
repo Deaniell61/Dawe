@@ -18,7 +18,7 @@
         <?php
 	 }?>
 
-            <center>
+            
 <div>
         <center>
             <div class="radioFiltro">
@@ -38,29 +38,15 @@
                 <div class="col s12 ">
                     <div id="mensaje3"></div>
                     <!-- reumen -->
-                    <div id="tablaMostrar">
-
-                        <?php
-
-						  include('../vista/compra2Vista.php');
-
-						  //mostrarCompras();
-
-
-						  ?>
-                            
-
+                    <div id="tablaMostrar" class="centrartabla">
+                    
                     </div>
+               </div>
 
 
 
 
-                </div>
-
-
-
-
-            </center>
+            
 
 
 

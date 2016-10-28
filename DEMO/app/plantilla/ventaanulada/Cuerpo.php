@@ -43,7 +43,7 @@
                 <div class="col s12 ">
                     <div id="mensaje3"></div>
                     <!-- reumen -->
-                    <div id="tablaMostrar">
+                    <div id="tablaMostrar" class="centrartabla">
 				<!-- reumen -->
 				 <div   >
 

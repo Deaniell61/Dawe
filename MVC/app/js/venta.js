@@ -141,7 +141,7 @@ function mostrarVentas()
 												"paging":         true
 												 */
 										} );
-										$('#tabla_length').material_select(); 
+										$('select').material_select(); 
 
                 }
 
@@ -210,7 +210,7 @@ function mostrarVentasAnul()
 												"paging":         true
 												 */
 										} );
-										$('#tabla_length').material_select(); 
+										$('select').material_select();
 
                 }
 

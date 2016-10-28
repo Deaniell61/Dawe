@@ -41,23 +41,15 @@
                 <div class="col s12 ">
                     <div id="mensaje3"></div>
                     <!-- reumen -->
-                    <div id="tablaMostrar">
-
-					     <?php
-
-						  include('../vista/ventaVista.php');
-
-						 // mostrarVentas();
-
-
-						  ?>
-
-				  </div>
-
-
-
-
-       </div>
+                    <div id="tablaMostrar" class="centrartabla">
+                    <?php 
+						include('../vista/inventarioVista.php');
+						//mostrarInventario('2');
+				
+				
+						?>
+                    </div>
+               </div>
 
 
 
