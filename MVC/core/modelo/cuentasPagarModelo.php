@@ -5,7 +5,7 @@ function ingresoCuentaPagar($datos)
     $form="";
 	
 		$mysql->query("BEGIN");
-    $sql = "insert cuentaspagar(plazo,tipoPlazo,total,idcompras,estado,CreditoDado) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0)";
+    $sql = "insert cuentaspagar(plazo,tipoPlazo,total,idcompras,estado,CreditoDado,fecha) values('".$datos[1]."','".$datos[2]."',0,'".$datos[0]."',2,0,'".$datos[3]."')";
 //echo $sql;
     if($mysql->query($sql))
     {
@@ -17,7 +17,7 @@ function ingresoCuentaPagar($datos)
     }
     else
     {   
-		$sql = "update cuentaspagar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."',fecha_ant=fecha,fecha='".date('Y-m-d')."' where idcompras='".$datos[0]."'";
+		$sql = "update cuentaspagar set plazo='".$datos[1]."',tipoPlazo='".$datos[2]."',fecha_ant=fecha,fecha='".$datos[3]."' where idcompras='".$datos[0]."'";
 //echo $sql;
 			if($mysql->query($sql))
 			{

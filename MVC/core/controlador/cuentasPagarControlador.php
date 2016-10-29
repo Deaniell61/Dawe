@@ -13,6 +13,7 @@ if($_POST)
         $datos['0']  = $_POST['id'];
 		$datos['1']  = $_POST['plazo'];
 		$datos['2']  = $_POST['tipo'];
+		$datos['3']  = $_POST['fecha'];
         
         ingresoCuentaPagar($datos);
         

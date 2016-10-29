@@ -836,11 +836,12 @@ function ingresoCuentaPagar()
 		tipo=document.getElementById('tipoPlazo').value;
 		plazo=document.getElementById('plazo').value;
 		id=document.getElementById('codigoCompra').value;
+		fecha=document.getElementById('fecha').value;
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/cuentasPagarControlador.php",
-            data:' tipo=' +  tipo + '&plazo=' + plazo + '&id=' + id + '&trasDato=' + trasDato,
+            data:' tipo=' +  tipo + '&plazo=' + plazo + '&id=' + id + '&fecha=' + fecha + '&trasDato=' + trasDato,
             success: function(resp)
             {
 

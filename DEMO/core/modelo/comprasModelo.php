@@ -414,8 +414,14 @@ function cambiarFechaCompra($datos)
 //echo $sql;
     if($mysql->query($sql))
     {
-		
-		$mysql->query("COMMIT");
+		if(!$mysql->query("update cuentaspagar set fecha='".$datos[0]."' where idcompras='".$datos[1]."'"))
+		{
+			$mysql->query("ROLLBACK");
+		}
+		else
+		{
+			$mysql->query("COMMIT");
+		}
 			    
 		
     
