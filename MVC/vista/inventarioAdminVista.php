@@ -35,7 +35,9 @@ else
             <th>Precio General</th>
             <th>Precio Especial</th>
             <th>Precio Mayorista</th>
-            <th>Ultimo Proveedor</th>
+            <th>Proveedor U. Compra</th>
+            <th>Fecha U. Compra</th>
+            <th>No. Comprobante U. Compra</th>
             <th></th>
 
         </tr>
@@ -72,6 +74,8 @@ else
 				$tabla .="<td>" .toMoney($fila["7"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["8"]).      "</td>";
 				$tabla .="<td>" .proveedorU($fila["13"]).      "</td>";
+				$tabla .="<td>" .fechaU($fila["13"]).      "</td>";
+				$tabla .="<td>" .noDocU($fila["13"]).      "</td>";
 				
        			$tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["12"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
         		if($_SESSION['SOFT_ACCESOElimina'.'inventario']=='1')
@@ -143,9 +147,77 @@ function proveedorU($id)
     return ($form);
 }
 
+function fechaU($id)
+{
+	$mysql = conexionMysql();
+    $form="";
+    $sql = "select c.fecha from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos='".$id."' order by c.idcompras desc limit 1";
+ 	//echo $sql;
+    if($resultado = $mysql->query($sql))
+    {
+      if($resultado->num_rows>0)
+	  {
+		$fila = $resultado->fetch_row();    
+			
+		
+		
+		$form .="".$fila[0]."";
+		
+		
+			
+		$resultado->free();    
+	  }
+	  
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return (substr($form,0,10));
+}
 
-
-
+function noDocU($id)
+{
+	$mysql = conexionMysql();
+    $form="";
+    $sql = "select c.nocomprobante from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos='".$id."' order by c.idcompras desc limit 1";
+ 	//echo $sql;
+    if($resultado = $mysql->query($sql))
+    {
+      if($resultado->num_rows>0)
+	  {
+		$fila = $resultado->fetch_row();    
+			
+		
+		
+		$form .="".$fila[0]."";
+		
+		
+			
+		$resultado->free();    
+	  }
+	  
+    
+    }
+    else
+    {   
+    
+    $form = "<div><script>console.log('$idedit');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    return ($form);
+}
 
 
 ?>

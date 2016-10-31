@@ -320,7 +320,7 @@ function  buscarPrecioProductoVenta($dato)
 			$form .="document.getElementById('marca').disabled=false;\ndocument.getElementById('marca').value='".$fila[9]."';\ndocument.getElementById('marca').focus();\ndocument.getElementById('marca').disabled=true;\n";
 			$form .="document.getElementById('tipoRepuesto').disabled=true;\n\$('#tipoRepuesto').val(\"".$fila[10]."\");\n$('#tipoRepuesto').material_select();\n";
 			
-			$form .="document.getElementById('precioM').disabled=false;\ndocument.getElementById('precioM').value='".($fila[5])."';\ndocument.getElementById('precioM').focus();\ndocument.getElementById('precioM').disabled=true;\n";
+			$form .="document.getElementById('precioM').disabled=false;\ndocument.getElementById('precioM').value='".($fila[8])."';\ndocument.getElementById('precioM').focus();\ndocument.getElementById('precioM').disabled=true;\n";
 			$form .="document.getElementById('precioG').disabled=false;\ndocument.getElementById('precioG').value='".($fila[6])."';\ndocument.getElementById('precioG').focus();\ndocument.getElementById('precioG').disabled=true;\n";
 			$form .="document.getElementById('precioE').disabled=false;\ndocument.getElementById('precioE').value='".($fila[7])."';\ndocument.getElementById('precioE').focus();\ndocument.getElementById('precioE').disabled=true;\n";
 			$form .="document.getElementById('Cantidad').focus();\n";

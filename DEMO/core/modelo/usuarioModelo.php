@@ -673,7 +673,7 @@ function compruebaEnvioCorreo($datos)
 		}
 		
         
-    $resultado->free();    
+   // $resultado->free();    
     
     }
     else
