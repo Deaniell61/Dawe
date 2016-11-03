@@ -162,7 +162,16 @@ function ingresarClienteP(){
                     
 						
                   cierre();
-					llamarCliente();
+				  if(typeof llamarCliente === 'function') 
+					  {
+							//Es seguro ejecutar la función
+							llamarCliente();
+						}
+						else
+						{
+							location.reload();
+						}
+					
                 }
 
 

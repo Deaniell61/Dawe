@@ -3,7 +3,12 @@
 
 function mostrarCliente()
 {
-echo "<script>$('#tipoVenta').material_select('destroy');</script>";
+echo "<script>
+	if(document.getElementById('tipoVenta'))
+	{
+		$('#tipoVenta').material_select('destroy');
+	}
+	</script>";
 
 
     //creacion de la tabla

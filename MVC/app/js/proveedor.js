@@ -155,7 +155,16 @@ function ingresarProveedorP(){
                 
                 {
 					  cierre();
-					llamarProveedor();
+					  if(typeof llamarProveedor === 'function') 
+					  {
+							//Es seguro ejecutar la función
+							llamarProveedor();
+						}
+						else
+						{
+							location.reload();
+						}
+					
                 }
 
 

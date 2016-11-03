@@ -191,7 +191,7 @@ function nitificaciones()
 <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper grey darken-4">
-                    <a  class="brand-logo"><img class="logo" src="../app/img/logo.png"/></a>
+                    <a  class="brand-logo"><img class="logo" src="../app/img/logoHectoRepuestos.png"/></a>
                      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons"><img src="../app/img/ordenar.png"></i></a>
 
 

@@ -14,7 +14,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper grey darken-4">
-                    <a  class="brand-logo"><img class="logo" src="app/img/logo.png"/></a>
+                    <a  class="brand-logo"><img class="logo" src="app/img/logoHectoRepuestos.png"/></a>
 
 
 
