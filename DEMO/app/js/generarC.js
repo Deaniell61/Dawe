@@ -186,8 +186,13 @@ function agregaInvetario()
 {
 	cont=0;
 	var real=1;
-	while(document.getElementById('Cantidad'+cont))
+	
+	var filas=(document.getElementById("tabla22").rows.length)-1;
+
+	
+	
 	{
+		{
 		cantidad=(document.getElementById('Cantidad'+cont).innerHTML);
 		codigo=(document.getElementById('Codigo'+cont).innerHTML);
 		costo=(document.getElementById('Costo'+cont).innerHTML);
@@ -219,8 +224,8 @@ function agregaInvetario()
 				
                     real=1;
 					
-					 $('#mensaje').html(resp);
-					  
+					 $('#mensajeC').html(resp);
+					 
 
                 }
 
@@ -229,14 +234,19 @@ function agregaInvetario()
         });
 		
 		
-		cont++;
+		}
+		/*else
+		{
+			alert('error'+cont+'  Cantidad'+cont);
+		}*/
 	}
 
 	if(real==1)
 	{
 		
-		window.location.href="Compras.php";
+		//window.location.href="Compras.php";
 	}
+	
 	
 }
 function anularDetalleCompra(id)

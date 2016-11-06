@@ -99,6 +99,7 @@ function inicioCompra($idProv)
     return printf($form);
   
 }
+
 function agregaInventario($datos)
 {
 	$mysql = conexionMysql();
@@ -106,64 +107,73 @@ function agregaInventario($datos)
 	session_start();
 	$mysql->query("BEGIN");
 	
-	$cont=$mysql->query("select cantidad from inventario where idproducto='".$datos[0]."'");
-			 
-				 $fila = $cont->fetch_row();
-				 
-				 
-	if($datos[1]>=0)
-	{			 
-		$total=$datos[3]*$datos[1];
-			 
-    $sql = "update inventario set cantidad=cantidad+".$datos[1].",preciocosto='".$datos[2]."',precioventa='".$datos[3]."',precioClientees='".$datos[4]."',precioDistribuidor='".$datos[5]."' where idproducto='".$datos[0]."'";
- 	
-    if($mysql->query($sql))
-    {
-			 
-				 	
-			//		 echo "<script>window.location.href = 'Ventas.php';/script>";
-					echo '2';
-			if(!$mysql->query("update compras set estado=1 where idcompras='".$_SESSION['idCompra']."'"))
-					 {
-						
-						 $mysql->query("ROLLBACK");
-					 }
-					 else
-					 
-					 if(!$mysql->query("update cuentaspagar set estado=1,total=(select v.total from compras v where v.idcompras='".$_SESSION['idCompra']."'),CreditoDado=(select v.total from compras v where v.idcompras='".$_SESSION['idCompra']."') where idcompras='".$_SESSION['idCompra']."'"))
-			 		{
-				
-				 		$mysql->query("ROLLBACK");
-			 		}
-					
-					else
-					if(!$mysql->query("update compradetalle set estado=1 where idcompras='".$_SESSION['idCompra']."'"))
-					 {
-						
-						 $mysql->query("ROLLBACK");
-					 }
-					 else
-					 {	     
-			 
-			 
-		
-    					$mysql->query("COMMIT");
-					}
-		
-			
-    }
-    else
-    {   
-    		$mysql->query("ROLLBACK");
-    	$form = '1';
-    
-    }
-	}
-    else
+	
+	
+	if($cont=$mysql->query("select idcompraDetalle,cantidad,costo,precio,precioE,precioM,idproductos from compradetalle  where idcompras='".$_SESSION['idCompra']."' "))
 	{
-		echo "<script>alert('si');</script>";
+			
+		 if($cont->num_rows>0)
+		{
+			while($fila = $cont->fetch_row())
+			{			 
+						 
+				if($fila[1]>=0)
+				{			 
+					$total=$fila[2]*$fila[1];
+						
+				$sql = "update inventario set cantidad=cantidad+".$fila[1].",preciocosto='".$fila[2]."',precioventa='".$fila[3]."',precioClientees='".$fila[4]."',precioDistribuidor='".$fila[5]."' where idproducto='".$fila[6]."'";
+				
+					if($mysql->query($sql))
+					{
+							 
+									
+							//		 echo "<script>window.location.href = 'Ventas.php';/script>";
+									
+							if(!$mysql->query("update compras set estado=1 where idcompras='".$_SESSION['idCompra']."'"))
+									 {
+										
+										 $mysql->query("ROLLBACK");
+									 }
+									 else
+									 
+									 if(!$mysql->query("update cuentaspagar set estado=1,total=(select v.total from compras v where v.idcompras='".$_SESSION['idCompra']."'),CreditoDado=(select v.total from compras v where v.idcompras='".$_SESSION['idCompra']."') where idcompras='".$_SESSION['idCompra']."'"))
+									{
+								
+										$mysql->query("ROLLBACK");
+									}
+									
+									else
+									if(!$mysql->query("update compradetalle set estado=1 where idcompradetalle='".$fila[0]."'"))
+									 {
+										
+										 $mysql->query("ROLLBACK");
+									 }
+									 else
+									 {	     
+							 
+							 
+						
+										$mysql->query("COMMIT");
+										echo "<script>setTimeout(function(){window.location.href=\"Compras.php\";},300);</script>";
+									}
+						
+							
+					}
+					else
+					{   
+					
+							$mysql->query("ROLLBACK");
+						$form = '1';
+					
+					}
+				}
+				else
+				{
+					echo "<script>alert('si');</script>";
+				}
+			}
+		}
 	}
-    
     $mysql->close();
     
     return printf($form);

@@ -111,65 +111,80 @@ function quitaInventario($datos)
 	session_start();
 	$mysql->query("BEGIN");
 	
-	$cont=$mysql->query("select cantidad from inventario where idProducto='".$datos[0]."'");
-			 
-				 $fila = $cont->fetch_row();
-				 
-				 if($fila[0]<$datos[1])
-				 {
-					 $datos[1]=$fila[0];
-				 }
-	if($datos[1]>0)
-	{			 
-		
-			 
-    $sql = "update inventario set cantidad=cantidad-".$datos[1]." where idProducto='".$datos[0]."'";
-
-    if($mysql->query($sql))
-    {
-			
-				 	
-			//		 echo "<script>window.location.href = 'Ventas.php';/script>";
-					//echo '2';
-			if(!$mysql->query("update ventas set estado=1 where idVentas='".$_SESSION['idVenta']."'"))
-					 {
-						
-						 $mysql->query("ROLLBACK");
-					 }
-					 else
-					 if(!$mysql->query("update cuentascobrar set estado=1,total=(select v.total from ventas v where v.idVentas='".$_SESSION['idVenta']."'),CreditoDado=(select v.total from ventas v where v.idVentas='".$_SESSION['idVenta']."') where idventas='".$_SESSION['idVenta']."'"))
-			 		{
-						
-				 		$mysql->query("ROLLBACK");
-			 		}
-					
-					else
-					if(!$mysql->query("update ventasdetalle set estado=1 where idVenta='".$_SESSION['idVenta']."'"))
-					 {
-						
-						 
-						 $mysql->query("ROLLBACK");
-					 }
-					 else
-					 {	     
-			 
-			 			
-		
-    					$mysql->query("COMMIT");
-					}
-		
-			
-    }
-    else
-    {   
-    		$mysql->query("ROLLBACK");
-    	$form = '1';
-    
-    }
-	}
-    else
+	if($res=$mysql->query("select idproductos,cantidad,idventadetalle from ventasdetalle where idVenta='".$_SESSION['idVenta']."'"))
 	{
-		echo "<script>window.location.reload();</script>";
+		
+		if($res->num_rows>0)
+		{
+			while($row = $res->fetch_row())
+			{
+				$cont=$mysql->query("select cantidad from inventario where idProducto='".$row[0]."'");
+						 
+							 $fila = $cont->fetch_row();
+							 
+							 if($fila[0]<$row[1])
+							 {
+								 $row[1]=$fila[0];
+							 }
+				if($row[1]>0)
+				{			 
+					
+						 
+				$sql = "update inventario set cantidad=cantidad-".$row[1]." where idProducto='".$row[0]."'";
+			
+					if($mysql->query($sql))
+					{
+							
+									
+							//		 echo "<script>window.location.href = 'Ventas.php';/script>";
+									//echo '2';
+							if(!$mysql->query("update ventas set estado=1 where idVentas='".$_SESSION['idVenta']."'"))
+									 {
+										
+										 $mysql->query("ROLLBACK");
+									 }
+									 else
+									 if(!$mysql->query("update cuentascobrar set estado=1,total=(select v.total from ventas v where v.idVentas='".$_SESSION['idVenta']."'),CreditoDado=(select v.total from ventas v where v.idVentas='".$_SESSION['idVenta']."') where idventas='".$_SESSION['idVenta']."'"))
+									{
+										
+										$mysql->query("ROLLBACK");
+									}
+									
+									else
+									if(!$mysql->query("update ventasdetalle set estado=1 where idventadetalle='".$row[2]."'"))
+									 {
+										
+										 
+										 $mysql->query("ROLLBACK");
+									 }
+									 else
+									 {	     
+							 
+										
+						
+										$mysql->query("COMMIT");
+										echo "<script>setTimeout(function(){window.location.href=\"Ventas.php\";},300);</script>";
+									}
+						
+							
+					}
+					else
+					{   
+							$mysql->query("ROLLBACK");
+						$form = '1';
+					
+					}
+				}
+				else
+				{
+					echo "<script>window.location.reload();</script>";
+				}
+			}
+		}
+	}
+	else
+	{
+		echo "2";
 	}
     
     $mysql->close();

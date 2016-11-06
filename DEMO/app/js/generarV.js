@@ -226,7 +226,7 @@ function quitaInvetario()
 	cont=0;
 	var real=1;
 	cliente=$('#codigoVenta').val();
-	while(document.getElementById('Cantidad'+cont))
+	//while(document.getElementById('Cantidad'+cont))
 	{
 		cantidad=(document.getElementById('Cantidad'+cont).innerHTML);
 		codigo=(document.getElementById('Codigo'+cont).innerHTML);
@@ -253,7 +253,7 @@ function quitaInvetario()
 
                     real=1;
 
-					 $('#mensaje').html(resp);
+					 $('#mensajeVV').html(resp);
 
 
                 }
@@ -269,7 +269,7 @@ function quitaInvetario()
 	if(real==1)
 	{
 
-		window.location.href="Ventas.php";
+		//window.location.href="Ventas.php";
 	}
 
 }
