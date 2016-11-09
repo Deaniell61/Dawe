@@ -28,6 +28,7 @@ function login($user, $pass)
 				$_SESSION['notified1']="";
 				$_SESSION['notified22']="";
 				$_SESSION['notified2P']="";
+				//$_SESSION['SOFT_DESTINO_EMAIL']="mmmhr3@hotmail.com";
 				$_SESSION['SOFT_DESTINO_EMAIL']="";
 		   
 		   			cargarModulos($_SESSION['SOFT_USER_ID']);
