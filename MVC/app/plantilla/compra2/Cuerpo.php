@@ -195,8 +195,10 @@
 
 
                         <!-- reumen -->
-
-
+							
+						<div id="totalCompra" class="col s10 total">
+                	
+                </div>
                         <div id="resumenC" class="col s12">
 
                             Tabla
