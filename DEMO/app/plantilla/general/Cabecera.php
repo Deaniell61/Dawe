@@ -254,7 +254,7 @@ function nitificaciones()
 													if($_SESSION['notified22'][($i)]!="" && $_SESSION['notified22'][($i)]!=NULL)
 													{
 												echo "
-													<li class=\"listaNotificacion\"  onClick=\"location.href='Cobrar.php'\">".$_SESSION['notified22'][($i)]." </li>
+													<li class=\"listaNotificacion\"  onClick=\"location.href='Pagar.php'\">".$_SESSION['notified22'][($i)]." </li>
 													";
 													}
 												}

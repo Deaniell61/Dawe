@@ -611,6 +611,31 @@ function habilitaUsuarios($datos)
     return printf($respuesta);
 	
 }
+function habilitaUsuariosU($datos)
+{
+	
+    $sql = "update usuarios set estado='".$datos[0]."' where estado=".$datos[1]." and idusuarios='".$datos[2]."' and idrol='2'";
+    
+    $mysql = conexionMysql(); 
+    $mysql->query("BEGIN");
+    if($resultado = $mysql->query($sql))
+    {
+        $respuesta = "<div> <script>location.reload();</script> </div>";
+			$mysql->query("COMMIT");	
+    }
+    else
+    { 
+	$mysql->query("ROLLBACK");
+        $respuesta = "<div>Error en en la insercion </div>"; 
+        echo 1;
+    }
+    
+    
+    $mysql->close();
+    
+    return printf($respuesta);
+	
+}
 function CerrarSesion()
 {
 	session_start();
@@ -700,7 +725,7 @@ function generarCorreo($datos)
 		$destino =$datos[0];
 		$copia=$datos[2];
 		
-		$from="SofTronic Team Support  <support@mmmhr3.com>";
+		$from="DAWE Systems Team Support  <support@mmmhr3.com>";
 		$headers = "MIME-Version: 1.0\r\n"; 
 		$headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
 		$headers .= "From: $from\r\n"; 

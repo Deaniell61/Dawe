@@ -108,7 +108,7 @@ $busca="";
   {
 
 
-
+$total=0;
       //creacion de la tabla
   ?>
 
@@ -172,10 +172,14 @@ $busca="";
 
                   $tabla .= "</tr>";
   				$contaId++;
+				$total=$total+$fila["4"];
               }
 
               $resultado->free();//librerar variable
+				$tabla .= "<script>
 
+	document.getElementById('totalVenta').innerHTML='Total de esta Venta: <strong>".toMoney($total)."</strong>';
+</script>";
 
               $respuesta = $tabla;
           }

@@ -156,4 +156,11 @@ height: 80%;
     box-shadow: 0 1px 0 0 #1565c0;
 }
 
+.total
+{
+	text-align:right;
+	padding-right:10px;
+	width:50%;
+}
+
 

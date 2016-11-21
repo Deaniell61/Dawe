@@ -202,7 +202,9 @@
 
 
 
-
+								<div id="totalVenta" class="col s10 total">
+                	
+                </div>
 
 								<!-- reumen -->
 

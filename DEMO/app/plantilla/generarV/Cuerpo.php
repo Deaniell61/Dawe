@@ -121,7 +121,9 @@
 
            					 </tr>
         		 	</table>
-
+				<div id="totalVenta" class="col s10 total">
+                	
+                </div>
 				 <div id="resumenC" class=""  >
 
 

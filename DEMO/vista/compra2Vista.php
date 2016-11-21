@@ -102,7 +102,7 @@ function mostrarDetallesCompras($id)
 {
 
 
-
+$total=0;
     //creacion de la tabla
 ?>
 
@@ -173,11 +173,15 @@ $contaId=0;
 				$tabla .="<td hidden class=\"ocultar\" style=\"display:none;\" id=\"PrecioG$contaId\">"     .$fila["11"].    "</td>";
                 $tabla .= "</tr>";
 $contaId++;
+				$total=$total+$fila["4"];
             }
 
             $resultado->free();//librerar variable
 
+			$tabla .= "<script>
 
+	document.getElementById('totalCompra').innerHTML='Total de esta Compra: <strong>".toMoney($total)."</strong>';
+</script>";
             $respuesta = $tabla;
         }
     }
@@ -193,8 +197,10 @@ $contaId++;
     //debuelvo la variable resultado
     return printf($respuesta);
         ?>
+        
     </tbody>
 </table>
+
 <?php
 
 }

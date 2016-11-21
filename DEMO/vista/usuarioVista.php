@@ -55,8 +55,9 @@ function mostrarUsuarios()
                 $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onclick=\"eliminar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
 				}
 				
-                $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm ver' onclick=\"ver('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a></td>";
-                $tabla .= "</tr>";
+                $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm ver' onclick=\"ver('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a>";
+				$tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onclick=\"deshabilitarUsuariosTurnoU('5','1','".$fila["0"]."');\" title=\"Deshabilitar\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/deshabilitado.png' /></i></a>";
+                $tabla .= "</td></tr>";
             }
 
             $resultado->free();//librerar variable
