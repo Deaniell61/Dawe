@@ -26,6 +26,7 @@ else
 <table id='tabla' class='bordered centered highlight responsive-table centrarT'>
     <thead>
         <tr>
+           <th>Correlativo</th>
            <th>Codigo</th>
            <th>Producto</th>
            <th>Marca</th>
@@ -48,6 +49,7 @@ else
     $mysql = conexionMysql();
     $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto,i.idinventario,p.idproductos FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."' $mas and i.cantidad>=0 and p.estado=1";
     $tabla="";
+	$cont=0;
     if($resultado = $mysql->query($sql))
     {
 
@@ -61,10 +63,11 @@ else
 
             while($fila = $resultado->fetch_row())
             {
-
+$cont++;
                 $tabla .= "<tr>";
 
-                $tabla .="<td>"     .$fila["11"].    "</td>";
+                $tabla .="<td>"     .$cont.    "</td>";
+				$tabla .="<td>"     .$fila["11"].    "</td>";
                 $tabla .="<td>" .$fila["0"].      "</td>";
                 $tabla .="<td>" .$fila["10"].      "</td>";
 				 $tabla .="<td>" .$fila["4"].      "</td>";

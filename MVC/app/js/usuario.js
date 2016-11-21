@@ -590,3 +590,18 @@ function deshabilitarUsuariosTurno(estado,estadofin)
 	    }     
     });  
 }
+function deshabilitarUsuariosTurnoU(estado,estadofin,cod)
+{
+	var trasDato; 
+  	trasDato =15;
+    $.ajax
+    ({
+        type:"POST",
+        url:"../core/controlador/usuarioControlador.php",
+        data:'estadoFin=' + estado  + '&estadoIni=' + estadofin  + '&id=' + cod  + '&trasDato=' + trasDato,
+        success: function(resp)
+        {
+            $('#resultadoUsu').html(resp); 
+	    }     
+    });  
+}

@@ -175,6 +175,15 @@ if($_POST)
         habilitaUsuarios($datos);
 
     }
+	else if($transaccion == 15)
+    {
+
+		$datos[0]= $_POST['estadoFin'];
+		$datos[1]= $_POST['estadoIni'];
+		$datos[2]= $_POST['id'];
+        habilitaUsuariosU($datos);
+
+    }
 	else if($transaccion == 66)
     {
         
