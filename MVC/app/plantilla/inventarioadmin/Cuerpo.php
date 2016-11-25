@@ -35,7 +35,11 @@
 
 
     <!-- ********************************** tabla inicio ********************************** -->
-
+<br>
+<center>
+                  <li class="centrarli"><a id="imprimirT" onClick="printInv(1);" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/imprimir.png" /></i>Imprimir</a></li>
+                </center>
+                <br>
      <div>
         <center>
             <div class="radioFiltro">
