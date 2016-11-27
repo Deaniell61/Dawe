@@ -335,3 +335,44 @@ function habilita(ds)
 	document.getElementById('precioE').disabled=ds;
 	document.getElementById('precioM').disabled=ds;
 }
+
+function printInv(tipo)
+{
+	
+    switch(tipo)
+	{
+		case 1:
+		{
+			var filto="";
+ 
+				var porNombre=document.getElementsByName("filtro");
+				
+				for(var i=0;i<porNombre.length;i++)
+				{
+					if(porNombre[i].checked)
+						filto=porNombre[i].value;
+				}
+
+			setTimeout("location.href='../core/modelo/reportes/invExcelAdmin.php?tipo="+tipo+"&filtro="+filto+"'", 100);
+			break;
+		}
+		case 2:
+		{
+			var filto="";
+ 
+				var porNombre=document.getElementsByName("filtro");
+				
+				for(var i=0;i<porNombre.length;i++)
+				{
+					if(porNombre[i].checked)
+						filto=porNombre[i].value;
+				}
+
+			setTimeout("location.href='../core/modelo/reportes/invExcelAdminWOP.php?tipo="+tipo+"&filtro="+filto+"'", 100);
+			break;
+		}
+	}
+	
+		
+	
+}

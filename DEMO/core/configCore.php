@@ -29,6 +29,7 @@ define('APP_URL','http://localhost/MVC/');
 
 
 require_once('../lib/conexion.php');
+require_once('../lib/PHPExcel/PHPExcel.php');
 require_once('../modelo/usuarioModelo.php');
 require_once('../modelo/comprasModelo.php');
 require_once('../modelo/ventasModelo.php');
