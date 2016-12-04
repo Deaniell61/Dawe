@@ -11,14 +11,17 @@ $('#modalVentas').click(function(){
 limpiarCuerposModales();
    $('#modal1').openModal();
    filto='1';
-   var  trasDato;
-	trasDato = 16;
+   var  trasDato,fechaini,fechafin;
+	trasDato = 18;
+	
+	fechaini=$('#fechaI').val();
+	fechafin=$('#fechaF').val();
 	
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/ventasControlador.php",
-            data:' tipo=' +  filto + '&trasDato=' + trasDato,
+            data:' tipo=' +  filto + '&fechaini=' + fechaini + '&fechafin=' + fechafin + '&trasDato=' + trasDato,
             success: function(resp)
             {
 
@@ -85,14 +88,17 @@ $('#modalCompras').click(function(){
 limpiarCuerposModales();
    $('#modal3').openModal();
    filto=1;
-   var  trasDato;
-	trasDato = 16;
+   var  trasDato,fechaini,fechafin;
+	trasDato = 19;
+	
+	fechaini=$('#fechaI').val();
+	fechafin=$('#fechaF').val();
 	
         $.ajax
         ({
             type:"POST",
             url:"../core/controlador/comprasControlador.php",
-            data:' tipo=' +  filto + '&trasDato=' + trasDato,
+            data:' tipo=' +  filto + '&fechaini=' + fechaini + '&fechafin=' + fechafin + '&trasDato=' + trasDato,
             success: function(resp)
             {
 

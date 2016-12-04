@@ -8,6 +8,22 @@ function mostrarCuentasP($dato)
     //creacion de la tabla
 	$fecha=date('Y-m-d');
 	session_start();
+	
+if(isset($_SESSION['codigoBuscaPagar_SOFT']))
+{
+	if($_SESSION['codigoBuscaPagar_SOFT']!="")
+	{
+		$mas=" and cc.idcuentasp='".$_SESSION['codigoBuscaPagar_SOFT']."' ";
+	}
+	else
+		{
+			$mas="";
+		}
+}
+else
+{
+	$mas="";
+}
 ?>
 
 <table id='tabla' class='bordered centered highlight responsive-table centrarT'>
@@ -26,7 +42,7 @@ function mostrarCuentasP($dato)
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT cc.fecha,cc.total,(select c.nombreempresa from proveedor c where c.idproveedor=v.iddistribuidor limit 1),cc.idcuentasp,(select xx.nocomprobante from compras xx where xx.idcompras=cc.idcompras) FROM cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join compradetalle cd on cd.idcompras=v.idcompras inner join productos pp on pp.idproductos=cd.idproductos WHERE cc.estado=1 and pp.tiporepuesto='".$dato[0]."' group by cc.idcuentasp";
+    $sql = "SELECT cc.fecha,cc.total,(select c.nombreempresa from proveedor c where c.idproveedor=v.iddistribuidor limit 1),cc.idcuentasp,(select xx.nocomprobante from compras xx where xx.idcompras=cc.idcompras) FROM cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join compradetalle cd on cd.idcompras=v.idcompras inner join productos pp on pp.idproductos=cd.idproductos WHERE cc.estado=1 and pp.tiporepuesto='".$dato[0]."' $mas group by cc.idcuentasp";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {

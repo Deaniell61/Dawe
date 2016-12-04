@@ -26,7 +26,7 @@ function nitificaciones()
     $nuevafecha3 = strtotime ( '+5 day' , strtotime ( $fecha3 ) ) ;
 	$hoy = date ( 'Y-m-d' , $nuevafecha3 );
 	$contador = 0;
-    	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombre,c.apellido from cuentascobrar cc inner join ventas v on cc.idventas=v.idventas inner join cliente c on c.idcliente=v.idcliente";
+    	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombre,c.apellido,cc.idcuentasc from cuentascobrar cc inner join ventas v on cc.idventas=v.idventas inner join cliente c on c.idcliente=v.idcliente";
     $mysql = conexionMysql();
 
 	if($resultado = $mysql->query($sql))
@@ -66,7 +66,7 @@ function nitificaciones()
 				{
 
 					$_SESSION['notified1'][($contador)] = $fila[4]." ".$fila[5]."  ".toMoney($fila[3]);//substr($fila[0],0,10);
-					$_SESSION['direccione1'][($contador)] = $fila['1'];
+					$_SESSION['direccione1'][($contador)] = $fila['6'];
 					$contador++;
 				}
 				else
@@ -74,7 +74,7 @@ function nitificaciones()
 				{
 
 					$_SESSION['notified1'][($contador)] = $fila[4]." ".$fila[5]."  ".toMoney($fila[3]);//substr($fila[0],0,10);
-					$_SESSION['direccione1'][($contador)] = $fila['1'];
+					$_SESSION['direccione1'][($contador)] = $fila['6'];
 					$contador++;
 				}
 			}
@@ -91,7 +91,7 @@ function nitificaciones()
         echo 1;
     }
 
-	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombreempresa from cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join proveedor c on c.idproveedor=v.iddistribuidor";
+	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombreempresa,cc.idcuentasp from cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join proveedor c on c.idproveedor=v.iddistribuidor";
     $mysql = conexionMysql();
 
 	if($resultado = $mysql->query($sql))
@@ -130,7 +130,7 @@ function nitificaciones()
 				{
 
 					$_SESSION['notified22'][($contP)] = $fila[4]."    ".toMoney($fila[3]);//substr($fila[0],0,10);
-					$_SESSION['direccione22'][($contP)] = $fila['1'];
+					$_SESSION['direccione22'][($contP)] = $fila['5'];
 					$contador++;
 					$contP++;
 				}
@@ -139,7 +139,7 @@ function nitificaciones()
 				{
 
 					$_SESSION['notified22'][($contP)] = $fila[4]."    ".toMoney($fila[3]);//substr($fila[0],0,10);
-					$_SESSION['direccione22'][($contP)] = $fila['1'];
+					$_SESSION['direccione22'][($contP)] = $fila['5'];
 					$contador++;
 					$contP++;
 				}
@@ -241,7 +241,7 @@ function nitificaciones()
 													if($_SESSION['notified1'][($i)]!="" && $_SESSION['notified1'][($i)]!=NULL)
 													{
 												echo "
-													<li class=\"listaNotificacion\" onClick=\"location.href='Cobrar.php'\">".$_SESSION['notified1'][($i)]." </li>
+													<li class=\"listaNotificacion\" onClick=\"location.href='Cobrar.php?fd=".$_SESSION['direccione1'][($i)]."'\">".$_SESSION['notified1'][($i)]." </li>
 													";
 													}
 												}
@@ -254,7 +254,7 @@ function nitificaciones()
 													if($_SESSION['notified22'][($i)]!="" && $_SESSION['notified22'][($i)]!=NULL)
 													{
 												echo "
-													<li class=\"listaNotificacion\"  onClick=\"location.href='Pagar.php'\">".$_SESSION['notified22'][($i)]." </li>
+													<li class=\"listaNotificacion\"  onClick=\"location.href='Pagar.php?fd=".$_SESSION['direccione22'][($i)]."'\">".$_SESSION['notified22'][($i)]." </li>
 													";
 													}
 												}

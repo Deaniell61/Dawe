@@ -195,6 +195,18 @@ if($_POST)
         mostrarVentasAnul($datos);
 
     }
+	else if($transaccion == 18)
+    {
+
+        $datos[0] = $_POST['tipo'];
+		$datos[1] = $_POST['fechaini'];
+		$datos[2] = $_POST['fechafin'];
+		
+		
+		        
+        mostrarVentasPorFecha($datos);
+
+    }
 //----------- fin gestion ----------/    
     
 }
