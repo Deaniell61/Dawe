@@ -130,7 +130,12 @@ $('#flujo').click(function(){
 
 });
 
+$('#estadisticaClientes').click(function(){
 
+  window.location.href="EstadisticaClientes.php";
+
+
+});
 
 
 $('#estadisticaVentas').click(function(){

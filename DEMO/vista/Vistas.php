@@ -190,6 +190,13 @@ function Vendedor()
     include('../app/plantilla/vendedor/Pie.php');
 
 }
+function EClientes()
+{
+	 include('../app/plantilla/estadisticaClientes/Cabecera.php');
+    include('../app/plantilla/estadisticaClientes/Cuerpo.php');
+    include('../app/plantilla/estadisticaClientes/Pie.php');
+
+}
 
 function Flujo()
 {

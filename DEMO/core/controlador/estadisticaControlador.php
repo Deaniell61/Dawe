@@ -85,6 +85,7 @@ if($_POST)
         
     
     }
+	
 //------------ gestion --------------/    
 
     // insertar
@@ -142,6 +143,36 @@ if($_POST)
 
         
         graficaFlujoPie($datos);
+        
+    
+    }
+	else if($transaccion == 10)
+    {
+        
+          
+
+        
+         $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+
+
+        
+        graficaClientesBarra($datos);
+        
+    
+    }
+	else if($transaccion == 11)
+    {
+        
+          
+
+        
+         $datos[0] = $_POST['fechaini'];
+		 $datos[1] = $_POST['fechafin'];
+
+
+        
+        graficaClientesPie($datos);
         
     
     }
