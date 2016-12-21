@@ -116,8 +116,8 @@ function buscarCliente(buscar,evt)
 	{
 
 		$('#modal4').openModal();
-		setTimeout(function(){
-		llamarCliente();},300);
+		/*setTimeout(function(){
+		llamarCliente();},300);*/
 	}
 	else
 	if(buscar.value=="")
@@ -133,6 +133,8 @@ function buscarCliente(buscar,evt)
 
 
 }
+
+
 
 function contraAdmin111()
 {
@@ -316,8 +318,8 @@ function buscarCliente2(buscar)
 	if(buscar.value=="")
 	{
 		$('#modal4').openModal();
-		setTimeout(function(){
-		llamarCliente();},300);
+		/*setTimeout(function(){
+		llamarCliente();},300);*/
 	}
 	else
 	{

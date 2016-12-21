@@ -41,7 +41,7 @@
 
 
 							<i class="material-icons prefix"><img class="iconologin" src="../app/img/carnet.png" /> </i>
-										<input id="NIT" type="text" onKeyUp="buscarCliente(this,event);siguiente(event,'Cliente');" class="validate" autofocus>
+										<input id="NIT" type="text" onKeyUp="buscarCliente(this,event);" class="validate" autofocus>
 										 <label for="icon_prefix" ><span class="etiquelogin">NIT </span></label>
 							  </div>
                               <div class="input-field col s5">

@@ -26,7 +26,7 @@ function nitificaciones()
     $nuevafecha3 = strtotime ( '+5 day' , strtotime ( $fecha3 ) ) ;
 	$hoy = date ( 'Y-m-d' , $nuevafecha3 );
 	$contador = 0;
-    	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombre,c.apellido,cc.idcuentasc from cuentascobrar cc inner join ventas v on cc.idventas=v.idventas inner join cliente c on c.idcliente=v.idcliente";
+    	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombre,c.apellido,cc.idcuentasc from cuentascobrar cc inner join ventas v on cc.idventas=v.idventas inner join cliente c on c.idcliente=v.idcliente where cc.total>1";
     $mysql = conexionMysql();
 
 	if($resultado = $mysql->query($sql))
@@ -91,7 +91,7 @@ function nitificaciones()
         echo 1;
     }
 
-	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombreempresa,cc.idcuentasp from cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join proveedor c on c.idproveedor=v.iddistribuidor";
+	$sql = "select cc.fecha,cc.tipoPlazo,cc.plazo,cc.total,c.nombreempresa,cc.idcuentasp from cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join proveedor c on c.idproveedor=v.iddistribuidor where cc.total>1";
     $mysql = conexionMysql();
 
 	if($resultado = $mysql->query($sql))
