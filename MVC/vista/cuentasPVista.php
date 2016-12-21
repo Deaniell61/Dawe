@@ -42,7 +42,7 @@ else
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT cc.fecha,cc.total,(select c.nombreempresa from proveedor c where c.idproveedor=v.iddistribuidor limit 1),cc.idcuentasp,(select xx.nocomprobante from compras xx where xx.idcompras=cc.idcompras) FROM cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join compradetalle cd on cd.idcompras=v.idcompras inner join productos pp on pp.idproductos=cd.idproductos WHERE cc.estado=1 and pp.tiporepuesto='".$dato[0]."' $mas group by cc.idcuentasp";
+    $sql = "SELECT cc.fecha,cc.total,(select c.nombreempresa from proveedor c where c.idproveedor=v.iddistribuidor limit 1),cc.idcuentasp,(select xx.nocomprobante from compras xx where xx.idcompras=cc.idcompras) FROM cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras inner join compradetalle cd on cd.idcompras=v.idcompras inner join productos pp on pp.idproductos=cd.idproductos WHERE cc.estado=1 and pp.tiporepuesto='".$dato[0]."' and cc.total>1 $mas group by cc.idcuentasp";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
