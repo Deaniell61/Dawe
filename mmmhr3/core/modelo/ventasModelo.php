@@ -63,7 +63,7 @@ function inicioVenta($idProv)
 		$mysql->query("BEGIN");
 		$mysql->query("delete from ventasdetalle where estado=2;");
 		$mysql->query("delete from ventas where estado=2;");
-   $sql = "INSERT INTO ventas(total,estado,tipoVenta,idCliente,nocomprobante,idusuario) values(0,2,'".$idProv[1]."','".$idProv[0]."',(select v.nocomprobante+1 from ventas v where v.estado=1 order by v.nocomprobante desc limit 1),'".$_SESSION['SOFT_USER_ID']."')";
+   $sql = "INSERT INTO ventas(total,estado,tipoVenta,idCliente,nocomprobante,idusuario,fecha) values(0,2,'".$idProv[1]."','".$idProv[0]."',(select v.nocomprobante+1 from ventas v where v.estado=1 order by v.nocomprobante desc limit 1),'".$_SESSION['SOFT_USER_ID']."','".date('Y-m-d')."')";
  
     if($mysql->query($sql))
     {
@@ -247,7 +247,15 @@ function ingresoVenta($datos)
     }
     else
 	{
-		echo "<script>alert('Ya no hay en existencia del producto seleccionado');limpiarProducto();</script>";
+		echo "<script>
+						/*if(document.getElementById('cotizacionTrue').innerHTML=='1')
+						{
+							cargarDetalleVentas('".$_SESSION['idVenta']."');document.getElementById('productosVenta').innerHTML='';document.getElementById('tipoVenta').disabled=true;$('#tipoVenta').material_select();limpiarProducto();
+							}
+							else*/{
+						alert('Ya no hay en existencia del producto seleccionado');limpiarProducto();
+						}
+						</script>";
 	}
     
     $mysql->close();

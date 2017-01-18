@@ -1,4 +1,8 @@
+
+
 //**************** venta **********************************
+
+
 $('#inicio').click(function(){
 
     window.location.href="Inicio.php";

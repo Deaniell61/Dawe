@@ -1,4 +1,6 @@
+
 <?php
+//echo date('Y-m-d');
 		for($i=0;$i<count($_SESSION['notified1']);$i++)
 		{
 			($_SESSION['notified1'][($i)]="");

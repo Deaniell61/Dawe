@@ -4,10 +4,10 @@
 body
 {
 
-   
-    font-family: sans-serif;        
+
+    font-family: sans-serif;
     font-size: 16px;
-   
+
 
 }
 
@@ -26,7 +26,7 @@ nav .nav-wrapper
 
 .contenidoCrud
 {
-    
+
     background-image: url("http://www.frontendfactory.es/wp-content/uploads/2015/07/safari.jpg");
     background-repeat: no-repeat;
     background-position: center center;
@@ -41,19 +41,24 @@ nav .nav-wrapper
 
 .tabsTa
 {
-	
-	height: 65px;
-	
+
+	height: auto;
+
 }
 
+.subM{
+
+    display: none;
+
+}
 
 /******************************************************** clase inicio ******************************************************************************/
 
 .imgSub
 {
-    
+
     width: 50%;
-    
+
 }
 
 
@@ -106,7 +111,9 @@ nav .nav-wrapper
 /************** boton fin *********************/
 
 /****************************************/
-
+.sigue{
+  display: block;
+}
 
 .anchoC td
 {
@@ -116,7 +123,7 @@ nav .nav-wrapper
 
 .botonesm
 {
-    
+
     width: 15px;
     margin: 2px;
 }
@@ -134,7 +141,7 @@ nav .nav-wrapper
 
 }
 
-/*********** centrar login fin ********************/       
+/*********** centrar login fin ********************/
 
 
 /******************** tamaño li **********************/
@@ -158,12 +165,12 @@ nav .nav-wrapper
 .lipUsuario
 {
     margin-left: 2%;
-    
+
 }
 
 .formaboton
 {
-    
+
     border-radius: 10px;
 }
 
@@ -178,16 +185,16 @@ height: 75px;
 /********************** tamaño tabs li fin ***********************/
 .botonesc
 {
-    
+
     width: 115px;
 }
 
 .logo
 {
-    
+
     width: 110px;
-    
-    
+
+
 }
 
 
@@ -261,7 +268,7 @@ height: 75px;
 .etiquelogin
 {
 
-    font-size: 20px;	
+    font-size: 20px;
 
 }
 
@@ -293,7 +300,7 @@ height: 75px;
 /************* iconos login fin *******************/
 
 
-.tabs .indicator 
+.tabs .indicator
 {
     display: none;
 }
@@ -342,18 +349,18 @@ height: 75px;
 .selectrol
 {
     font-size: 24px;
-    color: #1565c0;    
+    color: #1565c0;
     margin-top: 2%;
-    
+
 }
 
 .modulo
 {
-        
-    color: #1565c0;    
+
+    color: #1565c0;
     margin-left: 10%;
 
-    
+
 }
 
 
@@ -454,7 +461,7 @@ height: 75px;
 .radioFiltro
 {
     display: inline;
-    
+
 }
 
 .carroEspacio
@@ -485,10 +492,10 @@ height: 75px;
 
 .ayudaI
 {
-	
+
 	width: 50px;
 	height: 50px;
-	
+
 }
 
 
@@ -552,24 +559,24 @@ color: #1565c0;
             height: 30px;
 
 
-        
+
 }
  #notified
 {
-	
+
 	width: 30px;
 	height: 30px;
 	margin-top: 15px;
 
 
-	
-	
-	
+
+
+
 }
  #notificationsCont
 {
-	
-	 
+
+
 background: white;
     z-index: 3;
     width: 15px;
@@ -616,13 +623,13 @@ background: white;
 #notificacionesContenerdor
 {
 	overflow-y:scroll;
-	padding-right:5px; 
+	padding-right:5px;
 	max-height:450px;
 	margin-right:-14px;
 	height: auto;
 }
 
- /*tringulo arriba*/	
+ /*tringulo arriba*/
 #globoNotificacion:before{
     content: "";
     width: 0;
@@ -646,7 +653,7 @@ background: white;
     width: 100%;
     text-align: center;
 	line-height:1.7;
-	
+
 
 }
  .tituloNotifica
@@ -657,7 +664,7 @@ background: white;
     width: 100%;
     text-align: left;
     height: 40px;
-	
+
 
 }
  .listaNotificacion:hover
