@@ -1,7 +1,7 @@
 //************************** globales *********************
-var gobIDElim,gobIDEdit;
-var passHabilita=0;
-var seleccionPrecio='PG';
+var gobIDElim, gobIDEdit;
+var passHabilita = 0;
+var seleccionPrecio = 'PG';
 //**************************************************
 //*************************Iniciales
 /*$('#contenidoCrud').mouseenter(function(){
@@ -10,18 +10,18 @@ var seleccionPrecio='PG';
 */
 //***********************************
 //************************** tabla ***********************
-$('#tabla2').DataTable( {
+$('#tabla2').DataTable({
 
-    info:     false,
+    info: false,
 
 
 
     language: {
 
         search: "Buscar",
-        sLengthMenu:" _MENU_ ",
+        sLengthMenu: " _MENU_ ",
 
-        paginate:{
+        paginate: {
 
             previous: "Anterior",
             next: "Siguiente",
@@ -34,21 +34,21 @@ $('#tabla2').DataTable( {
         "scrollCollapse": true,
         "paging":         true
          */
-} );
+});
 
 
-$('#tabla2').DataTable( {
+$('#tabla2').DataTable({
 
-    info:     false,
+    info: false,
 
 
 
     language: {
 
         search: "Buscar",
-        sLengthMenu:" _MENU_ ",
+        sLengthMenu: " _MENU_ ",
 
-        paginate:{
+        paginate: {
 
             previous: "Anterior",
             next: "Siguiente",
@@ -61,7 +61,7 @@ $('#tabla2').DataTable( {
         "scrollCollapse": true,
         "paging":         true
          */
-} );
+});
 
 
 //$('#tipoPlazo').material_select();
@@ -69,15 +69,15 @@ $('#tabla2').DataTable( {
 //*********************************************************
 
 //*************** modal ***********************************
-$('#modalnuevo').click(function(){
+$('#modalnuevo').click(function() {
     $('#btnActualizar').hide();
     $('#btnInsertar').show();
     $('#modal1').openModal();
-	document.getElementById('nombreC').focus();
+    document.getElementById('nombreC').focus();
 });
 
 
-$('.modaleliminar').click(function(){
+$('.modaleliminar').click(function() {
 
     event.preventDefault();
 
@@ -95,7 +95,7 @@ $(".dropdown-button").dropdown();
 
 
 
-$('#modalcerrar1').click(function(){
+$('#modalcerrar1').click(function() {
 
 
 
@@ -110,25 +110,19 @@ $('#modalcerrar1').click(function(){
 
 
 //comprobaciones
-function buscarCliente(buscar,evt)
-{
-	if(evt.keyCode=='13' && buscar.value=="")
-	{
+function buscarCliente(buscar, evt) {
+    if (evt.keyCode == '13' && buscar.value == "") {
 
-		$('#modal4').openModal();
-		/*setTimeout(function(){
-		llamarCliente();},300);*/
-	}
-	else
-	if(buscar.value=="")
-	{
+        $('#modal4').openModal();
+        /*setTimeout(function(){
+        llamarCliente();},300);*/
+    } else
+    if (buscar.value == "") {
 
-	}
-	else
-	if(evt.keyCode=='13')
-	{
-		buscarNIT(buscar.value)
-	}
+    } else
+    if (evt.keyCode == '13') {
+        buscarNIT(buscar.value)
+    }
 
 
 
@@ -136,126 +130,106 @@ function buscarCliente(buscar,evt)
 
 
 
-function contraAdmin111()
-{
-	
-	return id;
+function contraAdmin111() {
+
+    return id;
 }
 
-function deshabilita(id)
-{	
-	var  trasDato;
-	trasDato = 13;
-	idd=1;
-	if(document.getElementById(id).disabled)
-	{
-	var contra=prompt("Ingrese Contraseña");
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/usuarioControlador.php",
-            data:' id=' +  idd + '&contra=' + contra + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
-	
-	
-		if(resp==1)
-		{
-			
-			document.getElementById(id).disabled=false;
-		}
-		else
-		{
-			alert('Contraseña Erronea');
-		}
-	
-               
-
-               
-            }
-        });
-	}
-	else
-	{
-		document.getElementById(id).disabled=true;
-	}
-	
-}
-function anularDetalleVenta1(id)
-{
-	var  trasDato;
-	trasDato = 14;
-
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' id=' +  id + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
-
-               if(resp == '1')
-                {
+function deshabilita(id) {
+    var trasDato;
+    trasDato = 13;
+    idd = 1;
+    if (document.getElementById(id).disabled) {
+        var contra = prompt("Ingrese Contraseña");
+        $.ajax({
+            type: "POST",
+            url: "../core/controlador/usuarioControlador.php",
+            data: ' id=' + idd + '&contra=' + contra + '&trasDato=' + trasDato,
+            success: function(resp) {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
+                if (resp == 1) {
+
+                    document.getElementById(id).disabled = false;
+                } else {
+                    alert('Contraseña Erronea');
                 }
-                else
-                {
 
 
-
-					 $('#mensajeVV').html(resp);
-
-                }
 
 
             }
         });
+    } else {
+        document.getElementById(id).disabled = true;
+    }
+
 }
-function seleccionaPrecio(id)
-{
-	document.getElementsByName('PG')[0].checked=false;
-	document.getElementsByName('PE')[0].checked=false;
-	document.getElementsByName('PM')[0].checked=false;
 
-	seleccionPrecio=id;
-	document.getElementsByName(id)[0].checked=true;
+function anularDetalleVenta1(id) {
+    var trasDato;
+    trasDato = 14;
+
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' id=' + id + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
+
+
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
+
+
+
+                $('#mensajeVV').html(resp);
+
+            }
+
+
+        }
+    });
 }
-function quitaInvetario()
-{
-	cont=0;
-	var real=1;
-	cliente=$('#codigoVenta').val();
-	//while(document.getElementById('Cantidad'+cont))
-	{
-		cantidad=(document.getElementById('Cantidad'+cont).innerHTML);
-		codigo=(document.getElementById('Codigo'+cont).innerHTML);
-		var  cantidad,trasDato;
-		trasDato = 13;
 
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' codigo=' +  codigo + '&cantidad=' + cantidad + '&cliente=' + cliente + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
+function seleccionaPrecio(id) {
+    document.getElementsByName('PG')[0].checked = false;
+    document.getElementsByName('PE')[0].checked = false;
+    document.getElementsByName('PM')[0].checked = false;
 
-               if(resp == '1')
-                {
+    seleccionPrecio = id;
+    document.getElementsByName(id)[0].checked = true;
+}
 
-					real=0;
+function quitaInvetario() {
+    cont = 0;
+    var real = 1;
+    cliente = $('#codigoVenta').val();
+    //while(document.getElementById('Cantidad'+cont))
+    {
+        cantidad = (document.getElementById('Cantidad' + cont).innerHTML);
+        codigo = (document.getElementById('Codigo' + cont).innerHTML);
+        var cantidad, trasDato;
+        trasDato = 13;
+
+        $.ajax({
+            type: "POST",
+            url: "../core/controlador/ventasControlador.php",
+            data: ' codigo=' + codigo + '&cantidad=' + cantidad + '&cliente=' + cliente + '&trasDato=' + trasDato,
+            success: function(resp) {
+
+                if (resp == '1') {
+
+                    real = 0;
                     alert('Algo salio mal');
 
-                }
-                else
-                {
+                } else {
 
-                    real=1;
+                    real = 1;
 
-					 $('#mensajeVV').html(resp);
+                    $('#mensajeVV').html(resp);
 
 
                 }
@@ -265,591 +239,506 @@ function quitaInvetario()
         });
 
 
-		cont++;
-	}
+        cont++;
+    }
 
-	if(real==1)
-	{
+    if (real == 1) {
 
-		//window.location.href="Ventas.php";
-	}
-
-}
-function seleccionaMarca(mc)
-{
-	document.getElementById('marca').value=mc;
-	document.getElementById('listaMarca').hidden=false;
+        //window.location.href="Ventas.php";
+    }
 
 }
-function comprobarCredito(obj)
-{
 
-	if(obj.value=='2')
-	{
-		$('#cuentasContenedor').show();
-	}
-	else
-	{
-		$('#cuentasContenedor').hide();
-	}
+function seleccionaMarca(mc) {
+    document.getElementById('marca').value = mc;
+    document.getElementById('listaMarca').hidden = false;
+
 }
-function limpiarProducto()
-{
-	$('#codigo').val('');
-	$('#nombreC').val('');
-	$('#Producto').val('');
-	$('#descripcion').val('');
-	$('#tipoRepuesto').val('');
-	$('#marca').val('');
-	$('#Cantidad').val('');
 
-	$('#precioG').val('');
-	$('#precioE').val('');
-	$('#agregarProd').show();
-	$('#nombreC').focus();
-	$('#precioM').val('');
+function comprobarCredito(obj) {
+
+    if (obj.value == '2') {
+        $('#cuentasContenedor').show();
+    } else {
+        $('#cuentasContenedor').hide();
+    }
+}
+
+function limpiarProducto() {
+    $('#codigo').val('');
+    $('#nombreC').val('');
+    $('#Producto').val('');
+    $('#descripcion').val('');
+    $('#tipoRepuesto').val('');
+    $('#marca').val('');
+    $('#Cantidad').val('');
+
+    $('#precioG').val('');
+    $('#precioE').val('');
+    $('#agregarProd').show();
+    $('#nombreC').focus();
+    $('#precioM').val('');
 
 
 }
 
 
-function buscarCliente2(buscar)
-{
-	if(buscar.value=="")
-	{
-		$('#modal4').openModal();
-		/*setTimeout(function(){
-		llamarCliente();},300);*/
-	}
-	else
-	{
-		buscarNIT(buscar.value)
-	}
+function buscarCliente2(buscar) {
+    if (buscar.value == "") {
+        $('#modal4').openModal();
+        /*setTimeout(function(){
+        llamarCliente();},300);*/
+    } else {
+        buscarNIT(buscar.value)
+    }
 
 
 }
 
-function buscarNIT(nit)
-{
-	 var  trasDato;
-	trasDato = 1;
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' nit=' +  nit + '&trasDato=' + trasDato,
-            success: function(resp)
+function buscarNIT(nit) {
+    var trasDato;
+    trasDato = 1;
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' nit=' + nit + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
+
+
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
+
+
+                $('#mensajeVV').html(resp);
+
+            }
+
+
+        }
+    });
+}
+
+function buscarPlazoCuentaCobrar() {
+    var trasDato;
+    trasDato = 15;
+    id = document.getElementById('codigoVenta').value;
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' id=' + id + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
+
+
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
+
+
+                $('#mensajeVV').html(resp);
+
+            }
+
+
+        }
+    });
+}
+
+function iniciarVenta(id) {
+    var trasDato;
+    trasDato = 2;
+    tipo = document.getElementById('tipoVenta').value;
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' prov=' + id + '&tipo=' + tipo + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
+
+
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
+
+
+
+                $('#mensajeVV').html(resp);
+
+            }
+
+
+        }
+    });
+}
+
+function verificaProductoCompra() {
+
+    if (document.getElementById('codigoProd').value != "") {
+        ingresoCompra(document.getElementById('codigoProd').value);
+    } else {
+
+        $('#productoNom').focus();
+
+    }
+}
+
+function ingresoVenta(prod) {
+
+    var cantidad, trasDato;
+    trasDato = 3;
+    cantidad = $('#Cantidad').val();
+    precioG = $('#precioG').val();
+    precioE = $('#precioE').val();
+    precioM = $('#precioM').val();
+    cliente = $('#codigoCliente').val();
+    var precioGuardar = precioG;
+    switch (seleccionPrecio) {
+        case 'PG':
             {
-
-               if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
-
-
-					 $('#mensajeVV').html(resp);
-
-                }
-
-
+                precioGuardar = precioG;
+                break;
             }
-        });
-}
-
-function buscarPlazoCuentaCobrar()
-{
-	 var  trasDato;
-	trasDato = 15;
-	id=document.getElementById('codigoVenta').value;
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' id=' +  id + '&trasDato=' + trasDato,
-            success: function(resp)
+        case 'PE':
             {
-
-               if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
-
-
-					 $('#mensajeVV').html(resp);
-
-                }
-
-
+                precioGuardar = precioE;
+                break;
             }
-        });
-}
-function iniciarVenta(id)
-{
-	 var  trasDato;
-	trasDato = 2;
-	tipo=document.getElementById('tipoVenta').value;
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' prov=' +  id + '&tipo=' + tipo + '&trasDato=' + trasDato,
-            success: function(resp)
+        case 'PM':
             {
+                precioGuardar = precioM;
+                break;
+            }
+    }
 
-               if(resp == '1')
-                {
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' prod=' + prod + '&cantidad=' + cantidad + '&precioG=' + precioG + '&precioGuardar=' + precioGuardar + '&precioE=' + precioE + '&precioM=' + precioM + '&cliente=' + cliente + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
 
 
 
-					 $('#mensajeVV').html(resp);
-
-                }
+                $('#mensaje').html(resp);
 
 
             }
-        });
+
+
+        }
+    });
 }
-function verificaProductoCompra()
-{
 
-	if(document.getElementById('codigoProd').value!="")
-	{
-		ingresoCompra(document.getElementById('codigoProd').value);
-	}
-	else
-	{
+function guardarCompra() {
+    var trasDato;
+    trasDato = 4;
 
-		$('#productoNom').focus();
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: 'trasDato=' + trasDato,
+        success: function(resp) {
 
-	}
+            if (resp == '1') {
+
+
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
+
+
+
+                $('#mensaje').html(resp);
+
+            }
+
+
+        }
+    });
 }
-function ingresoVenta(prod)
-{
 
-	var  cantidad,trasDato;
-	trasDato = 3;
-		cantidad=$('#Cantidad').val();
-		precioG=$('#precioG').val();
-		precioE=$('#precioE').val();
-		precioM=$('#precioM').val();
-		cliente=$('#codigoCliente').val();
-		var precioGuardar=precioG;
-		switch(seleccionPrecio)
-		{
-			case 'PG':
-			{
-				precioGuardar=precioG;
-				break;
-			}
-			case 'PE':
-			{
-				precioGuardar=precioE;
-				break;
-			}
-			case 'PM':
-			{
-				precioGuardar=precioM;
-				break;
-			}
-		}
+function cargarDetalleVentas(id) {
+    var trasDato;
+    trasDato = 5;
 
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' prod=' +  prod + '&cantidad=' + cantidad + '&precioG=' + precioG + '&precioGuardar=' + precioGuardar + '&precioE=' + precioE + '&precioM=' + precioM + '&cliente=' + cliente + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' id=' + id + '&trasDato=' + trasDato,
+        success: function(resp) {
 
-               if(resp == '1')
-                {
+            if (resp == '1') {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
 
 
 
-					 $('#mensaje').html(resp);
-
-
-                }
+                $('#resumenC').html(resp);
 
 
             }
-        });
-}
-function guardarCompra()
-{
-	var  trasDato;
-	trasDato = 4;
-
-       $.ajax ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:'trasDato=' + trasDato,
-            success: function(resp)
-            {
-
-               if(resp == '1')
-                {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
-
-
-
-					 $('#mensaje').html(resp);
-
-                }
-
-
-            }
-        });
-}
-function cargarDetalleVentas(id)
-{
-	var  trasDato;
-	trasDato = 5;
-
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' id=' +  id + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
-
-               if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
-
-
-
-					 $('#resumenC').html(resp);
-
-
-                }
-
-
-            }
-        });
-}
-function llamarCliente()
-{
-
-	$.ajax
-        ({
-            type:"POST",
-            url:"Clientes.php",
-            success: function(resp)
-            {
-				$('#ClienteContenedor').html(resp);
-            }
-        });
+        }
+    });
 }
 
-function llamarProducto()
-{
+function llamarCliente() {
+
+    $.ajax({
+        type: "POST",
+        url: "Clientes.php",
+        success: function(resp) {
+            $('#ClienteContenedor').html(resp);
+        }
+    });
+}
+
+function llamarProducto() {
 
 
-		$('#modal5').openModal();
-		$.ajax
-        ({
-            type:"POST",
-            url:"Productos.php",
-			data:' id=1',
-            success: function(resp)
-            {
-				$('#productoContenedor').html(resp);
-            }
-        });
+    $('#modal5').openModal();
+    $.ajax({
+        type: "POST",
+        url: "Productos.php",
+        data: ' id=1',
+        success: function(resp) {
+            $('#productoContenedor').html(resp);
+        }
+    });
 
 
 }
-function buscaProductoVenta(obj)
-{
-	var prod=obj.value;
-	var  trasDato;
-	trasDato = 6;
 
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' prod=' +  prod + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
+function buscaProductoVenta(obj) {
+    var prod = obj.value;
+    var trasDato;
+    trasDato = 6;
 
-               if(resp == '1')
-                {
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' prod=' + prod + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
 
 
 
-					 $('#productosVenta').html(resp);
-
-
-                }
+                $('#productosVenta').html(resp);
 
 
             }
-        });
+
+
+        }
+    });
 
 
 }
-function buscaMarca(obj)
-{
-	var prod=obj.value;
-	var  trasDato;
-	trasDato = 11;
 
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' id=' +  prod + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
+function buscaMarca(obj) {
+    var prod = obj.value;
+    var trasDato;
+    trasDato = 11;
 
-               if(resp == '1')
-                {
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' id=' + prod + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
 
 
 
-					 $('#listaMarca').html(resp);
-
-
-                }
+                $('#listaMarca').html(resp);
 
 
             }
-        });
+
+
+        }
+    });
 
 
 }
-function seleccionaProductoVenta(codprod)
-{
-	var prod=codprod;
-	var  trasDato;
-	trasDato = 7;
 
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' prod=' +  prod + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
+function seleccionaProductoVenta(codprod) {
+    var prod = codprod;
+    var trasDato;
+    trasDato = 7;
 
-               if(resp == '1')
-                {
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' prod=' + prod + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
 
 
 
-					 $('#mensajeV1').html(resp);
-
-
-                }
+                $('#mensajeV1').html(resp);
 
 
             }
-        });
+
+
+        }
+    });
 }
 
-function cambiarTipo(tipo,id)
-{
+function cambiarTipo(tipo, id) {
 
-	var  trasDato;
-	trasDato = 9;
-		//alert(2);
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' tipo=' +  tipo + '&id=' + id + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
+    var trasDato;
+    trasDato = 9;
+    //alert(2);
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
+        success: function(resp) {
 
-               if(resp == '1')
-                {
+            if (resp == '1') {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
 
 
 
-					 $('#mensajeC').html(resp);
-
-
-                }
+                $('#mensajeC').html(resp);
 
 
             }
-        });
-}
-function agregarFacturaVenta(tipo,id)
-{
-
-	var  trasDato;
-	trasDato = 12;
-		//alert(2);
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/ventasControlador.php",
-            data:' tipo=' +  tipo + '&id=' + id + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
-
-               if(resp == '1')
-                {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
-
-
-
-					 $('#mensajeC').html(resp);
-
-
-                }
-
-
-            }
-        });
+        }
+    });
 }
 
-function cambiarTipoProd(tipo,id)
-{
+function agregarFacturaVenta(tipo, id) {
 
-	var  trasDato;
-	trasDato = 2;
-		//alert(2);
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/productoControlador.php",
-            data:' tipo=' +  tipo + '&id=' + id + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
+    var trasDato;
+    trasDato = 12;
+    //alert(2);
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/ventasControlador.php",
+        data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
+        success: function(resp) {
 
-               if(resp == '1')
-                {
+            if (resp == '1') {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
 
 
 
-					 $('#mensajeC').html(resp);
-
-
-                }
+                $('#mensajeC').html(resp);
 
 
             }
-        });
+
+
+        }
+    });
 }
-function ingresoCuentaCobrar()
-{
 
-	var  trasDato;
-	trasDato = 1;
-		//alert(2);
-		tipo=document.getElementById('tipoPlazo').value;
-		plazo=document.getElementById('plazo').value;
-		id=document.getElementById('codigoVenta').value;
-        $.ajax
-        ({
-            type:"POST",
-            url:"../core/controlador/cuentasCobrarControlador.php",
-            data:' tipo=' +  tipo + '&plazo=' + plazo + '&id=' + id + '&trasDato=' + trasDato,
-            success: function(resp)
-            {
+function cambiarTipoProd(tipo, id) {
 
-               if(resp == '1')
-                {
+    var trasDato;
+    trasDato = 2;
+    //alert(2);
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/productoControlador.php",
+        data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
 
 
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
 
 
 
-					 $('#mensajeVV').html(resp);
-
-
-                }
+                $('#mensajeC').html(resp);
 
 
             }
-        });
+
+
+        }
+    });
+}
+
+function ingresoCuentaCobrar() {
+
+    var trasDato;
+    trasDato = 1;
+    //alert(2);
+    tipo = document.getElementById('tipoPlazo').value;
+    plazo = document.getElementById('plazo').value;
+    id = document.getElementById('codigoVenta').value;
+    $.ajax({
+        type: "POST",
+        url: "../core/controlador/cuentasCobrarControlador.php",
+        data: ' tipo=' + tipo + '&plazo=' + plazo + '&id=' + id + '&trasDato=' + trasDato,
+        success: function(resp) {
+
+            if (resp == '1') {
+
+
+                //$('#mensaje').html('Datos Incorrectos.');
+                //$('#precargar').hide();
+            } else {
+
+
+
+                $('#mensajeVV').html(resp);
+
+
+            }
+
+
+        }
+    });
 }
 //**********************
 
@@ -858,14 +747,23 @@ function ingresoCuentaCobrar()
 
 
 
-$("#Cotizacion").click(function(){
-$("#Ofecha").hide();
-$("#nofactura").hide();
-$("#btnGuardar").hide();
-$("#OtipoCompra").hide();
+$("#Cotizacion").click(function() {
+    $("#Ofecha").hide();
+    $("#nofactura").hide();
+    $("#btnGuardar").hide();
+    $("#OtipoCompra").hide();
 
-$("#generarV").show();
-$("#imprimir").show();
-$("#NIT").focus();
+    $("#generarV").show();
+    $("#imprimir").show();
+    $("#NIT").focus();
+    /*document.getElementById("marca").disabled = false;
+    document.getElementById("descripcion").disabled = false;
+    document.getElementById("Cantidad").disabled = false;
+    document.getElementById("precioG").disabled = false;
+    document.getElementById("precioE").disabled = false;
+    document.getElementById("precioM").disabled = false;
+    $('#tipoRepuesto').material_select();
+    document.getElementById('cotizacionTrue').innerHTML = "1";*/
+
 
 });

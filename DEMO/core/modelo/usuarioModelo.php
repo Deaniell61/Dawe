@@ -59,7 +59,7 @@ function login($user, $pass)
 
 function cargarModulos($idUser)
 {
-	$sql = "SELECT m.Nombre,m.Dir,m.RefId,a.agrega,a.elimina,a.modifica FROM accesos a inner join modulos m on m.idModulos=a.idModulo where a.idUsuarios=$idUser order by m.idModulos";
+	$sql = "SELECT m.Nombre,m.Dir,m.RefId,a.agrega,a.elimina,a.modifica,m.tipo FROM accesos a inner join modulos m on m.idModulos=a.idModulo where a.idUsuarios=$idUser order by m.idModulos";
     
     $mysql = conexionMysql(); 
     
@@ -73,6 +73,7 @@ function cargarModulos($idUser)
 				
 				$_SESSION['SOFT_MODULO'][$i]=$fila['0'];
 				$_SESSION['SOFT_MODULO_DIR'][$i]=$fila['1'];
+				$_SESSION['SOFT_MODULO_TIPO'][$i]=$fila['6'];
 				$_SESSION['SOFT_MODULO_REF'][$i]=$fila['2'];
 				$_SESSION['SOFT_ACCESOModifica'.$fila['2']]=$fila['5'];
 				$_SESSION['SOFT_ACCESOElimina'.$fila['2']]=$fila['4'];
@@ -672,15 +673,15 @@ function compruebaEnvioCorreo($datos)
 				$mysql->query("BEGING");
 				if($datos[1]=="Cobrar")
 				{
-					$sql = "insert into correos(correo,tipo) values('".$datos[0]."','1');";
+					$sql = "insert into correos(correo,tipo,fecha) values('".$datos[0]."','1','".date('Y-m-d')."');";
 				}
 				else if($datos[1]=="Pagar")
 				{
-					$sql = "insert into correos(correo,tipo) values('".$datos[0]."','2');";
+					$sql = "insert into correos(correo,tipo,fecha) values('".$datos[0]."','2','".date('Y-m-d')."');";
 				}
 				else
 				{
-					$sql = "insert into correos(correo,tipo) values('".$datos[0]."',3);";
+					$sql = "insert into correos(correo,tipo,fecha) values('".$datos[0]."',3,'".date('Y-m-d')."');";
 				}
     
 				if($resultado = $mysql->query($sql))

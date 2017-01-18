@@ -173,7 +173,7 @@
 
           <!-- ********************************** modal ********************************** -->
 
-          <!-- nuevo --->
+          <!-- nuevo -->
 
           <div id="modal1" class="modal">
               <div class="modal-content">
@@ -317,6 +317,7 @@
 
 
 												      </div>
+													  <div style="display:none;" id="cotizacionTrue"></div>
 
 
 
@@ -331,7 +332,7 @@
 
               </div>
           </div>
-          <!-- nuevo fin --->
+          <!-- nuevo fin -->
 
 
 
@@ -377,7 +378,7 @@
                           </div>
                       </div>
                 <div id="productoContenedor">
-                hola mundo kñjkñldasfkljñdfaskljñdfas
+                
                 </div>
                   </form>
               </div>
