@@ -82,8 +82,10 @@ if($_POST)
           
 
         
-        $datos[0]=$prod = $_POST['prod'];
-		buscarProducto($datos);
+        $datos[0] = $_POST['tipo'];
+		$datos[1] = $_POST['fechaini'];
+		$datos[2] = $_POST['fechafin'];
+		mostrarMovimientosCuentasCFlujo($datos);
 		
 		        
         
