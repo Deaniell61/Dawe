@@ -176,6 +176,81 @@ function mostrarMovimientosCuentasP($id)
 
 }
 
+function mostrarMovimientosCuentasPFlujo($id)
+{
+
+    //creacion de la tabla
+?>
+
+<table id='tabla' class='bordered centered highlight responsive-table centrarT'>
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Descripcion</th>
+            <th>Abono</th>
+            <!--<th>Credito</th>-->
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+
+    $mysql = conexionMysql();
+    if($id[0]!="")
+	{
+		$id[0]=" and cc.idcuentasP=".$id[0];
+	}
+    $sql = "SELECT cc.fecha,cc.descripcion,cc.abono,cc.credito FROM movimientosp cc  WHERE (cc.fecha between '".$id[1]." 00:00:00' and '".$id[2]." 23:59:59')".$id[0];
+    $tabla="";
+    if($resultado = $mysql->query($sql))
+    {
+
+        if(mysqli_num_rows($resultado)==0)
+        {
+            $respuesta = "<div class='error'>No hay movimientos BD vacia</div>";
+        }
+
+        else
+        {
+
+            while($fila = $resultado->fetch_row())
+            {
+
+                $tabla .= "<tr>";
+
+                $tabla .="<td>"     .$fila["0"].    "</td>";
+                $tabla .="<td>" .$fila["1"]."</td>";
+                $tabla .="<td>" .toMoney($fila["2"]).      "</td>";
+				//$tabla .="<td>" .toMoney($fila["3"]).      "</td>";
+               
+                $tabla .= "</tr>";
+            }
+
+            $resultado->free();//librerar variable
+
+
+            $respuesta = $tabla;
+        }
+    }
+    else
+    {
+        $respuesta = "<div class='error'>Error: no se ejecuto la consulta a BD</div>";
+
+    }
+
+    //cierro la conexion
+    $mysql->close();
+
+    //debuelvo la variable resultado
+    return printf($respuesta);
+        ?>
+    </tbody>
+</table>
+<?php
+
+}
+
 
 
 

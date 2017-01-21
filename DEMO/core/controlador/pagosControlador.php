@@ -157,6 +157,34 @@ if($_POST)
         
     
     }
+     else if($transaccion == 11)
+    {
+        
+          
+
+        
+         $datos[0] = $_POST['tipo'];
+		 $datos[1] = $_POST['fechaini'];
+         $datos[2] = $_POST['fechafin'];
+
+          mostrarSueldoFlujo($datos);
+        
+    
+    }
+    else if($transaccion == 12)
+    {
+        
+          
+
+        
+         $datos[0] = $_POST['tipo'];
+		 $datos[1] = $_POST['fechaini'];
+         $datos[2] = $_POST['fechafin'];
+
+          mostrarGastoFlujo($datos);
+        
+    
+    }
 	
 //----------- fin gestion ----------/    
     

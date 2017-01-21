@@ -266,7 +266,9 @@ cargarGrafico('9','');
                 <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
             </div>
       </div>
-      cuerpo
+        <div id="cuerpoModal4">
+            	
+            </div>
       </div>
 
       <div id="modal5" class="modal">
@@ -277,7 +279,9 @@ cargarGrafico('9','');
                 <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
             </div>
       </div>
-      cuerpo
+      <div id="cuerpoModal5">
+            	
+            </div>
       </div>
 
       <div id="modal6" class="modal">
@@ -288,5 +292,7 @@ cargarGrafico('9','');
                 <a id="modalcerrar" class=" modal-action modal-close waves-effect waves-light right  " ><i class="material-icons prefix"><img class="iconocerrarmodal" src="../app/img/desenfrenado.png"></i></a>
             </div>
       </div>
-      cuerpo
+        <div id="cuerpoModal6">
+            	
+            </div>
       </div>
