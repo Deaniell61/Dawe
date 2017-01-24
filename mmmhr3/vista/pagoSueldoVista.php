@@ -131,7 +131,7 @@ function mostrarSueldoFlujo($datos)
 
 
 
-                $tabla .="<td class='anchoC'><a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onclick=\"eliminar('".$fila["0"]."')\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a></td>";
+                $tabla .="<td class='anchoC'></td>";
                 $tabla .= "</tr>";
 
             }
