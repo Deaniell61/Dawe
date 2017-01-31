@@ -124,10 +124,32 @@
 				<div id="totalVenta" class="col s10 total">
                 	
                 </div>
+				<div id="tablaCotiza" class=""  >
 				 <div id="resumenC" class=""  >
 
 
 
+					 </div>
+				
+			<div id="noExiste" style="display:none;"><br>
+					<a onClick="agregaProdNoExist('tablaCotiza2')" id="nuevoNoExist" class="waves-effect waves-light btn blue lighten-1 modal-trigger  " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/anadir.png" /></i>Nuevo No Existente</a>
+					<table id='tablaCotiza2' class='bordered centered highlight responsive-table centrarT'>
+      <thead>
+          <tr>
+          		<th style="display:none;"></th>
+              <th>ID</th>
+              <th>Producto</th>
+              <th>Tipo</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>SubTotal</th>
+              <th></th>
+
+
+          </tr>
+      </thead>
+      <tbody></tbody>
+	  </table></div
 					 </div>
             </center>
 
@@ -141,8 +163,8 @@
                       </center>
                     </div>
            </div>
-           <center>
-               <a id="imprimir"  style="display: none"  onClick="printCoti('resumenC');" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
+          	 <center><br>
+               <a id="imprimir"  style="display: none"  onClick="document.getElementById('nuevoNoExist').style.display='none';pintarRow();printCoti('tablaCotiza');" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
 			</center>
 
       </div>
