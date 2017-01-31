@@ -742,17 +742,60 @@ function ingresoCuentaCobrar() {
 }
 //**********************
 
-
+var contRow = 0;
 //*****************  cotizacion ************************/
 
+function agregaProdNoExist(id) {
+    var table = document.getElementById(id);
+    var row = table.insertRow(table.rows.length);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    cell1.id = "ID1R" + contRow;
+    cell2.id = "Prod2R" + contRow;
+    cell3.id = "Tipo3R" + contRow;
+    cell4.id = "Precio4R" + contRow;
+    cell5.id = "Cantidad5R" + contRow;
+    cell6.id = "Subtotal6R" + contRow;
+    cell1.innerHTML = "Producto Nuevo";
+    cell2.innerHTML = '<input type="text" id="ProdF2R' + contRow + '">';
+    cell3.innerHTML = '<div class="input-field"><select id="TipoF3R' + contRow + '"><option value="Moto" select>Moto</option><option value="Carro" >Carro</option> </select></div>';
+    cell4.innerHTML = '<input type="number" id="PrecioF4R' + contRow + '" onKeyUp="document.getElementById(\'SubtotalF6R' + contRow + '\').value=(document.getElementById(\'CantidadF5R' + contRow + '\').value*this.value)">';
+    cell5.innerHTML = '<input type="number" id="CantidadF5R' + contRow + '" onKeyUp="document.getElementById(\'SubtotalF6R' + contRow + '\').value=(document.getElementById(\'PrecioF4R' + contRow + '\').value*this.value)">';
+    cell6.innerHTML = '<input type="number" id="SubtotalF6R' + contRow + '" readonly>';
+    setTimeout(function() {
+        $('#TipoF3R' + contRow).material_select();
+    }, 100);
+    contRow++;
+    $('select').material_select();
 
 
+}
+
+function pintarRow() {
+    for (i = 0; i < contRow; i++) {
+        var cell2 = document.getElementById('ProdF2R' + i).value;
+        document.getElementById('Prod2R' + i).innerHTML = cell2;
+        var cell3 = document.getElementById('TipoF3R' + i).value;
+        document.getElementById('Tipo3R' + i).innerHTML = cell3;
+        var cell4 = document.getElementById('PrecioF4R' + i).value;
+        document.getElementById('Precio4R' + i).innerHTML = "Q." + cell4;
+        var cell5 = document.getElementById('CantidadF5R' + i).value;
+        document.getElementById('Cantidad5R' + i).innerHTML = cell5;
+        var cell6 = document.getElementById('SubtotalF6R' + i).value;
+        document.getElementById('Subtotal6R' + i).innerHTML = "Q." + cell6;
+    }
+}
 $("#Cotizacion").click(function() {
     $("#Ofecha").hide();
     $("#nofactura").hide();
     $("#btnGuardar").hide();
     $("#OtipoCompra").hide();
-
+    $("#Cotizacion").hide();
+    $("#noExiste").css('display', 'block');
     $("#generarV").show();
     $("#imprimir").show();
     $("#NIT").focus();
