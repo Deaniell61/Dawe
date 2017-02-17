@@ -1,15 +1,15 @@
-//************************** globales *********************
+//* ************************* globales *********************
 var gobIDElim, gobIDEdit;
 var passHabilita = 0;
 var seleccionPrecio = 'PG';
-//**************************************************
-//*************************Iniciales
-/*$('#contenidoCrud').mouseenter(function(){
+//* *************************************************
+//* ************************Iniciales
+/* $('#contenidoCrud').mouseenter(function(){
     document.getElementById('formUser').reset();
 });
 */
-//***********************************
-//************************** tabla ***********************
+//* **********************************
+//* ************************* tabla ***********************
 $('#tabla2').DataTable({
 
     info: false,
@@ -763,9 +763,9 @@ function agregaProdNoExist(id) {
     cell1.innerHTML = "Producto Nuevo";
     cell2.innerHTML = '<input type="text" id="ProdF2R' + contRow + '">';
     cell3.innerHTML = '<div class="input-field"><select id="TipoF3R' + contRow + '"><option value="Moto" select>Moto</option><option value="Carro" >Carro</option> </select></div>';
-    cell4.innerHTML = '<input type="number" id="PrecioF4R' + contRow + '" onKeyUp="document.getElementById(\'SubtotalF6R' + contRow + '\').value=(document.getElementById(\'CantidadF5R' + contRow + '\').value*this.value)">';
-    cell5.innerHTML = '<input type="number" id="CantidadF5R' + contRow + '" onKeyUp="document.getElementById(\'SubtotalF6R' + contRow + '\').value=(document.getElementById(\'PrecioF4R' + contRow + '\').value*this.value)">';
-    cell6.innerHTML = '<input type="number" id="SubtotalF6R' + contRow + '" readonly>';
+    cell4.innerHTML = '<input type="number" id="PrecioF4R' + contRow + '" onKeyUp="document.getElementById(\'SubtotalF6R' + contRow + '\').value=\'Q.\'+(document.getElementById(\'CantidadF5R' + contRow + '\').value*this.value).toFixed(2);sumarTotal(\'SubtotalF6R\',\'' + contRow + '\');">';
+    cell5.innerHTML = '<input type="number" id="CantidadF5R' + contRow + '" onKeyUp="document.getElementById(\'SubtotalF6R' + contRow + '\').value=\'Q.\'+(document.getElementById(\'PrecioF4R' + contRow + '\').value*this.value).toFixed(2);sumarTotal(\'SubtotalF6R\',\'' + contRow + '\');">';
+    cell6.innerHTML = '<input type="text" id="SubtotalF6R' + contRow + '" readonly onChange="sumarTotal(this);">';
     setTimeout(function() {
         $('#TipoF3R' + contRow).material_select();
     }, 100);
@@ -773,6 +773,17 @@ function agregaProdNoExist(id) {
     $('select').material_select();
 
 
+}
+function sumarTotal(esto,num){
+    var total=0;
+    var table = document.getElementById('tablaCotiza2');
+    var row = table.rows.length-1;
+    for(i=0;i<row;i++){
+        if(document.getElementById(esto+i).value!=''){
+            total=parseFloat(total)+parseFloat(document.getElementById(esto+i).value.replace('Q.',''));
+        }
+    }
+    document.getElementById('totalNoInventario').innerHTML='Total: Q.'+total.toFixed(2);
 }
 
 function pintarRow() {

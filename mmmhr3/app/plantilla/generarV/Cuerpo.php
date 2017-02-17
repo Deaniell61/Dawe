@@ -133,6 +133,7 @@
 				
 			<div id="noExiste" style="display:none;"><br>
 					<a onClick="agregaProdNoExist('tablaCotiza2')" id="nuevoNoExist" class="waves-effect waves-light btn blue lighten-1 modal-trigger  " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/anadir.png" /></i>Nuevo No Existente</a>
+					<div id="totalNoInventario" style="float: right;margin-right: 10%;">0</div>
 					<table id='tablaCotiza2' class='bordered centered highlight responsive-table centrarT'>
       <thead>
           <tr>
