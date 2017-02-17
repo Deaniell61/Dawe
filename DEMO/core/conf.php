@@ -2,7 +2,7 @@
 define('HOST','localhost');
 define('USER','root');
 define('PASS','1234');
-define('DB','SofTronic');
+define('DB','softronic');
 
 /*
 define('HOST','mysql.hostinger.mx');
