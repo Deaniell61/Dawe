@@ -783,7 +783,9 @@ function sumarTotal(esto,num){
             total=parseFloat(total)+parseFloat(document.getElementById(esto+i).value.replace('Q.',''));
         }
     }
-    document.getElementById('totalNoInventario').innerHTML='Total: Q.'+total.toFixed(2);
+    var totalPermitido=parseFloat(document.getElementById('totalVenta').innerHTML.replace('Total de esta Venta: ','').replace('<strong>','').replace('</strong>','').replace('Q',''));
+    document.getElementById('totalNoInventario').innerHTML='Total: Q.'+(total).toFixed(2);
+    document.getElementById('totalCompleto').innerHTML='Total de Todos los Productos: Q.'+(total+totalPermitido).toFixed(2);
 }
 
 function pintarRow() {
@@ -799,6 +801,7 @@ function pintarRow() {
         var cell6 = document.getElementById('SubtotalF6R' + i).value;
         document.getElementById('Subtotal6R' + i).innerHTML = "Q." + cell6;
     }
+    $("#totalNoInventario").hide();
 }
 $("#Cotizacion").click(function() {
     $("#Ofecha").hide();

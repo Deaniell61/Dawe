@@ -179,6 +179,11 @@ $total=0;
 				$tabla .= "<script>
 
 	document.getElementById('totalVenta').innerHTML='Total de esta Venta: <strong>".toMoney($total)."</strong>';
+    if(document.getElementById('totalNoInventario')){
+        totalPermitido=parseFloat(document.getElementById('totalNoInventario').innerHTML.replace('Total: Q.',''));
+        total=$total;
+        document.getElementById('totalCompleto').innerHTML='Total de Todos los Productos: Q.'+(total+totalPermitido);
+    }
 </script>";
 
               $respuesta = $tabla;

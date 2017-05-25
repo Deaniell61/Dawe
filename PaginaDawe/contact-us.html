@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Contacto</title>
+    
+    <!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/ico/Dawe.ico">
+   
+</head><!--/head-->
+
+<body>
+
+    <header id="header">
+     
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                   <a class="navbar-brand" href="index.html"><img src="images/LogoDAWE1.png" alt="logo"></a>
+                </div>
+                
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about-us.html">¿Quienes Somos?</a></li>
+                        <li><a href="services.html">Servicios</a></li>
+                        <li class="active"><a href="contact-us.html">Contacto</a></li>                        
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+        
+    </header><!--/header-->
+
+
+    <section id="contact-info">
+         <div class="get-started center wow fadeInDown">
+                <h2>Dejanos Tú Comentario</h2>
+                <p class="lead">Para cualquier duda o sugerencia puedes escribirnos, deja tus comentarios y con gusto lo resolveremos. Si deseas conocer por nuestras promociones en el desarrollo de los sistemas puedes preguntarlo sin ningún compromiso y nuestro equipo técnico te enviará los detalles y el presupuesto adecuado para tu bolsillo. Si deseas un sistema personalizado puedes consultarlo y a un plazo determinado te daremos respuestas después de haberlo analizado.</p>
+               
+            </div><!--/.get-started-->
+ 
+    </section>  <!--/gmap_area -->
+
+    <section id="contact-page">
+        <div class="container">
+            <div class="row contact-wrap"> 
+                <div class="status alert alert-success" style="display: none" id="resultado"></div>
+                <div class="status alert alert-danger" style="display: none" id="resultadoE"></div>
+                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <div class="form-group">
+                            <label>Nombre  *</label>
+                            <input type="text" id="name" class="form-control" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico *</label>
+                            <input type="email" id="email1" class="form-control" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefono</label>
+                            <input type="number" id="number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre de la Compañia</label>
+                            <input type="text" id="bussinnes" class="form-control" required="required">
+                        </div>                        
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label>Asunto *</label>
+                            <input type="text" id="subject" class="form-control" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label>Mensaje *</label>
+                            <textarea id="message" required="required" class="form-control" rows="8"></textarea>
+                        </div>                        
+                        <div class="form-group">
+                            <button type="button" onclick="enviar();" class="btn btn-primary btn-lg" required="required">Enviar Mensaje</button>
+                        </div>
+                    </div>
+                </form> 
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#contact-page-->
+
+   
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2017 <a target="_blank" href="" title="">DAWE-System</a>. All Rights Reserved.
+                </div>
+                
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+    function enviar(){
+         $('#resultadoE').css("display","none");
+        var valido=0;
+        var mensajeError="Revise sus datos";
+        var name=document.getElementById('name').value;
+        var correo=document.getElementById('email1').value;
+        var numero=document.getElementById('number').value;
+        var negocio=document.getElementById('bussinnes').value;
+        var asunto=document.getElementById('subject').value;
+        var mensaje=document.getElementById('message').value;
+        var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+        if (correo.length > 0) {
+            if(regex.test(correo.trim())){
+                if (mensaje.length > 0) {
+                    if (name.length > 0) {
+                        if (asunto.length > 0) {
+                            valido=1;
+                        }else{
+                            mensajeError="Por Favor indique un asunto de su mensaje";
+                        }
+                    }else{
+                        mensajeError="Por Favor indique su nombre";
+                    }
+                }else{
+                    mensajeError="Debe Escribir un mensaje";
+                }
+            }else{
+                mensajeError="El correo tiene un formato no valido";
+            }
+        }else{
+            mensajeError="Por Favor indique su correo electronico";
+        }
+        
+        
+
+        var dat='name='+name+'&email='+correo+'&subject='+asunto+'&message='+mensaje+'&numero='+numero+'&negocio='+negocio;
+        if(valido==1){
+        $.ajax({
+				url:'sendemail.php',
+				type:'POST',
+				data:dat,
+				success: function(resp)
+				{							
+					$('#resultado').html(resp.message);
+                    $('#resultado').css("display","block");
+				}
+			});
+        }else{
+            $('#resultadoE').html(mensajeError);
+            $('#resultadoE').css("display","block");
+        }
+    }
+    </script>
+</body>
+</html>
