@@ -248,7 +248,7 @@
 												  <div class="input-field col s8 ">
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/marca.png"/></i>
 													  <input id="marca" onKeyUp="buscaMarca(this)" type="text" class="validate">
-													   <label for="icon_telephone" ><span class="etiquelogin">Laboratorio</span></label>
+													   <label for="icon_telephone" ><span class="etiquelogin">Marca</span></label>
                                                         <center>
 															 <div class="listaMarca" id="listaMarca">
 
@@ -341,7 +341,7 @@
 													  <label for="icon_telephone" ><span class="etiquelogin">Precio Venta general</span></label>
 												  </div>
 
-												   <div class="input-field col s8 "  style="display:none;">
+												   <div class="input-field col s8 ">
 													  <i  class="material-icons prefix"><img class="iconologin" src="../app/img/precioEspecial.png"/></i>
 													  <input id="precioE" type="text" value="0" class="validate" onKeyUp="siguiente(event,'precioM');">
 													  <label for="icon_telephone" ><span class="etiquelogin">Precio Venta Especial</span></label>

@@ -71,6 +71,8 @@ if($_POST)
 
         $datos[0] = $_POST['id'];
         $datos[1] = $_POST['tipo'];
+        $datos[2] = $_POST['fechaI'];
+        $datos[3] = $_POST['fechaF'];
 		
 		
 		        

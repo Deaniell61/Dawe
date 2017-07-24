@@ -408,7 +408,7 @@ function imprimirFlujo(div)
     
 }
 
-function imprimirCorte(id,div)
+function imprimirCorte(id,div,ff,fI)
 {
     $('#'+div).html('<div id="impresionCaja"></div>');
     var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoinsagro1.png\"/></a><div style=\"height: 18px; text-align:right;\">Insagro</div><div  style=\"height: 18px; text-align:right;\">\"Lo mejor para tus plantas\"</div><div  style=\"height: 18px; text-align:right;\">Direccion: Mazatenango</div><div  style=\"height: 18px; text-align:right;\">Tel. 77737775</div><div  style=\"height: 18px; text-align:right;\">Cel. 42207608</div></div></nav></div><br>";
@@ -418,73 +418,23 @@ if(document.getElementById(id))
     id=document.getElementById(id).value;
 }
     var trasDato;
+    fechaI = fI
+    fechaF = ff
     trasDato = 7;
     tipo=1;
     $.ajax({
         type: "POST",
-        dataType: "json",
+        //dataType: "json",
         url: "../core/controlador/cajaControlador.php",
-        data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
+        data: ' tipo=' + tipo + '&id=' + id + '&fechaI=' + fechaI + '&fechaF=' + fechaF + '&trasDato=' + trasDato,
         success: function(resp) {
            // alert(resp['estatus']);
            //alert(resp['DetalleVenta'].length);
+           //alert(resp['caja']['sql'])
+           //alert(resp)
+           //$('#impresionCaja').html(resp['estatus']);
            cuerpo="";
-           cuerpo+=encab+'<div class="ingresos">'+
-           '<center><h5>Ingresos</h5></center>'+
-           '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Ventas ................................... '+
-           ''+currency(resp['caja']['ventas']+"")+'</div>'+
-           '<div style="width: 50%;text-align: left;margin-left: 50px;">Abonos de Clientes ............... '+
-           ''+currency(resp['caja']['abonos']+"")+'</div>'+
-           '<div style="width: 50%;text-align: left;margin-left: 50px;">Saldo Anterior ....................... '+
-           ''+currency(resp['caja']['saldoAnt']+"")+'</div></center>'+
-           '</div>';
-           
-          cuerpo+='<div class="egresos">'+
-           '<center><h5>Egresos</h5></center>'+
-           '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Gastos .................................. '+
-           ''+currency(resp['caja']['gastos']+"")+'</div></center>'+
-           '</div>';
-           
-           
-          
-
-          cuerpo+='<div class="totales">'+
-           '<center><h5>Totales</h5></center>'+
-           '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Ingresos ............................... '+
-           ''+currency(resp['caja']['ingresos']+"")+'(+)</div>'+
-           '<div style="width: 50%;text-align: left;margin-left: 50px;">Egresos ............................... '+
-           ''+currency(resp['caja']['egresos']+"")+'(-)</div>'+
-           '<div style="width: 50%;text-align: left;margin-left: 50px;">Totales ................................. '+
-           ''+currency(resp['caja']['totales']+"")+'(=)</div></center>'+
-           '</div>';
-        if(resp['DetalleCaja'].length>0 && resp['DetalleCaja'][0]['fecha']){
-           cuerpo+='<div class="deposito">'+
-           '<center><h5>Depositos</h5>';
-           cuerpo+='<table  class="depositos">';
-           cuerpo+='<tr>'+
-                    '<th>Fecha</th>'+
-                    '<th>No. Cuenta</th>'+
-                    '<th>Banco</th>'+
-                    '<th>Monto</th>'+
-                    '</tr>';
-           
-                for(i=0;i<resp['DetalleCaja'].length;i++){
-                    cuerpo+='<tr class="FilaDeposito">'+
-                    '<td class="fechaFila">'+resp['DetalleCaja'][i]['fecha']+'</td>'+
-                    '<td class="noCuentaFila">'+resp['DetalleCaja'][i]['nocuenta']+'</td>'+
-                    '<td class="bancoFila">'+(resp['DetalleCaja'][i]['banco']+"")+'</td>'+
-                    '<td class="montoFila">'+currency(resp['DetalleCaja'][i]['monto']+"")+'</td>'+
-                    '</tr>';
-                }
-            cuerpo+='</table></center></div>';
-
-            
-           }
-           cuerpo+='<div class="saldoPC">'+
-           '<center><h5>Saldo Proximo Corte</h5></center>'+
-           '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Saldo Proximo Corte .................... '+
-           ''+currency(resp['caja']['saldoPC']+"")+'</div>'+
-           '</div>';
+           cuerpo+=encab+resp;
           $('#impresionCaja').html(cuerpo);
           
           //document.getElementById('impresionDeFactura11').print();
@@ -614,8 +564,11 @@ if(document.getElementById(id))
              '</tr>';
           }
           cuerpo+='</table>';
-          cuerpo+='<div class="totalFacturaLET">'+NumeroALetras(resp['total'])+'</div>';
-          cuerpo+='<div class="totalFactura">'+resp['total']+'</div>';
+          resp['total'] = currency(resp['total'] + '').replace('Q','').replace(',','') + '';
+          total = resp['total'].substring(0,(resp['total'].length)-3)
+          centavos = resp['total'].substring((resp['total'].length)-2,(resp['total'].length))
+          cuerpo+='<div class="totalFacturaLET">'+NumeroALetras(parseFloat(total))+' '+(centavos!=0?centavos+'/100':'')+'</div>';
+          cuerpo+='<div class="totalFactura">'+currency(parseFloat(resp['total'] + '') + '').replace("Q","")+'</div>';
           $('#impresionDeFactura11').html(cuerpo);
           //document.getElementById('impresionDeFactura11').print();
           // setTimeout(function(){printDiv('impresionDeFactura11');},500);
@@ -656,7 +609,7 @@ if(document.getElementById(id))
            //alert(resp['DetalleVenta'].length);
            cuerpo="";
            cuerpo+='<div class="logoFacturaC"><img class=\"logoFactC\" src=\"../app/img/logoinsagro1.png\"/></div>'+
-           '<div class="diaFacturaC">'+resp['venta']['dia']+'</div><div class="mesFacturaC">'+resp['venta']['mes']+'</div><div class="anioFacturaC">'+resp['venta']['anio']+'</div>'+
+           '<div class="diaFacturaC">'+resp['venta']['dia']+'/</div><div class="mesFacturaC">'+resp['venta']['mes']+'/</div><div class="anioFacturaC">'+resp['venta']['anio']+'</div>'+
            '<div class="nombreFacturaC">'+resp['venta']['1']+' '+resp['venta']['2']+'</div><div class="nitFacturaC">'+resp['venta']['4']+'</div>'+
            '<div class="direccionFacturaC">'+resp['venta']['3']+'</div>'+
            '<table class="espaciodetallefacturaCambiaria">';
@@ -672,8 +625,11 @@ if(document.getElementById(id))
              '</tr>';
           }
           cuerpo+='</table>';
-          cuerpo+='<div class="totalFacturaCLET">'+NumeroALetras(resp['total'])+'</div>';
-          cuerpo+='<div class="totalFacturaC">'+resp['total']+'</div>';
+          resp['total'] = currency(resp['total'] + '').replace('Q','').replace(',','') + '';
+          total = resp['total'].substring(0,(resp['total'].length)-3)
+          centavos = resp['total'].substring((resp['total'].length)-2,(resp['total'].length))
+          cuerpo+='<div class="totalFacturaCLET">'+NumeroALetras(parseFloat(total))+' '+(centavos!=0?centavos+'/100':'')+'</div>';
+          cuerpo+='<div class="totalFacturaC">'+currency(parseFloat(resp['total'] + '') + '').replace("Q","")+'</div>';
           $('#impresionDeFacturaC11').html(cuerpo);
          
           //document.getElementById('impresionDeFacturaC11').print();
@@ -713,7 +669,7 @@ if(document.getElementById(id))
            //alert(resp['DetalleVenta'].length);
            cuerpo="";
            cuerpo+='<div class="logoProforma"><img class=\"logoProf\" src=\"../app/img/logoinsagro1.png\"/></div>'+
-           '<div class="diaProforma">'+resp['venta']['dia']+'</div><div class="mesProforma">'+resp['venta']['mes']+'</div><div class="anioProforma">'+resp['venta']['anio']+'</div>'+
+           '<div class="diaProforma">'+resp['venta']['dia']+'/</div><div class="mesProforma">'+resp['venta']['mes']+'/</div><div class="anioProforma">'+resp['venta']['anio']+'</div>'+
            '<div class="nombreProforma">'+resp['venta']['1']+' '+resp['venta']['2']+'</div>'+
            '<div class="direccionProforma">'+resp['venta']['3']+'</div>'+
            '<table class="detalleProforma espacioproforma">';
@@ -721,13 +677,17 @@ if(document.getElementById(id))
              cuerpo+='<tr>'+
              '<td class="cantidadFilaProforma">'+resp['DetalleVenta'][i]['cantidad']+'</td>'+
              '<td class="descripcionFilaProforma">'+resp['DetalleVenta'][i]['nombre']+'</td>'+
-             '<td class="unidadFilaProforma">'+resp['DetalleVenta'][i]['precio']+'</td>'+
-             '<td class="subtotalFilaProforma">'+resp['DetalleVenta'][i]['subtotal']+'</td>'+
+             '<td class="unidadFilaProforma">'+currency(resp['DetalleVenta'][i]['precio'] + '')+'</td>'+
+             '<td class="subtotalFilaProforma">'+currency(resp['DetalleVenta'][i]['subtotal'] + '')+'</td>'+
              '</tr>';
           }
           cuerpo+='</table>';
-          cuerpo+='<div class="totalProformaLET">'+NumeroALetras(resp['total'])+'</div>';
-           cuerpo+='<div class="totalProforma">'+resp['total']+'</div>';
+          
+          resp['total'] = currency(resp['total'] + '').replace('Q','').replace(',','') + '';
+          total = resp['total'].substring(0,(resp['total'].length)-3)
+          centavos = resp['total'].substring((resp['total'].length)-2,(resp['total'].length))
+          cuerpo+='<div class="totalProformaLET">'+NumeroALetras(parseFloat(total))+' '+(centavos!=0?centavos+'/100':'')+'</div>';
+          cuerpo+='<div class="totalProforma">'+currency(parseFloat(resp['total'] + '') + '').replace("Q","")+'</div>';
           $('#impresionDeProforma11').html(cuerpo);
            ImprimirVar('impresionDeProforma11');
         }
@@ -779,7 +739,8 @@ if(document.getElementById(id))
              '</tr>';
           }
           cuerpo+='</table>';
-          cuerpo+='<div class="totalProforma">'+resp['total']+'</div>';
+          cuerpo+='<div class="totalProformaLET">'+NumeroALetras(resp['total'])+'</div>';
+          cuerpo+='<div class="totalProforma">'+parseFloat(resp['total'])+'</div>';
           $('#impresionDeProforma11').html(cuerpo);
            ImprimirVar('impresionDeProforma11');
         }
@@ -823,7 +784,7 @@ if(document.getElementById(id))
           }
           cuerpo+='</table>';
           cuerpo+='<div class="totalProformaLET">'+NumeroALetras(10)+'</div>';
-        cuerpo+='<div class="totalProforma">'+resp['total']+'</div>';
+        cuerpo+='<div class="totalProforma">'+parseFloat(resp['total'])+'</div>';
           $('#impresionDeProforma11').html(cuerpo);
            ImprimirVar('impresionDeProforma11');
         }
@@ -897,8 +858,10 @@ if(document.getElementById(id))
             cuerpo+='<div  class="divimpresion11"><div class="lugarFecha">'+resp['fecha']+'</div>'+
             '<div class="CantidadNumero">'+currency(monto).replace('Q','')+'</div>'+
             '<div class="PagoA">'+nombre+'</div>';
-            
-            cuerpo+='<div class="sumaDe">'+NumeroALetrasCheque(monto)+'</div></div>';
+            monto = currency(monto + '').replace('Q','').replace(',','') + '';
+            total = monto.substring(0,(monto.length)-3)
+            centavos = monto.substring((monto.length)-2,(monto.length))
+            cuerpo+='<div class="sumaDe">'+NumeroALetras(parseFloat(total))+' '+(centavos!=0?centavos+'/100':'')+'</div></div>';
             $('#impresionCheque').html(cuerpo);
             ImprimirVar('impresionCheque');
             }
@@ -938,8 +901,11 @@ if(document.getElementById(id))
             cuerpo+='<div  class="divimpresion11BI"><div class="lugarFechaBI">'+resp['fecha']+'</div>'+
             '<div class="CantidadNumeroBI">'+currency(monto).replace('Q','')+'</div>'+
             '<div class="PagoABI">'+nombre+'</div>';
-            
-            cuerpo+='<div class="sumaDeBI">'+NumeroALetrasCheque(monto)+'</div></div>';
+            monto = currency(monto + '').replace('Q','').replace(',','') + '';
+            total = monto.substring(0,(monto.length)-3)
+            centavos = monto.substring((monto.length)-2,(monto.length))
+            cuerpo+='<div class="sumaDe">'+NumeroALetras(parseFloat(total))+' '+(centavos!=0?centavos+'/100':'')+'</div></div>';
+           
             $('#impresionCheque').html(cuerpo);
             ImprimirVar('impresionCheque');
             }

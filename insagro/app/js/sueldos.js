@@ -152,7 +152,7 @@ function ingresoSueldo()
 		var fecha=document.getElementById('fecha').value;
 		var descripcion=document.getElementById('descripcion').value;
 		var monto=document.getElementById('monto').value;
-		
+		if(id!=""){
         $.ajax
         ({
             type:"POST",
@@ -181,6 +181,10 @@ function ingresoSueldo()
 
             }     
         });
+        }else{
+            alert("Debe seleccionar un empleado, no se puede pagar sueldo si no es empleado")
+            location.reload()
+        }
 	
 	
 }

@@ -114,6 +114,75 @@ function mostrarCuentasC()
             }     
         });
 }
+function mostrarCuentasCPagadas()
+{
+	var filto="";
+ 
+        var porNombre=document.getElementsByName("filtro");
+        
+        for(var i=0;i<porNombre.length;i++)
+        {
+            if(porNombre[i].checked)
+                filto=porNombre[i].value;
+        }
+
+	var  trasDato;
+	trasDato = 19;
+	
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/cuentasCobrarControlador.php",
+            data:' tipo=' +  filto + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');         
+                    //$('#precargar').hide();    
+                }
+                else
+                {
+                    
+					
+					 $('#tablaMostrar').html(resp); 
+					 
+					 $('#tabla').DataTable( {
+
+											info:     false,
+										
+										
+										
+											language: {
+										
+												search: "Buscar",
+												sLengthMenu:" _MENU_ ",
+										
+												paginate:{
+										
+													previous: "Anterior",
+													next: "Siguiente",
+										
+												},
+										
+											},
+											/*
+													   "scrollY":        "375px",
+												"scrollCollapse": true,
+												"paging":         true
+												 */
+										} );
+										$('select').material_select();
+
+                }
+
+
+            }     
+        });
+}
 function cargarDetalleCuentasC(id)
 {
 	var  trasDato;
@@ -151,7 +220,7 @@ function cargarDetalleCuentasC(id)
 }
 function limpiarAbono()
 {
-	document.getElementById('Monto').value='';
+	document.getElementById('MontoED').value='';
 	document.getElementById('descripcion').value='';
 	document.getElementById('Monto').focus();
 	document.getElementById('descripcion').focus();
@@ -250,6 +319,36 @@ function ver(id)
 
 }
 
+function anularAbono(id, abono)
+{
+	 
+    var idedit, trasDato; 
+
+    
+    trasDato = 18;
+    var idC = document.getElementById('codigo').value
+
+    $.ajax
+    ({
+        type:"POST",
+        url:"../core/controlador/cuentasCobrarControlador.php",
+        data:'id=' + id  + '&abono=' + abono  + '&idC=' + idC  + '&trasDato=' + trasDato,
+        success: function(resp)
+        {
+
+
+
+            $('#resumenCVer').html(resp); 
+            // $('#precargar').css('display','none');  
+
+
+
+
+        }     
+    });            
+
+}
+
 function verificaImpresion(){
     monto=$('#MontoED').val();
 
@@ -307,7 +406,8 @@ if(document.getElementById(id))
                 }
            }}
           cuerpo+='</table>';
-          cuerpo+='<div class="totalProforma">'+resp['total']+'</div>';
+          cuerpo+='<div class="totalProformaLET">'+NumeroALetras(resp['total'])+'</div>';
+          cuerpo+='<div class="totalProforma">'+parseFloat(resp['total'])+'</div>';
           $('#impresionDeProforma11').html(cuerpo);
            ImprimirVar('impresionDeProforma11');
         }

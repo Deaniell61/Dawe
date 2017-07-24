@@ -226,6 +226,16 @@ $('#cobrar').click(function(){
     window.location.href="?Cobrar";
 });
 
+$('#cobrarI').click(function(){
+
+    window.location.href="?Cobrar";
+});
+
+$('#cobrarPagadas').click(function(){
+
+    window.location.href="?CobrarPagadas";
+});
+
 $('#pagar').click(function(){
 
     window.location.href="?Pagar";

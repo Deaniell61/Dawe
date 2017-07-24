@@ -204,6 +204,29 @@ if($_POST)
         datosImpPorCobrarVencidas($datos);
 
     }
+    else if($transaccion == 18)
+    {
+        
+        $datos[0] = $_POST['id'];
+        $datos[1] = $_POST['abono'];
+        $datos[2] = $_POST['idC'];
+       
+
+        
+        anularAbono($datos);
+        
+        
+    }
+    else if($transaccion == 19)
+    {
+
+        $datos[0]=$nombre = $_POST['tipo'];
+		
+		
+		        
+        mostrarCuentasCPagadas($datos);
+
+    }
     
 //----------- fin gestion ----------/    
     

@@ -2,7 +2,7 @@
 define('HOST','localhost');
 define('USER','root');
 define('PASS','1234');
-define('DB','insagro');
+define('DB','insagro1');
 
 /*
 define('HOST','mysql.hostinger.mx');

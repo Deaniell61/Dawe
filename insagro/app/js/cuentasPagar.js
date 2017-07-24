@@ -406,12 +406,14 @@ function verificaImpresion(){
     monto=$('#MontoED').val();
 
     if(monto>0){
-        document.getElementById('imprimir').style.display='';
+        document.getElementById('SelectCheque').style.display='';
+        document.getElementById('BI').checked=true;
         document.getElementById('imprimir1').style.display='';
         document.getElementById('nombreChequeED111').style.display='';
     }else{
-        document.getElementById('imprimir').style.display='none';
+        document.getElementById('SelectCheque').style.display='none';
         document.getElementById('imprimir1').style.display='none';
+        document.getElementById('imprimir').style.display='none';
         document.getElementById('nombreChequeED111').style.display='none';
     }
 }
@@ -461,7 +463,8 @@ if(document.getElementById(id))
                 }
            }}
           cuerpo+='</table>';
-          cuerpo+='<div class="totalProforma">'+resp['total']+'</div>';
+          cuerpo+='<div class="totalProformaLET">'+NumeroALetras(resp['total'])+'</div>';
+          cuerpo+='<div class="totalProforma">'+parseFloat(resp['total'])+'</div>';
           $('#impresionDeProforma11').html(cuerpo);
            ImprimirVar('impresionDeProforma11');
         }

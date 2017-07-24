@@ -18,7 +18,12 @@
                 </div>
         </li>
     </ul>         
+    <div>
+        <ul>
 
+            <li class="centrarli"><a id="cobrarPagadas" href="#!" class="red accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Canceladas</a></li>
+        </ul>
+    </div>
 
 
     <!-- ********************************** tabla inicio ********************************** -->

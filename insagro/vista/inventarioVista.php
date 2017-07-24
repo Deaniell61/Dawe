@@ -21,7 +21,7 @@ $medidas=array('','KG','LB','OZ','GR');
             <th>Descripcion</th>
             <th>Cantidad</th>
             <th>Precio General</th>
-            <th>Precio Especial</th>
+            
           
            
         </tr>
@@ -60,7 +60,7 @@ $cont++;
 				 $tabla .="<td>" .($fila["4"]).      "</td>";
 				 $tabla .="<td>" .$fila["9"].      " ".$medidas[$fila["12"]]."</td>";
 				 $tabla .="<td>" .toMoney($fila["6"]).      "</td>";
-				 $tabla .="<td>" .toMoney($fila["7"]).      "</td>";
+				
 				 
                
 

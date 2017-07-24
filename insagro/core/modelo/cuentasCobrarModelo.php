@@ -47,7 +47,7 @@ function editarCuentaC($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idventas,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1),(select c.direccion from cliente c where c.idcliente=v.idcliente limit 1) FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas where cc.estado=1 and cc.idcuentasC='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idventas,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1),(select c.direccion from cliente c where c.idcliente=v.idcliente limit 1) FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas where (cc.estado=1 or cc.estado=3) and cc.idcuentasC='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {
@@ -163,7 +163,7 @@ function abonarCuentaC($datos)
 	$total=$fila[0]-$datos[1];
 	if($datos[1]>0)
 	{		 
-    $sql = "INSERT INTO movimientosc(credito,abono,saldo,fecha,descripcion,idcuentasC,idusuario) values('".$datos[5]."','".$datos[1]."','".$saldo."','".$datos[2]."','".$datos[4]."',".$datos[0].",'".$_SESSION['SOFT_USER_ID']."')";
+    $sql = "INSERT INTO movimientosc(credito,abono,saldo,fecha,descripcion,idcuentasC,idusuario) values('".$datos[5]."','".$datos[1]."','".$saldo."','".date('Y-m-d H:i:s')."','".$datos[4]."',".$datos[0].",'".$_SESSION['SOFT_USER_ID']."')";
  
 		if($mysql->query($sql))
 		{
@@ -177,7 +177,7 @@ function abonarCuentaC($datos)
 						 {
 							  if($total==0)
 						 		{
-									 if(!$mysql->query("update cuentascobrar set estado=0 where idcuentasC='".$datos[0]."'"))
+									 if(!$mysql->query("update cuentascobrar set estado=3 where idcuentasC='".$datos[0]."'"))
 									 {
 										  $mysql->query("ROLLBACK");
 									 }
@@ -524,5 +524,38 @@ function datosImpPorCliente($datos){
     //cierro la conexion
     $mysql->close();
 	echo json_encode($return);
+}
+
+function anularAbono($datos)
+{
+	$mysql = conexionMysql();
+    $form="";
+	
+		$mysql->query("BEGIN");
+    $sql = "delete from movimientosc where idmovimientoc='".$datos[0]."'";
+//echo $sql;
+    if($mysql->query($sql))
+    {
+		if(!$mysql->query("update cuentascobrar set total=total+".$datos[1].",estado=1 where idcuentasc='".$datos[2]."'"))
+		{
+			$mysql->query("ROLLBACK");
+		}
+		else
+		{
+			$mysql->query("COMMIT");
+			$form = "<script>alert(\"Abono Borrado\");setTimeout(window.location.reload(), 3000);</script>";
+		}
+    }
+    else
+    {   
+    	$mysql->query("ROLLBACK");
+    	$form = "<div><script>location.reload();console.log('".$datos[0]."');</script></div>";
+    
+    }
+    
+    
+    $mysql->close();
+    
+    echo ($form);
 }
 ?>

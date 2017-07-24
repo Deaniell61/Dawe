@@ -62,7 +62,7 @@ function mostrarInventario()
 				  $tabla .="<td>" .toMoney($fila["7"]).      "</td>";
 				  $tabla .="<td>" .toMoney($fila["8"]).      "</td>";
 			$tabla .="<td class='anchoC'>";
-	  if($_SESSION['SOFT_ACCESOModifica'.'inventario']=='1')
+	  if($_SESSION['SOFT_ACCESOModifica'.'inventario']=='5')
 				{	
                 $tabla .="<a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["2"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
 				}

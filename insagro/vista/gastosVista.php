@@ -101,7 +101,7 @@ function mostrarGastoFlujo($datos)
         <?php
 	$extra="";
     $mysql = conexionMysql();
-    $sql = "SELECT g.fecha,g.descripcion,g.monto,g.idgastos FROM gastos g where g.estado=1";
+    $sql = "SELECT g.fecha,g.descripcion,g.monto,g.idgastos FROM gastos g where g.estado=1 and (g.fecha between '".$datos[1]." 00:00:00' and '".$datos[2]." 23:59:59')";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {

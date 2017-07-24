@@ -327,7 +327,7 @@ function ingresarGastos($datos)
 	}
 	
 		$mysql->query("BEGIN");
-    $sql = "insert into gastos(fecha,descripcion,monto,estado) values('".date('Y-m-d  H:i:s')."','".$datos[1]."','".$datos[2]."',1)";
+    $sql = "insert into gastos(fecha,descripcion,monto,estado) values('".date('Y-m-d H:i:s')."','".$datos[1]."','".$datos[2]."',1)";
 //echo $sql;
     if($mysql->query($sql))
     {

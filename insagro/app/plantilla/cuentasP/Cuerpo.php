@@ -171,7 +171,20 @@
 								  <label for="icon_telephone" ><span class="etiquelogin">Nombre Cheque</span></label>
 							  </div>
                                
-                               
+                                <div style="display:none;" id="SelectCheque" class="col s10">
+                                <center>
+                                    <div class="radioFiltro">
+                                        <input class="radioColor" name="filtro" value="1" checked type="radio" id="BI" onChange="document.getElementById('imprimir1').style.display='';document.getElementById('imprimir').style.display='none';" />
+                                        <label for="BI">BI</label>
+                                    </div>
+
+                                    <div class="radioFiltro carroEspacio">
+                                        <input class="radioColor" name="filtro" value="2" type="radio" id="BAM"  onChange="document.getElementById('imprimir').style.display='';document.getElementById('imprimir1').style.display='none';" />
+                                        <label for="BAM">BAM</label>
+                                    </div>
+                                </center>
+                                <br>
+                              </div>
                                
                               
                                                  

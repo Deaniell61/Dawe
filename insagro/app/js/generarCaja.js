@@ -23,11 +23,12 @@ function llamarCorte() {
                 sal=parseFloat(resp['saldoAnt'].replace('Q','').replace(',',''));
                 gasto=parseFloat(resp['Gastos'].replace('Q','').replace(',',''));
                 $('#totalI111').html(currency(""+(ventas+abonos+sal)));
-                $('#totalE111').html(gasto);
+                $('#totalE111').html(currency(gasto+""));
                 $('#totalCC111').html(currency(""+((ventas+abonos+sal)-gasto)));
                 $('#fechaI').val(resp['fechaI']);
                 $('#fechaF').val(resp['fechaF']);
 
+                //alert(resp['abonosSQL'])
 
 
         }
@@ -49,6 +50,7 @@ function ingresarCorte() {
         
         location.href="?Caja";
     }else{
+       
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -64,7 +66,40 @@ function ingresarCorte() {
 
                 }
             
-            }
+            },
+            error: function( jqXHR, textStatus, errorThrown ) {
+
+          if (jqXHR.status === 0) {
+
+            alert('Not connect: Verify Network.');
+
+          } else if (jqXHR.status == 404) {
+
+            alert('Requested page not found [404]');
+
+          } else if (jqXHR.status == 500) {
+
+            alert('Internal Server Error [500].');
+
+          } else if (textStatus === 'parsererror') {
+
+            alert('Requested JSON parse failed.');
+
+          } else if (textStatus === 'timeout') {
+
+            alert('Time out error.');
+
+          } else if (textStatus === 'abort') {
+
+            alert('Ajax request aborted.');
+
+          } else {
+
+            alert('Uncaught Error: ' + jqXHR.responseText);
+
+          }
+
+        }   
         });
     }
 }

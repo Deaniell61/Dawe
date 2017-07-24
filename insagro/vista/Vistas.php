@@ -16,6 +16,13 @@ function Cobrar()
     include('../app/plantilla/cuentasC/Pie.php');
 }
 
+function CobrarPagadas()
+{
+    include('../app/plantilla/cuentasCPagadas/Cabecera.php');
+    include('../app/plantilla/cuentasCPagadas/Cuerpo.php');
+    include('../app/plantilla/cuentasCPagadas/Pie.php');
+}
+
 function Caja()
 {
     include('../app/plantilla/caja/Cabecera.php');

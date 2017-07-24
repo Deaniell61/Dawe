@@ -45,7 +45,7 @@ else
         <?php
 
     $mysql = conexionMysql();
-     $sql = "SELECT ca.fecha,ca.saldo,ca.descripcion,(select d.comprobante from deposito d where ca.idcaja=d.idcaja order by d.fecha desc limit 1),(select d.nocuenta from deposito d where ca.idcaja=d.idcaja order by d.fecha desc limit 1),ca.idcaja,ca.saldoAct FROM caja ca where ca.fecha>'1900-02-02' order by ca.fecha desc";
+     $sql = "SELECT ca.fecha,ca.saldo,ca.descripcion,(select d.comprobante from deposito d where ca.idcaja=d.idcaja order by d.fecha desc limit 1),(select d.nocuenta from deposito d where ca.idcaja=d.idcaja order by d.fecha desc limit 1),ca.idcaja,ca.saldoAct,ca.fechaI,ca.fecha FROM caja ca where ca.fecha>'1991-02-02' order by ca.fecha desc ";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -64,12 +64,12 @@ else
 
                 $tabla .= "<tr>";
 
-                $tabla .="<td>"     .substr($fila["0"],0,10).    "</td>";
+                $tabla .="<td>"     .($fila["0"]).    "</td>";
 				$tabla .="<td>" .toMoney($fila["6"]).      "</td>";
                 $tabla .="<td>" .$fila["2"]. "</td>";
                 $tabla .="<td>" .$fila["3"].      "</td>";
                 $tabla .="<td>" .($fila["4"]).      "</td>";
-                $tabla .="<td>" .toMoney(saldoCorte($fila["0"],$fila["1"])).      "</td>";
+                $tabla .="<td>" .toMoney($fila["1"]).      "</td>";//saldoCorte($fila["0"],$fila["1"])
                 $tabla .="<td class='anchoC'>";
 				if($_SESSION['SOFT_ACCESOModifica'.'CajaT']=='1')
 				{
@@ -83,7 +83,7 @@ else
                 $tabla .="<a class='waves-effect waves-light btn yellow dark-1 modal-trigger botonesm ver' onClick=\"ver('".$fila["5"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/ojo.png' /></i></a>";
                 
                 if($cont==0){
-                $tabla .="<a class='waves-effect waves-light btn green dark-1 modal-trigger botonesm ver' onClick=\"imprimirCorte('".$fila["5"]."','mensaje3')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/imprimir.png' /></i></a>";
+                $tabla .="<a class='waves-effect waves-light btn green dark-1 modal-trigger botonesm ver' onClick=\"imprimirCorte('".$fila["5"]."','mensaje3','".$fila["7"]."','".$fila["8"]."')\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/imprimir.png' /></i></a>";
                 }
                 
                 $tabla .= "</td></tr>";
@@ -125,7 +125,7 @@ function saldoCorte($dato,$ant)
 				//$fechaI = substr($caja[0],0,10);
 				$nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fechaI ) ) ;
 				//$fechaI = date ( 'Y-m-d' , $nuevafecha3 );
-			$sqlVentas = "select sum(total) from ventas where (fecha > '".$fechaI."') and estado=1";
+			$sqlVentas = "select sum(total) from ventas where (fecha > '".$fechaI." 00:00:00') and estado=1";
 			
 			if($resultadoVentas = $mysql->query($sqlVentas))
 			{
@@ -147,7 +147,7 @@ function saldoCorte($dato,$ant)
 			
 			}
 
-			$sqlVentasC = "select sum(total) from cuentascobrar where (fecha > '".$fechaI."') and estado=1";
+			$sqlVentasC = "select sum(total) from cuentascobrar where (fecha > '".$fechaI." 00:00:00') and estado=1";
 
 			if($resultadoVentasC = $mysql->query($sqlVentasC))
 			{
@@ -169,7 +169,7 @@ function saldoCorte($dato,$ant)
 			
 			}
 
-			$sqlAbonos = "select sum(abono) from movimientosc where (fecha > '".$fechaI."')";
+			$sqlAbonos = "select sum(abono) from movimientosc where (fecha > '".$fechaI." 00:00:00')";
 
 			if($resultadoAbonos = $mysql->query($sqlAbonos))
 			{
@@ -191,7 +191,7 @@ function saldoCorte($dato,$ant)
 			
 			}
 
-			$sqlGastos = "select sum(monto) from gastos where (fecha > '".$fechaI."')";
+			$sqlGastos = "select sum(monto) from gastos where (fecha > '".$fechaI." 00:00:00')";
 
 			if($resultadoGastos = $mysql->query($sqlGastos))
 			{
@@ -298,7 +298,7 @@ session_start();
 
     }
      $respuesta .= "<script>
-            $('#saldoE').html('Saldo Proximo Corte: ".toMoney(saldoCorte($id[1],$total2))."');
+           // $('#saldoE').html('Saldo Proximo Corte: ".toMoney(saldoCorte($id[1],$total2))."');
      </script>";
     //cierro la conexion
     $mysql->close();

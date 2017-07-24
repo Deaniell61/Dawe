@@ -17,11 +17,11 @@ function mostrarCorteCaja($dato)
 		  {
 			  $form['estatus']=1;
 			  $form['saldoAnt']=toMoney($caja[1]);
-			  	$fechaF = date('Y-m-d H:i:s');
-				$fechaI = substr($caja[0],0,10);
+			  $fechaF = date('Y-m-d H:i:s');
+				$fechaI = ($caja[0]);
 				$nuevafecha3 = strtotime ( '+1 day' , strtotime ( $fechaI ) ) ;
 				//$fechaI = date ( 'Y-m-d' , $nuevafecha3 );
-			$sqlVentas = "select sum(total) from ventas where (fecha>'".$fechaI." 00:00:01' and fecha<='".$fechaF." 23:59:59') and estado=1 and tipoventa=1";
+			$sqlVentas = "select sum(total) from ventas where (fecha between '".$fechaI."' and '".$fechaF."') and estado=1 and tipoventa=1";
 			$form['fechaI']=$fechaI;
 			$form['fechaF']=$fechaF;
 			if($resultadoVentas = $mysql->query($sqlVentas))
@@ -44,7 +44,7 @@ function mostrarCorteCaja($dato)
 			
 			}
 
-			$sqlVentasC = "select sum(total) from ventas where (fecha>'".$fechaI." 00:00:01' and fecha<='".$fechaF." 23:59:59') and estado=1 and tipoventa=2";
+			$sqlVentasC = "select sum(total) from ventas where (fecha between '".$fechaI."' and '".$fechaF."') and estado=1 and tipoventa=2";
 
 			if($resultadoVentasC = $mysql->query($sqlVentasC))
 			{
@@ -66,14 +66,15 @@ function mostrarCorteCaja($dato)
 			
 			}
 
-			$sqlAbonos = "select sum(abono) from movimientosc where (fecha>'".$fechaI." 00:00:01' and fecha<='".$fechaF." 23:59:59')";
-
+			$sqlAbonos = "SELECT sum(abono) FROM movimientosc cc WHERE (cc.fecha between '".$fechaI."' and '".$fechaF."') and ((select c.estado from cuentascobrar c where c.idcuentasc=cc.idcuentasc)=1 or (select c.estado from cuentascobrar c where c.idcuentasc=cc.idcuentasc)=3)";     
+    
 			if($resultadoAbonos = $mysql->query($sqlAbonos))
 			{
 				if($resultadoAbonos->num_rows>0)
 				{
 					if($Abonos = $resultadoAbonos->fetch_row())
 					{
+						$form['abonosSQL']=($sqlAbonos);
 						if($Abonos[0]==NULL){
 							$form['abonos']=toMoney(0);
 						}else{
@@ -88,7 +89,7 @@ function mostrarCorteCaja($dato)
 			
 			}
 
-			$sqlGastos = "select sum(monto) from gastos where (fecha>'".$fechaI." 00:00:01' and fecha<='".$fechaF." 23:59:59')";
+			$sqlGastos = "select sum(monto) from gastos where (fecha between '".$fechaI."' and '".$fechaF."')";
 
 			if($resultadoGastos = $mysql->query($sqlGastos))
 			{
@@ -145,19 +146,21 @@ function ingresarCorteCaja($dato)
 	$saldo = $dato[3];
 	$saldoAnt = $dato[5];
 	$descripcion = $dato[4];
-	$sqlCajaIns = "insert into caja(fecha,descripcion,saldo,estado,saldoAnt,saldoAct) values('".$fechaF."','".$descripcion."','".$saldo."',1,'".$saldoAnt."','".$saldo."');";			
+	$sqlCajaIns = "insert into caja(fecha,descripcion,saldo,estado,saldoAnt,saldoAct,fechaI) values('".$fechaF."','".$descripcion."','".$saldo."',1,'".$saldoAnt."','".$saldo."','".$fechaI."');";			
     $mysql->query("BEGIN");
 	if($resultadoCaja = $mysql->query($sqlCajaIns))
     {
-	$sqlCaja = "select idcaja from caja order by idcaja desc limit 1";			
+	$sqlCaja = "select idcaja,fecha,fechaI from caja order by idcaja desc limit 1";			
     if($resultadoCaja = $mysql->query($sqlCaja))	
 	  {
 		  if($caja = $resultadoCaja->fetch_row())
 		  {
 			  $form['estatus']=1;
 			  $id=$caja[0];
+				$fechaF = $caja[1];
+				$fechaI = $caja[2];
 			  	
-			$sqlVentas = "select total,idventas from ventas where (fecha>'".$fechaI." 00:00:01' and fecha<='".$fechaF." 23:59:59') and estado=1 and tipoventa=1";
+			$sqlVentas = "select total,idventas from ventas where (fecha between '".$fechaI."' and '".$fechaF."') and estado=1 and tipoventa=1";
 			if($resultadoVentas = $mysql->query($sqlVentas))
 			{
 				if($resultadoVentas->num_rows>0)
@@ -182,7 +185,7 @@ function ingresarCorteCaja($dato)
 			
 			}
 
-			$sqlVentasC = "select total,idcuentasc from cuentascobrar where (fecha>'".$fechaI." 00:00:01' and fecha<='".$fechaF." 23:59:59') and estado=1";
+			$sqlVentasC = "select total,idcuentasc from cuentascobrar where (fecha between '".$fechaI."' and '".$fechaF."') and estado=1";
 
 			if($resultadoVentasC = $mysql->query($sqlVentasC))
 			{
@@ -206,8 +209,8 @@ function ingresarCorteCaja($dato)
 			
 			}
 
-			$sqlAbonos = "select abono,idmovimientoc from movimientosc where (fecha>'".$fechaI." 00:00:01' and fecha<='".$fechaF." 23:59:59')";
-
+			$sqlAbonos = "SELECT abono,idmovimientoc FROM movimientosc cc WHERE (cc.fecha between '".$fechaI."' and '".$fechaF."') and ((select c.estado from cuentascobrar c where c.idcuentasc=cc.idcuentasc)=1 or (select c.estado from cuentascobrar c where c.idcuentasc=cc.idcuentasc)=3)";     
+    
 			if($resultadoAbonos = $mysql->query($sqlAbonos))
 			{
 				if($resultadoAbonos->num_rows>0)
@@ -230,7 +233,7 @@ function ingresarCorteCaja($dato)
 			
 			}
 
-			$sqlGastos = "select monto,idgastos from gastos where (fecha>'".$fechaI." 00:00:01' and fecha<='".$fechaF." 23:59:59') and estado=1";
+			$sqlGastos = "select monto,idgastos from gastos where (fecha between '".$fechaI."' and '".$fechaF."') and estado=1";
 
 			if($resultadoGastos = $mysql->query($sqlGastos))
 			{
@@ -284,7 +287,7 @@ function editarCaja($dato)
 
     $mysql = conexionMysql();
     $form="";
-     $sql = "SELECT idcaja,fecha,saldoAct,descripcion FROM caja where estado=1 and idcaja='".$dato['0']."' ";
+     $sql = "SELECT idcaja,fecha,saldoAct,descripcion,saldo FROM caja where estado=1 and idcaja='".$dato['0']."' ";
 
     if($resultado = $mysql->query($sql))
     {
@@ -294,9 +297,11 @@ function editarCaja($dato)
 		  {
 		  	$form .="<script>";
 			$form .="document.getElementById('codigo').disabled=false;document.getElementById('codigo').value='".$fila[0]."';document.getElementById('codigo').focus();document.getElementById('codigo').disabled=true;";
-			$form .="document.getElementById('fechaCorte').disabled=false;document.getElementById('fechaCorte').value='".$fila[1]."';document.getElementById('fechaCorte').focus();document.getElementById('fechaCorte').disabled=true;";
+			$form .="document.getElementById('fechaCorte').disabled=false;document.getElementById('fechaCorte').value='".substr($fila[1],0,10)."';document.getElementById('fechaCorte').focus();document.getElementById('fechaCorte').disabled=true;";
 			$form .="document.getElementById('totalCorte').disabled=false;document.getElementById('totalCorte').value='".toMoney($fila[2])."';document.getElementById('totalCorte').focus();document.getElementById('totalCorte').disabled=true;";
 			$form .="document.getElementById('descripcion').disabled=false;document.getElementById('descripcion').value='".$fila[3]."';document.getElementById('descripcion').focus();document.getElementById('descripcion').disabled=true;";
+			$form .="$('#saldoE').html('Saldo Proximo Corte: ".toMoney($fila[4])."');";
+			 
 			$form .="cargarDepositos('".$fila[0]."');";
 			$form .="</script>";
 			
@@ -333,7 +338,7 @@ function ingresoDeposito($dato)
 
     $mysql = conexionMysql();
     $form="";
-     $sql = "insert into deposito(fecha,comprobante,nocuenta,banco,monto,idcaja,estado) values('".$dato['1']."','".$dato['2']."','".$dato['3']."','".$dato['4']."','".$dato['5']."','".$dato['0']."',1); ";
+     $sql = "insert into deposito(fecha,comprobante,nocuenta,banco,monto,idcaja,estado) values('".date('Y-m-d H:i:s')."','".$dato['2']."','".$dato['3']."','".$dato['4']."','".$dato['5']."','".$dato['0']."',1); ";
 
     if($resultado = $mysql->query($sql))
     {
@@ -366,27 +371,33 @@ function  datosImpresionCaja($dato)
     
 
     $mysql = conexionMysql();
-    $form=array();
+    $form="";
 	
-	$form['caja']['ingresos'] = 0;
-	$form['caja']['egresos'] = 0;
-	$form['caja']['totales'] = 0;
+		$valVenta="";
+		$valVentaC="";
+		$valAbono="";
+		$valGasto="";
+		$valSaldo="";
+		$valSaldoAnt="";
+		$valSaldoPC="";
 	
-    $sqlCaja = "SELECT sum(entrada) as total FROM detalleCaja WHERE idventa>0 and idcaja='".$dato[0]."' ";
+    //$sqlCaja = "SELECT sum(entrada) as total FROM detalleCaja WHERE idventa>0 and idcaja='".$dato[0]."' ";
+		$sqlCaja = "select sum(total) from ventas where (fecha between '".$dato[3]."' and '".$dato[2]."') and estado=1 and tipoventa=1";
+			
  	//echo $sql;
 	 
     if($resultadoCaja = $mysql->query($sqlCaja))
     {
       if($resultadoCaja->num_rows>0)
 	  {
-		  $form['estatus']=1;
+		  
 		  
 		  if($filaCaja = $resultadoCaja->fetch_row())
 		  {
 			if($filaCaja[0]==NULL){
-			$form['caja']['ventas'] = '0';
+			$valVenta = '0';
 			  }else{
-			$form['caja']['ventas'] = $filaCaja[0];
+			$valVenta = $filaCaja[0];
 			  }
 
 			}
@@ -394,64 +405,101 @@ function  datosImpresionCaja($dato)
 	  }
 	  else
 	  {
-		$form['estatus']=0;
+		
 	  }
     
     }
     else
     {   
     
-    	$form['estatus']=0;
+    	
     
     }
 
-	$sqlCaja = "SELECT sum(entrada) as total FROM detalleCaja WHERE idabono>0 and idcaja='".$dato[0]."' ";
+		$sqlCaja = "select sum(total) from ventas where (fecha between '".$dato[3]."' and '".$dato[2]."') and estado=1 and tipoventa=2";
+			
  	//echo $sql;
 	 
     if($resultadoCaja = $mysql->query($sqlCaja))
     {
       if($resultadoCaja->num_rows>0)
 	  {
-		  $form['estatus']=1;
+		  
+		  
+		  if($filaCaja = $resultadoCaja->fetch_row())
+		  {
+			if($filaCaja[0]==NULL){
+			$valVentaC = '0';
+			  }else{
+			$valVentaC = $filaCaja[0];
+			  }
+
+			}
+		$resultadoCaja->free();    
+	  }
+	  else
+	  {
+		
+	  }
+    
+    }
+    else
+    {   
+    
+    	
+    
+    }
+
+	//$sqlCaja = "SELECT sum(entrada) as total FROM detalleCaja WHERE idabono>0 and idcaja='".$dato[0]."' ";
+	$sqlCaja = "SELECT sum(abono) FROM movimientosc cc WHERE (cc.fecha between '".$dato[3]."' and '".$dato[2]."') and ((select c.estado from cuentascobrar c where c.idcuentasc=cc.idcuentasc)=1 or (select c.estado from cuentascobrar c where c.idcuentasc=cc.idcuentasc)=3)";     
+    
+ 	//echo $sql;
+	
+    if($resultadoCaja = $mysql->query($sqlCaja))
+    {
+      if($resultadoCaja->num_rows>0)
+	  {
+		  
 		  
 		  if($filaCaja = $resultadoCaja->fetch_row())
 		  {
 			  if($filaCaja[0]==NULL){
-			$form['caja']['abonos'] = '0';
+			$valAbono = '0';
 			  }else{
-			$form['caja']['abonos'] = $filaCaja[0];
+			$valAbono = $filaCaja[0];
 			  }
 			}
 		$resultadoCaja->free();    
 	  }
 	  else
 	  {
-		$form['estatus']=0;
+		
 	  }
     
     }
     else
     {   
     
-    	$form['estatus']=0;
+    	
     
     }
 
-	$sqlCaja = "SELECT sum(entrada) as total FROM detalleCaja WHERE idgasto>0 and idcaja='".$dato[0]."' ";
+	//$sqlCaja = "SELECT sum(salida) as total FROM detalleCaja WHERE idgasto>0 and idcaja='".$dato[0]."' ";
+	$sqlCaja = "select sum(monto) from gastos where (fecha between '".$dato[3]."' and '".$dato[2]."')";
  	//echo $sql;
 	 
     if($resultadoCaja = $mysql->query($sqlCaja))
     {
       if($resultadoCaja->num_rows>0)
 	  {
-		  $form['estatus']=1;
+		  
 		  
 		  if($filaCaja = $resultadoCaja->fetch_row())
 		  {
 			if($filaCaja[0]==NULL){
-			$form['caja']['gastos'] = '0';
+			$valGasto = '0';
 			  }else{
-			$form['caja']['gastos'] = $filaCaja[0];
+			$valGasto = $filaCaja[0];
 			  }
 
 			}
@@ -459,43 +507,43 @@ function  datosImpresionCaja($dato)
 	  }
 	  else
 	  {
-		$form['estatus']=0;
+		
 	  }
     
     }
     else
     {   
     
-    	$form['estatus']=0;
+    	
     
     }
 
-	$sqlCaja = "SELECT saldoAct,saldoAnt,fecha as total,saldo FROM caja WHERE idcaja='".$dato[0]."' ";
+	$sqlCaja = "SELECT saldoAct,saldoAnt,fecha,saldo as total,saldo FROM caja WHERE idcaja='".$dato[0]."' ";
  	//echo $sql;
 	 
     if($resultadoCaja = $mysql->query($sqlCaja))
     {
       if($resultadoCaja->num_rows>0)
 	  {
-		  $form['estatus']=1;
+		  
 		  
 		  if($filaCaja = $resultadoCaja->fetch_row())
 		  {
 			if($filaCaja[0]==NULL){
-			$form['caja']['saldo'] = '0';
+			$valSaldo = '0';
 			  }else{
-			$form['caja']['saldo'] = $filaCaja[0];
+			$valSaldo = $filaCaja[0];
 			  }
 
 			if($filaCaja[1]==NULL){
-			$form['caja']['saldoAnt'] = '0';
+			$valSaldoAnt = '0';
 			  }else{
-			$form['caja']['saldoAnt'] = $filaCaja[1];
+			$valSaldoAnt = $filaCaja[1];
 			  }
 			if($filaCaja[0]==NULL){
-			$form['caja']['saldoPC'] = '0';
+			$valSaldoPC = '0';
 			  }else{
-			$form['caja']['saldoPC'] = saldoCorte($filaCaja[2],$filaCaja[3]);
+			$valSaldoPC = ($filaCaja[3]);
 			  }
 			
 
@@ -504,59 +552,156 @@ function  datosImpresionCaja($dato)
 	  }
 	  else
 	  {
-		$form['estatus']=0;
+		
 	  }
     
     }
     else
     {   
     
-    	$form['estatus']=0;
+    	
     
     }
-
-
-	$form['caja']['ingresos'] = floatval($form['caja']['abonos'])+floatval($form['caja']['ventas']);
-	$form['caja']['egresos'] = floatval($form['caja']['gastos'])+floatval($form['caja']['saldoAnt']);
-	$form['caja']['totales'] = $form['caja']['saldo'];
-
-	$sqlDetalleCaja = "SELECT fecha,comprobante,nocuenta,banco,monto FROM deposito WHERE idcaja='".$dato[0]."' ";
- 	//echo $sql;
-	$form['total'] = 0;
-	$form['DetalleCaja'][0] = array();
-    if($resultadoDetalleCaja = $mysql->query($sqlDetalleCaja))
+	$valIngredos = floatval($valAbono)+floatval($valVenta)+floatval($valSaldoAnt)+floatval($valVentaC);
+	$valEgresos = floatval($valGasto);
+	$valTotales = $valSaldo;
+		$form .= '<div class="ingresos">'.
+           '<div class="row FilaDeposito"><div class="col s2 offset-s4">(+) Saldo Anterior </div>'.
+           '<div class="col s1 offset-s1">'.toMoney($valSaldoAnt).'</div></div>'.
+           '<div class="row FilaDeposito"><div class="col s2 offset-s4">(+) Ventas al Contado </div>'.
+           '<div class="col s1 offset-s1">'.toMoney($valVenta).'</div></div>'.
+           '<div class="row FilaDeposito"><div class="col s2 offset-s4">(+) Ventas al Credito </div>'.
+           '<div class="col s1 offset-s1">'.toMoney($valVentaC).'</div></div>';
+	$sqlDetalleAbonos = "select cl.nombre,sum(mc.abono) from movimientosc mc inner join cuentascobrar cc on cc.idcuentasc=mc.idcuentasc inner join ventas v on v.idventas=cc.idventas inner join cliente cl on cl.idcliente=v.idcliente  WHERE (cc.fecha between '".$dato[3]."' and '".$dato[2]."') and (cc.estado=1 or cc.estado=3) group by cl.nombre;";
+    if($resultadoDetalleAbonos = $mysql->query($sqlDetalleAbonos))
     {
-      if($resultadoDetalleCaja->num_rows>0)
-	  {
-		  $form['estatus']=1;
-		   $i=0;
-		   
-		 $form['estatus']=$sqlDetalleCaja;
-		  while($filaDetalleCaja = $resultadoDetalleCaja->fetch_assoc())
-		  {
-		  	$form['DetalleCaja'][$i] = $filaDetalleCaja;
-			$form['total'] += $filaDetalleCaja['monto'];
-			$i++;
-		}
-		$resultadoDetalleCaja->free();    
-	  }
-	  else
-	  {
-		$form['estatus']=0;
-	  }
+			if($resultadoDetalleAbonos->num_rows>0)
+			{
+					while($filaDetalleAbonos = $resultadoDetalleAbonos->fetch_row())
+					{
+							$form .='<div class="row FilaDeposito"><div class="col s4 offset-s0">'.$filaDetalleAbonos['0'].'</div>'.
+											'<div class="col s1">'.toMoney($filaDetalleAbonos['1']).'</div></div>';						
+					}
+				$resultadoDetalleAbonos->free();    
+			}
+			else
+			{
+				
+			}
     
     }
     else
     {   
     
-    $form['estatus']=0;
+    	
     
     }
+
+   $form .='<div class="row FilaDeposito"><div class="col s3 offset-s4">(+) Abonos de Clientes </div>'.
+           '<div class="col s1 offset-s">'.toMoney($valAbono).'</div></div>'.
+           '<div class="row FilaDeposito "><div class="col s2 offset-s4">Total Ingresos </div>'.
+           '<div class="col s1 offset-s1 border">'.toMoney($valIngredos).'</div></div>'.
+           '</div>';
+			$sqlDepositos = "SELECT fecha,comprobante,nocuenta,banco,monto FROM deposito WHERE idcaja='".$dato[0]."' ";
+			$totalD=0;
+ 		if($resultadoDepositos = $mysql->query($sqlDepositos))
+    {
+			if($resultadoDepositos->num_rows>0)
+			{
+					while($filaDepositos = $resultadoDepositos->fetch_row())
+					{
+							$form .='<div class="row FilaDeposito"><div class="col s1 offset-s0">'.$filaDepositos['3'].'</div>'.
+											'<div class="col s3">'.($filaDepositos['1']==''?'':$filaDepositos['1']).'</div>'.
+											'<div class="col s1">'.toMoney($filaDepositos['4']).'</div></div>';	
+							$totalD += floatval($filaDepositos['4']);			
+					}
+				$resultadoDepositos->free();    
+			}
+			else
+			{
+				
+			}
+    
+    }
+    else
+    {   
+    
+    	
+    
+    }
+		$form .='<div class="row FilaDeposito"><div class="col s3 offset-s4">(-) Depositos Bancarios</div>'.
+						'<div class="col s1 offset-s">'.toMoney($totalD).'</div></div>';
+		$sqlDepositos = "select cl.nombre,sum(v.total) from cuentascobrar cc inner join ventas v on v.idventas=cc.idventas inner join cliente cl on cl.idcliente=v.idcliente  WHERE (v.fecha between '".$dato[3]."' and '".$dato[2]."') and v.estado>=1 and v.tipoventa=2 group by cl.nombre;";
+  
+			$totalC=0;
+ 		if($resultadoDepositos = $mysql->query($sqlDepositos))
+    {
+			if($resultadoDepositos->num_rows>0)
+			{
+					while($filaDepositos = $resultadoDepositos->fetch_row())
+					{
+							$form .='<div class="row FilaDeposito"><div class="col s4 offset-s0">'.$filaDepositos['0'].'</div>'.
+											'<div class="col s1">'.toMoney($filaDepositos['1']).'</div></div>';	
+							$totalC += floatval($filaDepositos['1']);			
+					}
+				$resultadoDepositos->free();    
+			}
+			else
+			{
+				
+			}
+    
+    }
+    else
+    {   
+    
+    	
+    
+    }
+		$form .='<div class="row FilaDeposito"><div class="col s3 offset-s4">(-) Ventas al Credito</div>'.
+						'<div class="col s1 offset-s">'.toMoney($totalC).'</div></div>';
+
+		$sqlDepositos = "select cl.nombre,sum(v.total) from cuentascobrar cc inner join ventas v on v.idventas=cc.idventas inner join cliente cl on cl.idcliente=v.idcliente  WHERE (v.fecha between '".$dato[3]."' and '".$dato[2]."') and v.estado>=1 and v.tipoventa=2 group by cl.nombre;";
+		$sqlDepositos = "select descripcion,(monto) from gastos where (fecha between '".$dato[3]."' and '".$dato[2]."')";
+ 	
+			$totalG=0;
+ 		if($resultadoDepositos = $mysql->query($sqlDepositos))
+    {
+			if($resultadoDepositos->num_rows>0)
+			{
+					while($filaDepositos = $resultadoDepositos->fetch_row())
+					{
+							$form .='<div class="row FilaDeposito"><div class="col s4 offset-s0">'.$filaDepositos['0'].'</div>'.
+											'<div class="col s1">'.toMoney($filaDepositos['1']).'</div></div>';	
+							$totalG += floatval($filaDepositos['1']);			
+					}
+				$resultadoDepositos->free();    
+			}
+			else
+			{
+				
+			}
+    
+    }
+    else
+    {   
+    
+    	
+    
+    }
+
+		$form .='<div class="row FilaDeposito"><div class="col s3 offset-s4">(-) Gastos</div>'.
+           '<div class="col s1 offset-s">'.toMoney($valGasto).'</div></div>'.
+           '<div class="row FilaDeposito"><div class="col s2 offset-s4">Total Egresos </div>'.
+           '<div class="col s1 offset-s1 border">'.toMoney($valGasto+$totalD+$totalC).'</div></div>'.
+           '</div>';
+		$form .='<div class="row FilaDeposito"><div class="col s3 offset-s4">Saldo Final</div>'.
+           '<div class="col s1 offset-s">'.toMoney($valSaldoPC).'</div></div>';
 	//$form['caja']['egresos']+=$form['total'];
-	$form['estatus']=$sqlDetalleCaja;
+	//$form['estatus']=$sqlDetalleCaja;
     $mysql->close();
     
-    echo json_encode($form);
+    echo ($form);
     
 }
 
@@ -589,5 +734,22 @@ function eliminaCaja($dato){
     $mysql->close();
     
     echo ($form);
+}
+function clienteCuenta($idventas, $mysql){
+	$sqlCliente = "(select cl.nombre,cl.apellido from cliente cl inner join ventas v on v.idcliente=cl.idcliente where v.idventas='".$idventas."')";
+						
+						if($resultadoCliente = $mysql->query($sqlCliente))
+						{
+							if($resultadoCliente->num_rows>0)
+							{
+								if($filaCliente = $resultadoCliente->fetch_row())
+								{
+									//array_push($form['DetalleCuentas'][$i], $filaCliente['nombre']);
+									return $filaCliente[0];
+									
+								}
+							}
+							$resultadoCliente->free();  
+						}
 }
 ?>
