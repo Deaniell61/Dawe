@@ -122,7 +122,7 @@
            					 </tr>
         		 	</table>
 				<div id="totalVenta" class="col s10 total">
-                	
+                	0
                 </div>
 				<div id="tablaCotiza" class=""  >
 				 <div id="resumenC" class=""  >
@@ -150,7 +150,8 @@
           </tr>
       </thead>
       <tbody></tbody>
-	  </table></div
+	  </table></div>
+	  <div id="totalCompleto" style="float: right;margin-right: 10%;">0</div>
 					 </div>
             </center>
 
@@ -165,7 +166,8 @@
                     </div>
            </div>
           	 <center><br>
-               <a id="imprimir"  style="display: none"  onClick="document.getElementById('nuevoNoExist').style.display='none';pintarRow();printCoti('tablaCotiza');" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
+               
+			   <a id="imprimir"  style="display: none"  onClick="document.getElementById('nuevoNoExist').style.display='none';pintarRow();printCoti('tablaCotiza');" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
 			</center>
 
       </div>

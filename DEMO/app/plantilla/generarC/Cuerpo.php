@@ -117,7 +117,7 @@
            					 </tr>
         		 	</table>
 				<div id="totalCompra" class="total">
-                	
+                	0
                 </div>
 				 <div id="resumenC"   >
 

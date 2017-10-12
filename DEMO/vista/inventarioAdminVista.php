@@ -47,11 +47,13 @@ else
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto,i.idinventario,p.idproductos FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."' $mas and i.cantidad>=0 and p.estado=1";
+    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto,i.idinventario,p.idproductos,(select pr.nombreempresa from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos=p.idproductos order by c.idcompras desc limit 1),(select c.fecha from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos=p.idproductos order by c.idcompras desc limit 1),(select c.nocomprobante from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos=p.idproductos order by c.idcompras desc limit 1) FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."' $mas and i.cantidad>=0 and p.estado=1";
     $tabla="";
 	$cont=0;
     if($resultado = $mysql->query($sql))
     {
+        
+        $return=array();
 
         if(mysqli_num_rows($resultado)==0)
         {
@@ -63,7 +65,15 @@ else
 
             while($fila = $resultado->fetch_row())
             {
-$cont++;
+                    $return[$cont]=$fila;
+                    $cont++;
+
+            }
+
+            $resultado->free();//librerar variable
+            $cont=0;
+            foreach($return as $fila){
+            $cont++;
                 $tabla .= "<tr>";
 
                 $tabla .="<td>"     .$cont.    "</td>";
@@ -76,21 +86,17 @@ $cont++;
 				$tabla .="<td>" .toMoney($fila["6"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["7"]).      "</td>";
 				$tabla .="<td>" .toMoney($fila["8"]).      "</td>";
-				$tabla .="<td>" .proveedorU($fila["13"]).      "</td>";
-				$tabla .="<td>" .fechaU($fila["13"]).      "</td>";
-				$tabla .="<td>" .noDocU($fila["13"]).      "</td>";
+				$tabla .="<td>" .$fila["14"].      "</td>";//proveedorU($fila["13"],$mysql)
+				$tabla .="<td>" .$fila["15"].      "</td>";//fechaU($fila["13"],$mysql)
+				$tabla .="<td>" .$fila["16"].      "</td>";//noDocU($fila["13"],$mysql)
 				
        			$tabla .="<td><a class='waves-effect waves-light btn orange lighten-1 modal-trigger botonesm editar' onclick=\"editar('".$fila["12"]."')\")\"><i class='material-icons left'><img class='iconoeditcrud' src='../app/img/editar.png' /></i></a>";
         		if($_SESSION['SOFT_ACCESOElimina'.'inventario']=='1')
 				{
-                $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onClick=\"eliminaInven('".$fila["2"]."','".$fila["12"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
+                    $tabla .="<a class='waves-effect waves-light btn red lighten-1 modal-trigger botonesm modaleliminar' onClick=\"eliminaInven('".$fila["2"]."','".$fila["12"]."');\"><i class='material-icons left'><img class='iconoaddcrud' src='../app/img/boton-borrar.png' /></i></a>";
 				}
-		$tabla .="</td>";
-
+		        $tabla .="</td></tr>";
             }
-
-            $resultado->free();//librerar variable
-
 
             $respuesta = $tabla;
         }
@@ -114,9 +120,9 @@ $cont++;
 }
 
 
-function proveedorU($id)
+function proveedorU($id,$mysql)
 {
-	$mysql = conexionMysql();
+	//$mysql = conexionMysql();
     $form="";
     $sql = "select pr.nombreempresa from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos='".$id."' order by c.idcompras desc limit 1";
  	//echo $sql;
@@ -145,14 +151,14 @@ function proveedorU($id)
     }
     
     
-    $mysql->close();
+    //$mysql->close();
     
     return ($form);
 }
 
-function fechaU($id)
+function fechaU($id,$mysql)
 {
-	$mysql = conexionMysql();
+	//$mysql = conexionMysql();
     $form="";
     $sql = "select c.fecha from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos='".$id."' order by c.idcompras desc limit 1";
  	//echo $sql;
@@ -181,14 +187,14 @@ function fechaU($id)
     }
     
     
-    $mysql->close();
+   //$mysql->close();
     
     return (substr($form,0,10));
 }
 
-function noDocU($id)
+function noDocU($id,$mysql)
 {
-	$mysql = conexionMysql();
+	//$mysql = conexionMysql();
     $form="";
     $sql = "select c.nocomprobante from proveedor pr inner join compras c on c.iddistribuidor=pr.idproveedor inner join compradetalle cd on cd.idcompras=c.idcompras where cd.idproductos='".$id."' order by c.idcompras desc limit 1";
  	//echo $sql;
@@ -217,7 +223,7 @@ function noDocU($id)
     }
     
     
-    $mysql->close();
+    //$mysql->close();
     
     return ($form);
 }

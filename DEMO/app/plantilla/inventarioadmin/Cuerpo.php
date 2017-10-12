@@ -87,7 +87,7 @@
 
         <!-- ********************************** modal ********************************** -->
 
-        <!-- nuevo --->
+        <!-- nuevo -->
 
         <div id="modal1" class="modal">
             <div class="modal-content">
@@ -150,7 +150,7 @@
 
 
                     <div class="input-field col s10">
-                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/precioespecial.png" /></i>
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/precioEspecial.png" /></i>
                         <input id="precioE"  disabled type="number" class="validate">
                         <label for="icon_prefix" ><span class="etiquelogin">Precio Especial</span></label>
                     </div>
@@ -163,13 +163,13 @@
 
 
                     <div class="input-field col s10">
-                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/preciomayoreo.png" /></i>
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/precioMayoreo.png" /></i>
                         <input id="precioM"  disabled type="number" class="validate">
                         <label for="icon_prefix" ><span class="etiquelogin">Precio Mayoreo</span></label>
                     </div>
                     
                     <div class="input-field col s10">
-                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/preciomayoreo.png" /></i>
+                        <i class="material-icons prefix"><img class="iconologin" src="../app/img/precioMayoreo.png" /></i>
                         <input id="MinimoCant"  type="number" class="validate">
                         <label for="icon_prefix" ><span class="etiquelogin">Cantidad Minima</span></label>
                     </div>

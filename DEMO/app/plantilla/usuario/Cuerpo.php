@@ -73,7 +73,7 @@
 
         <!-- ********************************** modal ********************************** -->
 
-        <!-- nuevo --->
+        <!-- nuevo -->
 
         <div id="modal1" class="modal">
             <div class="modal-content">

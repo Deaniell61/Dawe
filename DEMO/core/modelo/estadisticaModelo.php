@@ -925,17 +925,25 @@ $fecha3 = date ( 'Y-m-d' , $nuevafecha3 );
 		}
 		
 	//Sueldos!!!!!
-		$sql="SELECT sum(c.monto)+(select sum(co.monto) from comisiones co where (co.fechaINI>='".$datos[0]."' and co.fechaFin<='".$fecha3."')) FROM sueldos c where (c.fecha>'".$datos[0]."' and c.fecha<='".$fecha3."') and c.estado=1;";
+		$sql="SELECT sum(c.monto) FROM sueldos c where (c.fecha>'".$datos[0]."' and c.fecha<='".$fecha3."') and c.estado=1;";
 		if($resultadoC = $mysql->query($sql))
 		{
 			
 			if($resultadoC->num_rows>0)
 				{
+					$resultadoComision=$mysql->query("(select sum(co.total) from comisiones co where co.estado=1 and (co.fechaINI>='".$datos[0]."' and co.fechaFin<='".$fecha3."'))");
 					$contar2=0;
-					while($rowC = $resultadoC->fetch_row())
+					$comision=0;
+					if($rowC = $resultadoC->fetch_row())
 					{
-						
-						$form.= "document.getElementById('sueldos111').value='".toMoney($rowC[0])."';\n";
+						if($resultadoComision->num_rows>0){
+							$rowComision=$resultadoComision->fetch_row();
+							if($rowComision[0]>=1){	
+								$comision=$rowComision[0];
+							}
+						}
+						$comision+=$rowC[0];
+						$form.= "document.getElementById('sueldos111').value='".toMoney($comision)."';\n";
 							
 							
 					}

@@ -534,7 +534,7 @@ function  buscarMarca($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT marca2 from productos WHERE marca2 like '%".$dato[0]."%'";
+    $sql = "SELECT marca2 from productos WHERE marca2 like '%".$dato[0]."%' group by marca2";
  
     if($resultado = $mysql->query($sql))
     {
