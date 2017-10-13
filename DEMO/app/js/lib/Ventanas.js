@@ -5,69 +5,69 @@
 
 $('#inicio').click(function(){
 
-    window.location.href="Inicio.php";
+    window.location.href="?Inicio";
 });
 
 $('#usuario').click(function(){
 
-    window.location.href="Usuarios.php";
+    window.location.href="?Usuarios";
 });
 
 $('#compras').click(function(){
 
-    window.location.href="Compras.php";
+    window.location.href="?Compras";
 });
 
 $('#anularC').click(function(){
 
-    window.location.href="CompraAnulada.php";
+    window.location.href="?CompraAnulada";
 });
 
 $('#ventas').click(function(){
 
-    window.location.href="Ventas.php";
+    window.location.href="?Ventas";
 });
 
 $('#anularV').click(function(){
 
-    window.location.href="VentaAnulada.php";
+    window.location.href="?VentaAnulada";
 });
 
 $('#inventario').click(function(){
 
-    window.location.href="Inventario.php";
+    window.location.href="?Inventario";
 });
 
 $('#cuentas').click(function(){
 
-    window.location.href="Cuentas.php";
+    window.location.href="?Cuentas";
 });
 
 $('#estadistica').click(function(){
 
-    window.location.href="Estadistica.php";
+    window.location.href="?Estadistica";
 });
 
 $('#clientes1').click(function(){
 
-    window.location.href="AClientes.php";
+    window.location.href="?AClientes";
 });
 
 $('#proveedores1').click(function(){
 
-    window.location.href="AProveedores.php";
+    window.location.href="?AProveedores";
 });
 
 $('#ayuda').click(function(){
 
-  window.location.href="Ayuda.php";
+  window.location.href="?Ayuda";
 
 
 });
 
 $('#pagos').click(function(){
 
-  window.location.href="Pagos.php";
+  window.location.href="?Pagos";
 
 
 });
@@ -76,43 +76,43 @@ $('#pagos').click(function(){
 
 $('#compraL').click(function(){
 
-    window.location.href="Compras.php";
+    window.location.href="?Compras";
 });
 
 $('#generarC').click(function(){
 
-  window.location.href="GenerarCompras.php";
+  window.location.href="?GenerarCompras";
 
 
 });
 $('#generarV').click(function(){
 
-  window.location.href="GenerarVentas.php";
+  window.location.href="?GenerarVentas";
 
 
 });
 
 $('#ventaL').click(function(){
 
-    window.location.href="Ventas.php";
+    window.location.href="?Ventas";
 });
 
 $('#inventarioV').click(function(){
 
-  window.location.href="Inventario.php";
+  window.location.href="?Inventario";
 
 
 });
 $('#inventarioA').click(function(){
 
-  window.location.href="InventarioAdministrador.php";
+  window.location.href="?InventarioAdministrador";
 
 
 });
 
 $('#inventarioI').click(function(){
 
-  window.location.href="InventarioInicial.php";
+  window.location.href="?InventarioInicial";
 
 
 });
@@ -121,7 +121,7 @@ $('#inventarioI').click(function(){
 
 $('#vendedor').click(function(){
 
-  window.location.href="Vendedor.php";
+  window.location.href="?Vendedor";
 
 
 });
@@ -129,14 +129,14 @@ $('#vendedor').click(function(){
 
 $('#flujo').click(function(){
 
-  window.location.href="Flujo.php";
+  window.location.href="?Flujo";
 
 
 });
 
 $('#estadisticaClientes').click(function(){
 
-  window.location.href="EstadisticaClientes.php";
+  window.location.href="?EstadisticaClientes";
 
 
 });
@@ -144,7 +144,7 @@ $('#estadisticaClientes').click(function(){
 
 $('#estadisticaVentas').click(function(){
 
-  window.location.href="estadisticaVenta.php";
+  window.location.href="?estadisticaVenta";
 
 
 });
@@ -154,21 +154,21 @@ $('#estadisticaVentas').click(function(){
 
 $('#sueldo').click(function(){
 
-  window.location.href="Sueldos.php";
+  window.location.href="?Sueldos";
 
 
 });
 
 $('#comi').click(function(){
 
-  window.location.href="Comisiones.php";
+  window.location.href="?Comisiones";
 
 
 });
 
 $('#gastos').click(function(){
 
-  window.location.href="Gastos.php";
+  window.location.href="?Gastos";
 
 
 });
@@ -183,12 +183,12 @@ $('#gastos').click(function(){
 
 $('#empleado').click(function(){
 
-    window.location.href="Empleado.php";
+    window.location.href="?Empleado";
 });
 
 $('#usuarioUsu').click(function(){
 
-    window.location.href="Usuarios.php";
+    window.location.href="?Usuarios";
 });
 
 
@@ -198,12 +198,12 @@ $('#usuarioUsu').click(function(){
 
 $('#cobrar').click(function(){
 
-    window.location.href="Cobrar.php";
+    window.location.href="?Cobrar";
 });
 
 $('#pagar').click(function(){
 
-    window.location.href="Pagar.php";
+    window.location.href="?Pagar";
 });
 
 
