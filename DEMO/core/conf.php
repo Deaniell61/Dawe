@@ -1,14 +1,14 @@
 <?php
-define('HOST','localhost');
-define('USER','root');
-define('PASS','1234');
-define('DB','softronic');
+// define('HOST','localhost');
+// define('USER','root');
+// define('PASS','1234');
+// define('DB','softronic');
 
-/*
+
 define('HOST','localhost');
 define('USER','u178999177_demo');
 define('PASS','4Z6Q0YW1IuXY');
-define('DB','u178999177_demo');*/
+define('DB','u178999177_demo');
 
 /*
 define('HOST','mysql.hostinger.mx');
