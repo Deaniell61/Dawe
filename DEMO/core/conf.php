@@ -10,6 +10,11 @@ define('USER','u178999177_demo');
 define('PASS','4Z6Q0YW1IuXY');
 define('DB','u178999177_demo');
 
+// define('HOST','localhost');
+// define('USER','u317807066_erp');
+// define('PASS','DEf0n4eXqqIN');
+// define('DB','u317807066_erp');
+
 /*
 define('HOST','mysql.hostinger.mx');
 define('USER','u757044153_dev');
