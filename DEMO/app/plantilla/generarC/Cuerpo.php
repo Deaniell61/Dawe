@@ -162,7 +162,7 @@
 
           <!-- ********************************** modal ********************************** -->
 
-          <!-- nuevo --->
+          <!-- nuevo -->
 
           <div id="modal1" class="modal">
               <div class="modal-content">
@@ -302,7 +302,6 @@
 
               <div class="modal-footer">
                   <a id="modalnuevo" onClick="ingresoCompra(document.getElementById('codigo').value);" class=" modal-action waves-effect waves-light btn blue lighten-1 " >Aceptar</a></div>
- <script>inicio();</script>
 
               </div>
           </div>

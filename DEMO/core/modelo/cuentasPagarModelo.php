@@ -47,7 +47,7 @@ function editarCuentasP($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idcompras,(select c.nombreempresa from proveedor c where c.idproveedor=v.iddistribuidor limit 1) FROM cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras WHERE cc.estado=1 and cc.idcuentasP='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idcompras,(select c.nombreempresa from proveedor c where c.idproveedor=v.iddistribuidor limit 1) FROM cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras WHERE cc.idcuentasP='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {
@@ -98,7 +98,7 @@ function verCuentaP($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idcompras,(select c.nombreempresa from proveedor c where c.idproveedor=v.iddistribuidor limit 1),(select c.direccion from proveedor c where c.idproveedor=v.iddistribuidor limit 1),(select c.telefono from proveedor c where c.idproveedor=v.iddistribuidor limit 1) FROM cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras WHERE cc.estado=1 and cc.idcuentasP='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idcompras,(select c.nombreempresa from proveedor c where c.idproveedor=v.iddistribuidor limit 1),(select c.direccion from proveedor c where c.idproveedor=v.iddistribuidor limit 1),(select c.telefono from proveedor c where c.idproveedor=v.iddistribuidor limit 1) FROM cuentaspagar cc inner join compras v on v.idcompras=cc.idcompras WHERE cc.idcuentasP='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {

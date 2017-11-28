@@ -61,6 +61,10 @@
         include('Cobrar.php');
     }else if(isset($_GET['Pagar'])){
         include('Pagar.php');
+    }else if(isset($_GET['CobrarPagadas'])){
+        include('CobrarPagadas.php');
+    }else if(isset($_GET['PagarPagadas'])){
+        include('PagarPagadas.php');
     }else{?>
           <script>
     window.location.href="../";

@@ -160,6 +160,16 @@ if($_POST)
         mostrarCuentasC($datos);
 
     }
+    else if($transaccion == 14)
+    {
+
+        $datos[0]=$nombre = $_POST['tipo'];
+		
+		
+		        
+        mostrarCuentasCPagadas($datos);
+
+    }
     
 //----------- fin gestion ----------/    
     

@@ -32,7 +32,7 @@ $busca="";
         <?php
 	$extra="";
     $mysql = conexionMysql();
-     $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,(select tv.Descripcion from tipocompra tv where tv.idtipo=c.tipocompra),c.idcompras FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor inner join compradetalle cd on cd.idcompras=c.idcompras inner join productos pd on pd.idproductos=cd.idproductos where c.estado=1 and cd.estado=1 and pd.tiporepuesto='".$datos[0]."' $busca group by c.idcompras order by c.fecha desc";
+     $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,(select tv.Descripcion from tipocompra tv where tv.idtipo=c.tipocompra),c.idcompras FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor inner join compradetalle cd on cd.idcompras=c.idcompras inner join productos pd on pd.idproductos=cd.idproductos where c.estado=1 and cd.estado=1 $busca group by c.idcompras order by c.fecha desc";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {
@@ -237,7 +237,7 @@ $busca="";
         <?php
 	$extra="";
     $mysql = conexionMysql();
-     $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,(select tv.Descripcion from tipocompra tv where tv.idtipo=c.tipocompra),c.idcompras FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor inner join compradetalle cd on cd.idcompras=c.idcompras inner join productos pd on pd.idproductos=cd.idproductos where (c.fecha<='".$datos[2]."' and c.fecha>='".$datos[1]."') and c.estado=1 and cd.estado=1 and pd.tiporepuesto='".$datos[0]."' $busca group by c.idcompras order by c.fecha desc";
+     $sql = "SELECT c.fecha,c.nocomprobante,p.nit,p.nombreempresa,c.total,(select tv.Descripcion from tipocompra tv where tv.idtipo=c.tipocompra),c.idcompras FROM compras c inner join proveedor p on p.idproveedor=c.iddistribuidor inner join compradetalle cd on cd.idcompras=c.idcompras inner join productos pd on pd.idproductos=cd.idproductos where (c.fecha<='".$datos[2]."' and c.fecha>='".$datos[1]."') and c.estado=1 and cd.estado=1 $busca group by c.idcompras order by c.fecha desc";
     $tabla="";
     if($resultado = $mysql->query($sql))
     {

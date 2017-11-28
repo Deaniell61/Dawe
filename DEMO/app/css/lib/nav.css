@@ -674,3 +674,600 @@ background: white;
 
 
 }
+
+/*descripci*/
+.logoFactura{
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+.logoFact{
+        width: 70px;
+    height: 70px;
+    display: none;
+}
+.diaFactura{
+    /*cuadro de fecha del dia*/
+  
+    width: 10px;
+    float: left;
+    font-size: 13px;
+    margin-top: 120px;
+    margin-left: 300px;
+
+}
+
+.mesFactura{
+    /*cuadro de fecha del mes*/
+   margin-top: 120px;
+    font-size: 13px;   
+   margin-left: 40px;
+  float: left;
+    
+}
+.anioFactura{
+    /*cuadro de fecha del año*/
+     float: left;
+      margin-top: 120px;
+      font-size: 13px;
+      margin-left: 40px;
+
+}
+
+.nombreFactura{
+    /*cuadro de nombre*/
+font-size: 13px;
+width: 300px;   
+float: left; 
+margin-top: 150px;
+margin-left: -330px;    
+}
+
+.nitFactura{
+    /*cuadro de nit*/
+   float: left;
+   margin-top: 150px;
+   font-size: 13px;
+   margin-left: -70px;
+}
+
+.direccionFactura{
+     /*cuadro de direccion*/
+     float: left; 
+     margin-top: 180px;
+      font-size: 10px; 
+      width: 350px;
+     margin-left: -330px; 
+
+}
+.descripcionFactura{
+    /*cuadro de descripcion*/
+    
+}
+.detalleFactura{
+    /*cuadro de detalle de factura donde iran las filas*/
+    
+}
+.filaDetalleFactura{
+    /*fila de la factura*/
+   
+}
+.espaciodetallefactura 
+{
+ margin-top: 35px;
+ /*height: 270px;*/
+}
+
+.cantidadFila{
+    /*columna de cantidad*/
+     padding: 0px;
+     float: left; 
+   margin-left: -80px;
+     
+    
+}
+.descripcionFila{
+    /*columna de descripcion*/
+    float: left; 
+    font-size: 9px; 
+   width: 230px;
+   padding: 0px;
+     margin-left: -40px;
+     
+}
+.unidadFila{
+    /*columna de unidad*/
+  float: left; 
+   width: 50px;
+  padding: 0px;
+     margin-left: 3px;
+        
+}
+.FilaFactura{
+    height: 15px;
+    padding: 0px;
+}
+.subtotalFila{
+    /*columna de subtotal*/
+    float: left; 
+ padding: 0px;
+     margin-left: 25px;
+}
+.totalFactura{
+    /*cuadro de total de factura*/
+        float: left;
+    margin-left: 280px;
+    position: absolute;
+    top: 530px;
+}
+
+.totalFacturaLET{
+    /*cuadro de total de factura*/
+        float: left;
+         font-size: 7px; 
+    margin-left: -80px;
+    width: 320px;
+    position: absolute;
+    top: 532px;
+}
+
+.logoProforma{
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+.logoProf{
+        width: 80px;
+    height: 85px;
+}
+.diaProforma{
+    /*cuadro de fecha del dia*/
+    width: 10px;
+    float: left;
+    margin-top: 108px;
+    margin-left: 340px;
+
+
+}
+.mesProforma{
+    /*cuadro de fecha del mes*/
+   margin-top: 108px;
+   margin-left: 30px;
+  float: left;
+    
+   
+}
+.anioProforma{
+    /*cuadro de fecha del año*/
+     float: left;
+      margin-top: 108px;
+      margin-left: 30px;
+    
+}
+.nombreProforma{
+    /*cuadro de nombre*/
+
+width: 300px;   
+float: left; 
+margin-top: 140px;
+margin-left: -340px;    
+    
+}
+
+.direccionProforma{
+     /*cuadro de direccion*/
+     float: left; 
+     margin-top: 170px;
+    
+     margin-left: -340px; 
+
+}
+
+.descripcionProforma{
+
+}
+    
+.detalleProforma{
+    /*cuadro de detalle de Proforma donde iran las filas*/
+  
+}
+
+.espacioproforma{
+    float: left;
+    margin-top: 35px;
+    border-collapse: collapse;
+}
+
+.filaDetalleProforma{
+    /*fila de la Proforma*/
+    
+}
+.cantidadFilaProforma{
+    /*columna de cantidad*/
+     float: left; 
+   margin-left: 35px;
+   width: 30px;
+     padding: 0px;
+    
+}
+.descripcionFilaProforma{
+    /*columna de descripcion*/
+    float: left; 
+   width: 300px;
+   padding: 0px;
+   font-size: 10px;
+     margin-left: 7px;
+ 
+}
+.unidadFilaProforma{
+    /*columna de unidad*/
+  float: left; 
+   width: 50px;
+       margin-left: -5px;
+        padding: 0px;
+    
+}
+.subtotalFilaProforma{
+    /*columna de subtotal*/
+    float: left; 
+ padding: 0px;
+     margin-left: 25px;
+
+    
+}
+.totalProforma{
+    /*cuadro de total de Proforma*/
+    float: left;
+    margin-left: 450px;
+    position: absolute;
+    top: 600px; 
+    
+}
+.totalProformaLET{
+    /*cuadro de total de Proforma*/
+        float: left;
+    position: absolute;
+    top: 605px;
+    font-size: 5px;
+    width: 300px;
+    padding-left: 70px; 
+    
+}
+
+
+/********** Factura Cambiaria   **************/
+.logoFacturaC{
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+    .logoFactC{
+        width: 70px;
+    height: 70px;
+}
+.diaFacturaC{
+    /*cuadro de fecha del dia*/
+    width: 10px;
+    font-size: 13px;
+    float: left;
+    margin-top: 160px;
+    margin-left: 120px;
+
+
+    
+}
+.mesFacturaC{
+    /*cuadro de fecha del mes*/
+  margin-top: 160px;
+  font-size: 13px;
+   margin-left: 40px;
+  float: left;
+ 
+    
+}
+.anioFacturaC{
+    /*cuadro de fecha del año*/
+     float: left;
+     font-size: 13px;
+      margin-top: 160px;
+      margin-left: 40px;
+    
+}
+.nombreFacturaC{
+    /*cuadro de nombre*/
+
+float: left; 
+width: 400px;  
+font-size: 13px; 
+margin-top: 180px;
+margin-left: -145px;    
+    
+}
+.nitFacturaC{
+    /*cuadro de nit*/
+   float: left;
+   margin-left: 585px;
+   font-size: 13px;
+   margin-top: -23px;
+    
+}
+
+.direccionFacturaC{
+     /*cuadro de direccion*/
+     float: left; 
+     font-size: 13px;
+
+     margin-top: 8px;
+     margin-left: 115px; 
+
+}
+
+.espaciodetallefacturaCambiaria
+{
+ margin-top: 90px;
+    float: left;
+}
+.FilaC{
+    padding: 0px;
+    height: 5px;
+    font-size: 10px;
+}
+.descripcionFacturaC{
+    /*cuadro de descripcion*/
+   
+    
+}
+.detalleFacturaC{
+    /*cuadro de detalle de factura donde iran las filas*/
+    
+}
+.filaDetalleFacturaC{
+    /*fila de la factura*/
+    
+}
+
+
+.codigoC{
+    /*columna de cantidad*/
+     
+    float: left;
+    width: 17px;
+    margin-left: 50px;
+    width: 70px;
+    padding: 0px;
+    
+}
+
+.cantidadFilaC{
+    /*columna de cantidad*/
+     
+    float: left;
+    margin-left: 10px;
+    width: 15px;
+    padding: 0px;
+}
+
+
+.unidadC{
+    /*columna de cantidad*/
+     
+    float: left;
+    margin-left: 10px;
+    width: 80px;
+    padding: 0px;
+    
+}
+
+.descripcionFilaC{
+    /*columna de descripcion*/
+    float: left;
+    width: 280px;
+    margin-left: 2px;
+    padding: 0px;
+     
+    
+}
+.unidadFilaC{
+    /*columna de unidad*/
+ float: left;
+    width: 50px;
+    margin-left: 10px;
+    padding: 0px;
+ 
+    
+}
+.subtotalFilaC{
+    /*columna de subtotal*/
+    float: left;
+    margin-left: 45px;
+    padding: 0px;
+    
+}
+.totalFacturaC{
+    /*cuadro de total de factura*/
+        float: left;
+    margin-left: 580px;
+    position: absolute;
+    top: 630px;
+    
+}
+.totalFacturaCLET{
+    /*cuadro de total de factura*/
+        float: left;
+    position: absolute;
+    top: 630px;
+    width: 360px;
+    font-size: 5px;
+    margin-left: 150px;
+    
+}
+.FilaDeposito{
+    padding: 0px;
+    margin: 0px;
+}
+
+.fechaFila{
+    padding: 0px;
+}
+.noCuentaFila{
+    padding: 0px;
+}
+.bancoFila{
+    padding: 0px;
+}
+.montoFila{
+    padding: 0px;
+}
+
+/* imprimir cheque BAM cuentas por*/
+.lugarFecha{
+            width: 60%;
+    display: inline;
+    margin-left: 10%;
+    float: left;
+    margin-top: -65px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.CantidadNumero{
+        width: 20%;
+    display: inline;
+
+    margin-top: -65px;
+    float: right;
+    margin-right: 18%;
+    font-size: 15px;
+}
+.PagoA{
+        margin-left: 10%;
+        margin-top: -34px;
+        float: left;
+    font-size: 15px;
+}
+.sumaDe{
+            margin-left: 10%;
+    margin-top: -5px;
+    float: left;
+    width: 400px;
+    font-size: 7px;
+        
+}
+.divimpresion11{
+    margin-top: 100px;
+}
+
+/* imprimir cheque BAM cuentas por*/
+.lugarFechaBI{
+            width: 60%;
+    display: inline;
+    margin-left: 10%;
+    float: left;
+    margin-top: -60px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.CantidadNumeroBI{
+        width: 20%;
+    display: inline;
+
+    margin-top: -60px;
+    float: right;
+    margin-right: 20%;
+    font-size: 15px;
+}
+.PagoABI{
+        margin-left: 10%;
+        margin-top: -34px;
+        float: left;
+    font-size: 15px;
+}
+.sumaDeBI{
+            margin-left: 10%;
+    margin-top: -5px;
+    float: left;
+    width: 400px;
+    font-size: 7px;
+        
+}
+.divimpresion11BI{
+    margin-top: 100px;
+}
+
+/****************************/
+.CuentasTitulo{
+    padding: 0px;
+    font-size: 12px;
+    margin: 0px;
+}
+.FilaCuentasCliente{
+    padding: 0px;
+
+}
+.CuentasCliente{
+    border-style: groove;
+    padding: 0px;
+    margin-top: 10px;
+}
+.CuentasClienteColumna{
+    padding: 0px;
+    text-align: center;
+     font-size: 10px;
+      border-style: groove;
+}
+
+.FilaInventarioT{
+    padding: 0px;
+}
+.InventarioColumnaT{
+        font-size: 10px;
+    padding: 0px;
+    border-style: groove;
+    text-align: left;
+    border-width: thin;
+}
+
+.InventarioColumnaTProd{
+    font-size: 10px;
+padding: 0px;
+border-style: groove;
+text-align: left;
+border-width: thin;
+width: 30%;
+}
+
+
+.FilaInventario{
+    padding: 0px;
+}
+.InventarioColumna{
+    font-size: 8px;
+    padding: 0px;
+    border-style: none;
+    text-align: left;
+}
+
+#impresion{
+    font-size: 10px;
+    padding: 0px;
+}
+#impresion h5{
+    font-size: 12px;
+    padding: 0px;
+    margin-bottom: 0px;
+}
+.FilaDeposito th{
+    padding: 0px;
+}
+#impresion .depositos{
+    width: 50%;
+}
+
+#impresion .depositosTabla{
+    width: 100%;
+}
+
+.border{
+    border-top: solid;
+}

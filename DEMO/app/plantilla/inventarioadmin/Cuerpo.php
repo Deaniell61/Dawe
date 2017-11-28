@@ -41,7 +41,7 @@
                   <li class="centrarli"><a id="imprimirT" onClick="printInv(2);" class="amber accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/imprimir.png" /></i>Imprimir Sin Precio</a></li>
                 </center>
                 <br>
-     <div>
+     <div style="display:none;">
         <center>
             <div class="radioFiltro">
                 <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/motocicleta.png" /></i>
@@ -103,7 +103,7 @@
 
                         </div>
                     </div>
-                     <div class="input-field col s10">
+                     <div class="input-field col s10" style="display:none;">
                       
                         <input id="idproducto" disabled type="text" class="validate">
                         <input id="idproducto2" disabled type="text" class="validate">

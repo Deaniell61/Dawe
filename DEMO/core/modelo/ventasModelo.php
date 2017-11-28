@@ -136,7 +136,7 @@ function quitaInventario($datos)
 					{
 							
 									
-							//		 echo "<script>window.location.href = 'Ventas.php';/script>";
+							//		 echo "<script>window.location.href = '?Ventas';/script>";
 									//echo '2';
 							if(!$mysql->query("update ventas set estado=1 where idVentas='".$_SESSION['idVenta']."'"))
 									 {
@@ -163,7 +163,7 @@ function quitaInventario($datos)
 										
 						
 										$mysql->query("COMMIT");
-										echo "<script>setTimeout(function(){window.location.href=\"Ventas.php\";},300);</script>";
+										echo "<script>setTimeout(function(){window.location.href=\"?Ventas\";},300);</script>";
 									}
 						
 							
@@ -614,4 +614,82 @@ function  buscarPlazoCuentaCobrar($dato)
     
 }
 
+
+function  datosFactura($dato)
+{
+    
+
+    $mysql = conexionMysql();
+    $form=array();
+	
+    $sqlVenta = "SELECT v.fecha,c.nombre,c.apellido,c.direccion,c.nit,v.idventas FROM ventas v inner join cliente c on v.idcliente=c.idcliente WHERE v.idventas='".$dato[0]."' ";
+ 	//echo $sql;
+	 
+    if($resultadoVenta = $mysql->query($sqlVenta))
+    {
+      if($resultadoVenta->num_rows>0)
+	  {
+		  $form['estatus']=1;
+		  
+		  if($filaVenta = $resultadoVenta->fetch_row())
+		  {
+			$form['venta'] = $filaVenta;
+		  	$form['venta']['anio'] = substr($filaVenta[0],0,4);
+			$form['venta']['mes'] = substr($filaVenta[0],5,2);
+			$form['venta']['dia'] = substr($filaVenta[0],8,2);
+			
+		  
+			}
+		$resultadoVenta->free();    
+	  }
+	  else
+	  {
+		$form['estatus']=0;
+	  }
+    
+    }
+    else
+    {   
+    
+    	$form['estatus']=0;
+    
+    }
+
+
+	$sqlDetalleVenta = "SELECT vd.subtotal,vd.cantidad,vd.precio,p.nombre,p.codigoproducto FROM ventasdetalle vd inner join productos p on p.idproductos=vd.idproductos WHERE vd.idventa='".$form['venta'][5]."' ";
+	 //echo $sql;
+	 
+	$form['total'] = 0;
+    if($resultadoDetalleVenta = $mysql->query($sqlDetalleVenta))
+    {
+      if($resultadoDetalleVenta->num_rows>0)
+	  {
+		  $form['estatus']=1;
+		   $i=0;
+		 //  $form['estatus']=$sqlDetalleVenta;
+		  while($filaDetalleVenta = $resultadoDetalleVenta->fetch_assoc())
+		  {
+		  	$form['DetalleVenta'][$i] = $filaDetalleVenta;
+			$form['total'] += $filaDetalleVenta['subtotal'];
+			$i++;
+		}
+		$resultadoDetalleVenta->free();    
+	  }
+	  else
+	  {
+		$form['estatus']=0;
+	  }
+    
+    }
+    else
+    {   
+    
+    $form['estatus']=0;
+    
+    }
+    //$mysql->close();
+    
+    echo json_encode($form);
+    
+}
 ?>

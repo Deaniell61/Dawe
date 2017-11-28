@@ -47,7 +47,7 @@ function editarCuentaC($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idventas,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1) FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas where cc.estado=1 and cc.idcuentasC='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idventas,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1) FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas where cc.idcuentasC='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {
@@ -98,7 +98,7 @@ function verCuentaC($dato)
 
     $mysql = conexionMysql();
     $form="";
-    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idventas,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1),(select c.direccion from cliente c where c.idcliente=v.idcliente limit 1),(select c.telefono from cliente c where c.idcliente=v.idcliente limit 1) FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas where cc.estado=1 and cc.idcuentasC='".$dato[0]."' ";
+    $sql = "SELECT cc.fecha,cc.plazo,cc.tipoPlazo,cc.creditodado,cc.total,cc.idventas,(select c.nombre from cliente c where c.idcliente=v.idcliente limit 1),(select c.apellido from cliente c where c.idcliente=v.idcliente limit 1),(select c.direccion from cliente c where c.idcliente=v.idcliente limit 1),(select c.telefono from cliente c where c.idcliente=v.idcliente limit 1) FROM cuentascobrar cc inner join ventas v on v.idventas=cc.idventas where cc.idcuentasC='".$dato[0]."' ";
 
     if($resultado = $mysql->query($sql))
     {

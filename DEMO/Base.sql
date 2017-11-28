@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 18-10-2017 a las 17:20:33
--- Versión del servidor: 5.7.19-0ubuntu0.16.04.1
+-- Tiempo de generación: 27-11-2017 a las 12:50:13
+-- Versión del servidor: 5.7.20-0ubuntu0.16.04.1
 -- Versión de PHP: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `demoBase`
+-- Base de datos: `bicicasa`
 --
 
 -- --------------------------------------------------------
@@ -135,7 +135,8 @@ CREATE TABLE `compras` (
   `tipoCompra` int(11) DEFAULT NULL,
   `NoComprobante` varchar(45) DEFAULT NULL,
   `idDistribuidor` int(11) DEFAULT NULL,
-  `idUsuario` int(11) DEFAULT NULL
+  `idUsuario` int(11) DEFAULT NULL,
+  `idsucursal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -167,7 +168,8 @@ CREATE TABLE `cuentascobrar` (
   `idVentas` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   `CreditoDado` double DEFAULT NULL,
-  `fecha_ant` date DEFAULT NULL
+  `fecha_ant` date DEFAULT NULL,
+  `idsucursal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -185,7 +187,8 @@ CREATE TABLE `cuentaspagar` (
   `idCompras` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   `CreditoDado` double DEFAULT NULL,
-  `fecha_ant` date DEFAULT NULL
+  `fecha_ant` date DEFAULT NULL,
+  `idsucursal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -232,7 +235,8 @@ CREATE TABLE `empleados` (
   `Direccion` varchar(50) DEFAULT NULL,
   `Puesto` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
-  `sueldo` double DEFAULT NULL
+  `sueldo` double DEFAULT NULL,
+  `idsucursal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -246,7 +250,8 @@ CREATE TABLE `gastos` (
   `fecha` date DEFAULT NULL,
   `Descripcion` text,
   `Monto` double DEFAULT NULL,
-  `Estado` int(11) DEFAULT NULL
+  `Estado` int(11) DEFAULT NULL,
+  `idsucursal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -263,7 +268,8 @@ CREATE TABLE `inventario` (
   `precioClienteEs` double DEFAULT NULL,
   `precioDistribuidor` double DEFAULT NULL,
   `cantidad` double DEFAULT NULL,
-  `minimo` double DEFAULT '0'
+  `minimo` double DEFAULT '0',
+  `idsucursal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -449,6 +455,21 @@ INSERT INTO `roles` (`idRol`, `Descripcion`, `ModulosDefecto`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `sucursal`
+--
+
+CREATE TABLE `sucursal` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `direccion` varchar(150) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `codigo` varchar(20) DEFAULT NULL,
+  `descripcion` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `sueldos`
 --
 
@@ -544,16 +565,17 @@ CREATE TABLE `usuarios` (
   `Contra` varchar(20) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   `idRol` int(11) DEFAULT NULL,
-  `idEmpleados` int(11) DEFAULT NULL
+  `idEmpleados` int(11) DEFAULT NULL,
+  `idsucursal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuarios`, `Email`, `user`, `Contra`, `estado`, `idRol`, `idEmpleados`) VALUES
-(0, NULL, 'foxy', 'foxylabs', 1, 0, NULL),
-(4, NULL, 'usuario', '123456789', 1, 2, NULL);
+INSERT INTO `usuarios` (`idUsuarios`, `Email`, `user`, `Contra`, `estado`, `idRol`, `idEmpleados`, `idsucursal`) VALUES
+(0, NULL, 'admin', 'foxylabs', 1, 0, NULL, NULL),
+(4, NULL, 'usuario', '123456789', 1, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -569,7 +591,8 @@ CREATE TABLE `ventas` (
   `tipoVenta` int(11) DEFAULT NULL,
   `nocomprobante` int(11) DEFAULT '1',
   `idCliente` int(11) DEFAULT NULL,
-  `idUsuario` int(11) DEFAULT NULL
+  `idUsuario` int(11) DEFAULT NULL,
+  `idsucursal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -635,7 +658,8 @@ ALTER TABLE `compras`
   ADD PRIMARY KEY (`idCompras`),
   ADD KEY `CompraDistribuidor_idx` (`idDistribuidor`),
   ADD KEY `CompraTipo_idx` (`tipoCompra`),
-  ADD KEY `ComprasUsuario` (`idUsuario`);
+  ADD KEY `ComprasUsuario` (`idUsuario`),
+  ADD KEY `fk_comprasSucursal` (`idsucursal`);
 
 --
 -- Indices de la tabla `correos`
@@ -648,14 +672,16 @@ ALTER TABLE `correos`
 --
 ALTER TABLE `cuentascobrar`
   ADD PRIMARY KEY (`idCuentasC`),
-  ADD UNIQUE KEY `idCompras` (`idVentas`);
+  ADD UNIQUE KEY `idCompras` (`idVentas`),
+  ADD KEY `fk_cuentascobrarSucursal` (`idsucursal`);
 
 --
 -- Indices de la tabla `cuentaspagar`
 --
 ALTER TABLE `cuentaspagar`
   ADD PRIMARY KEY (`idCuentasP`),
-  ADD UNIQUE KEY `idVentas` (`idCompras`);
+  ADD UNIQUE KEY `idVentas` (`idCompras`),
+  ADD KEY `fk_cuentaspagarSucursal` (`idsucursal`);
 
 --
 -- Indices de la tabla `departamentos`
@@ -675,20 +701,23 @@ ALTER TABLE `distribuidores`
 --
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`idEmpleados`),
-  ADD KEY `EmpleadoPuesto_idx` (`Puesto`);
+  ADD KEY `EmpleadoPuesto_idx` (`Puesto`),
+  ADD KEY `fk_empleadosSucursal` (`idsucursal`);
 
 --
 -- Indices de la tabla `gastos`
 --
 ALTER TABLE `gastos`
-  ADD PRIMARY KEY (`idGastos`);
+  ADD PRIMARY KEY (`idGastos`),
+  ADD KEY `fk_gastosSucursal` (`idsucursal`);
 
 --
 -- Indices de la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD PRIMARY KEY (`idInventario`),
-  ADD KEY `InventarioProducto_idx` (`idProducto`);
+  ADD KEY `InventarioProducto_idx` (`idProducto`),
+  ADD KEY `fk_inventarioSucursal` (`idsucursal`);
 
 --
 -- Indices de la tabla `marca`
@@ -759,6 +788,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`idRol`);
 
 --
+-- Indices de la tabla `sucursal`
+--
+ALTER TABLE `sucursal`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `sueldos`
 --
 ALTER TABLE `sueldos`
@@ -795,7 +830,8 @@ ALTER TABLE `tipoventa`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuarios`),
   ADD KEY `UsuarioEmpleado_idx` (`idEmpleados`),
-  ADD KEY `UsuarioRol_idx` (`idRol`);
+  ADD KEY `UsuarioRol_idx` (`idRol`),
+  ADD KEY `fk_usuariosSucursal` (`idsucursal`);
 
 --
 -- Indices de la tabla `ventas`
@@ -804,7 +840,8 @@ ALTER TABLE `ventas`
   ADD PRIMARY KEY (`idVentas`),
   ADD KEY `ClienteVenta_idx` (`idCliente`),
   ADD KEY `VentaTipo_idx` (`tipoVenta`),
-  ADD KEY `VentasUsuario` (`idUsuario`);
+  ADD KEY `VentasUsuario` (`idUsuario`),
+  ADD KEY `fk_ventasSucursal` (`idsucursal`);
 
 --
 -- Indices de la tabla `ventasdetalle`
@@ -935,6 +972,11 @@ ALTER TABLE `puestos`
 ALTER TABLE `roles`
   MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `sucursal`
+--
+ALTER TABLE `sucursal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `sueldos`
 --
 ALTER TABLE `sueldos`
@@ -1013,19 +1055,22 @@ ALTER TABLE `compradetalle`
 ALTER TABLE `compras`
   ADD CONSTRAINT `CompraProveedor2` FOREIGN KEY (`idDistribuidor`) REFERENCES `proveedor` (`idproveedor`),
   ADD CONSTRAINT `CompraTipo` FOREIGN KEY (`tipoCompra`) REFERENCES `tipocompra` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ComprasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`);
+  ADD CONSTRAINT `ComprasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
+  ADD CONSTRAINT `fk_comprasSucursal` FOREIGN KEY (`idsucursal`) REFERENCES `sucursal` (`id`);
 
 --
 -- Filtros para la tabla `cuentascobrar`
 --
 ALTER TABLE `cuentascobrar`
-  ADD CONSTRAINT `CuentasVentas` FOREIGN KEY (`idVentas`) REFERENCES `ventas` (`idVentas`);
+  ADD CONSTRAINT `CuentasVentas` FOREIGN KEY (`idVentas`) REFERENCES `ventas` (`idVentas`),
+  ADD CONSTRAINT `fk_cuentascobrarSucursal` FOREIGN KEY (`idsucursal`) REFERENCES `sucursal` (`id`);
 
 --
 -- Filtros para la tabla `cuentaspagar`
 --
 ALTER TABLE `cuentaspagar`
-  ADD CONSTRAINT `CuentasCompras` FOREIGN KEY (`idCompras`) REFERENCES `compras` (`idCompras`);
+  ADD CONSTRAINT `CuentasCompras` FOREIGN KEY (`idCompras`) REFERENCES `compras` (`idCompras`),
+  ADD CONSTRAINT `fk_cuentaspagarSucursal` FOREIGN KEY (`idsucursal`) REFERENCES `sucursal` (`id`);
 
 --
 -- Filtros para la tabla `distribuidores`
@@ -1037,13 +1082,21 @@ ALTER TABLE `distribuidores`
 -- Filtros para la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  ADD CONSTRAINT `EmpleadoPuesto` FOREIGN KEY (`Puesto`) REFERENCES `puestos` (`idPuestos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `EmpleadoPuesto` FOREIGN KEY (`Puesto`) REFERENCES `puestos` (`idPuestos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_empleadosSucursal` FOREIGN KEY (`idsucursal`) REFERENCES `sucursal` (`id`);
+
+--
+-- Filtros para la tabla `gastos`
+--
+ALTER TABLE `gastos`
+  ADD CONSTRAINT `fk_gastosSucursal` FOREIGN KEY (`idsucursal`) REFERENCES `sucursal` (`id`);
 
 --
 -- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  ADD CONSTRAINT `InventarioProducto` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProductos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `InventarioProducto` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProductos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_inventarioSucursal` FOREIGN KEY (`idsucursal`) REFERENCES `sucursal` (`id`);
 
 --
 -- Filtros para la tabla `movimientosc`
@@ -1084,7 +1137,8 @@ ALTER TABLE `sueldos`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `UsuarioEmpleado` FOREIGN KEY (`idEmpleados`) REFERENCES `empleados` (`idEmpleados`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `UsuarioRol` FOREIGN KEY (`idRol`) REFERENCES `roles` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `UsuarioRol` FOREIGN KEY (`idRol`) REFERENCES `roles` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuariosSucursal` FOREIGN KEY (`idsucursal`) REFERENCES `sucursal` (`id`);
 
 --
 -- Filtros para la tabla `ventas`
@@ -1092,7 +1146,8 @@ ALTER TABLE `usuarios`
 ALTER TABLE `ventas`
   ADD CONSTRAINT `VentaCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `VentaTipo` FOREIGN KEY (`tipoVenta`) REFERENCES `tipoventa` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `VentasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`);
+  ADD CONSTRAINT `VentasUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`),
+  ADD CONSTRAINT `fk_ventasSucursal` FOREIGN KEY (`idsucursal`) REFERENCES `sucursal` (`id`);
 
 --
 -- Filtros para la tabla `ventasdetalle`

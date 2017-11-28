@@ -76,7 +76,7 @@
 
           <div id="OtipoCompra" class="input-field col s10">
                                <i  class="material-icons prefix"><img class="iconologin" src="../app/img/TipoC.png"/></i>
-								<select id="tipoVenta" onChange="cambiarTipo(this.value,document.getElementById('codigoVenta').value);comprobarCredito(this);buscarPlazoCuentaCobrar();">
+								<select id="tipoVenta" onChange="cambiarTipo(this.value,document.getElementById('codigoVenta').value,this.value);comprobarCredito(this);buscarPlazoCuentaCobrar();">
 								  <option value="" disabled selected>Credito/Contado/Donación</option>
 								  <option value="2">Credito</option>
 								  <option value="1" selected>Contado</option>
@@ -158,8 +158,11 @@
              <div class="input-field " id="botonGuardar" hidden>
                        <center>
                          <div id="btnGuardar" class="">
+			   				
                            <a id="guardar" onClick="quitaInvetario();" class="waves-effect waves-light btn blue lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/guardar.png" /></i>Guardar</a>
-
+						   <a id="imprimeFa" style="display:none" onClick="imprimirFactura('codigoVenta','mensaje');" class="waves-effect waves-light btn green lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
+						   <a id="imprimeFaC" style="display:none" onClick="imprimirFacturaCambiaria('codigoVenta','mensaje');" class="waves-effect waves-light btn green lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
+						   <a id="imprimePro" style="display:none" onClick="imprimirProforma('codigoVenta','mensaje');" class="waves-effect waves-light btn green lighten-1 modal-trigger botonG " ><i class="material-icons left"><img class="iconoaddcrud" src="../app/img/imprimir.png" /></i>Imprimir</a>
                          </div>
 
                       </center>

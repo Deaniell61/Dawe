@@ -27,7 +27,7 @@ function mostrarInventario($datos)
         <?php
 
     $mysql = conexionMysql();
-    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto FROM inventario i inner join productos p on p.idproductos=i.idproducto where p.tiporepuesto='".$datos[0]."' and i.cantidad>=0 and p.estado=1";
+    $sql = "SELECT p.nombre,i.preciocosto,p.idproductos,p.codigoproducto,p.descripcion,i.precioCosto,i.precioVenta,i.precioClienteEs,i.precioDistribuidor,i.cantidad,p.marca2,p.codigoproducto FROM inventario i inner join productos p on p.idproductos=i.idproducto where i.cantidad>=0 and p.estado=1";
     $tabla="";
 	$cont=0;
     if($resultado = $mysql->query($sql))

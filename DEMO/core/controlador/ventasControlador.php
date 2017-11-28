@@ -207,6 +207,27 @@ if($_POST)
         mostrarVentasPorFecha($datos);
 
     }
+    else if($transaccion == 19)
+    {
+
+        $datos[0] = $_POST['tipo'];
+		
+		
+		        
+        mostrarVentasSinC($datos);
+
+    }
+    else if($transaccion == 20)
+    {
+
+        $datos[0] = $_POST['id'];
+        $datos[1] = $_POST['tipo'];
+		
+		
+		        
+        datosFactura($datos);
+
+    }
 //----------- fin gestion ----------/    
     
 }

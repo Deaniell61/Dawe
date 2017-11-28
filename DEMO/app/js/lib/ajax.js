@@ -100,8 +100,8 @@ function printDiv(divName)
 }
 
 function printCoti(divName)
-{
-	 var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:right;\">Hector Repuestos</div><div  style=\"height: 18px; text-align:right;\">\"Soluciones con Experiencia\"</div><div  style=\"height: 18px; text-align:right;\">Direccion: Retalhuleu</div><div  style=\"height: 18px; text-align:right;\">Tel. 77737775</div><div  style=\"height: 18px; text-align:right;\">Cel. 42207608</div></div></nav></div><br><p>Cliente: "+document.getElementById('Cliente').value+"</p>";
+{   //<div  style=\"height: 18px; text-align:right;\">\"Soluciones con Experiencia\"</div>
+	 var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:right;\">Bicicasa</div><div  style=\"height: 18px; text-align:right;\">Direccion: 14 avenida 14-56 zona 3 Quetzaltenango.</div><div  style=\"height: 18px; text-align:right;\">Tel. +502 4743-8116</div><div  style=\"height: 18px; text-align:right;\">Cel. +502 5979-7224</div></div></nav></div><br><p>Cliente: "+document.getElementById('Cliente').value+"</p>";
      var printContents = document.head.innerHTML+encab+document.getElementById(divName).innerHTML;
      var originalContents = document.body.innerHTML;
 
@@ -112,6 +112,352 @@ function printCoti(divName)
      document.body.innerHTML = originalContents;
 	 location.reload();
 }
+
+
+
+/** *******************************************************************************numeros a letras */
+function Unidades (num){
+    
+      switch (num) {
+        case 1: return 'UN';
+        case 2: return 'DOS';
+        case 3: return 'TRES';
+        case 4: return 'CUATRO';
+        case 5: return 'CINCO';
+        case 6: return 'SEIS';
+        case 7: return 'SIETE';
+        case 8: return 'OCHO';
+        case 9: return 'NUEVE';
+        }
+    
+        return '';
+    }//Unidades()
+    
+    function Decenas(num){
+    
+        decena = Math.floor(num/10);
+        unidad = num-(decena * 10);
+    
+        switch(decena)
+        {
+            case 1:
+                switch(unidad)
+                {
+                    case 0: return 'DIEZ';
+                    case 1: return 'ONCE';
+                    case 2: return 'DOCE';
+                    case 3: return 'TRECE';
+                    case 4: return 'CATORCE';
+                    case 5: return 'QUINCE';
+                    default: return 'DIECI' + Unidades(unidad);
+                }
+            case 2:
+                switch(unidad)
+                {
+                    case 0: return 'VEINTE';
+                    default: return 'VEINTI' + Unidades(unidad);
+                }
+            case 3: return DecenasY('TREINTA', unidad);
+            case 4: return DecenasY('CUARENTA', unidad);
+            case 5: return DecenasY('CINCUENTA', unidad);
+            case 6: return DecenasY('SESENTA', unidad);
+            case 7: return DecenasY('SETENTA', unidad);
+            case 8: return DecenasY('OCHENTA', unidad);
+            case 9: return DecenasY('NOVENTA', unidad);
+            case 0: return Unidades(unidad);
+        }
+    }//Unidades()
+    
+    function DecenasY(strSin, numUnidades) {
+        if (numUnidades > 0)
+        return strSin + ' Y ' + Unidades(numUnidades)
+    
+        return strSin;
+    }//DecenasY()
+    
+    function Centenas(num) {
+        centenas = Math.floor(num / 100);
+        decenas = num-(centenas * 100);
+    
+        switch(centenas)
+        {
+            case 1:
+                if (decenas > 0)
+                    return 'CIENTO ' + Decenas(decenas);
+                return 'CIEN';
+            case 2: return 'DOSCIENTOS ' + Decenas(decenas);
+            case 3: return 'TRESCIENTOS ' + Decenas(decenas);
+            case 4: return 'CUATROCIENTOS ' + Decenas(decenas);
+            case 5: return 'QUINIENTOS ' + Decenas(decenas);
+            case 6: return 'SEISCIENTOS ' + Decenas(decenas);
+            case 7: return 'SETECIENTOS ' + Decenas(decenas);
+            case 8: return 'OCHOCIENTOS ' + Decenas(decenas);
+            case 9: return 'NOVECIENTOS ' + Decenas(decenas);
+        }
+    
+        return Decenas(decenas);
+    }//Centenas()
+    
+    function Seccion(num, divisor, strSingular, strPlural) {
+        cientos = Math.floor(num / divisor)
+        resto = num-(cientos * divisor)
+    
+        letras = '';
+    
+        if (cientos > 0)
+            if (cientos > 1)
+                letras = Centenas(cientos) + ' ' + strPlural;
+            else
+                letras = strSingular;
+    
+        if (resto > 0)
+            letras += '';
+    
+        return letras;
+    }//Seccion()
+    
+    function Miles(num) {
+        divisor = 1000;
+        cientos = Math.floor(num / divisor)
+        resto = num-(cientos * divisor)
+    
+        strMiles = Seccion(num, divisor, 'UN MIL', 'MIL');
+        strCentenas = Centenas(resto);
+    
+        if(strMiles == '')
+            return strCentenas;
+    
+        return strMiles + ' ' + strCentenas;
+    }//Miles()
+    
+    function Millones(num) {
+        divisor = 1000000;
+        cientos = Math.floor(num / divisor)
+        resto = num-(cientos * divisor)
+    
+        strMillones = Seccion(num, divisor, 'UN MILLON DE', 'MILLONES DE');
+        strMiles = Miles(resto);
+    
+        if(strMillones == '')
+            return strMiles;
+    
+        return strMillones + ' ' + strMiles;
+    }//Millones()
+    
+    function NumeroALetras(num) {
+        var data = {
+            numero: num,
+            enteros: Math.floor(num),
+            centavos: (((Math.round(num * 100))-(Math.floor(num) * 100))),
+            letrasCentavos: '',
+            letrasMonedaPlural: 'QUETZALES',//'PESOS', 'Dólares', 'Bolívares', 'etcs'
+            letrasMonedaSingular: 'QUETZALES', //'PESO', 'Dólar', 'Bolivar', 'etc'
+    
+            letrasMonedaCentavoPlural: 'CENTAVOS',
+            letrasMonedaCentavoSingular: 'CENTAVOS'
+        };
+    
+        if (data.centavos > 0) {
+            data.letrasCentavos = 'CON ' + (function (){
+                if (data.centavos == 1)
+                    return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoSingular;
+                else
+                    return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoPlural;
+                })();
+        };
+    
+        if(data.enteros == 0)
+            return 'CERO ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+        if (data.enteros == 1)
+            return Millones(data.enteros) + ' ' + data.letrasMonedaSingular + ' ' + data.letrasCentavos;
+        else
+            return Millones(data.enteros) + ' ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+    }//NumeroALetras()
+    function NumeroALetrasCheque(num) {
+        var data = {
+            numero: num,
+            enteros: Math.floor(num),
+            centavos: (((Math.round(num * 100))-(Math.floor(num) * 100))),
+            letrasCentavos: '',
+            letrasMonedaPlural: 'QUETZALES',//'PESOS', 'Dólares', 'Bolívares', 'etcs'
+            letrasMonedaSingular: 'QUETZALES', //'PESO', 'Dólar', 'Bolivar', 'etc'
+    
+            letrasMonedaCentavoPlural: 'CENTAVOS',
+            letrasMonedaCentavoSingular: 'CENTAVOS'
+        };
+    
+        if (data.centavos > 0) {
+            data.letrasCentavos = 'CON ' + (function (){
+                if (data.centavos == 1)
+                    return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoSingular;
+                else
+                    return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoPlural;
+                })();
+        };
+    
+        if(data.enteros == 0)
+            return 'CERO ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+        if (data.enteros == 1)
+            return Millones(data.enteros) + ' ' + data.letrasMonedaSingular + ' ' + data.letrasCentavos;
+        else
+            return Millones(data.enteros) + ' ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+    }//NumeroALetras()
+    /** **************************************************************************************fin numero a letras */
+    function ImprimirVar(div)
+    {
+            var printin=window.open('Impresion.php?div='+div);
+            
+              //printin.close();
+        
+    }
+    function printCoti(divName)
+    {
+         var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img height='100px' width='100px' src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:center;font-size: 35px;padding-bottom: 30px;\"><strong>Insagro</strong></div><div  style=\"height: 18px; text-align:center;\">Local no.9 Nueva terminal de Buses</div><div  style=\"height: 18px; text-align:center;\">Mazatenango, Suchitepequez</div><div  style=\"height: 18px; text-align:center;\">Tel. 7820-0607</div></div></nav></div><br><p>Cliente: "+document.getElementById('Cliente').value+"</p>";
+         var printContents = document.head.innerHTML+encab+document.getElementById(divName).innerHTML;
+         var originalContents = document.body.innerHTML;
+    
+         document.body.innerHTML = printContents;
+    
+         print();
+    
+         document.body.innerHTML = originalContents;
+         location.reload();
+    }
+    function imprimirFlujo(div)
+    {
+        $('#'+div).html('<div id="impresionCaja"></div>');
+        var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:right;\">Insagro</div><div  style=\"height: 18px; text-align:right;\">\"Lo mejor para tus plantas\"</div><div  style=\"height: 18px; text-align:right;\">Direccion: Mazatenango</div><div  style=\"height: 18px; text-align:right;\">Tel. 77737775</div><div  style=\"height: 18px; text-align:right;\">Cel. 42207608</div></div></nav></div><br>";
+        //$('#impresionDeFactura11').html(encab);
+        
+              var ventas=document.getElementById('ventas111').value.replace("Q","").replace(",","");
+              var abonos=document.getElementById('abonosCobrados1111').value.replace("Q","").replace(",","");
+              var totalVentas=document.getElementById('totalV111').innerHTML.replace("Q","").replace(",","");
+    
+              var compras=document.getElementById('compras111').value.replace("Q","").replace(",","");
+              var sueldos=document.getElementById('sueldos111').value.replace("Q","").replace(",","");
+              var creditosP=document.getElementById('creditosP111').value.replace("Q","").replace(",","");
+              var gVarios=document.getElementById('gVarios111').value.replace("Q","").replace(",","");
+              var totalC=document.getElementById('totalC111').innerHTML.replace("Q","").replace(",","");
+              var grafica=document.getElementById('chart2222').innerHTML;
+               //alert(resp['DetalleVenta'].length);
+               cuerpo="";
+               cuerpo+=encab+'<div class="ingresos">'+
+               '<center><h3>Ingresos</h3></center>'+
+               '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Ventas ................................... '+
+               ''+currency(ventas)+'</div>'+
+               '<div style="width: 50%;text-align: left;margin-left: 50px;">Abonos de Clientes ............... '+
+               ''+currency(abonos)+'</div>'+
+               '<div style="width: 50%;text-align: left;margin-left: 50px;">Total ....................... '+
+               ''+currency(totalVentas)+'</div></center>'+
+               '</div>';
+              cuerpo+='<div class="egresos">'+
+               '<center><h3>Egresos</h3></center>'+
+               '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Gastos .................................. '+
+               ''+currency(gVarios)+'</div></center>'+
+               '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Sueldos ................................. '+
+               ''+currency(sueldos)+'</div></center>'+
+               '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Creditos Pagados ........................ '+
+               ''+currency(creditosP)+'</div></center>'+
+               '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Compras ................................. '+
+               ''+currency(compras)+'</div></center>'+
+               '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Total ................................. '+
+               ''+currency(totalC)+'</div></center>'+
+               '</div>';
+    
+               cuerpo+='<div class="totales">'+
+               '<center><h3>Totales</h3></center>'+
+               '<center><div style="width: 50%;text-align: left;margin-left: 50px;">Ingresos ............................... '+
+               ''+currency(totalVentas)+'(+)</div>'+
+               '<div style="width: 50%;text-align: left;margin-left: 50px;">Egresos ............................... '+
+               ''+currency(totalC)+'(-)</div>'+
+               '<div style="width: 50%;text-align: left;margin-left: 50px;">Totales ................................. '+
+               ''+currency(""+(parseFloat(totalVentas)+parseFloat(totalC)))+'(=)</div></center>'+
+               '</div>';
+    
+               cuerpo+='<br><center><div class="totales" style="text-align: left;color: white;">'+
+              // ''+grafica+''+
+               '</div></center>';
+              $('#impresionCaja').html(cuerpo);
+              //document.getElementById('impresionDeFactura11').print();
+              // setTimeout(function(){printDiv('impresionDeFactura11');},500);
+              ImprimirVar('impresionCaja');
+            
+        
+    }
+    
+    function imprimirCorte(id,div,ff,fI)
+    {
+        $('#'+div).html('<div id="impresionCaja"></div>');
+        var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:right;\">Insagro</div><div  style=\"height: 18px; text-align:right;\">\"Lo mejor para tus plantas\"</div><div  style=\"height: 18px; text-align:right;\">Direccion: Mazatenango</div><div  style=\"height: 18px; text-align:right;\">Tel. 77737775</div><div  style=\"height: 18px; text-align:right;\">Cel. 42207608</div></div></nav></div><br>";
+        var cuerpo="";
+    if(document.getElementById(id))
+    {
+        id=document.getElementById(id).value;
+    }
+        var trasDato;
+        fechaI = fI
+        fechaF = ff
+        trasDato = 7;
+        tipo=1;
+        $.ajax({
+            type: "POST",
+            //dataType: "json",
+            url: "../core/controlador/cajaControlador.php",
+            data: ' tipo=' + tipo + '&id=' + id + '&fechaI=' + fechaI + '&fechaF=' + fechaF + '&trasDato=' + trasDato,
+            success: function(resp) {
+               // alert(resp['estatus']);
+               //alert(resp['DetalleVenta'].length);
+               //alert(resp['caja']['sql'])
+               //alert(resp)
+               //$('#impresionCaja').html(resp['estatus']);
+               cuerpo="";
+               cuerpo+=encab+resp;
+              $('#impresionCaja').html(cuerpo);
+              
+              //document.getElementById('impresionDeFactura11').print();
+              // setTimeout(function(){printDiv('impresionDeFactura11');},500);
+              ImprimirVar('impresionCaja');
+            },
+                error: function( jqXHR, textStatus, errorThrown ) {
+    
+              if (jqXHR.status === 0) {
+    
+                alert('Not connect: Verify Network.');
+    
+              } else if (jqXHR.status == 404) {
+    
+                alert('Requested page not found [404]');
+    
+              } else if (jqXHR.status == 500) {
+    
+                alert('Internal Server Error [500].');
+    
+              } else if (textStatus === 'parsererror') {
+    
+                alert('Requested JSON parse failed.');
+    
+              } else if (textStatus === 'timeout') {
+    
+                alert('Time out error.');
+    
+              } else if (textStatus === 'abort') {
+    
+                alert('Ajax request aborted.');
+    
+              } else {
+    
+                alert('Uncaught Error: ' + jqXHR.responseText);
+    
+              }
+    
+            }
+        });
+        
+            
+           
+            
+        
+    }
 
 
 function toMoney(input)
@@ -158,3 +504,178 @@ function isNumber(evt) {
     }
     return true;
 }
+
+function imprimirFactura(id,div){
+    var cuerpo="";
+    if(document.getElementById(id))
+    {
+        id=document.getElementById(id).value;
+    }
+        $('#'+div).html('<div id="impresionDeFactura11"></div>');
+        var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:right;\">Insagro</div><div  style=\"height: 18px; text-align:right;\">\"Lo mejor para tus plantas\"</div><div  style=\"height: 18px; text-align:right;\">Direccion: Mazatenango</div><div  style=\"height: 18px; text-align:right;\">Tel. 77737775</div><div  style=\"height: 18px; text-align:right;\">Cel. 42207608</div></div></nav></div><br><p>Cliente: </p>";
+        //$('#impresionDeFactura11').html(encab);
+         var trasDato;
+        trasDato = 20;
+        tipo=1;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "../core/controlador/ventasControlador.php",
+            data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
+            success: function(resp) {
+    
+               //alert(resp['DetalleVenta'].length);
+               cuerpo="";
+               cuerpo+='<div class="logoFactura"><img class=\"logoFact\" src=\"../app/img/logoHectoRepuestos.png\"/></div>'+
+               '<div class="diaFactura">'+resp['venta']['dia']+'</div><div class="mesFactura">'+resp['venta']['mes']+'</div><div class="anioFactura">'+resp['venta']['anio']+'</div>'+
+               '<div class="nombreFactura">'+resp['venta']['1']+' '+resp['venta']['2']+'</div><div class="nitFactura">'+resp['venta']['4']+'</div>'+
+               '<div class="direccionFactura ">'+resp['venta']['3']+
+               '<table  class="detalleFactura espaciodetallefactura">';
+              for(i=0;i<resp['DetalleVenta'].length;i++){
+                 cuerpo+='<tr class="FilaFactura">'+
+                 '<td class="cantidadFila">'+resp['DetalleVenta'][i]['cantidad']+'</td>'+
+                 '<td class="descripcionFila">'+resp['DetalleVenta'][i]['nombre']+'</td>'+
+                 '<td class="unidadFila">'+currency(resp['DetalleVenta'][i]['precio'])+'</td>'+
+                 '<td class="subtotalFila">'+currency(resp['DetalleVenta'][i]['subtotal'])+'</td>'+
+                 '</tr>';
+              }
+              cuerpo+='</table>';
+              resp['total'] = currency(resp['total'] + '').replace('Q','').replace(',','') + '';
+              total = resp['total'].substring(0,(resp['total'].length)-3)
+              centavos = resp['total'].substring((resp['total'].length)-2,(resp['total'].length))
+              cuerpo+='<div class="totalFacturaLET">'+NumeroALetras(parseFloat(total))+' '+(centavos!=0?centavos+'/100':'')+'</div>';
+              cuerpo+='<div class="totalFactura">'+currency(parseFloat(resp['total'] + '') + '').replace("Q","")+'</div>';
+              $('#impresionDeFactura11').html(cuerpo);
+              //document.getElementById('impresionDeFactura11').print();
+              // setTimeout(function(){printDiv('impresionDeFactura11');},500);
+              ImprimirVar('impresionDeFactura11');
+            }
+        });
+        
+            
+           
+        
+       
+       //$('#'+div).html("");
+    
+    
+    }
+    
+    
+    function imprimirFacturaCambiaria(id,div){
+    var cuerpo="";
+    if(document.getElementById(id))
+    {
+        id=document.getElementById(id).value;
+    }
+    
+        $('#'+div).html('<div id="impresionDeFacturaC11"></div>');
+        var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:right;\">Insagro</div><div  style=\"height: 18px; text-align:right;\">\"Lo mejor para tus plantas\"</div><div  style=\"height: 18px; text-align:right;\">Direccion: Mazatenango</div><div  style=\"height: 18px; text-align:right;\">Tel. 77737775</div><div  style=\"height: 18px; text-align:right;\">Cel. 42207608</div></div></nav></div><br><p>Cliente: </p>";
+        //$('#impresionDeFacturaC11').html(encab);
+         var trasDato;
+        trasDato = 20;
+        tipo=1;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "../core/controlador/ventasControlador.php",
+            data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
+            success: function(resp) {
+    
+               //alert(resp['DetalleVenta'].length);
+               cuerpo="";
+               cuerpo+='<div class="logoFacturaC"><img class=\"logoFactC\" src=\"../app/img/logoHectoRepuestos.png\"/></div>'+
+               '<div class="diaFacturaC">'+resp['venta']['dia']+'/</div><div class="mesFacturaC">'+resp['venta']['mes']+'/</div><div class="anioFacturaC">'+resp['venta']['anio']+'</div>'+
+               '<div class="nombreFacturaC">'+resp['venta']['1']+' '+resp['venta']['2']+'</div><div class="nitFacturaC">'+resp['venta']['4']+'</div>'+
+               '<div class="direccionFacturaC">'+resp['venta']['3']+'</div>'+
+               '<table class="espaciodetallefacturaCambiaria">';
+              for(i=0;i<resp['DetalleVenta'].length;i++){
+                 cuerpo+='<tr class="FilaC">'+
+                 '<td class="codigoC">'+resp['DetalleVenta'][i]['codigoproducto']+'</td>'+
+                 '<td class="cantidadFilaC">'+resp['DetalleVenta'][i]['cantidad']+'</td>'+
+                 '<td class="unidadC">'+resp['DetalleVenta'][i]['presentacion']+'</td>'+
+                 '<td class="descripcionFilaC">'+resp['DetalleVenta'][i]['nombre']+'</td>'+
+                 '<td class="unidadFilaC">'+currency(resp['DetalleVenta'][i]['precio'])+'</td>'+
+                 '<td class="subtotalFilaC">'+currency(resp['DetalleVenta'][i]['subtotal'])+'</td>'+
+    
+                 '</tr>';
+              }
+              cuerpo+='</table>';
+              resp['total'] = currency(resp['total'] + '').replace('Q','').replace(',','') + '';
+              total = resp['total'].substring(0,(resp['total'].length)-3)
+              centavos = resp['total'].substring((resp['total'].length)-2,(resp['total'].length))
+              cuerpo+='<div class="totalFacturaCLET">'+NumeroALetras(parseFloat(total))+' '+(centavos!=0?centavos+'/100':'')+'</div>';
+              cuerpo+='<div class="totalFacturaC">'+currency(parseFloat(resp['total'] + '') + '').replace("Q","")+'</div>';
+              $('#impresionDeFacturaC11').html(cuerpo);
+             
+              //document.getElementById('impresionDeFacturaC11').print();
+               //setTimeout(function(){ImprimirVar(div);},500);
+               ImprimirVar('impresionDeFacturaC11');
+            }
+        });
+        
+            
+           
+        
+       
+       //$('#'+div).html("");
+    
+    
+    }
+    
+    function imprimirProforma(id,div){
+    var cuerpo="";
+    if(document.getElementById(id))
+    {
+        id=document.getElementById(id).value;
+    }
+        $('#'+div).html('<div id="impresionDeProforma11"></div>');
+        var encab="<div class=\"navbar-fixed\"><nav><div class=\"nav-wrapper grey darken-4\"><a  class=\"brand-logo\"><img class=\"logo\" src=\"../app/img/logoHectoRepuestos.png\"/></a><div style=\"height: 18px; text-align:right;\">Insagro</div><div  style=\"height: 18px; text-align:right;\">\"Lo mejor para tus plantas\"</div><div  style=\"height: 18px; text-align:right;\">Direccion: Mazatenango</div><div  style=\"height: 18px; text-align:right;\">Tel. 77737775</div><div  style=\"height: 18px; text-align:right;\">Cel. 42207608</div></div></nav></div><br><p>Cliente: </p>";
+        //$('#impresionDeProforma11').html(encab);
+         var trasDato;
+        trasDato = 20;
+        tipo=1;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "../core/controlador/ventasControlador.php",
+            data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
+            success: function(resp) {
+    
+               //alert(resp['DetalleVenta'].length);
+               cuerpo="";
+               cuerpo+='<div class="logoProforma"><img class=\"logoProf\" src=\"../app/img/logoHectoRepuestos.png\"/></div>'+
+               '<div class="diaProforma">'+resp['venta']['dia']+'/</div><div class="mesProforma">'+resp['venta']['mes']+'/</div><div class="anioProforma">'+resp['venta']['anio']+'</div>'+
+               '<div class="nombreProforma">'+resp['venta']['1']+' '+resp['venta']['2']+'</div>'+
+               '<div class="direccionProforma">'+resp['venta']['3']+'</div>'+
+               '<table class="detalleProforma espacioproforma">';
+              for(i=0;i<resp['DetalleVenta'].length;i++){
+                 cuerpo+='<tr>'+
+                 '<td class="cantidadFilaProforma">'+resp['DetalleVenta'][i]['cantidad']+'</td>'+
+                 '<td class="descripcionFilaProforma">'+resp['DetalleVenta'][i]['nombre']+'</td>'+
+                 '<td class="unidadFilaProforma">'+currency(resp['DetalleVenta'][i]['precio'] + '')+'</td>'+
+                 '<td class="subtotalFilaProforma">'+currency(resp['DetalleVenta'][i]['subtotal'] + '')+'</td>'+
+                 '</tr>';
+              }
+              cuerpo+='</table>';
+              
+              resp['total'] = currency(resp['total'] + '').replace('Q','').replace(',','') + '';
+              total = resp['total'].substring(0,(resp['total'].length)-3)
+              centavos = resp['total'].substring((resp['total'].length)-2,(resp['total'].length))
+              cuerpo+='<div class="totalProformaLET">'+NumeroALetras(parseFloat(total))+' '+(centavos!=0?centavos+'/100':'')+'</div>';
+              cuerpo+='<div class="totalProforma">'+currency(parseFloat(resp['total'] + '') + '').replace("Q","")+'</div>';
+              $('#impresionDeProforma11').html(cuerpo);
+               ImprimirVar('impresionDeProforma11');
+            }
+        });
+    
+    
+        
+            
+           
+        
+       
+       //$('#'+div).html("");
+    
+    
+    }

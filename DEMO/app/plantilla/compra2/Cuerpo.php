@@ -19,7 +19,7 @@
 	 }?>
 
             
-<div>
+    <div style="display:none;">
         <center>
             <div class="radioFiltro">
                 <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/motocicleta.png" /></i>

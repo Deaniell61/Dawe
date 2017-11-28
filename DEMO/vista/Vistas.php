@@ -16,6 +16,13 @@ function Cobrar()
     include('../app/plantilla/cuentasC/Pie.php');
 }
 
+function CobrarPagadas()
+{
+    include('../app/plantilla/cuentasCCanceladas/Cabecera.php');
+    include('../app/plantilla/cuentasCCanceladas/Cuerpo.php');
+    include('../app/plantilla/cuentasCCanceladas/Pie.php');
+}
+
 function Compra()
 {
     include('../app/plantilla/compra/Cabecera.php');
@@ -113,6 +120,13 @@ function Pagar()
     include('../app/plantilla/cuentasP/Cabecera.php');
     include('../app/plantilla/cuentasP/Cuerpo.php');
     include('../app/plantilla/cuentasP/Pie.php');
+}
+
+function PagarPagadas()
+{
+    include('../app/plantilla/cuentasPCanceladas/Cabecera.php');
+    include('../app/plantilla/cuentasPCanceladas/Cuerpo.php');
+    include('../app/plantilla/cuentasPCanceladas/Pie.php');
 }
 
 function Proveedor()

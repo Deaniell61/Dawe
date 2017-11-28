@@ -117,6 +117,75 @@ function mostrarCuentasP()
             }     
         });
 }
+function mostrarCuentasPCanceladas()
+{
+	var filto="";
+ 
+        var porNombre=document.getElementsByName("filtro");
+        
+        for(var i=0;i<porNombre.length;i++)
+        {
+            if(porNombre[i].checked)
+                filto=porNombre[i].value;
+        }
+
+	var  trasDato;
+	trasDato = 14;
+	
+        $.ajax
+        ({
+            type:"POST",
+            url:"../core/controlador/cuentasPagarControlador.php",
+            data:' tipo=' +  filto + '&trasDato=' + trasDato,
+            success: function(resp)
+            {
+
+               if(resp == '1')
+                {
+
+
+                    //$('#mensaje').html('Datos Incorrectos.');         
+                    //$('#precargar').hide();    
+                }
+                else
+                {
+                    
+					
+					 $('#tablaMostrar').html(resp); 
+					 
+					 $('#tabla').DataTable( {
+
+											info:     false,
+										
+										
+										
+											language: {
+										
+												search: "Buscar",
+												sLengthMenu:" _MENU_ ",
+										
+												paginate:{
+										
+													previous: "Anterior",
+													next: "Siguiente",
+										
+												},
+										
+											},
+											/*
+													   "scrollY":        "375px",
+												"scrollCollapse": true,
+												"paging":         true
+												 */
+										} );
+										$('select').material_select();
+
+                }
+
+
+            }     
+        });
+}
 function cargarDetalleCuentasP(id)
 {
 	var  trasDato;

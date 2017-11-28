@@ -5,7 +5,7 @@
 function login($user, $pass)
 {
 
-	$sql = "SELECT user,Email,contra,idRol,idUsuarios FROM usuarios where estado=1 and (user='$user' or email='$user' or email like '$user@gmail.com' or email like '$user@hotmail.com') and contra='$pass';";
+	$sql = "SELECT user,Email,contra,idRol,idUsuarios,idsucursal FROM usuarios where estado=1 and (user='$user' or email='$user' or email like '$user@gmail.com' or email like '$user@hotmail.com') and contra='$pass';";
     
     $mysql = conexionMysql(); 
     
@@ -30,6 +30,7 @@ function login($user, $pass)
 				$_SESSION['notified2P']="";
 				//$_SESSION['SOFT_DESTINO_EMAIL']="mmmhr3@hotmail.com";
 				$_SESSION['SOFT_DESTINO_EMAIL']="";
+				$_SESSION['SOFT_ID_SUCURSAL']=$fila['5'];
 		   
 		   			cargarModulos($_SESSION['SOFT_USER_ID']);
 				echo "Modulo/?Inicio";

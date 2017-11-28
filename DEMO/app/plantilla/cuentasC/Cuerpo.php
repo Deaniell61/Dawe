@@ -20,9 +20,14 @@
     </ul>         
 
 
+        <div>
+         	<ul>
 
+         		  <li class="centrarli"><a id="ccPagadas" href="#!" class="red accent-3 btn white-text tamaniobot " ><i class="material-icons left"><img class="iconotab" src="../app/img/generarv.png" /></i>Cuentas Pagadas</a></li>
+         	</ul>
+          </div>
     <!-- ********************************** tabla inicio ********************************** -->
-      <div>
+      <div style="display:none;">
         <center>
             <div class="radioFiltro">
                 <i class="material-icons prefix"><img class="iconologin radioBoton" src="../app/img/motocicleta.png" /></i>

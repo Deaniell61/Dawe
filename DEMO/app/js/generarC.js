@@ -119,7 +119,7 @@ function buscarProveedor(buscar,evt)
 
 		$('#modal4').openModal();
 		setTimeout(function(){
-		llamarProveedor();},300);
+		llamarProveedor();},100);
 	}
 	else
 	if(buscar.value=="")
@@ -404,22 +404,7 @@ function iniciarCompra(id)
             success: function(resp)
             {
 
-               if(resp == '1')
-                {
-
-
-                    //$('#mensaje').html('Datos Incorrectos.');
-                    //$('#precargar').hide();
-                }
-                else
-                {
-
-
-
-					 $('#mensaje').html(resp);
-
-                }
-
+					 $('#mensajeC').html(resp);
 
             }
         });

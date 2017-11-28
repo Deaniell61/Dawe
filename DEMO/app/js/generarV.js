@@ -431,7 +431,7 @@ function ingresoVenta(prod) {
 
 
                 $('#mensaje').html(resp);
-
+                agregaClick();
 
             }
 
@@ -618,36 +618,98 @@ function seleccionaProductoVenta(codprod) {
     });
 }
 
-function cambiarTipo(tipo, id) {
+function cambiarTipo(tipo, id,value) {
 
     var trasDato;
     trasDato = 9;
     //alert(2);
-    $.ajax({
-        type: "POST",
-        url: "../core/controlador/ventasControlador.php",
-        data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
-        success: function(resp) {
-
-            if (resp == '1') {
-
-
-                //$('#mensaje').html('Datos Incorrectos.');
-                //$('#precargar').hide();
-            } else {
+    if(value=='2')
+    {   var trasDatow;
+        trasDatow = 13;
+        idd = 1;
+            var contra = prompt("Ingrese Contraseña");
+        $.ajax({
+            type: "POST",
+            url: "../core/controlador/usuarioControlador.php",
+            data: ' id=' + idd + '&contra=' + contra + '&trasDato=' + trasDatow,
+            success: function(resp) {
 
 
+                if (resp == 1) {
 
-                $('#mensajeC').html(resp);
+                    $.ajax({
+                        type: "POST",
+                        url: "../core/controlador/ventasControlador.php",
+                        data: ' tipo=' + tipo + '&id=' + id + '&trasDato=' + trasDato,
+                        success: function(resp) {
+            
+                            if (resp == '1') {
+            
+            
+                                //$('#mensaje').html('Datos Incorrectos.');
+                                //$('#precargar').hide();
+                            } else {
+            
+            
+            
+                                $('#mensajeC').html(resp);
+                                agregaClick();
+            
+                            }
+            
+            
+                        }
+                    });
+                } else {
+                    alert('Contraseña Erronea');
+                    document.getElementById('tipoVenta').value='1';
+                    document.getElementById('cuentasContenedor').style.display='none';
+                    $('#tipoVenta').material_select();
+
+                }
+
+
 
 
             }
-
-
-        }
-    });
+        });
+        
+    }
 }
-
+function agregaClick(){
+    var div=document.getElementById('btnGuardar');
+    document.getElementById('imprimePro').style.display='none';
+    document.getElementById('imprimeFaC').style.display='none';
+    document.getElementById('imprimeFa').style.display='none';
+    var filto="";
+ 
+        var porNombre=document.getElementsByName("Correlativos");
+        
+        for(var i=0;i<porNombre.length;i++)
+        {
+            if(porNombre[i].checked){
+                filto=porNombre[i].value;}
+        }
+    
+        switch(document.getElementById('tipoVenta').value){
+            case '1':{
+                
+            document.getElementById('imprimeFa').style.display='';
+                break;
+            }
+            case '2':{
+                
+            document.getElementById('imprimeFaC').style.display='';
+            break;
+            }
+           default:{
+                
+            document.getElementById('imprimePro').style.display='';
+            break;
+            }
+        }
+   
+}
 function agregarFacturaVenta(tipo, id) {
 
     var trasDato;

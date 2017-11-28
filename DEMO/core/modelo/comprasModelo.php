@@ -63,7 +63,7 @@ function inicioCompra($idProv)
 		$mysql->query("BEGIN");
 		$mysql->query("delete from compradetalle where estado=2;");
 		$mysql->query("delete from compras where estado=2;");
-    $sql = "INSERT INTO compras(total,estado,tipoCompra,iddistribuidor,idusuario) values(0,2,'".$idProv[1]."','".$idProv[0]."','".$_SESSION['SOFT_USER_ID']."')";
+        $sql = "INSERT INTO compras(total,estado,tipoCompra,iddistribuidor,idusuario) values(0,2,'".$idProv[1]."','".$idProv[0]."','".$_SESSION['SOFT_USER_ID']."')";
  
     if($mysql->query($sql))
     {
@@ -89,7 +89,7 @@ function inicioCompra($idProv)
     else
     {   
     
-    	$form = "<div><script>console.log('$idProv');</script></div>";
+    	$form = "<div><script>console.log('".$idProv[0]."');</script></div>";
     
     }
     
@@ -127,7 +127,7 @@ function agregaInventario($datos)
 					{
 							 
 									
-							//		 echo "<script>window.location.href = 'Ventas.php';/script>";
+							//		 echo "<script>window.location.href = '?Ventas';/script>";
 									
 							if(!$mysql->query("update compras set estado=1 where idcompras='".$_SESSION['idCompra']."'"))
 									 {
@@ -154,7 +154,7 @@ function agregaInventario($datos)
 							 
 						
 										$mysql->query("COMMIT");
-										echo "<script>setTimeout(function(){window.location.href=\"Compras.php\";},300);</script>";
+										echo "<script>setTimeout(function(){window.location.href=\"?Compras\";},300);</script>";
 									}
 						
 							

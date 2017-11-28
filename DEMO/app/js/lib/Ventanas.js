@@ -206,6 +206,26 @@ $('#pagar').click(function(){
     window.location.href="?Pagar";
 });
 
+$('#cobrar11').click(function(){
+
+    window.location.href="?Cobrar";
+});
+
+$('#pagar11').click(function(){
+
+    window.location.href="?Pagar";
+});
+
+$('#ccPagadas').click(function(){
+
+    window.location.href="?CobrarPagadas";
+});
+
+$('#cpPagadas').click(function(){
+
+    window.location.href="?PagarPagadas";
+});
+
 
 
 
